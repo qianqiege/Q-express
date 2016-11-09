@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>患者档案</title>
+<style>
+    html,body,div,p{margin:0;padding:0}
+    body{font-size:14px;font-family:"microsoft yahei";background-color:#ffffff}
+    table{border-collapse:collapse;border-spacing:0;table-layout:fixed}
+    th,td{font-size:14px;padding:0}
+    a{text-decoration:none}
+    img{border:0 none}
+    .blue{text-decoration:none;color:#3c3d5d}
+    .chead{width:1002px}
+    .chead .logo{width:698px;height:90px}
+    .chead .txt{width:152px;height:90px}
+    .column{width:1002px;line-height:28px;border:1px solid #dedede}
+    .column .hbox{width:185px;height:154px}
+    .column .head{display:block;background-color:#fafafa}
+    .column .box{width:100%;background-color:#ffffff;border-top:2px solid #f2f3f5}
+    .column .box1{width:100%;word-wrap:break-word;color:#ffffff;background-color:#3f4160}
+    .column .box2{width:100%;background-color:#f8f9fa}
+    .column .tba{width:940px;padding:0 30px 15px}
+    .column .tbb{width:940px;padding:0 30px}
+    .column .tb1{width:900px;line-height:28px;color:#333333;word-break:break-all;padding:0 20px}
+    .column .tb2{width:430px;padding:0 20px}
+    .column .tb3{width:900px;padding:15px 20px 15px 0}
+    .column .gray,.column .gray2{color:#999999;word-break:break-all}
+    .column .gray2{color:#666666}
+    .column .plate1,.column .plate2{width:430px;height:54px;font-size:16px;font-weight:bold;color:#818ba3}
+    .column .plate1{width:900px;padding:0 50px}
+    .column .plate1 .f16{font-size:14px;font-weight:normal;color:#333333}
+    .column .plate1 .f12{font-size:12px;font-weight:normal;color:#999999}
+    .column .keys,.column .keys2{width:85px;line-height:28px;color:#666666}
+    .column .keys2{width:100px}
+    .column .label1{width: 150px}
+    .column .label2{width:400px}
+    .column .txt1,.column .txt2,.column .txt3{width:815px;line-height:28px;color:#333333;word-break:break-all}
+    .column .txt2{width:345px}
+    .column .txt3{width:auto;max-width:815px;font-size:14px;font-weight:bold}
+    .column .txt4{width:305px;color:#ffffff;word-break:break-all}
+    .column .infr{width:767px;color:#ffffff;table-layout:auto}
+    .column .vam,.column .grcha{vertical-align:middle;margin-left:5px}
+    .column .box1 .vam{margin-right:5px;margin-left:0}
+    .column .name{font-size:24px;padding-bottom:18px}
+    .column .icard{color:#a1a3ae;padding-bottom:18px}
+    .column .con{border-top:1px dotted #ddd}
+    .column .pr20{width:225px;padding-right:20px}
+    .column .time{width:120px;line-height:28px;color:#666666;padding-left:20px}
+    .column .rtbox{width:765px;line-height:28px;color:#333333;padding:0 20px 0 15px;word-break:break-all}
+    .column .hai,.column .guan{line-height:18px;font-size:12px;color:#ffffff;vertical-align:text-top;margin-left:5px;padding:1px 3px;background-color:#3cbe7f;border-radius:2px}
+    .column .guan{background-color:#ff9f20}
+    .column .tag{display:inline-block;word-break:break-all;#display:inline;#zoom:1}
+    .column .all{color:#666;padding:10px 20px;background-color:#fafafa}
+    .column .tit{width:900px;height:40px;color:#666666;padding:0 20px;background-color:#f5f5f5}
+    .column .p15{padding:15px 0}
+    .column .p5{display:inline-block;color:#666666;padding:0 5px;#display:inline;#zoom:1}
+    .column .cell .skill{width:120px;text-align:right;padding-right:15px}
+    .column .cell .skbg,.column .cell .skco{display:inline-block;width:290px;height:18px;line-height:18px;font-size:12px;color:#ffffff;vertical-align:top;margin-top:6px;background-color:#dddddd;border-radius:20px;#display:inline;#zoom:1}
+    .column .cell .skco{width:280px;font-style:normal;margin-top:0;padding-left:10px;background-color:#ff9f20;z-index:3}
+    .column .sl .skco{width:206px}
+    .column .lh .skco{width:132px}
+    .column .yb .skco{width:58px}
+    .column .fbox strong{font-size:14px;font-weight:bold}
+    .column .cha{font-size:12px;font-weight:normal;color:#2d64b3;margin-left:5px}
+    .column .cha:hover{color:#ff6000}
+    .column .email{width:330px}
+    .column .email .vam{margin-top:5px}
+    .eng td,.eng .txt3,.eng .fbox strong{font-size:13px;font-family:'Arial'}
+    .eng .txt1,.eng .rtbox,.eng .phd{width:775px;font-size:13px;font-family:'Arial';line-height:28px}
+    .eng .txt2{width:305px}
+    .eng .txt4{width:245px}
+    .eng .cell .txt3{width:120px}
+    .eng .time,.eng .keys{width:110px;font-size:13px;text-align:right}
+    .eng .cell .skill{width:110px}
+    .eng .phd{padding-left:145px}
+    .eng .keys{padding-right:15px}
+    .eng .pr20 .keys{width:100px}
+    .eng .email{width:270px}
+  </style>
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" align="center" class="chead" class="top">
+	<tbody>
+		<tr>
+			<td class="logo">
+				<a href="index.ejs" class="logo"><img src="/images/ybyt04.png" alt="logo" width="80" height="80"/></a>
+			</td>
+			<td align="right" class="txt">
+				<img src="/images/print.png" align="absmiddle">
+				<a class="blue" href="javascript:window.print();">打印</a>
+			</td>
+			<td align="right" class="txt">
+				<img src="/images/export.png" align="absmiddle">
+				<a class="blue" href="javascript:cv_export('c','http://i.51job.com/resume','335415398');">导出</a>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<table cellpadding="0" cellspacing="0" align="center" bgcolor="#fff" class="column"><tbody><tr><td valign="top"><table xmlns="" cellspacing="0" cellpadding="0" border="0" class="box1"><tbody><tr>
+<td class="hbox" align="middle"><img src="/images/4.jpg" width="80" height="104" class="head" alt="头像"></td>
+<td><table cellspacing="0" cellpadding="0" border="0" class="infr"><tbody>
+<tr>
+<td colspan="2" class="name">徐宁</td>
+<td align="right" class="icard">
+ID:335415398</td>
+</tr>
+<tr>
+<td valign="top">
+<img class="vam" src="/images/y1.png" width="20" height="20">汉族</td>
+<td valign="top">
+<img class="vam" src="/images/y2.png" width="20" height="20">18575576754</td>
+<td valign="top"><table cellspacing="0" cellpadding="0" border="0" class="email"></table></td>
+</tr>
+<tr><td valign="top" colspan="3"><p><img class="vam" src="/images/y4.png" width="20" height="20">女<span class="p5">|</span>24 岁 (1992/11/06)<span class="p5">|</span> 167cm <span class="p5">|</span>未婚<span class="p5">|</span>深圳宝安
+</p></td></tr>
+</tbody></table></td>
+</tr></tbody></table>
+<table xmlns="" cellspacing="0" cellpadding="0" border="0" class="box2"><tbody><tr><td class="tba"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr>
+<td valign="top" class="tb2"><table cellspacing="0" cellpadding="0" border="0">
+<thead style="height:0"><tr>
+<td valign="top" class="keys"></td>
+<td valign="top" class="txt2"></td>
+</tr></thead>
+<tbody>
+<tr><td colspan="2" class="plate2">指标</td></tr>
+<tr>
+<td valign="top" class="keys">血压：</td>
+<td valign="top" class="txt2">100mg/l</td>
+</tr>
+<tr>
+<td valign="top" class="keys">血糖：</td>
+<td valign="top" class="txt2">100mg</td>
+</tr>
+<tr>
+<td valign="top" class="keys">脉搏：</td>
+<td valign="top" class="txt2">100mg</td>
+</tr>
+</tbody>
+</table></td>
+<td valign="top" class="tb2"><table cellspacing="0" cellpadding="0" border="0">
+<thead style="height:0"><tr>
+<td valign="top" class="keys"></td>
+<td valign="top" class="txt2"></td>
+</tr></thead>
+<tbody>
+<tr><td colspan="2" class="plate2">健康调查</td></tr>
+<tr>
+<td valign="top" class="keys">传染病：</td>
+<td valign="top" class="txt2">无</td>
+</tr>
+<tr>
+<td valign="top" class="keys">输血史：</td>
+<td valign="top" class="txt2">无</td>
+</tr>
+<tr>
+<td valign="top" class="keys">药物过敏：</td>
+<td valign="top" class="txt2">无</td>
+</tr>
+<tr>
+<td valign="top" class="keys">家族疾病：</td>
+<td valign="top" class="txt2">无</td>
+</tr>
+</tbody>
+</table></td>
+</tr></tbody></table></td></tr></tbody></table>
+<table xmlns="" cellspacing="0" cellpadding="0" border="0" class="box"><tbody>
+<tr><td class="plate1">病史</td></tr>
+<tr><td class="tba"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr>
+<td class="tb2" valign="top"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr>
+<td valign="top" class="keys">疾病史：</td>
+<td valign="top" class="txt2">无</td>
+</tr>
+<tr>
+<td valign="top" class="keys">住院史：</td>
+<td valign="top" class="txt2">无</td>
+</tr>
+<tr>
+<td valign="top" class="keys">明显症状：</td>
+<td valign="top" class="txt2">无</td>
+</tr>
+<tr>
+<td valign="top" class="keys">用药史：</td>
+<td valign="top" class="txt2">无</td>
+</tr>
+<tr>
+<td valign="top" class="keys">月经生育史：</td>
+<td valign="top" class="txt2">无</td>
+</tr>
+<tr>
+<td valign="top" class="ke" style="width:120px;color:#666666">男性殖系统疾病：</td>
+<td valign="top" class="txt2">无</td>
+</tr></tbody></table></td>
+<td class="tb2" valign="top">&nbsp;</td>
+</tr></tbody></table></td></tr>
+</tbody></table>
+<table xmlns="" cellspacing="0" cellpadding="0" border="0" class="box"><tbody><tr><td class="tba"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr>
+<td valign="top" class="tb2"><table cellspacing="0" cellpadding="0" border="0">
+<thead style="height:0"><tr>
+<td valign="top" class="keys"></td>
+<td valign="top" class="txt2"></td>
+</tr></thead>
+<tbody>
+<tr><td colspan="2" class="plate2">吸烟史</td></tr>
+<tr>
+<td valign="top" class="keys">吸烟状态：</td>
+<td valign="top" class="txt2">100mg/l</td>
+</tr>
+<tr>
+<td valign="top" class="keys">吸烟时间：</td>
+<td valign="top" class="txt2">100mg</td>
+</tr>
+<tr>
+<td valign="top" class="keys">每日吸烟量：</td>
+<td valign="top" class="txt2">100mg</td>
+</tr>
+<tr>
+<td valign="top" class="keys">被动吸烟环境：</td>
+<td valign="top" class="txt2">100mg</td>
+</tr>
+</tbody>
+</table></td>
+<td valign="top" class="tb2"><table cellspacing="0" cellpadding="0" border="0">
+<thead style="height:0"><tr>
+<td valign="top" class="keys"></td>
+<td valign="top" class="txt2"></td>
+</tr></thead>
+<tbody>
+<tr><td colspan="2" class="plate2">饮酒史</td></tr>
+<tr>
+<td valign="top" class="keys">喝酒状态：</td>
+<td valign="top" class="txt2">无</td>
+</tr>
+<tr>
+<td valign="top" class="keys">饮酒时间：</td>
+<td valign="top" class="txt2">无</td>
+</tr>
+<tr>
+<td valign="top" class="keys">饮酒次数：</td>
+<td valign="top" class="txt2">无</td>
+</tr>
+<tr>
+<td valign="top" class="keys">饮酒量：</td>
+<td valign="top" class="txt2">无</td>
+</tr>
+</tbody>
+</table></td>
+</tr></tbody></table></td></tr></tbody></table>
+
+<table xmlns="" cellspacing="0" cellpadding="0" border="0" class="box"><tbody><tr><td class="tba"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr>
+<td valign="top" class="tb2"><table cellspacing="0" cellpadding="0" border="0">
+<thead style="height:0"><tr>
+<td valign="top" class="keys"></td>
+<td valign="top" class="txt2"></td>
+</tr></thead>
+<tbody>
+<tr><td colspan="2" class="plate2">心理</td></tr>
+<tr>
+<td valign="top" class="keys">心情：</td>
+<td valign="top" class="txt2">100mg/l</td>
+</tr>
+<tr>
+<td valign="top" class="keys">害怕：</td>
+<td valign="top" class="txt2">100mg</td>
+</tr>
+<tr>
+<td valign="top" class="keys">生气：</td>
+<td valign="top" class="txt2">100mg</td>
+</tr>
+<tr>
+<td valign="top" class="keys">无故悲伤：</td>
+<td valign="top" class="txt2">100mg</td>
+</tr>
+</tbody>
+</table></td>
+<td valign="top" class="tb2"><table cellspacing="0" cellpadding="0" border="0">
+<thead style="height:0"><tr>
+<td valign="top" class="keys"></td>
+<td valign="top" class="txt2"></td>
+</tr></thead>
+<tbody>
+<tr><td colspan="2" class="plate2">查体</td></tr>
+<tr>
+<td valign="top" class="keys">多久体检：</td>
+<td valign="top" class="txt2">无</td>
+</tr>
+<tr>
+<td valign="top" class="keys">医疗器械：</td>
+<td valign="top" class="txt2">无</td>
+</tr>
+<tr>
+<td valign="top" class="keys">穿戴设备：</td>
+<td valign="top" class="txt2">无</td>
+</tr>
+</tbody>
+</table></td>
+</tr></tbody></table></td></tr></tbody></table>
+
+
+<table xmlns="" cellspacing="0" cellpadding="0" border="0" class="box"><tbody>
+<tr><td class="plate1">健康习惯调查</td></tr>
+<tr><td class="tbb"><table cellspacing="0" cellpadding="0" border="0">
+<tr><td class="p15"><table cellspacing="0" cellpadding="0" border="0"><tbody>
+<tr><td class="phd tb1" colspan="2">
+<span> 多梦易醒、入睡困难或醒后难以入睡等情况：</span><span class="gray">&nbsp;[2个月]
+</span>
+</td></tr>
+<tr><td class="phd tb1" colspan="2">
+<span> 每天大约饮水多少毫升，是否有尿急尿频尿痛等异常情况：</span><span class="gray">&nbsp;[2个月]
+</span>
+</td></tr>
+<tr><td class="phd tb1" colspan="2">
+<span> 请问您大便规律么，有无便秘、便溏、便泻等异常情况：</span><span class="gray">&nbsp;[2个月]
+</span>
+</td></tr>
+</tbody></table></td></tr>
+</table></td></tr>
+</tbody></table>
+
+<table xmlns="" class="box"><tbody>
+<tr><td class="plate1">饮食运动习惯</td></tr>
+<tr><td class="tba"><table cellspacing="0" cellpadding="0" border="0"><tr><td class="p15"><table cellspacing="0" cellpadding="0" border="0"><tbody>
+
+
+<tr><td class="tb1" colspan="2"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr>
+<td valign="top" class="keys label1"  >甜食：</td>
+<td valign="top" class="txt1 label2" >喜欢</td>
+<td valign="top" class="keys label1"> 口味：</td>
+<td valign="top" class="txt1 label2" > 偏轻</td>
+</tr></tbody></table></td></tr>
+<tr><td class="tb1" colspan="2"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr>
+<td valign="top" class="keys label1" >肉海鲜：</td>
+<td valign="top" class="txt1 label2" >不</td>
+<td valign="top" class="keys label1" >食品种类：</td>
+<td valign="top" class="txt1 label2" >不喜欢</td>
+</tr></tbody></table></td></tr>
+<tr><td class="tb1" colspan="2"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr>
+<td valign="top" class="keys label1">主食：</td>
+<td valign="top" class="txt1 label2">不喜欢</td>
+<td valign="top" class="keys label1" >运动次数：</td>
+<td valign="top" class="txt1 label2">不喜欢</td>
+</tr></tbody></table></td></tr>
+<tr><td class="tb1" colspan="2"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr>
+<td valign="top" class="keys label1">运动方式：</td>
+<td valign="top" class="txt1 label2"> 偏轻</td>
+<td valign="top" class="keys label1" >运动时间：</td>
+<td valign="top" class="txt1 label2" > 偏轻</td>
+</tr></tbody></table></td></tr>
+</tbody></table></td></tr></table></td></tr>
+</tbody></table></td></tr></tbody></table></body></html>
