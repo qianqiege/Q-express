@@ -1,0 +1,68 @@
+<%- include header %>
+<div class="page">
+  <div class="page-content container">
+    <div class="row">
+      <div class="">
+
+        <form class="" role="search">
+          <div class="row" >
+            <div class="col-md-2 offset-md-9">
+              <div class="form-group" style="display:inline" >
+                <input type="text" class="form-control" placeholder="Search">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-default" style="display:inline">查询</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="">
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-primary active">
+            <input type="radio" name="options" id="option1" autocomplete="off" checked> 未处理异常
+          </label>
+          <label class="btn btn-primary">
+            <input type="radio" name="options" id="option2" autocomplete="off"> 已处理异常
+          </label>
+          <label class="btn btn-primary">
+            <input type="radio" name="options" id="option3" autocomplete="off"> 全部健康
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <table class="table table-bordered" >
+        <thead>
+          <tr>
+            <th>姓名</th>
+            <th>检测项目</th>
+            <th>体征值</th>
+            <th>体征单位</th>
+            <th>异常状态</th>
+            <th>检测时间</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td> 张三 </td>
+            <td>  </td>
+            <td>  </td>
+            <td>  </td>
+            <td>  </td>
+            <td>  </td>
+            <td>  </td>
+          </tr>
+
+        </tbody>
+        <tfoot>
+
+        </tfoot>
+      </table>
+    </div>
+
+  </div>
+</div>
+<%- include footer %>
