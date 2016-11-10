@@ -1,0 +1,62 @@
+
+<%- include header %>
+<div class="page">
+  <div class="page-content">
+    <!-- Panel -->
+    <div class="panel">
+      <div class="panel-body">
+        <form class="page-search-form" role="search">
+          <div class="input-search input-search-dark">
+            <i class="input-search-icon wb-search" aria-hidden="true"></i>
+            <input type="text" class="form-control" id="inputSearch" name="search" placeholder="">
+            <button type="button" class="input-search-close icon wb-close" aria-label="Close"></button>
+          </div>
+        </form>
+        <div class="nav-tabs-horizontal nav-tabs-animate" data-plugin="tabs">
+          <ul class="nav nav-tabs nav-tabs-line" role="tablist">
+            <li class="nav-item" role="presentation"><a class="active nav-link" data-toggle="tab" href="#all_contacts"
+              aria-controls="all_contacts" role="tab">All Users</a></li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane animation-fade active" id="all_contacts" role="tabpanel">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <div class="media">
+                    <div class="media-left">
+                      <div class="avatar avatar-online">
+                        <img src="/images/1.jpg" alt="...">
+                        <i class="avatar avatar-busy"></i>
+                      </div>
+                    </div>
+                    <div class="media-body">
+                      <h4 class="media-heading">
+                        Herman Beck
+                      </h4>
+                    </div>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div class="media">
+                    <div class="media-left">
+                      <div class="avatar avatar-away">
+                        <img src="/images/2.jpg" alt="...">
+                        <i class="avatar avatar-busy"></i>
+                      </div>
+                    </div>
+                    <div class="media-body">
+                      <h4 class="media-heading">
+                        Mary Adams
+                      </h4>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Panel -->
+  </div>
+</div>
+<%- include footer %>
