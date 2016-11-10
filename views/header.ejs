@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/stylesheets/site.min.css">
     <link rel="stylesheet" href="/stylesheets/style.css">
     <link rel="stylesheet" href="/stylesheets/bootstrap-select.css">
-      <link rel="stylesheet" href="/stylesheets/select2.css">
+    <link rel="stylesheet" href="/stylesheets/select2.css">
     <link rel="stylesheet" href="/stylesheets/bootstrap-datepicker.css">
     <!-- Plugins -->
     <link rel="stylesheet" href="/stylesheets/animsition.css">
@@ -23,6 +23,10 @@
     <link rel="stylesheet" href="/stylesheets/chartist-plugin-tooltip.css">
     <!-- Fonts -->
     <link rel="stylesheet" href="/stylesheets/web-icons.min.css">
+    <script src="/javascripts/breakpoints.js"></script>
+    <script>
+    Breakpoints();
+    </script>
   </head>
   <body>
     <nav class="site-navbar navbar navbar-default navbar-fixed-top navbar-mega" role="navigation">
@@ -84,7 +88,81 @@
                             <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
                               <a href="advanced/animation.html">Animation</a>
                             </li>
+                            <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
+                              <a href="uikit/buttons.html">Buttons</a>
+                            </li>
+                            <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
+                              <a href="uikit/colors.html">Colors</a>
+                            </li>
+                            <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
+                              <a href="uikit/dropdowns.html">Dropdowns</a>
+                            </li>
+                            <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
+                              <a href="uikit/icons.html">Icons</a>
+                            </li>
+                            <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
+                              <a href="advanced/lightbox.html">Lightbox</a>
+                            </li>
                           </ul>
+                        </li>
+                        <li class="mega-menu m-0">
+                          <ul class="list-icons">
+                            <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
+                              <a href="uikit/modals.html">Modals</a>
+                            </li>
+                            <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
+                              <a href="uikit/panel-structure.html">Panels</a>
+                            </li>
+                            <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
+                              <a href="structure/overlay.html">Overlay</a>
+                            </li>
+                            <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
+                              <a href="uikit/tooltip-popover.html ">Tooltips</a>
+                            </li>
+                            <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
+                              <a href="advanced/scrollable.html">Scrollable</a>
+                            </li>
+                            <li><i class="wb-chevron-right-mini" aria-hidden="true"></i>
+                              <a href="uikit/typography.html">Typography</a>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="col-xs-12 col-md-4">
+                      <h5>Media
+                        <span class="tag tag-pill tag-success">4</span>
+                      </h5>
+                      <ul class="blocks-3">
+                        <li>
+                          <a class="thumbnail m-0" href="javascript:void(0)">
+                            <img class="w-full" src="../../global/photos/placeholder.png" alt="..." />
+                          </a>
+                        </li>
+                        <li>
+                          <a class="thumbnail m-0" href="javascript:void(0)">
+                            <img class="w-full" src="../../global/photos/placeholder.png" alt="..." />
+                          </a>
+                        </li>
+                        <li>
+                          <a class="thumbnail m-0" href="javascript:void(0)">
+                            <img class="w-full" src="../../global/photos/placeholder.png" alt="..." />
+                          </a>
+                        </li>
+                        <li>
+                          <a class="thumbnail m-0" href="javascript:void(0)">
+                            <img class="w-full" src="../../global/photos/placeholder.png" alt="..." />
+                          </a>
+                        </li>
+                        <li>
+                          <a class="thumbnail m-0" href="javascript:void(0)">
+                            <img class="w-full" src="../../global/photos/placeholder.png" alt="..." />
+                          </a>
+                        </li>
+                        <li>
+                          <a class="thumbnail m-0" href="javascript:void(0)">
+                            <img class="w-full" src="../../global/photos/placeholder.png" alt="..." />
+                          </a>
                         </li>
                       </ul>
                     </div>
@@ -391,6 +469,7 @@
         <!-- End Site Navbar Seach -->
       </div>
     </nav>
+
     <div class="site-menubar">
       <div class="site-menubar-body">
         <div>
@@ -401,6 +480,9 @@
                 <a href="javascript:void(0)">
                   <i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
                   <span class="site-menu-title">Dashboard</span>
+                  <div class="site-menu-badge">
+                    <span class="tag tag-pill tag-success">3</span>
+                  </div>
                 </a>
                 <ul class="site-menu-sub">
                   <li class="site-menu-item active">
@@ -433,39 +515,97 @@
               <li class="site-menu-item has-sub">
                 <a href="javascript:void(0)">
                   <i class="site-menu-icon wb-layout" aria-hidden="true"></i>
-                  <span class="site-menu-title">健康检测</span>
+                  <span class="site-menu-title">Layouts</span>
                   <span class="site-menu-arrow"></span>
                 </a>
                 <ul class="site-menu-sub">
                   <li class="site-menu-item">
-                    <a class="animsition-link" href="/FetalhHeart">
-                      <span class="site-menu-title">胎心</span>
+                    <a class="animsition-link" href="layouts/menu-collapsed.html">
+                      <span class="site-menu-title">Menu Collapsed</span>
                     </a>
                   </li>
                   <li class="site-menu-item">
-                    <a class="animsition-link" href="/ExceptionData">
-                      <span class="site-menu-title">血压</span>
+                    <a class="animsition-link" href="layouts/menu-collapsed-alt.html">
+                      <span class="site-menu-title">Menu Collapsed Alt</span>
                     </a>
                   </li>
                   <li class="site-menu-item">
                     <a class="animsition-link" href="layouts/menu-expended.html">
-                      <span class="site-menu-title">血糖</span>
+                      <span class="site-menu-title">Menu Expended</span>
                     </a>
                   </li>
                   <li class="site-menu-item">
                     <a class="animsition-link" href="layouts/grids.html">
-                      <span class="site-menu-title">体温</span>
+                      <span class="site-menu-title">Grid Scaffolding</span>
                     </a>
                   </li>
                   <li class="site-menu-item">
                     <a class="animsition-link" href="layouts/layout-grid.html">
-                      <span class="site-menu-title">心率</span>
+                      <span class="site-menu-title">Layout Grid</span>
                     </a>
                   </li>
                   <li class="site-menu-item">
                     <a class="animsition-link" href="layouts/headers.html">
-                      <span class="site-menu-title">体重</span>
+                      <span class="site-menu-title">Different Headers</span>
                     </a>
+                  </li>
+                  <li class="site-menu-item">
+                    <a class="animsition-link" href="layouts/panel-transition.html">
+                      <span class="site-menu-title">Panel Transition</span>
+                    </a>
+                  </li>
+                  <li class="site-menu-item">
+                    <a class="animsition-link" href="layouts/boxed.html">
+                      <span class="site-menu-title">Boxed Layout</span>
+                    </a>
+                  </li>
+                  <li class="site-menu-item">
+                    <a class="animsition-link" href="layouts/two-columns.html">
+                      <span class="site-menu-title">Two Columns</span>
+                    </a>
+                  </li>
+                  <li class="site-menu-item">
+                    <a class="animsition-link" href="layouts/menubar-flipped.html">
+                      <span class="site-menu-title">Menubar Flipped</span>
+                    </a>
+                  </li>
+                  <li class="site-menu-item">
+                    <a class="animsition-link" href="layouts/menubar-native-scrolling.html">
+                      <span class="site-menu-title">Menubar Native Scrolling</span>
+                    </a>
+                  </li>
+                  <li class="site-menu-item">
+                    <a class="animsition-link" href="layouts/bordered-header.html">
+                      <span class="site-menu-title">Bordered Header</span>
+                    </a>
+                  </li>
+                  <li class="site-menu-item has-sub">
+                    <a href="javascript:void(0)">
+                      <span class="site-menu-title">Page Aside</span>
+                      <span class="site-menu-arrow"></span>
+                    </a>
+                    <ul class="site-menu-sub">
+                      <li class="site-menu-item">
+                        <a class="animsition-link" href="layouts/aside-left-static.html">
+                          <span class="site-menu-title">Left Static</span>
+                        </a>
+                      </li>
+                      <li class="site-menu-item">
+                        <a class="animsition-link" href="layouts/aside-right-static.html">
+                          <span class="site-menu-title">Right Static</span>
+                        </a>
+                      </li>
+                      <li class="site-menu-item">
+                        <a class="animsition-link" href="layouts/aside-left-fixed.html">
+                          <span class="site-menu-title">Left Fixed</span>
+                        </a>
+                      </li>
+                      <li class="site-menu-item">
+                        <a class="animsition-link" href="layouts/aside-right-fixed.html">
+                          <span class="site-menu-title">Right Fixed</span>
+                        </a>
+                      </li>
+                    </ul>
                   </li>
                 </ul>
               </li>
