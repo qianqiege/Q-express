@@ -77,7 +77,36 @@
     .eng .keys{padding-right:15px}
     .eng .pr20 .keys{width:100px}
     .eng .email{width:270px}
-  </style>
+</style>
+<script src="/javascripts/jquery.js"></script>
+<script>
+      $.ajax({
+        url:'http://192.168.1.229:3000/api/v1/getuser/record',
+        type:'GET',
+        data:{user_id:"1"},
+        dataType:'json',
+        timeout:1000,
+        cache:false,
+        success: successFunction
+      })
+      function successFunction(data){
+        console.log(data);
+        var name = data.name;
+        var sex = data.sex;
+        var nation = data.nation;
+        var address = data.address;
+        var birthday = data.birthday;
+        var marriage = data.marriage;
+        var height = data.height;
+        var id = data.id_number;
+        var phone = data.phone;
+        var pluse = data.pluse;
+        var weight = data.weight;
+        var blood_glucose = data.blood_glucose;
+        var blood_pressure = data.blood_pressure;
+        document.getElementById("name").innerHTML = name;
+      }
+  </script>
 </head>
 <body>
 <table border="0" cellpadding="0" cellspacing="0" align="center" class="chead" class="top">
@@ -101,18 +130,19 @@
 <td class="hbox" align="middle"><img src="/images/4.jpg" width="80" height="104" class="head" alt="头像"></td>
 <td><table cellspacing="0" cellpadding="0" border="0" class="infr"><tbody>
 <tr>
-<td colspan="2" class="name">徐宁</td>
-<td align="right" class="icard">
-ID:335415398</td>
+<td colspan="2" class="name" id="name">徐宁</td>
+<td align="right" class="icard" ><span>ID:</span><span id="id">335415398</span>
+</td>
 </tr>
 <tr>
 <td valign="top">
-<img class="vam" src="/images/y1.png" width="20" height="20">汉族</td>
+<img class="vam" src="/images/y1.png" width="20" height="20" id="nation">汉族</td>
 <td valign="top">
-<img class="vam" src="/images/y2.png" width="20" height="20">18575576754</td>
+<img class="vam" src="/images/y2.png" width="20" height="20" id="phone">18575576754</td>
 <td valign="top"><table cellspacing="0" cellpadding="0" border="0" class="email"></table></td>
 </tr>
-<tr><td valign="top" colspan="3"><p><img class="vam" src="/images/y4.png" width="20" height="20">女<span class="p5">|</span>24 岁 (1992/11/06)<span class="p5">|</span> 167cm <span class="p5">|</span>未婚<span class="p5">|</span>深圳宝安
+<tr><td valign="top" colspan="3"><p><img class="vam" src="/images/y4.png" width="20" height="20"/ >
+  <span id="sex">女</span><span class="p5">|</span id="birthday"><span>1992/11/06</span><span class="p5">|</span id="height"> 167cm <span class="p5">|</span><span id="marriage">未婚</span><span class="p5">|</span><span id="address">深圳宝安</span>
 </p></td></tr>
 </tbody></table></td>
 </tr></tbody></table>
@@ -126,15 +156,15 @@ ID:335415398</td>
 <tr><td colspan="2" class="plate2">指标</td></tr>
 <tr>
 <td valign="top" class="keys">血压：</td>
-<td valign="top" class="txt2">100mg/l</td>
+<td valign="top" class="txt2" id="blood_pressure">100mg/l</td>
 </tr>
 <tr>
 <td valign="top" class="keys">血糖：</td>
-<td valign="top" class="txt2">100mg</td>
+<td valign="top" class="txt2" id="blood_glucose">100mg</td>
 </tr>
 <tr>
 <td valign="top" class="keys">脉搏：</td>
-<td valign="top" class="txt2">100mg</td>
+<td valign="top" class="txt2" id="pluse">100mg</td>
 </tr>
 </tbody>
 </table></td>
@@ -347,4 +377,6 @@ ID:335415398</td>
 <td valign="top" class="txt1 label2" > 偏轻</td>
 </tr></tbody></table></td></tr>
 </tbody></table></td></tr></table></td></tr>
-</tbody></table></td></tr></tbody></table></body></html>
+</tbody></table></td></tr></tbody></table>
+</body>
+</html>
