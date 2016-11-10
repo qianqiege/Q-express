@@ -80,17 +80,11 @@
 </style>
 <script src="/javascripts/jquery.js"></script>
 <script>
-      $.ajax({
-        url:'http://192.168.1.229:3000/api/v1/getuser/record',
-        type:'GET',
-        data:{user_id:"1"},
-        dataType:'json',
-        timeout:1000,
-        cache:false,
-        success: successFunction
-      })
-      function successFunction(data){
+    function cbFunction(data,status){
         console.log(data);
+        if (!status) {
+            return;
+        }
         var name = data.name;
         var sex = data.sex;
         var nation = data.nation;
@@ -105,7 +99,8 @@
         var blood_glucose = data.blood_glucose;
         var blood_pressure = data.blood_pressure;
         document.getElementById("name").innerHTML = name;
-      }
+    }
+    doAjax("http://192.168.1.229:3000/api/v1/getuser/record","get",{"user_id":"1"},cbFunction,1,cbFunction,0);
   </script>
 </head>
 <body>
