@@ -34,4 +34,8 @@ router.get('/project', function(req, res, next) {
   res.render('project',{title:"档案查询"});
 });
 
+router.get('/project1', function(req, res, next) {
+  res.render('project1',{title:"档案查询"});
+});
+
 module.exports = router;
