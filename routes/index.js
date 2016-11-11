@@ -11,11 +11,15 @@ router.get('/test', function(req, res, next) {
 });
 
 router.get('/ExceptionData', function(req, res, next) {
-  res.render('ExceptionData',{title:"ExceptionData"});
+  res.render('ExceptionData',{title:"异常数据查询"});
 });
 
 router.get('/FetalhHeart', function(req, res, next) {
-  res.render('FetalhHeart',{title:"FetalhHeart"});
+  res.render('FetalhHeart',{title:"胎心检测"});
+});
+
+router.get('/infoEntry', function(req, res, next) {
+  res.render('infoEntry',{title:"体检信息录入"});
 });
 
 router.get('/newRecord', function(req, res, next) {
@@ -28,6 +32,14 @@ router.get('/userList', function(req, res, next) {
 
 router.get('/fileQuery', function(req, res, next) {
   res.render('fileQuery',{title:"档案查询"});
+});
+
+router.get('/project', function(req, res, next) {
+  res.render('project',{title:"档案查询"});
+});
+
+router.get('/project1', function(req, res, next) {
+  res.render('project1',{title:"档案查询"});
 });
 
 module.exports = router;

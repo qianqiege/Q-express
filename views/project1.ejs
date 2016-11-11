@@ -1,0 +1,59 @@
+<%- include header %>
+  <div class="page">
+    <div class="page-content">
+      <div class="panel">
+        <div class="panel-heading">
+          <h3 class="panel-title" style="text-align:center"></h3>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <label for="" class="col-md-1">姓名</label>
+            <div class="col-md-4" >
+              <select class="form-control"  data-plugin="select2" name="health_survey4">
+                <optgroup >
+                  <option>张三</option>
+                  <option>李四</option>
+                  <option>小明 </option>
+                  <option>小红</option>
+                </optgroup>
+              </select>
+            </div>
+            <label for="" class="col-md-1 offset-md-1" >身份证</label>
+            <div class="col-md-4 " >
+                <div class="input-group">
+                  <select class="form-control"  data-plugin="select2" name="health_survey4_mom[]">
+                    <optgroup >
+                      <option>001</option>
+                      <option>002</option>
+                      <option>003 </option>
+                      <option>004</option>
+                      <option>005</option>
+                      <option>006</option>
+                    </optgroup>
+                  </select>
+                </div>
+
+            </div>
+          </div><br/><br/>
+          <div class="row">
+              <label for="select2" class="col-md-1">方案</label>
+              <div class="col-md-6" >
+                <select class="form-control" multiple data-plugin="select2" name="health_survey4">
+                  <optgroup >
+                    <option>方案一</option>
+                    <option>方案二</option>
+                    <option>方案三</option>
+                    <option>方案四</option>
+                  </optgroup>
+                </select>
+              </div>
+
+          </div><br/>
+          <div id="exampleBasic"></div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+<%- include footer %>

@@ -5,13 +5,21 @@
     <!-- Panel -->
     <div class="panel">
       <div class="panel-body">
-        <form class="page-search-form" role="search">
-          <div class="input-search input-search-dark">
-            <i class="input-search-icon wb-search" aria-hidden="true"></i>
-            <input type="text" class="form-control" id="inputSearch" name="search" placeholder="">
-            <button type="button" class="input-search-close icon wb-close" aria-label="Close"></button>
+        <div class="row">
+          <div class="col-md-6">
+            <form class="page-search-form" role="search">
+              <div class="input-search input-search-dark">
+                <i class="input-search-icon wb-search" aria-hidden="true"></i>
+                <input type="text" class="form-control" id="inputSearch" name="search" placeholder="">
+                <button type="button" class="input-search-close icon wb-close" aria-label="Close"></button>
+              </div>
+            </form>
           </div>
-        </form>
+          <div class="col-md-1 offset-md-5">
+            <button type="button" class="btn btn-floating btn-success btn-sm"><i class="icon wb-plus" aria-hidden="true"></i></button>
+            <!-- <button type="button" class="btn btn-round btn-outline btn-default btn-lg"><i class="icon wb-plus" aria-hidden="true"></i>添加</button> -->
+          </div>
+        </div>
         <div class="nav-tabs-horizontal nav-tabs-animate" data-plugin="tabs">
           <ul class="nav nav-tabs nav-tabs-line" role="tablist">
             <li class="nav-item" role="presentation"><a class="active nav-link" data-toggle="tab" href="#all_contacts"
@@ -32,6 +40,15 @@
                       <h4 class="media-heading">
                         Herman Beck
                       </h4>
+                      <p>
+                        <i class="icon icon-color wb-user" aria-hidden="true"></i>123246557668
+                      </p>
+                    </div>
+                    <div class="media-right">
+                      <button type="button" class="btn btn-outline btn-success btn-sm">修改</button>
+                    </div>
+                    <div class="media-right">
+                      <button type="button" class="btn btn-outline btn-success btn-sm">查看</button>
                     </div>
                   </div>
                 </li>
@@ -47,6 +64,15 @@
                       <h4 class="media-heading">
                         Mary Adams
                       </h4>
+                      <p>
+                        <i class="icon icon-color wb-user" aria-hidden="true"></i>123246557668
+                      </p>
+                    </div>
+                    <div class="media-right">
+                      <button type="button" class="btn btn-outline btn-success btn-sm">修改</button>
+                    </div>
+                    <div class="media-right">
+                      <button type="button" class="btn btn-outline btn-success btn-sm">查看</button>
                     </div>
                   </div>
                 </li>
