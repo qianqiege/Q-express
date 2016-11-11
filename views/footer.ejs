@@ -6,11 +6,15 @@
 
 <script src="/javascripts/bootstrap-select.js"></script>
 <script src="/javascripts/animsition.js"></script>
+<script src="/javascripts/jquery.mousewheel.js"></script>
 <script src="/javascripts/jquery-asScrollbar.js"></script>
 <script src="/javascripts/jquery-asScrollable.js"></script>
 <script src="/javascripts/jquery-asHoverScroll.js"></script>
+<script src="/javascripts/jquery-slidePanel.js"></script>
 <!-- Plugins -->
 <script src="/javascripts/select2.js"></script>
+<script src="/javascripts/switchery.min.js"></script>
+<script src="/javascripts/intro.js"></script>
 <script src="/javascripts/screenfull.js"></script>
 <script src="/javascripts/chartist.js"></script>
 <script src="/javascripts/chartist-plugin-tooltip.js"></script>
@@ -26,7 +30,10 @@
 <script src="/javascripts/Menubar.js"></script>
 <script src="/javascripts/GridMenu.js"></script>
 <script src="/javascripts/Sidebar.js"></script>
+<script src="/javascripts/PageAside.js"></script>
 <script src="/javascripts/menu.js"></script>
+<script src="/javascripts/colors.js"></script>
+<script src="/javascripts/tour.js"></script>
 <script>
 Config.set('assets', '../assets');
 </script>
@@ -35,6 +42,17 @@ Config.set('assets', '../assets');
 <script src="/javascripts/v1.js"></script>
 <script src="/javascripts/jsgrid-db.js"></script>
 <script src="/javascripts/jsgrid1.js"></script>
-
+<script src="/javascripts/asscrollable.js"></script>
+<script src="/javascripts/slidepanel.js"></script>
+<script src="/javascripts/switchery.js"></script>
+<script>
+(function(document, window, $) {
+  'use strict';
+  var Site = window.Site;
+  $(document).ready(function() {
+    Site.run();
+  });
+})(document, window, jQuery);
+</script>
 </body>
 </html>
