@@ -280,7 +280,7 @@
 }
 .select2-container--default .select2-selection
 {
-    font-family: 'Roboto', sans-serif;
+    font-family: Microsoft YaHei Light , Microsoft YaHei , 'Roboto', sans-serif;
     font-size: 1rem;
 
     color: #76838f;
@@ -291,7 +291,7 @@
 }
 .select2-container--default .select2-search--dropdown .select2-search__field
 {
-    font-family: 'Roboto', sans-serif;
+    font-family: Microsoft YaHei Light , Microsoft YaHei , 'Roboto', sans-serif;
     font-size: 1rem; 
 
     color: #76838f;
