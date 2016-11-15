@@ -14,8 +14,24 @@ router.get('/ExceptionData', function(req, res, next) {
   res.render('ExceptionData',{title:"异常数据查询"});
 });
 
-router.get('/FetalhHeart', function(req, res, next) {
-  res.render('FetalhHeart',{title:"胎心检测"});
+router.get('/blood_pressure', function(req, res, next) {
+  res.render('blood_pressure',{title:"血压检测"});
+});
+
+router.get('/blood_sugar', function(req, res, next) {
+  res.render('blood_sugar',{title:"血糖检测"});
+});
+
+router.get('/temperature', function(req, res, next) {
+  res.render('temperature',{title:"体温检测"});
+});
+
+router.get('/weight', function(req, res, next) {
+  res.render('weight',{title:"体温检测"});
+});
+
+router.get('/heart_rate', function(req, res, next) {
+  res.render('heart_rate',{title:"体温检测"});
 });
 
 router.get('/infoEntry', function(req, res, next) {
