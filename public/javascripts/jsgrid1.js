@@ -532,26 +532,26 @@
       }]
     });
 
-    var $gridData = $("#exampleRowsReordering .jsgrid-grid-body tbody");
+    // var $gridData = $("#exampleRowsReordering .jsgrid-grid-body tbody");
 
-    $gridData.sortable({
-      update: function(e, ui) {
-        // array of indexes
-        var clientIndexRegExp = /\s+client-(\d+)\s+/;
-        var indexes = $.map($gridData.sortable("toArray", {
-          attribute: "class"
-        }), function(classes) {
-          return clientIndexRegExp.exec(classes)[1];
-        });
-        alert("Reordered indexes: " + indexes.join(", "));
-
-        // arrays of items
-        var items = $.map($gridData.find("tr"), function(row) {
-          return $(row).data("JSGridItem");
-        });
-        console && console.log("Reordered items", items);
-      }
-    });
+    // $gridData.sortable({
+    //   update: function(e, ui) {
+    //     // array of indexes
+    //     var clientIndexRegExp = /\s+client-(\d+)\s+/;
+    //     var indexes = $.map($gridData.sortable("toArray", {
+    //       attribute: "class"
+    //     }), function(classes) {
+    //       return clientIndexRegExp.exec(classes)[1];
+    //     });
+    //     alert("Reordered indexes: " + indexes.join(", "));
+    //
+    //     // arrays of items
+    //     var items = $.map($gridData.find("tr"), function(row) {
+    //       return $(row).data("JSGridItem");
+    //     });
+    //     console && console.log("Reordered items", items);
+    //   }
+    // });
   })();
 
   // Example Custom Grid Field
