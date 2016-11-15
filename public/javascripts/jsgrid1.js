@@ -77,10 +77,10 @@
   // -------------------
   (function() {
     $('#exampleBasic').jsGrid({
-      height: "500px",
+      height: "300px",
       width: "100%",
 
-      filtering: true,
+      inserting: true,
       editing: true,
       sorting: true,
       paging: true,
@@ -89,33 +89,30 @@
       pageSize: 15,
       pageButtonCount: 5,
 
-      deleteConfirm: "Do you really want to delete the client?",
+      deleteConfirm: "确定要删除吗?",
 
       controller: db,
 
       fields: [{
-        name: "Name",
-        type: "text",
-        width: 150
-      }, {
-        name: "Age",
-        type: "number",
-        width: 70
-      }, {
-        name: "Address",
-        type: "text",
-        width: 200
-      }, {
-        name: "Country",
+        name: "方案",
         type: "select",
-        items: db.countries,
+        items: db.projects,
+        valueField: "Id",
+        textField: "Name"
+      },{
+        name: "产品名",
+        type: "select",
+        items: db.products,
         valueField: "Id",
         textField: "Name"
       }, {
-        name: "Married",
-        type: "checkbox",
-        title: "Is Married",
-        sorting: false
+        name: "用法",
+        type: "text",
+        width: 200
+      },{
+        name: "数量",
+        type: "number",
+        width: 70
       }, {
         type: "control"
       }]
