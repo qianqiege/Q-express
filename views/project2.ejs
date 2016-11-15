@@ -1,59 +1,123 @@
 <%- include header %>
-  <div class="page">
-    <div class="page-content">
-      <div class="panel">
-        <div class="panel-heading">
-          <h3 class="panel-title" style="text-align:center"></h3>
-        </div>
-        <div class="panel-body">
+<div class="page">
+  <div class="page-header">
+    <h1 class="page-title" style="text-align:center">深圳市第二人民医院</h1>
+  </div>
+  <div class="page-content">
+    <!-- Panel -->
+    <div class="panel">
+      <div class="panel-body container-fluid">
+        <form class="form-horizontal">
           <div class="row">
-            <label for="" class="col-md-1">姓名</label>
-            <div class="col-md-4" >
-              <select class="form-control"  data-plugin="select2" name="health_survey4">
-                <optgroup >
-                  <option>张三</option>
-                  <option>李四</option>
-                  <option>小明 </option>
-                  <option>小红</option>
+            <div class="col-xs-6 col-lg-3 offset-lg-1" style="float: left; display: inline;">
+              <label for="">病历号：</label><span>212212121</span>
+            </div><div class="col-xs-6 col-lg-2 offset-lg-2 text-xs-right" style="float: right;display: inline;">
+              <label for="">科室：</label><span>单病科</span>
+            </div>
+            <div class="col-xs-12 col-lg-4">
+              <div class="form-group " style=" margin-bottom: 0px;">
+                  <div class="input-search">
+                    <button type="submit" class="input-search-btn"><i class="icon wb-search" aria-hidden="true"></i></button>
+                    <input type="text" class="form-control" name="" placeholder="" style="padding-top: 2px;padding-bottom: 2px;">
+                  </div>
+                </div>
+            </div>
+
+          </div>
+
+          <br/>
+          <div class="row">
+            <div class="form-group col-md-4 offset-lg-1  col-xs-12">
+              <h4>
+                <i class="icon icon-color wb-user" aria-hidden="true"></i>个人信息
+              </h4>
+              <p>
+                姓名：<span>徐宁</span><br/><br/>
+                性别：<span>女</span><br/><br/>
+                体重：<span>55kg</span><br/><br/>
+                年龄：<span>24</span><br/><br/>
+                电话：<span>123456789</span><br/><br/>
+                地址：<span>深圳市南山区</span><br/><br/>
+              </p>
+            </div>
+            <div class="col-xs-12 col-md-4 offset-lg-2  ">
+              <h4><i class="icon icon-color wb-eye" aria-hidden="true"></i>医生诊断</h4>
+              <div class="form-group">
+                <label class="form-control-label">身体状况描述: </label>
+                <textarea class="form-control" rows="3"></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-control-label">诊断建议: </label>
+                <textarea class="form-control" rows="3"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <h4 class=" col-xs-12 col-lg-10 offset-lg-1">
+              <i class="icon icon-color wb-order" aria-hidden="true"></i>方案
+            </h4>
+          </div>
+          <div class="row">
+            <div class="form-group col-xs-12 col-md-4 offset-lg-1">
+              <label for="health_survey4_1">方案</label>
+              <select id="health_survey4_1" class="form-control" multiple data-plugin="select2" name="health_survey4">
+                <optgroup label="">
+                <option>排毒方</option>
+                <option>减肥美容方</option>
+                <option>糖尿病方 </option>
+                <option>冠心病方</option>
+                <option>高脂血症方</option>
+                <option>慢性阻塞性肺病方 </option>
+                <option>活力功能方</option>
                 </optgroup>
               </select>
             </div>
-            <label for="" class="col-md-1 offset-md-1" >身份证</label>
-            <div class="col-md-4 " >
-                <div class="input-group">
-                  <select class="form-control"  data-plugin="select2" name="health_survey4_mom[]">
-                    <optgroup >
-                      <option>001</option>
-                      <option>002</option>
-                      <option>003 </option>
-                      <option>004</option>
-                      <option>005</option>
-                      <option>006</option>
-                    </optgroup>
-                  </select>
-                </div>
-
-            </div>
-          </div><br/><br/>
+            <div class="form-group col-xs-12 col-md-4 offset-lg-2 ">
+             <label for="health_survey4_1">费别</label>
+             <select id="health_survey4_1" class="form-control"  data-plugin="select2" name="health_survey4">
+               <optgroup label="">
+               <option>公费</option>
+               <option>自费</option>
+               <option>医保 </option>
+               <option>其它</option>
+               </optgroup>
+             </select>
+           </div>
+          </div>
           <div class="row">
-              <label for="select2" class="col-md-1">方案</label>
-              <div class="col-md-6" >
-                <select class="form-control" multiple data-plugin="select2" name="health_survey4">
-                  <optgroup >
-                    <option>方案一</option>
-                    <option>方案二</option>
-                    <option>方案三</option>
-                    <option>方案四</option>
-                  </optgroup>
-                </select>
-              </div>
+            <div class="col-xs-12 col-lg-10 offset-lg-1"><div id="exampleBasic" class="form-group jsgrid" ></div></div>
 
-          </div><br/>
-          <div id="exampleBasic"></div>
-        </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-xs-12 col-lg-2 offset-lg-9 ">
+              <button type="button" class="btn  btn-block btn-primary">开方 </button>
+            </div>
+          </div>
+
+
+          <hr/>
+          <div class="row">
+            <p class="col-md-4 col-xs-12 offset-lg-1">
+              医生：<span>医生1</span>
+            </p>
+            <p class="col-md-4 col-xs-12 offset-lg-2 ">
+              费用：<span>444</span>
+            </p>
+          </div>
+          <div class="row">
+            <p class="col-md-4 col-xs-12 offset-lg-1">
+              收费员：<span>444</span>
+            <p class="col-md-4 col-xs-12 offset-lg-2 ">
+              开具日期：<span>2016-11-2</span>
+            </p>
+          </div>
+        </form>
 
       </div>
     </div>
-
+    <!-- End Panel -->
   </div>
+</div>
 <%- include footer %>
