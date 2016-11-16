@@ -1,0 +1,57 @@
+<%- include header %>
+<div class="page">
+	<div class="page-header">
+      <h1 class="page-title"><%= title %></h1>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+        <li class="breadcrumb-item"><a href="javascript:void(0)">Forms</a></li>
+        <li class="breadcrumb-item active">Wizard</li>
+      </ol>
+    </div>
+  <div class="page-content container">
+    <div class="row">
+		<div class="panel">
+			<div class="panel-heading">
+			  <h3 class="panel-title">数据图表</h3>
+			</div>
+			<div class="panel-body container-fluid">      
+				<div id="chart"></div>
+				<script>
+				///Demo Data
+				<% needjquery="<script>jQuery(document).ready(function() {var chart = c3.generate({bindto: '#chart',data: {x: 'x',columns: [['x', '2016-11-11', '2016-11-12', '2016-11-13', '2016-11-14', '2016-11-15', '2016-11-16'],['体重', 30, 200, 100, 400, 150, 250]]},axis: {x: {show: true,type: 'category',},y: {tick: {format: function (d) { return  d+' kg'; }}}}});})</script>"
+				%>
+				</script>
+			</div>
+		</div>
+	  
+		<div class="panel">
+			<div class="panel-heading">
+			  <h3 class="panel-title">检测日志</h3>
+			</div>
+			<div class="panel-body container-fluid">      
+			  <table class="table table-bordered" >
+				  <thead>
+					<tr>
+					  <th>监测日期</th>
+					  <th>体重(kg)</th>
+					  <th>是否异常</th>
+					</tr>
+				  </thead>
+				  <tbody>
+					<tr>
+					  <td> 2016-10-25 </td>
+					  <td> 120/90 </td>
+					  <td>  正常/正常</td>
+					</tr>
+				  </tbody>
+				  <tfoot>
+
+				  </tfoot>
+				</table>
+			</div>
+		</div>
+    </div>
+  </div>
+</div>
+
+<%- include footer %>
