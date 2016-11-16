@@ -27,11 +27,11 @@ router.get('/temperature', function(req, res, next) {
 });
 
 router.get('/weight', function(req, res, next) {
-  res.render('weight',{title:"体温检测"});
+  res.render('weight',{title:"体重检测"});
 });
 
 router.get('/heart_rate', function(req, res, next) {
-  res.render('heart_rate',{title:"体温检测"});
+  res.render('heart_rate',{title:"心率检测"});
 });
 
 router.get('/infoEntry', function(req, res, next) {
