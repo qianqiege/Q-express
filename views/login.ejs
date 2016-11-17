@@ -123,13 +123,34 @@
     'use strict';
     var Site = window.Site;
     $(document).ready(function() {
-      Site.run();
+        Site.run();
     });
     var cb=function(data,status) {
-      console.log(data,status);
+        if (status) {
+            if (data["access_token"]) {
+                $.cookie("access_token",data["access_token"]);
+                location.href="/";
+                return true;
+            } else {
+                $("#loginButton").removeAttr("disabled");
+            }
+        } else {
+            $("#loginButton").removeAttr("disabled");
+        }
     };
+    doAjax("http://192.168.1.229:3000/api/v1/users/current_user","get",{},
+        function(data,status) {
+            if (status) {
+                if (data["access_token"]) {
+                    location.href="/";
+                    return true;
+                }
+            }
+        }
+    );
     $("#loginButton").click(function() {
-      doAjax("http://192.168.1.225:3005/api/v1/auth","post",$("#loginForm").serialize(),cb);
+        $("#loginButton").attr("disabled","disabled");
+        doAjax("http://192.168.1.229:3000/api/v1/auth","post",$("#loginForm").serialize(),cb);
     });
   })(document, window, jQuery);
   </script>

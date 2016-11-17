@@ -16,7 +16,7 @@ var doAjax=function(ajaxUrl,ajaxType,ajaxData,callbackFunc,callbackFuncArgus) {
         $.extend(ajaxObj,arguments[5]);
     }
     ajaxObj.beforeSend = function (XHR) {
-        XHR.setRequestHeader('access-authorization', $.cookie('access-token') || "");
+        XHR.setRequestHeader('access-authorization', $.cookie('access_token') || "");
     };
     jQuery.ajax(ajaxObj);
 };
