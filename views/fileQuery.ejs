@@ -101,7 +101,7 @@
         var blood_pressure = data.blood_pressure;
         document.getElementById("name").innerHTML = name;
     }
-    doAjax("http://192.168.1.229:3000/api/v1/getuser/record","get",{"user_id":"1"},cbFunction,1,cbFunction,0);
+    doAjax("http://192.168.1.229:3000/api/v1/getuser/record","get",{"id_number":"1"},cbFunction,1,cbFunction,0);
   </script>
 </head>
 <body>
