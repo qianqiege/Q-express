@@ -30,7 +30,6 @@ var gotoLogin=function() {
 
 $(function() {
     var createMenu=function(menuObj) {
-        console.log(menuObj);
         if (menuObj["children"].length) {
             var baseTemplate='<li class="site-menu-item has-sub"><a href="javascript:void(0)"><i class="site-menu-icon{__icon__}" aria-hidden="true"></i><span class="site-menu-title">{__title__}</span><span class="site-menu-arrow"></a></span><ul class="site-menu-sub">{__subMenus__}</ul></li>',
                 subMenuTemplate='<li class="site-menu-item"><a class="animsition-link" href="{__href__}"><span class="site-menu-title">{__title__}</span></a></li>'
@@ -86,4 +85,18 @@ $(function() {
             }
         }
     );
+
+    setInterval(function() {
+        doAjax("http://192.168.1.229:3000/api/v1/users/current_user","get",{},
+            function(data,status) {
+                if (status) {
+                    if (!data["access_token"]) {
+                        gotoLogin();
+                    }
+                } else {
+                    gotoLogin();
+                }
+            }
+        );
+    },60000);
 });
