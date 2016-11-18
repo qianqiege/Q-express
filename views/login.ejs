@@ -119,7 +119,9 @@
             if (data["access_token"]) {
                 $.cookie("access_token",data["access_token"]);
                 swal("登录成功", "正在进入首页", "success");
-                location.href="/";
+                setTimeout(function() {
+                    location.href="/";
+                },1000);
                 return true;
             } else {
                 $("#loginButton").removeAttr("disabled");
