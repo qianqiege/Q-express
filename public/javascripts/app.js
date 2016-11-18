@@ -37,8 +37,10 @@ $(function() {
                     }
                 }
             } else {
-                location.href="/login";
-                return true;
+                if (location.href.indexOf("/login")===-1) {
+                    location.href="/login";
+                    return true;
+                }
             }
         }
     );
