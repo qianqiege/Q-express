@@ -9,7 +9,7 @@ var doAjax=function(ajaxUrl,ajaxType,ajaxData,callbackFunc,callbackFuncArgus) {
             callbackFunc(re,1,callbackFuncArgus);
         },
         error: function(XMLHttpRequest,status) {
-            callbackFunc({"type":ajaxType,"url":ajaxUrl,"data":ajaxData},0,callbackFuncArgus);
+            callbackFunc({"type":ajaxType,"url":ajaxUrl,"data":ajaxData,"reponseText":XMLHttpRequest.responseText || ""},0,callbackFuncArgus);
         }
     };
     if (typeof arguments[5]==="object") {

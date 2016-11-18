@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: '首页' });
+  res.render('index', { title: 'Express' });
 });
 
 router.get('/test', function(req, res, next) {
@@ -56,10 +56,6 @@ router.get('/project2', function(req, res, next) {
 
 router.get('/project1', function(req, res, next) {
   res.render('project1',{title:"档案查询"});
-});
-
-router.get('/digital_chinese_medicine', function(req, res, next) {
-  res.render('digital_chinese_medicine',{title:"TDS数字中医展示"});
 });
 
 router.get('/login', function(req, res, next) {
