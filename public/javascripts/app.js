@@ -36,6 +36,9 @@ $(function() {
                         return true;
                     }
                 }
+            } else {
+                location.href="/login";
+                return true;
             }
         }
     );
