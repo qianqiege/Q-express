@@ -1,0 +1,68 @@
+<%- include header %>
+<div class="page">
+	<div class="page-header">
+      <h1 class="page-title"><%= title %></h1>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+        <li class="breadcrumb-item"><a href="javascript:void(0)">Forms</a></li>
+        <li class="breadcrumb-item active">Wizard</li>
+      </ol>
+    </div>
+  <div class="page-content container">
+    <div class="row">
+      <div class="">
+		<div class="page-header-actions">
+		</div>
+    </div>
+  <div class="page-content container">
+		<div class="panel">
+			<div class="panel-body container-fluid">
+				<div class="col-xs-12 col-md-12 offset-md-12">
+				  <form autocomplete="off">
+					<div class="input-search clearfix">
+					  <input type="text" class="form-control" id="exampleTypeaheadStyle" name="exampleTypeaheadStyle"
+					  placeholder="搜索...">
+					  <button type="submit" class="input-search-btn">
+						<i class="icon md-search" aria-hidden="true"></i>
+					  </button>
+					</div>
+				  </form>
+				</div>
+				<div id="data_table" class="col-xs-12 col-md-12" style="margin-top: 10px;">
+						  <table class="table table-bordered" >
+							<thead>
+							  <tr>
+								<th>姓名</th>
+								<th>性别</th>
+								<th>年龄</th>
+								<th>身高</th>
+                <th>体重</th>
+								<th>检测时间</th>
+								<th>报告展示</th>
+							  </tr>
+							</thead>
+							<tbody>
+							  <tr>
+								<td>  孙金秀 </td>
+								<td>  </td>
+								<td>  </td>
+								<td>  </td>
+								<td>  </td>
+								<td>  </td>
+								<td>
+                  <a class="btn btn-block btn-info waves-effect" href="http://www.hsnet.cn/report/report/ybyt/zm_report.aspx?para=010870695870858870">报告展示</a>
+                </td>
+							  </tr>
+
+							</tbody>
+							<tfoot>
+
+							</tfoot>
+						  </table>
+						</div>
+			</div>
+			</div>
+		</div>
+  </div>
+</div>
+<%- include footer %>
