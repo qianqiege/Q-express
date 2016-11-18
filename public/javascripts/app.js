@@ -86,17 +86,19 @@ $(function() {
         }
     );
 
-    setInterval(function() {
-        doAjax("http://192.168.1.229:3000/api/v1/users/current_user","get",{},
-            function(data,status) {
-                if (status) {
-                    if (!data["access_token"]) {
+    if (location.href.indexOf("/login")===-1) {
+        setInterval(function() {
+            doAjax("http://192.168.1.229:3000/api/v1/users/current_user","get",{},
+                function(data,status) {
+                    if (status) {
+                        if (!data["access_token"]) {
+                            gotoLogin();
+                        }
+                    } else {
                         gotoLogin();
                     }
-                } else {
-                    gotoLogin();
                 }
-            }
-        );
-    },60000);
+            );
+        },60000);
+    }
 });
