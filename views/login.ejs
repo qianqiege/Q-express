@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="/stylesheets/login-v3.min.css">
   <!-- Fonts -->
   <link rel="stylesheet" href="/stylesheets/web-icons.min.css">
+  <link rel="stylesheet" href="/stylesheets/sweetalert.min.css">
   <!--[if lt IE 9]>
     <script src="/javascripts/html5shiv.min.js"></script>
     <![endif]-->
@@ -91,11 +92,6 @@
   <script src="/javascripts/jquery-asScrollbar.js"></script>
   <script src="/javascripts/jquery-asScrollable.js"></script>
   <script src="/javascripts/jquery-asHoverScroll.js"></script>
-  <!-- Plugins -->
-  <script src="/javascripts/switchery.min.js"></script>
-  <script src="/javascripts/intro.js"></script>
-  <script src="/javascripts/screenfull.js"></script>
-  <script src="/javascripts/jquery-slidePanel.js"></script>
   <!-- Scripts -->
   <script src="/javascripts/State.js"></script>
   <script src="/javascripts/Component.js"></script>
@@ -111,9 +107,7 @@
   <script src="/javascripts/tour.js"></script>
   <!-- Page -->
   <script src="/javascripts/Site.js"></script>
-  <script src="/javascripts/asscrollable.js"></script>
-  <script src="/javascripts/slidepanel.js"></script>
-  <script src="/javascripts/switchery.js"></script>
+  <script src="/javascripts/sweetalert.min.js"></script>
   <script>
   (function(document, window, $) {
     'use strict';
@@ -129,8 +123,10 @@
                 return true;
             } else {
                 $("#loginButton").removeAttr("disabled");
+				swal("登录错误", "用户名或密码  有误", "error");
             }
         } else {
+			swal("登录错误", "用户名或密码 有误", "error");
             $("#loginButton").removeAttr("disabled");
         }
     };
