@@ -124,10 +124,10 @@
                 return true;
             } else {
                 $("#loginButton").removeAttr("disabled");
-				swal("登录错误", "邮箱或密码有误", "error");
+				        swal("登录错误", "邮箱或密码有误", "error");
             }
         } else {
-			swal("登录错误", "邮箱或密码有误", "error");
+		      	swal("登录错误", "邮箱或密码有误", "error");
             $("#loginButton").removeAttr("disabled");
         }
     };
@@ -139,7 +139,7 @@
         }
         if ($("#password").val() == "")
         {
-            swal("登录错误", "邮箱不能为空", "error");
+            swal("登录错误", "密码不能为空", "error");
             return false;
         }
         $("#loginButton").attr("disabled","disabled");
