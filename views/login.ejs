@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="/stylesheets/login-v3.min.css">
   <!-- Fonts -->
   <link rel="stylesheet" href="/stylesheets/web-icons.min.css">
+  <link rel="stylesheet" href="/stylesheets/sweetalert.min.css">
   <!--[if lt IE 9]>
     <script src="/javascripts/html5shiv.min.js"></script>
     <![endif]-->
@@ -49,14 +50,14 @@
           </div>
           <form method="post" action="#" onsubmit="return false;" id="loginForm">
             <div class="form-group form-material floating" data-plugin="formMaterial">
-              <input type="email" class="form-control" name="email" />
-              <label class="floating-label">Email</label>
+              <input type="email" class="form-control" name="email" id="email" />
+              <label class="floating-label">邮箱</label>
             </div>
             <div class="form-group form-material floating" data-plugin="formMaterial">
-              <input type="password" class="form-control" name="password" />
-              <label class="floating-label">Password</label>
+              <input type="password" class="form-control" name="password" id="password" />
+              <label class="floating-label">密码</label>
             </div>
-            <button type="button" class="btn btn-primary btn-block btn-lg m-t-40" id="loginButton">Sign in</button>
+            <button type="submit" class="btn btn-primary btn-block btn-lg m-t-40" id="loginButton">登录 </button>
           </form>
           <p>Still no account? Please go to <a href="register-v3.html">Sign up</a></p>
         </div>
@@ -91,11 +92,6 @@
   <script src="/javascripts/jquery-asScrollbar.js"></script>
   <script src="/javascripts/jquery-asScrollable.js"></script>
   <script src="/javascripts/jquery-asHoverScroll.js"></script>
-  <!-- Plugins -->
-  <script src="/javascripts/switchery.min.js"></script>
-  <script src="/javascripts/intro.js"></script>
-  <script src="/javascripts/screenfull.js"></script>
-  <script src="/javascripts/jquery-slidePanel.js"></script>
   <!-- Scripts -->
   <script src="/javascripts/State.js"></script>
   <script src="/javascripts/Component.js"></script>
@@ -111,9 +107,7 @@
   <script src="/javascripts/tour.js"></script>
   <!-- Page -->
   <script src="/javascripts/Site.js"></script>
-  <script src="/javascripts/asscrollable.js"></script>
-  <script src="/javascripts/slidepanel.js"></script>
-  <script src="/javascripts/switchery.js"></script>
+  <script src="/javascripts/sweetalert.min.js"></script>
   <script>
   (function(document, window, $) {
     'use strict';
@@ -125,19 +119,43 @@
         if (status) {
             if (data["access_token"]) {
                 $.cookie("access_token",data["access_token"]);
+                swal("登录成功", "正在进入首页", "success");
                 location.href="/";
                 return true;
             } else {
                 $("#loginButton").removeAttr("disabled");
+				        swal("登录错误", "邮箱或密码有误", "error");
             }
         } else {
+		      	swal("登录错误", "邮箱或密码有误", "error");
             $("#loginButton").removeAttr("disabled");
         }
     };
-    $("#loginButton").click(function() {
+
+    function login_submit() {
+        if ($("#email").val() == "")
+        {
+            swal("登录错误", "邮箱不能为空", "error");
+            return false;
+        }
+        if ($("#password").val() == "")
+        {
+            swal("登录错误", "密码不能为空", "error");
+            return false;
+        }
         $("#loginButton").attr("disabled","disabled");
         doAjax("http://192.168.1.229:3000/api/v1/auth","post",$("#loginForm").serialize(),cb);
-    });
+    }
+    $("input").keydown(function(event){
+        if (event.id == 13)
+        {
+          login_submit()
+        }
+    })
+    $("#loginButton").click(login_submit);
+
+
+
   })(document, window, jQuery);
   </script>
   </body>
