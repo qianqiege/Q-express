@@ -57,7 +57,7 @@
               <input type="password" class="form-control" name="password" id="password" />
               <label class="floating-label">密码</label>
             </div>
-            <button type="button" class="btn btn-primary btn-block btn-lg m-t-40" id="loginButton">登录 </button>
+            <button type="submit" class="btn btn-primary btn-block btn-lg m-t-40" id="loginButton">登录 </button>
           </form>
           <p>Still no account? Please go to <a href="register-v3.html">Sign up</a></p>
         </div>
@@ -131,7 +131,8 @@
             $("#loginButton").removeAttr("disabled");
         }
     };
-    $("#loginButton").click(function() {
+
+    function login_submit() {
         if ($("#email").val() == "")
         {
             swal("登录错误", "邮箱不能为空", "error");
@@ -144,7 +145,17 @@
         }
         $("#loginButton").attr("disabled","disabled");
         doAjax("http://192.168.1.229:3000/api/v1/auth","post",$("#loginForm").serialize(),cb);
-    });
+    }
+    $("input").keydown(function(event){
+        if (event.id == 13)
+        {
+          login_submit()
+        }
+    })
+    $("#loginButton").click(login_submit);
+
+
+
   })(document, window, jQuery);
   </script>
   </body>
