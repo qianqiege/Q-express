@@ -15,27 +15,27 @@ router.get('/ExceptionData', function(req, res, next) {
 });
 
 router.get('/health_detection', function(req, res, next) {
-  res.render('health_detection',{title:"健康检测"});
+  res.render('health_detection',{title:"健康监测"});
 });
 
 router.get('/blood_pressure', function(req, res, next) {
-  res.render('blood_pressure',{title:"血压检测"});
+  res.render('blood_pressure',{title:"血压监测"});
 });
 
 router.get('/blood_sugar', function(req, res, next) {
-  res.render('blood_sugar',{title:"血糖检测"});
+  res.render('blood_sugar',{title:"血糖监测"});
 });
 
 router.get('/temperature', function(req, res, next) {
-  res.render('temperature',{title:"体温检测"});
+  res.render('temperature',{title:"体温监测"});
 });
 
 router.get('/weight', function(req, res, next) {
-  res.render('weight',{title:"体重检测"});
+  res.render('weight',{title:"体重监测"});
 });
 
 router.get('/heart_rate', function(req, res, next) {
-  res.render('heart_rate',{title:"心率检测"});
+  res.render('heart_rate',{title:"心率监测"});
 });
 
 router.get('/infoEntry', function(req, res, next) {
