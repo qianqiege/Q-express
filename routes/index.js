@@ -46,6 +46,10 @@ router.get('/userList', function(req, res, next) {
   res.render('userList',{title:"患者列表"});
 });
 
+router.get('/add_friends', function(req, res, next) {
+  res.render('add_friends',{title:"新朋友列表"});
+});
+
 router.get('/fileQuery', function(req, res, next) {
   res.render('fileQuery',{title:"档案查询"});
 });
