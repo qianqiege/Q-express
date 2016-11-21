@@ -133,14 +133,12 @@
         }
     };
 
-    function login_submit() {
-        if ($("#email").val() == "")
-        {
+    var login_submit=function() {
+        if ($("#email").val() == "") {
             swal("登录错误", "邮箱不能为空", "error");
             return false;
         }
-        if ($("#password").val() == "")
-        {
+        if ($("#password").val() == "") {
             swal("登录错误", "密码不能为空", "error");
             return false;
         }
@@ -148,9 +146,8 @@
         doAjax("http://192.168.1.229:3000/api/v1/auth","post",$("#loginForm").serialize(),cb);
     }
     $("input").keydown(function(event){
-        if (event.id == 13)
-        {
-          login_submit()
+        if (event.id == 13) {
+          login_submit();
         }
     })
     $("#loginButton").click(login_submit);

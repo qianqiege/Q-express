@@ -50,7 +50,7 @@ $(function() {
                                        .replace(/\{__icon__\}/, " " + menuObj["icon"]);
         }
         $("ul.site-menu").append(baseTemplate);
-    }
+    };
 
     var getMenu=function() {
         doAjax("http://192.168.1.229:3000/api/v1/menus","get",{},
