@@ -14,6 +14,10 @@ router.get('/ExceptionData', function(req, res, next) {
   res.render('ExceptionData',{title:"异常数据查询"});
 });
 
+router.get('/health_detection', function(req, res, next) {
+  res.render('health_detection',{title:"健康检测"});
+});
+
 router.get('/blood_pressure', function(req, res, next) {
   res.render('blood_pressure',{title:"血压检测"});
 });
