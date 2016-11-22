@@ -13,7 +13,7 @@
 3. 所有文件缩进均使用四空格代替 Tab
 
 ### 命名
-1. 文件名、变量与函数名采用小驼峰命名法如`currentDate`, `getUser`, `fileQuery.ejs`
+ 文件名、变量与函数名采用小驼峰命名法如`currentDate`, `getUser`, `fileQuery.ejs`
 
 ### 注释
 1. 所有类库和函数均要有文档注释，文档注释与被注释内容间不能有空行
