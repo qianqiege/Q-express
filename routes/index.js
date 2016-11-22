@@ -18,6 +18,10 @@ router.get('/healthDetection', function(req, res, next) {
   res.render('healthDetection',{title:"健康监测"});
 });
 
+router.get('/healthInfoEntry', function(req, res, next) {
+  res.render('healthInfoEntry',{title:"体检信息录入"});
+});
+
 router.get('/blood_pressure', function(req, res, next) {
   res.render('blood_pressure',{title:"血压监测"});
 });
