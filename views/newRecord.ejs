@@ -1840,7 +1840,7 @@
             if (jQuery(dom).data("hastext")) {
                 jQuery("#" + jQuery(dom).data("bindtext")).removeAttr("disabled").focus();
             } else {
-                jQuery("#" + jQuery(dom).data("bindtext")).attr("disabled","disabled");
+                jQuery("#" + jQuery(dom).data("bindtext")).attr("disabled","disabled").val("");
             }
         };
 
