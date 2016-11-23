@@ -30,14 +30,14 @@ var doAjax = function(ajaxUrl, ajaxType, ajaxData, callbackFunc) {
                     "type": ajaxType,
                     "url": ajaxUrl,
                     "data": ajaxData,
-                    "reponseText":XMLHttpRequest.responseText || ""
+                    "reponseText": XMLHttpRequest.responseText || ""
                 }, 0, callbackFuncArgus);
             } else {
                 callbackFunc({
                     "type": ajaxType,
                     "url": ajaxUrl,
                     "data": ajaxData,
-                    "reponseText":XMLHttpRequest.responseText || ""
+                    "reponseText": XMLHttpRequest.responseText || ""
                 }, 0);
             }
         }
@@ -77,7 +77,7 @@ $(function() {
             var baseTemplate = '<li class="site-menu-item has-sub"><a href="javascript:void(0)"><i class="site-menu-icon{__icon__}" aria-hidden="true"></i><span class="site-menu-title">{__title__}</span><span class="site-menu-arrow"></a></span><ul class="site-menu-sub">{__subMenus__}</ul></li>',
                 subMenuTemplate = '<li class="site-menu-item{__active__}"><a class="animsition-link" href="{__href__}"><span class="site-menu-title">{__title__}</span></a></li>'
                 subMenus=[];
-            for (var i = 0; i<menuObj["children"].length; i++) {
+            for (var i = 0; i < menuObj["children"].length; i++) {
                 subMenus.push(
                     subMenuTemplate.replace(/\{__href__\}/, menuObj["children"][i]["url"])
                                    .replace(/\{__title__\}/, " " + menuObj["children"][i]["name"])
