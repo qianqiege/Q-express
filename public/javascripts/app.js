@@ -1,19 +1,49 @@
-var doAjax=function(ajaxUrl,ajaxType,ajaxData,callbackFunc,callbackFuncArgus) {
-    var ajaxObj={
+/**
+* Ajax 封装
+*
+* @param ajaxUrl {String} 请求地址
+* @param ajaxType {String} 请求类型，例如 get, post
+* @param ajaxData {(String｜Object)} 携带的数据，如果
+* @param callbackFunc {Function} 回调函数
+* @param callbackFuncArgus {*=} 回调函数携带参数，主要用于区分请求发起者（可选）
+* @param ajaxExtendObject {Object=} Ajax 附加参数（可选）
+* @return void
+* @author jshensh@126.com 2016-11-23
+*/
+var doAjax=function(ajaxUrl, ajaxType, ajaxData, callbackFunc) {
+    var ajaxObj = {
         type: ajaxType,
         url: ajaxUrl,
         dataType: 'json',
         timeout: 5000,
         data: ajaxData,
         success: function(re) {
-            callbackFunc(re,1,callbackFuncArgus);
+            if (typeof arguments[4] !== "undefined") {
+                callbackFunc(re ,1, callbackFuncArgus);
+            } else {
+                callbackFunc(re, 1);
+            }
         },
-        error: function(XMLHttpRequest,status) {
-            callbackFunc({"type":ajaxType,"url":ajaxUrl,"data":ajaxData,"reponseText":XMLHttpRequest.responseText || ""},0,callbackFuncArgus);
+        error: function(XMLHttpRequest, status) {
+            if (typeof arguments[4] !== "undefined") {
+                callbackFunc({
+                    "type": ajaxType,
+                    "url": ajaxUrl,
+                    "data": ajaxData,
+                    "reponseText":XMLHttpRequest.responseText || ""
+                }, 0 , callbackFuncArgus);
+            } else {
+                callbackFunc({
+                    "type": ajaxType,
+                    "url": ajaxUrl,
+                    "data": ajaxData,
+                    "reponseText":XMLHttpRequest.responseText || ""
+                }, 0);
+            }
         }
     };
-    if (typeof arguments[5]==="object") {
-        $.extend(ajaxObj,arguments[5]);
+    if (typeof arguments[5] === "object") {
+        $.extend(ajaxObj, arguments[5]);
     }
     ajaxObj.beforeSend = function (XHR) {
         XHR.setRequestHeader('access-authorization', $.cookie('access_token') || "");
