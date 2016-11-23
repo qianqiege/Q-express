@@ -58,6 +58,10 @@ router.get('/doctorsList', function(req, res, next) {
     res.render('doctorsList',{title:"医生列表"});
 });
 
+router.get('/roles', function(req, res, next) {
+    res.render('roles',{title:"角色管理"});
+});
+
 router.get('/add_friends', function(req, res, next) {
     res.render('add_friends',{title:"新朋友列表"});
 });
