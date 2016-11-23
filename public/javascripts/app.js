@@ -19,7 +19,7 @@ var doAjax=function(ajaxUrl, ajaxType, ajaxData, callbackFunc) {
         data: ajaxData,
         success: function(re) {
             if (typeof arguments[4] !== "undefined") {
-                callbackFunc(re ,1, callbackFuncArgus);
+                callbackFunc(re, 1, callbackFuncArgus);
             } else {
                 callbackFunc(re, 1);
             }
@@ -31,7 +31,7 @@ var doAjax=function(ajaxUrl, ajaxType, ajaxData, callbackFunc) {
                     "url": ajaxUrl,
                     "data": ajaxData,
                     "reponseText":XMLHttpRequest.responseText || ""
-                }, 0 , callbackFuncArgus);
+                }, 0, callbackFuncArgus);
             } else {
                 callbackFunc({
                     "type": ajaxType,
