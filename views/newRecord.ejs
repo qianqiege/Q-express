@@ -379,21 +379,21 @@
                                     <label class="form-control-label">1.您的喝酒状态是？</label>
                                     <div>
                                         <div class="radio-custom radio-primary radio-inline">
-                                            <input type="radio" id="drink_history1_radio1" name="drink_history1" value="从不喝" onclick="dry_out_years_function()">
+                                            <input type="radio" id="drink_history1_radio1" name="drink_history1" value="从不喝" data-bindtext="dry_out_years">
                                             <label for="drink_history1_radio1">从不喝</label>
                                         </div>
                                         <div class="radio-custom radio-primary radio-inline">
-                                            <input type="radio" id="drink_history1_radio2" name="drink_history1" value="偶尔喝酒" onclick="dry_out_years_function()">
+                                            <input type="radio" id="drink_history1_radio2" name="drink_history1" value="偶尔喝酒" data-bindtext="dry_out_years">
                                             <label for="drink_history1_radio2">偶尔喝酒</label>
                                         </div>
                                         <div class="radio-custom radio-primary radio-inline">
-                                            <input type="radio" id="drink_history1_radio3" name="drink_history1" value="一直喝" onclick="dry_out_years_function()">
+                                            <input type="radio" id="drink_history1_radio3" name="drink_history1" value="一直喝" data-bindtext="dry_out_years">
                                             <label for="drink_history1_radio3">一直喝</label>
                                         </div>
                                         <div class="radio-custom radio-primary radio-inline">
-                                            <input type="radio" id="drink_history1_radio4" name="drink_history1" value="曾喝已戒" onclick="dry_out_years_function()">
+                                            <input type="radio" id="drink_history1_radio4" name="drink_history1" value="曾喝已戒" data-hastext="true" data-bindtext="dry_out_years">
                                             <label for="drink_history1_radio4">曾喝已戒</label>
-                                            <input type="text" name="dry_out_years" id="dry_out_years" value="" style="border:none;" disabled="true">
+                                            <input type="text" name="dry_out_years" id="dry_out_years" value="" style="border: none; text-align: center; border-bottom: 1px solid black;" disabled="true">
                                             <span>年</span>
                                         </div>
                                     </div>
@@ -484,17 +484,17 @@
                                     <label class="form-control-label">1.您现在的吸烟状态是？</label>
                                     <div>
                                         <div class="radio-custom radio-primary radio-inline">
-                                            <input type="radio" id="smoke_history1_radio1" name="smoke_history1" value="从不吸" onclick="quit_smoking_years_function()">
+                                            <input type="radio" id="smoke_history1_radio1" name="smoke_history1" value="从不吸" data-bindtext="quit_smoking_years">
                                             <label for="smoke_history1_radio1">从不吸</label>
                                         </div>
                                         <div class="radio-custom radio-primary radio-inline">
-                                            <input type="radio" id="smoke_history1_radio2" name="smoke_history1" value="一直吸" onclick="quit_smoking_years_function()">
+                                            <input type="radio" id="smoke_history1_radio2" name="smoke_history1" value="一直吸" data-bindtext="quit_smoking_years">
                                             <label for="smoke_history1_radio2">一直吸</label>
                                         </div>
                                         <div class="radio-custom radio-primary radio-inline">
-                                            <input type="radio" id="smoke_history1_radio3" name="smoke_history1" value="已经戒烟" onclick="quit_smoking_years_function()">
+                                            <input type="radio" id="smoke_history1_radio3" name="smoke_history1" value="已经戒烟" data-bindtext="quit_smoking_years" data-hastext="true">
                                             <label for="smoke_history1_radio3">已经戒烟</label>
-                                            <input type="text" name="quit_smoking_years" id="quit_smoking_years" value="" style="border:none;" disabled="true">
+                                            <input type="text" name="quit_smoking_years" id="quit_smoking_years" value="" style="border: none; text-align: center; border-bottom: 1px solid black;" disabled="true">
                                             <span>年</span>
                                         </div>
                                     </div>
@@ -1353,25 +1353,25 @@
                                     <label class="form-control-label">1.小便：</label>
                                     <div>
                                         <div class="radio-custom radio-primary radio-inline">
-                                            <input type="radio" id="excretion_habit1_radio1" name="excretion_habit1" value="正常" onclick="nocturnal_enuresis()">
+                                            <input type="radio" id="excretion_habit1_radio1" name="excretion_habit1" value="正常" data-bindtext="nocturnal_enuresis_times">
                                             <label for="excretion_habit1_radio1">正常</label>
                                         </div>
                                         <div class="radio-custom radio-primary radio-inline">
-                                            <input type="radio" id="excretion_habit1_radio2" name="excretion_habit1" value="尿急" onclick="nocturnal_enuresis()">
+                                            <input type="radio" id="excretion_habit1_radio2" name="excretion_habit1" value="尿急" data-bindtext="nocturnal_enuresis_times">
                                             <label for="excretion_habit1_radio2">尿急 </label>
                                         </div>
                                         <div class="radio-custom radio-primary radio-inline">
-                                            <input type="radio" id="excretion_habit1_radio3" name="excretion_habit1" value="尿频" onclick="nocturnal_enuresis()">
+                                            <input type="radio" id="excretion_habit1_radio3" name="excretion_habit1" value="尿频" data-bindtext="nocturnal_enuresis_times">
                                             <label for="excretion_habit1_radio3">尿频</label>
                                         </div>
                                         <div class="radio-custom radio-primary radio-inline">
-                                            <input type="radio" id="excretion_habit1_radio4" name="excretion_habit1" value="尿痛" onclick="nocturnal_enuresis()">
+                                            <input type="radio" id="excretion_habit1_radio4" name="excretion_habit1" value="尿痛" data-bindtext="nocturnal_enuresis_times">
                                             <label for="excretion_habit1_radio4">尿痛</label>
                                         </div>
                                         <div class="radio-custom radio-primary radio-inline">
-                                            <input type="radio" id="excretion_habit1_radio5" name="excretion_habit1" value="夜尿" onclick="nocturnal_enuresis()">
+                                            <input type="radio" id="excretion_habit1_radio5" name="excretion_habit1" value="夜尿" data-bindtext="nocturnal_enuresis_times" data-hastext="true">
                                             <label for="excretion_habit1_radio5">夜尿</label>
-                                            <input type="text" name="nocturnal_enuresis_times" id="nocturnal_enuresis_times"  value="" style="border:none;" disabled="true">
+                                            <input type="text" name="nocturnal_enuresis_times" id="nocturnal_enuresis_times"  value="" style="border: none; text-align: center; border-bottom: 1px solid black;" disabled="true">
                                             <span>次</span>
                                         </div>
                                     </div>
@@ -1381,21 +1381,21 @@
                                     <label class="form-control-label">2.大便:</label>
                                     <div>
                                         <div class="radio-custom radio-primary radio-inline">
-                                            <input type="radio" id="excretion_habit2_radio1" name="excretion_habit2" value="正常" onclick="constipation()">
+                                            <input type="radio" id="excretion_habit2_radio1" name="excretion_habit2" value="正常" data-bindtext="constipation_times">
                                             <label for="excretion_habit2_radio1">正常</label>
                                         </div>
                                         <div class="radio-custom radio-primary radio-inline">
-                                            <input type="radio" id="excretion_habit2_radio2" name="excretion_habit2" value="便秘" onclick="constipation()">
-                                            <label for="excretion_habit2radio2">便秘</label>
-                                            <input type="text" name="constipation_times" id="constipation_times"  value="" style="border:none;" disabled="true">
+                                            <input type="radio" id="excretion_habit2_radio2" name="excretion_habit2" value="便秘" data-bindtext="constipation_times" data-hastext="true">
+                                            <label for="excretion_habit2_radio2">便秘</label>
+                                            <input type="text" name="constipation_times" id="constipation_times"  value="" style="border: none; text-align: center; border-bottom: 1px solid black;" disabled="true">
                                             <span>天/次</span>
                                         </div>
                                         <div class="radio-custom radio-primary radio-inline">
-                                            <input type="radio" id="excretion_habit2_radio3" name="excretion_habit2" value="便溏" onclick="constipation()">
+                                            <input type="radio" id="excretion_habit2_radio3" name="excretion_habit2" value="便溏" data-bindtext="constipation_times">
                                             <label for="excretion_habit2_radio3">便溏</label>
                                         </div>
                                         <div class="radio-custom radio-primary radio-inline">
-                                            <input type="radio" id="excretion_habit2_radio3" name="excretion_habit2" value="腹泻" onclick="constipation()">
+                                            <input type="radio" id="excretion_habit2_radio3" name="excretion_habit2" value="腹泻" data-bindtext="constipation_times">
                                             <label for="excretion_habit2_radio3">腹泻</label>
                                         </div>
                                     </div>
@@ -1824,63 +1824,41 @@
     </div>
 
 
+    <% needjquery="\
+    <script>\n\
+        jQuery(function() {\n\
+            jQuery('input[type=radio][data-bindtext]').each(function() {\n\
+                jQuery(this).click(function() {\n\
+                    radioOrText(this);\n\
+                });\n\
+            });\n\
+        });\n\
+    </script>"
+    %>
     <script>
-    //当选择便秘选项时可填写次数输入框否则不可填写
-    function constipation(){
-        var constipation=document.getElementById("excretion_habit2_radio2");
-        var constipation_times = document.getElementById("constipation_times");
-        if(constipation.checked==true){
-            constipation_times.disabled=false;
-        }else{
-            constipation_times.disabled=true;
-        }
-    }
-    //当选择夜尿选项时可填写次数输入框否则不可填写
-    function nocturnal_enuresis(){
-        var nocturnal_enuresis=document.getElementById("excretion_habit1_radio5");
-        var nocturnal_enuresis_times = document.getElementById("nocturnal_enuresis_times");
-        if(nocturnal_enuresis.checked==true){
-            nocturnal_enuresis_times.disabled=false;
-        }else{
-            nocturnal_enuresis_times.disabled=true;
-        }
-    }
-    //当选择已戒烟选项时可填写次数输入框否则不可填写
-    function quit_smoking_years_function(){
-        var smoke_history1_radio3=document.getElementById("smoke_history1_radio3");
-        var quit_smoking_years = document.getElementById("quit_smoking_years");
-        if(smoke_history1_radio3.checked==true){
-            quit_smoking_years.disabled=false;
-        }else{
-            quit_smoking_years.disabled=true;
-        }
-    }
-    //当选择已戒酒选项时可填写次数输入框否则不可填写
-    function dry_out_years_function(){
-        var drink_history1_radio4=document.getElementById("drink_history1_radio4");
-        var dry_out_years = document.getElementById("dry_out_years");
-        if(drink_history1_radio4.checked==true){
-            dry_out_years.disabled=false;
-        }else{
-            dry_out_years.disabled=true;
-        }
-    }
+        var radioOrText = function(dom) {
+            if (jQuery(dom).data("hastext")) {
+                jQuery("#" + jQuery(dom).data("bindtext")).removeAttr("disabled").focus();
+            } else {
+                jQuery("#" + jQuery(dom).data("bindtext")).attr("disabled","disabled");
+            }
+        };
 
-    var cbFun=function(data,status) {
-        if (!status) {
-            swal("提交失败", JSON.parse(data.reponseText)["error"], "error");
-        } else {
-            swal("提交成功", "正在进入患者列表", "success");
-            setTimeout(function() {
-                location.href="/userlist";
-            },1000);
-            return true;
-        }
-    };
-    var submitForm=function(formDom) {
-        doAjax("http://192.168.1.229:3000/api/v1/create_record","post",$(formDom).serialize(),cbFun,1);
-        return 0;
-    };
+        var cbFun=function(data,status) {
+            if (!status) {
+                swal("提交失败", JSON.parse(data.reponseText)["error"], "error");
+            } else {
+                swal("提交成功", "正在进入患者列表", "success");
+                setTimeout(function() {
+                    location.href="/userlist";
+                },1000);
+                return true;
+            }
+        };
+        var submitForm=function(formDom) {
+            doAjax("http://192.168.1.229:3000/api/v1/create_record","post",$(formDom).serialize(),cbFun,1);
+            return 0;
+        };
     </script>
 
 
