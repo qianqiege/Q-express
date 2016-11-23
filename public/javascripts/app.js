@@ -3,7 +3,7 @@
 *
 * @param ajaxUrl {String} 请求地址
 * @param ajaxType {String} 请求类型，例如 get, post
-* @param ajaxData {(String｜Object)} 携带的数据，如果
+* @param ajaxData {(String｜Object)} 携带的数据，如果为空就传入空对象 {}
 * @param callbackFunc {Function} 回调函数
 * @param callbackFuncArgus {*=} 回调函数携带参数，主要用于区分请求发起者（可选）
 * @param ajaxExtendObject {Object=} Ajax 附加参数（可选）
