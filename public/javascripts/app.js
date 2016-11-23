@@ -51,6 +51,12 @@ var doAjax=function(ajaxUrl, ajaxType, ajaxData, callbackFunc) {
     jQuery.ajax(ajaxObj);
 };
 
+/**
+* 跳转至登录页
+*
+* @return void
+* @author jshensh@126.com 2016-11-23
+*/
 var gotoLogin=function() {
     if (location.href.indexOf("/login")===-1) {
         location.href="/login";
@@ -59,6 +65,13 @@ var gotoLogin=function() {
 };
 
 $(function() {
+    /**
+    * 创建菜单
+    *
+    * @param menuObj {String} 菜单对象
+    * @return void
+    * @author jshensh@126.com 2016-11-23
+    */
     var createMenu=function(menuObj) {
         if (menuObj["children"].length) {
             var baseTemplate='<li class="site-menu-item has-sub"><a href="javascript:void(0)"><i class="site-menu-icon{__icon__}" aria-hidden="true"></i><span class="site-menu-title">{__title__}</span><span class="site-menu-arrow"></a></span><ul class="site-menu-sub">{__subMenus__}</ul></li>',
@@ -84,6 +97,12 @@ $(function() {
         $("ul.site-menu").append(baseTemplate);
     };
 
+    /**
+    * 获取菜单
+    *
+    * @return void
+    * @author jshensh@126.com 2016-11-23
+    */
     var getMenu=function() {
         doAjax("http://192.168.1.229:3000/api/v1/menus","get",{},
             function(data,status) {
@@ -100,6 +119,7 @@ $(function() {
         );
     };
 
+    // 判断用户登录状态
     doAjax("http://192.168.1.229:3000/api/v1/users/current_user","get",{},
         function(data,status) {
             if (status) {
@@ -118,6 +138,7 @@ $(function() {
         }
     );
 
+    // HeartBeat
     if (location.href.indexOf("/login")===-1) {
         setInterval(function() {
             doAjax("http://192.168.1.229:3000/api/v1/users/current_user","get",{},
