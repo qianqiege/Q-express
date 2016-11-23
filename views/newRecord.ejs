@@ -10,7 +10,7 @@
         </ol>
     </div>
     <div class="page-content container">
-        <form class="form-horizontal" role="form" method="post" action="" onsubmit="submitForm(this); return false;">
+        <form class="form-horizontal" role="form" method="post" action="" onsubmit="return false;" id="recordForm">
             <!-- 基本信息 -->
             <div class="row">
                 <div class="col-md-12">
@@ -93,7 +93,7 @@
                         <div class="panel-body">
                             <div class="form-group form-material col-xs-12 col-md-10 offset-md-1">
                                 <label for="health_condition1">a.您目前患有以下哪些疾病？</label>
-                                <select  id="health_condition1" class="form-control" multiple data-plugin="select2"name="health_condition1[]">
+                                <select id="health_condition1" class="form-control" multiple data-plugin="select2" name="health_condition1">
                                     <optgroup label="疾病列表">
                                         <option>慢性支气管炎</option>
                                         <option>哮喘</option>
@@ -216,7 +216,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group form-material col-xs-12 col-md-12 ">
-                                    <label class="form-control-label">7.您近一年主过医院吗？</label>
+                                    <label class="form-control-label">7.您近一年住过医院吗？</label>
                                     <div>
                                         <div class="radio-custom radio-primary radio-inline">
                                             <input type="radio" id="health_condition81" name="health_condition8" value="没有">
@@ -270,7 +270,7 @@
 
                                         <div class="form-group form-material col-xs-12 col-md-5">
                                             <label for="family_history_father">父亲</label>
-                                            <select id="family_history_father" class="form-control" multiple data-plugin="select2" name="family_history_father[]">
+                                            <select id="family_history_father" class="form-control" multiple data-plugin="select2" name="family_history_father">
                                                 <optgroup label="疾病列表">
                                                     <option>无</option>
                                                     <option>高血压</option>
@@ -292,7 +292,7 @@
 
                                         <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
                                             <label for="family_history_mother">母亲</label>
-                                            <select id="family_history_mother" class="form-control" multiple data-plugin="select2" name="family_history_mother[]">
+                                            <select id="family_history_mother" class="form-control" multiple data-plugin="select2" name="family_history_mother">
                                                 <optgroup label="疾病列表">
                                                     <option>无</option>
                                                     <option>高血压</option>
@@ -317,7 +317,7 @@
                                     <div class="row">
                                         <div class="form-group form-material col-xs-12 col-md-5">
                                             <label for="family_history_brother">兄弟</label>
-                                            <select  id="family_history_brother" class="form-control" multiple data-plugin="select2"name="family_history_brother[]">
+                                            <select  id="family_history_brother" class="form-control" multiple data-plugin="select2"name="family_history_brother">
                                                 <optgroup label="疾病列表">
                                                     <option>无</option>
                                                     <option>高血压</option>
@@ -339,7 +339,7 @@
 
                                         <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
                                             <label for="family_history_child">子女</label>
-                                            <select id="family_history_child" class="form-control" multiple data-plugin="select2" name="family_history_child[]" >
+                                            <select id="family_history_child" class="form-control" multiple data-plugin="select2" name="family_history_child" >
                                                 <optgroup label="疾病列表">
                                                     <option>无</option>
                                                     <option>高血压</option>
@@ -791,23 +791,23 @@
                                 <label class="form-control-label">11.您习惯选用的饮料是：</label>
                                 <div>
                                     <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                        <input type="checkbox" id="eating_habit11_select1" name="eating_habit11[]" value="茶">
+                                        <input type="checkbox" id="eating_habit11_select1" name="eating_habit11" value="茶">
                                         <label for="eating_habit11_select1">茶</label>
                                     </div>
                                     <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                        <input type="checkbox" id="eating_habit11_select2" name="eating_habit11[]" value="咖啡">
+                                        <input type="checkbox" id="eating_habit11_select2" name="eating_habit11" value="咖啡">
                                         <label for="eating_habit11_select2">咖啡</label>
                                     </div>
                                     <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                        <input type="checkbox" id="eating_habit11_select3" name="eating_habit11[]" value="含糖饮料">
+                                        <input type="checkbox" id="eating_habit11_select3" name="eating_habit11" value="含糖饮料">
                                         <label for="eating_habit11_select3">含糖饮料</label>
                                     </div>
                                     <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                        <input type="checkbox" id="eating_habit11_select4" name="eating_habit11[]" value="白开水">
+                                        <input type="checkbox" id="eating_habit11_select4" name="eating_habit11" value="白开水">
                                         <label for="eating_habit11_select4">白开水</label>
                                     </div>
                                     <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                        <input type="checkbox" id="eating_habit11_select5" name="eating_habit11[]" value="纯净水">
+                                        <input type="checkbox" id="eating_habit11_select5" name="eating_habit11" value="纯净水">
                                         <label for="eating_habit11_select5">纯净水</label>
                                     </div>
                                 </div>
@@ -891,23 +891,23 @@
                                 <div class="form-group form-material col-xs-12 col-md-10 offset-md-1">
                                     <label class="form-control-label">3.您目前运动方式是：</label>
                                     <div class="checkbox-custom checkbox-primary checkbox-inline ">
-                                        <input type="checkbox" id="exercise_habit3_select1" name="exercise_habit3[]" value="瑜伽">
+                                        <input type="checkbox" id="exercise_habit3_select1" name="exercise_habit3" value="瑜伽">
                                         <label for="exercise_habit3_select1">瑜伽</label>
                                     </div>
                                     <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                        <input type="checkbox" id="exercise_habit3_select2" name="exercise_habit3[]" value="散步等低强度运动">
+                                        <input type="checkbox" id="exercise_habit3_select2" name="exercise_habit3" value="散步等低强度运动">
                                         <label for="exercise_habit3_select2">散步等低强度运动</label>
                                     </div>
                                     <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                        <input type="checkbox" id="exercise_habit3_select3" name="exercise_habit3[]" value="快走或慢跑等中等强度运动">
+                                        <input type="checkbox" id="exercise_habit3_select3" name="exercise_habit3" value="快走或慢跑等中等强度运动">
                                         <label for="exercise_habit3_select3">快走或慢跑等中等强度运动</label>
                                     </div>
                                     <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                        <input type="checkbox" id="exercise_habit3_select4" name="exercise_habit3[]" value="球类、快跑、爬山、游泳等高强度运动 ">
+                                        <input type="checkbox" id="exercise_habit3_select4" name="exercise_habit3" value="球类、快跑、爬山、游泳等高强度运动 ">
                                         <label for="exercise_habit3_select4">球类、快跑、爬山、游泳等高强度运动 </label>
                                     </div>
                                     <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                        <input type="checkbox" id="exercise_habit3_select5" name="exercise_habit3[]" value="几乎不运动">
+                                        <input type="checkbox" id="exercise_habit3_select5" name="exercise_habit3" value="几乎不运动">
                                         <label for="exercise_habit3_select5">几乎不运动</label>
                                     </div>
                                 </div>
@@ -1312,23 +1312,23 @@
                                     <label class="form-control-label">4.您在工作间隙常常做那些活动：</label>
                                     <div>
                                         <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                            <input type="checkbox" id="profession_habit4_select1" name="profession_habit4[]" value="远眺">
+                                            <input type="checkbox" id="profession_habit4_select1" name="profession_habit4" value="远眺">
                                             <label for="profession_habit4_select1">远眺</label>
                                         </div>
                                         <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                            <input type="checkbox" id="eprofession_habit4_select2" name="profession_habit4[]" value="看绿植">
+                                            <input type="checkbox" id="eprofession_habit4_select2" name="profession_habit4" value="看绿植">
                                             <label for="profession_habit4_select2">看绿植</label>
                                         </div>
                                         <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                            <input type="checkbox" id="profession_habit4_select3" name="profession_habit4[]" value="颈腰及四肢活动">
+                                            <input type="checkbox" id="profession_habit4_select3" name="profession_habit4" value="颈腰及四肢活动">
                                             <label for="profession_habit4_select3">颈腰及四肢活动</label>
                                         </div>
                                         <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                            <input type="checkbox" id="profession_habit4_select4" name="profession_habit4[]" value="眼保健操 ">
+                                            <input type="checkbox" id="profession_habit4_select4" name="profession_habit4" value="眼保健操 ">
                                             <label for="profession_habit4_select4">眼保健操 </label>
                                         </div>
                                         <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                            <input type="checkbox" id="profession_habit4_select5" name="profession_habit4[]" value="不活动">
+                                            <input type="checkbox" id="profession_habit4_select5" name="profession_habit4" value="不活动">
                                             <label for="profession_habit4_select5">不活动</label>
                                         </div>
                                     </div>
@@ -1579,31 +1579,31 @@
                                     <label class="form-control-label">3. 您拥有哪些家庭医疗器械？（可多选）</label>
                                     <div>
                                         <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                            <input type="checkbox" id="check_body3_select1" name="check_body3[]" value="温度计">
+                                            <input type="checkbox" id="check_body3_select1" name="check_body3" value="温度计">
                                             <label for="check_body3_select1">温度计</label>
                                         </div>
                                         <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                            <input type="checkbox" id="check_body3_select2" name="check_body3[]" value="血压计">
+                                            <input type="checkbox" id="check_body3_select2" name="check_body3" value="血压计">
                                             <label for="check_body3_select2">血压计</label>
                                         </div>
                                         <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                            <input type="checkbox" id="check_body3_select3" name="check_body3[]" value="血糖仪">
+                                            <input type="checkbox" id="check_body3_select3" name="check_body3" value="血糖仪">
                                             <label for="check_body3_select3">血糖仪</label>
                                         </div>
                                         <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                            <input type="checkbox" id="check_body3_select4" name="check_body3[]" value="吸氧机">
+                                            <input type="checkbox" id="check_body3_select4" name="check_body3" value="吸氧机">
                                             <label for="check_body3_select4">吸氧机</label>
                                         </div>
                                         <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                            <input type="checkbox" id="check_body3_select5" name="check_body3[]" value="理疗仪">
+                                            <input type="checkbox" id="check_body3_select5" name="check_body3" value="理疗仪">
                                             <label for="check_body3_select5">理疗仪</label>
                                         </div>
                                         <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                            <input type="checkbox" id="check_body3_select6" name="check_body3[]" value="无">
+                                            <input type="checkbox" id="check_body3_select6" name="check_body3" value="无">
                                             <label for="check_body3_select6">无</label>
                                         </div>
                                         <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                            <input type="checkbox" id="check_body3_select7" name="check_body3[]" value="其它">
+                                            <input type="checkbox" id="check_body3_select7" name="check_body3" value="其它">
                                             <label for="check_body3_select7">其它</label>
                                         </div>
                                     </div>
@@ -1613,27 +1613,27 @@
                                     <label class="form-control-label">4. 您拥有哪些互联网穿戴设备？</label>
                                     <div>
                                         <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                            <input type="checkbox" id="check_body4_select1" name="check_body4[]" value="血压计">
+                                            <input type="checkbox" id="check_body4_select1" name="check_body4" value="血压计">
                                             <label for="check_body4_select1">血压计</label>
                                         </div>
                                         <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                            <input type="checkbox" id="check_body4_select2" name="check_body4[]" value="血糖仪">
+                                            <input type="checkbox" id="check_body4_select2" name="check_body4" value="血糖仪">
                                             <label for="check_body4_select2">血糖仪</label>
                                         </div>
                                         <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                            <input type="checkbox" id="check_body4_select3" name="check_body4[]" value="心电测量仪">
+                                            <input type="checkbox" id="check_body4_select3" name="check_body4" value="心电测量仪">
                                             <label for="check_body4_select3">心电测量仪</label>
                                         </div>
                                         <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                            <input type="checkbox" id="check_body4_select4" name="check_body4[]" value="睡眠监测仪">
+                                            <input type="checkbox" id="check_body4_select4" name="check_body4" value="睡眠监测仪">
                                             <label for="check_body4_select4">睡眠监测仪</label>
                                         </div>
                                         <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                            <input type="checkbox" id="check_body4_select5" name="check_body4[]" value="无">
+                                            <input type="checkbox" id="check_body4_select5" name="check_body4" value="无">
                                             <label for="check_body4_select5">无</label>
                                         </div>
                                         <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                            <input type="checkbox" id="check_body4_select6" name="check_body4[]" value="其它">
+                                            <input type="checkbox" id="check_body4_select6" name="check_body4" value="其它">
                                             <label for="check_body4_select6">其它</label>
                                         </div>
                                     </div>
@@ -1716,7 +1716,7 @@
                                     <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
                                         <label class="form-control-label" for="total_cholesterol">总胆固醇</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="total_cholesterol" name=" total_cholesterol">
+                                            <input type="text" class="form-control" id="total_cholesterol" name="total_cholesterol">
                                             <span class="input-group-addon">（2.84-5.68）mmol/L</span>
                                         </div>
                                     </div>
@@ -1813,7 +1813,7 @@
                     </div>
                     <div class="input-group">
                         <div class="row">
-                            <button type="submit" class="btn btn-block btn-success">提交</button>
+                            <button type="button" onclick="submitForm();" class="btn btn-block btn-success">提交</button>
                         </div>
                     </div>
                 </form>
@@ -1825,6 +1825,7 @@
 
 
     <% needjquery="\
+    <script src='/javascripts/jquery.form.js'></script>\n\
     <script>\n\
         jQuery(function() {\n\
             jQuery('input[type=radio][data-bindtext]').each(function() {\n\
@@ -1856,7 +1857,7 @@
             }
         };
         var submitForm=function(formDom) {
-            doAjax("http://192.168.1.229:3000/api/v1/create_record","post",$(formDom).serialize(),cbFun,1);
+            doAjax("http://192.168.1.229:3000/api/v1/patient_record/create","post",JSON.stringify($('form').getValue()),cbFun,{},{contentType: 'application/json;charset=utf-8'});
             return 0;
         };
     </script>
