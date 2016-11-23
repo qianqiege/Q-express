@@ -63,7 +63,7 @@ router.get('/roles', function(req, res, next) {
 });
 
 router.get('/add_friends', function(req, res, next) {
-  res.render('add_friends',{title:"新朋友列表"});
+    res.render('add_friends',{title:"新朋友列表"});
 });
 
 router.get('/fileQuery', function(req, res, next) {
