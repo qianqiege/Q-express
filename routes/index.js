@@ -82,4 +82,7 @@ router.get('/login', function(req, res, next) {
     res.render('login', {title: "登录"});
 });
 
+router.get('/project3', function(req, res, next) {
+    res.render('project3', {title: "康复科"});
+});
 module.exports = router;
