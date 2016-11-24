@@ -98,6 +98,9 @@
 <script>
     var doSearch=function(dom) {
         console.log(dom.value);
+        doAjax("http://192.168.1.229:3000/api/v1/patient/get_by_id_number", "get", {"id_number": dom.value}, function(data, status) {
+            console.log(data, status);
+        });
     };
 </script>
 
