@@ -59,7 +59,7 @@ router.get('/doctorsList', function(req, res, next) {
 });
 
 router.get('/roles', function(req, res, next) {
-    res.render('roles',{title:"角色管理"});
+    res.render('roles', {title: "角色管理"});
 });
 
 router.get('/add_friends', function(req, res, next) {
@@ -82,4 +82,7 @@ router.get('/login', function(req, res, next) {
     res.render('login', {title: "登录"});
 });
 
+router.get('/project3', function(req, res, next) {
+    res.render('project3', {title: "康复科"});
+});
 module.exports = router;
