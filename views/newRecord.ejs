@@ -1736,7 +1736,7 @@
             }
         };
 
-        var cbFun=function(data,status) {
+        var cbFun = function(data, status) {
             if (!status) {
                 swal("提交失败", JSON.parse(data.reponseText)["error"], "error");
             } else {
@@ -1747,8 +1747,15 @@
                 return true;
             }
         };
-        var submitForm=function(formDom) {
-            doAjax("http://192.168.1.229:3000/api/v1/patient_record/create","post",JSON.stringify($('form').getValue()),cbFun,{},{contentType: 'application/json;charset=utf-8'});
+        var submitForm = function(formDom) {
+            doAjax(
+                "http://192.168.1.229:3000/api/v1/patient_record/create",
+                "post",
+                JSON.stringify($('form').getValue()),
+                cbFun,
+                {},
+                {contentType: 'application/json;charset=utf-8'}
+            );
             return 0;
         };
     </script>

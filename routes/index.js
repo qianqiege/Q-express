@@ -59,7 +59,7 @@ router.get('/doctorsList', function(req, res, next) {
 });
 
 router.get('/roles', function(req, res, next) {
-    res.render('roles',{title:"角色管理"});
+    res.render('roles', {title: "角色管理"});
 });
 
 router.get('/add_friends', function(req, res, next) {
