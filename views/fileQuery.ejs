@@ -2,79 +2,17 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <title>患者档案</title>
         <style>
-            html,body,div,p{margin:0;padding:0}
-            body{font-size:14px;font-family:"microsoft yahei";background-color:#ffffff}
-            table{border-collapse:collapse;border-spacing:0;table-layout:fixed}
-            th,td{font-size:14px;padding:0}
-            a{text-decoration:none}
-            img{border:0 none}
-            .blue{text-decoration:none;color:#3c3d5d}
-            .chead{width:1002px}
-            .chead .logo{width:698px;height:90px}
-            .chead .txt{width:152px;height:90px}
-            .column{width:1002px;line-height:28px;border:1px solid #dedede}
-            .column .hbox{width:185px;height:154px}
-            .column .head{display:block;background-color:#fafafa}
-            .column .box{width:100%;background-color:#ffffff;border-top:2px solid #f2f3f5}
-            .column .box1{width:100%;word-wrap:break-word;color:#ffffff;background-color:#3f4160}
-            .column .box2{width:100%;background-color:#f8f9fa}
-            .column .tba{width:940px;padding:0 30px 15px}
-            .column .tbb{width:940px;padding:0 30px}
-            .column .tb1{width:900px;line-height:28px;color:#333333;word-break:break-all;padding:0 20px}
-            .column .tb2{width:430px;padding:0 20px}
-            .column .tb3{width:900px;padding:15px 20px 15px 0}
-            .column .gray,.column .gray2{color:#999999;word-break:break-all}
-            .column .gray2{color:#666666}
-            .column .plate1,.column .plate2{width:430px;height:54px;font-size:16px;font-weight:bold;color:#818ba3}
-            .column .plate1{width:900px;padding:0 50px}
-            .column .plate1 .f16{font-size:14px;font-weight:normal;color:#333333}
-            .column .plate1 .f12{font-size:12px;font-weight:normal;color:#999999}
-            .column .keys,.column .keys2{width:400px;line-height:28px;color:#666666;font-weight:600;}
-            .column .label5{width:160px}
-            .column .txt1,.column .txt2,.column .txt3{width:815px;line-height:28px;color:#666666;word-break:break-all}
-            .column .txt2{width:345px}
-            .column .txt3{width:auto;max-width:815px;font-size:14px;font-weight:bold}
-            .column .txt4{width:305px;color:#ffffff;word-break:break-all}
-            .column .infr{width:767px;color:#ffffff;table-layout:auto}
-            .column .vam,.column .grcha{vertical-align:middle;margin-left:5px}
-            .column .box1 .vam{margin-right:5px;margin-left:0}
-            .column .name{font-size:24px;padding-bottom:18px}
-            .column .icard{color:#a1a3ae;padding-bottom:18px}
-            .column .con{border-top:1px dotted #ddd}
-            .column .pr20{width:225px;padding-right:20px}
-            .column .time{width:120px;line-height:28px;color:#666666;padding-left:20px}
-            .column .rtbox{width:765px;line-height:28px;color:#333333;padding:0 20px 0 15px;word-break:break-all}
-            .column .hai,.column .guan{line-height:18px;font-size:12px;color:#ffffff;vertical-align:text-top;margin-left:5px;padding:1px 3px;background-color:#3cbe7f;border-radius:2px}
-            .column .guan{background-color:#ff9f20}
-            .column .tag{display:inline-block;word-break:break-all;#display:inline;#zoom:1}
-            .column .all{color:#666;padding:10px 20px;background-color:#fafafa}
-            .column .tit{width:900px;height:40px;color:#666666;padding:0 20px;background-color:#f5f5f5}
-            .column .p15{padding:15px 0}
-            .column .p5{display:inline-block;color:#666666;padding:0 5px;#display:inline;#zoom:1}
-            .column .cell .skill{width:120px;text-align:right;padding-right:15px}
-            .column .cell .skbg,.column .cell .skco{display:inline-block;width:290px;height:18px;line-height:18px;font-size:12px;color:#ffffff;vertical-align:top;margin-top:6px;background-color:#dddddd;border-radius:20px;#display:inline;#zoom:1}
-            .column .cell .skco{width:280px;font-style:normal;margin-top:0;padding-left:10px;background-color:#ff9f20;z-index:3}
-            .column .sl .skco{width:206px}
-            .column .lh .skco{width:132px}
-            .column .yb .skco{width:58px}
-            .column .fbox strong{font-size:14px;font-weight:bold}
-            .column .cha{font-size:12px;font-weight:normal;color:#2d64b3;margin-left:5px}
-            .column .cha:hover{color:#ff6000}
-            .column .email{width:330px}
-            .column .email .vam{margin-top:5px}
-            .eng td,.eng .txt3,.eng .fbox strong{font-size:13px;font-family:'Arial'}
-            .eng .txt1,.eng .rtbox,.eng .phd{width:775px;font-size:13px;font-family:'Arial';line-height:28px}
-            .eng .txt2{width:305px}
-            .eng .txt4{width:245px}
-            .eng .cell .txt3{width:120px}
-            .eng .time,.eng .keys{width:110px;font-size:13px;text-align:right}
-            .eng .cell .skill{width:110px}
-            .eng .phd{padding-left:145px}
-            .eng .keys{padding-right:15px;width:500px}
-            .eng .pr20 .keys{width:100px}
-            .eng .email{width:270px}
+            *{margin:0px;padding:0px;font-family:"Microsoft YaHei";font-size:15px; }
+            .head{background-color:#3f4160;border:1px solid #DCDCDC;color:#FFF5EE;}
+            #patient{margin:20px;border-radius:5px}
+            #id_number{text-align: right;}
+            .content{border:1px solid #DCDCDC;color:gray;}
+            .external{margin:20px 0px 10px 0px;}
+            .wrap{margin:0px 0px 20px 0px;}
+            .content p{text-indent:20px;}
         </style>
         <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
         <script src="/javascripts/jquery.js"></script>
@@ -105,829 +43,207 @@
         </script>
     </head>
     <body>
-        <table border="0" cellpadding="0" cellspacing="0" align="center" class="chead" class="top">
-        	<tbody>
-        		<tr>
-        			<td align="left" class="txt">
-        				<button type="button" class="btn  btn-default">修改</button>
-        			</td>
-        			<td align="right" class="txt">
-        				<img src="/images/print.png" align="absmiddle">
-        				<a class="blue" href="javascript:window.print();">打印</a>
-        			</td>
-        			<td align="right" class="txt">
-        				<img src="/images/export.png" align="absmiddle">
-        				<a class="blue" href="javascript:cv_export('c','http://i.51job.com/resume','335415398');">导出</a>
-        			</td>
-        		</tr>
-        	</tbody>
-        </table>
-        <table cellpadding="0" cellspacing="0" align="center" bgcolor="#fff" class="column">
-            <tbody>
-                <tr>
-                    <td valign="top">
-                        <table xmlns="" cellspacing="0" cellpadding="0" border="0" class="box1">
-                            <tbody>
-                            <tr>
-                                <td class="hbox" align="middle"><img src="/images/4.jpg" width="80" height="104" class="head" alt="头像"></td>
-                                <td>
-                                    <table cellspacing="0" cellpadding="0" border="0" class="infr">
-                                        <tbody>
-                                        <tr>
-                                            <td colspan="2" class="name" id="name">张三</td>
-                                            <td align="right" class="icard" ><span>ID:</span><span id="id">335415398</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td valign="top"><img class="vam" src="/images/y1.png" width="20" height="20" id="nation">汉族</td>
-                                            <td valign="top"><img class="vam" src="/images/y2.png" width="20" height="20" id="phone">18575576754</td>
-                                            <td valign="top"><table cellspacing="0" cellpadding="0" border="0" class="email"></table></td>
-                                        </tr>
-                                        <tr>
-                                            <td valign="top" colspan="3">
-                                                <p>
-                                                    <img class="vam" src="/images/y4.png" width="20" height="20"/ >
-                                                    <span id="sex">女</span>
-                                                    <span class="p5">|</span >
-                                                    <span id="birthday">1992/11/06</span>
-                                                    <span class="p5">|</span>
-                                                    <span id="profession">教师</span>
-                                                    <span class="p5">|</span>
-                                                    <span id="marriage">未婚</span>
-                                                    <span class="p5">|</span>
-                                                    <span id="address">深圳宝安</span>
-                                                </p>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                    </table>
-                                </td>
-                            </tr>
-                        </tbody>
-                        </table>
-                        <table xmlns="" class="box">
-                            <tbody>
-                                <tr>
-                                    <td class="plate1">目前健康状况</td>
-                                </tr>
-                                <tr>
-                                    <td class="tba">
-                                        <table cellspacing="0" cellpadding="0" border="0">
-                                            <tr>
-                                                <td class="p15">
-                                                    <table cellspacing="0" cellpadding="0" border="0">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td class="tb1" colspan="2">
-                                                                    <table cellspacing="0" cellpadding="0" border="0">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td valign="top" class="keys">目前患有疾病：</td>
-                                                                                <td valign="top" class="txt2" id="health_condition1[]">慢性支气管炎、糖尿病</td>
-                                                                                <td valign="top" class="keys">过去的一段时间疲劳程度：</td>
-                                                                                <td valign="top" class="txt2"id="health_condition2">稍微疲劳</td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="tb1" colspan="2">
-                                                                    <table cellspacing="0" cellpadding="0" border="0">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td valign="top" class="keys">同一年前相比体重浮动是：</td>
-                                                                                <td valign="top" class="txt2" id="health_condition3">基本不变</td>
-                                                                                <td valign="top" class="keys">是否试图减过体重：</td>
-                                                                                <td valign="top" class="txt2" id="health_condition4">是</td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="tb1" colspan="2">
-                                                                    <table cellspacing="0" cellpadding="0" border="0">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td valign="top" class="keys">半年内是否测过血压：</td>
-                                                                                <td valign="top" class="txt2" id="health_condition5">未测过</td>
-                                                                                <td valign="top" class="keys" >半年是否内测过血脂：</td>
-                                                                                <td valign="top" class="txt2" id="health_condition6">未测过</td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="tb1" colspan="2">
-                                                                    <table cellspacing="0" cellpadding="0" border="0">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td valign="top" class="keys" >是否经常有颈部、骨关节疼痛：</td>
-                                                                                <td valign="top" class="txt2" id="health_condition7">是</td>
-                                                                                <td valign="top" class="keys" >近一年是否主过医院：</td>
-                                                                                <td valign="top" class="txt2" id="health_condition8">有</td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="tb1" colspan="2">
-                                                                    <table cellspacing="0" cellpadding="0" border="0">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td valign="top" class="keys" >您不歇气一次可以爬几层楼梯：</td>
-                                                                                <td valign="top" class="txt2"  id="health_condition9" >3 层</td>
-                                                                                <td valign="top" class="keys" >&nbsp;</td>
-                                                                                <td valign="top" class="txt2" >&nbsp;</td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table xmlns="" cellspacing="0" cellpadding="0" border="0" class="box">
-                            <tbody>
-                                <tr>
-                                    <td class="tba">
-                                        <table cellspacing="0" cellpadding="0" border="0">
-                                            <tbody>
-                                                <tr>
-                                                    <td valign="top" class="tb2">
-                                                        <table cellspacing="0" cellpadding="0" border="0">
-                                                            <thead style="height:0">
-                                                                <tr>
-                                                                    <td valign="top" class="keys"></td>
-                                                                    <td valign="top" class="txt2"></td>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td colspan="2" class="plate2">家族史</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">父亲患有哪种疾病：</td>
-                                                                    <td valign="top" class="txt2" id="family_history_father">慢性阻塞性肺气肿</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">母亲患有哪种疾病：</td>
-                                                                    <td valign="top" class="txt2" id="family_history_mother">无</</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">兄弟患有哪种疾病：</td>
-                                                                    <td valign="top" class="txt2" id="family_history_brother">恶性肿瘤</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">子女患有哪种疾病：</td>
-                                                                    <td valign="top" class="txt2" id="family_history_child">肥胖</td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </td>
-                                                    <td valign="top" class="tb2">
-                                                        <table cellspacing="0" cellpadding="0" border="0">
-                                                            <thead style="height:0">
-                                                                <tr>
-                                                                    <td valign="top" class="keys"></td>
-                                                                    <td valign="top" class="txt2"></td>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td colspan="2" class="plate2">饮酒史</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">喝酒状态：</td>
-                                                                    <td valign="top" class="txt2" id="drink_history1">无</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">饮酒时间：</td>
-                                                                    <td valign="top" class="txt2" id="drink_history2">无</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">饮酒次数：</td>
-                                                                    <td valign="top" class="txt2" id="drink_history3">无</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">饮酒量：</td>
-                                                                    <td valign="top" class="txt2" id="drink_history4">无</td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table xmlns="" cellspacing="0" cellpadding="0" border="0" class="box">
-                            <tbody>
-                                <tr>
-                                    <td class="tba">
-                                        <table cellspacing="0" cellpadding="0" border="0">
-                                            <tbody>
-                                                <tr>
-                                                    <td valign="top" class="tb2">
-                                                        <table cellspacing="0" cellpadding="0" border="0">
-                                                            <thead style="height:0">
-                                                                <tr>
-                                                                    <td valign="top" class="keys"></td>
-                                                                    <td valign="top" class="txt2"></td>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td colspan="2" class="plate2">吸烟史</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">您现在的吸烟状态是：</td>
-                                                                    <td valign="top" class="txt2" id="smoke_history1">从不吸</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">您的吸烟时间是：</td>
-                                                                    <td valign="top" class="txt2"id="smoke_history2">大于10年</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">您每日平均吸烟量是：</td>
-                                                                    <td valign="top" class="txt2" id="smoke_history3">5-20支/日</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">您是否处在被动吸烟环境：</td>
-                                                                    <td valign="top" class="txt2" id="smoke_history4">没有</td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </td>
-                                                    <td valign="top" class="tb2">
-                                                        <table cellspacing="0" cellpadding="0" border="0">
-                                                            <thead style="height:0">
-                                                                <tr>
-                                                                    <td valign="top" class="keys"></td>
-                                                                    <td valign="top" class="txt2"></td>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td colspan="2" class="plate2">查体</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">多久体检：</td>
-                                                                    <td valign="top" class="txt2" id="check_body1">三个月</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">最近一次体检时间：</td>
-                                                                    <td valign="top" class="txt2" id="check_body2">无</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">拥有的家庭医疗器械：</td>
-                                                                    <td valign="top" class="txt2" id="check_body3">血压计</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">穿戴设备：</td>
-                                                                    <td valign="top" class="txt2" id="check_body3">血糖仪</td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table xmlns="" cellspacing="0" cellpadding="0" border="0" class="box">
-                            <tbody>
-                                <tr>
-                                    <td class="tba">
-                                        <table cellspacing="0" cellpadding="0" border="0">
-                                            <tbody>
-                                                <tr>
-                                                    <td valign="top" class="tb2">
-                                                        <table cellspacing="0" cellpadding="0" border="0">
-                                                            <thead style="height:0">
-                                                                <tr>
-                                                                    <td valign="top" class="keys"></td>
-                                                                    <td valign="top" class="txt2"></td>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td colspan="2" class="plate2">环境态</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">耐寒程度（同一般人比）：</td>
-                                                                    <td valign="top" class="txt2" id="environment_habit1">经常</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">工作环境是否有绿植：</td>
-                                                                    <td valign="top" class="txt2"id="environment_habit2">有</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">生活环境是否有粉尘污染：</td>
-                                                                    <td valign="top" class="txt2" id="environment_habit3">没有</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">适应外界自然变化的程度：</td>
-                                                                    <td valign="top" class="txt2" id="environment_habit4">相当</td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </td>
-                                                    <td valign="top" class="tb2">
-                                                        <table cellspacing="0" cellpadding="0" border="0">
-                                                            <thead style="height:0">
-                                                                <tr>
-                                                                    <td valign="top" class="keys"></td>
-                                                                    <td valign="top" class="txt2"></td>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td colspan="2" class="plate2">运动习惯</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">每周的运动次数：</td>
-                                                                    <td valign="top" class="txt2" id="exercise_habit1">2-3次∕周</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">每次的运动时间：</td>
-                                                                    <td valign="top" class="txt2" id="exercise_habit2">30-60 分钟∕次</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">目前运动方式：</td>
-                                                                    <td valign="top" class="txt2" id="exercise_habit3">瑜伽、快走或慢跑等中等强度运动</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">出行方式：</td>
-                                                                    <td valign="top" class="txt2" id="exercise_habit4">步行</td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table xmlns="" cellspacing="0" cellpadding="0" border="0" class="box">
-                            <tbody>
-                                <tr>
-                                    <td class="tba">
-                                        <table cellspacing="0" cellpadding="0" border="0">
-                                            <tbody>
-                                                <tr>
-                                                    <td valign="top" class="tb2">
-                                                        <table cellspacing="0" cellpadding="0" border="0">
-                                                            <thead style="height:0">
-                                                                <tr>
-                                                                    <td valign="top" class="keys"></td>
-                                                                    <td valign="top" class="txt2"></td>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td colspan="2" class="plate2">睡眠</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">目前的睡眠状态是：</td>
-                                                                    <td valign="top" class="txt2" id="sleeping_habit1">多梦易醒</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">每天睡眠时间：</td>
-                                                                    <td valign="top" class="txt2"id="sleeping_habit2">大于10年</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">午睡时间：</td>
-                                                                    <td valign="top" class="txt2" id="sleeping_habit3">5-20支/日</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">熬夜频率：</td>
-                                                                    <td valign="top" class="txt2" id="sleeping_habit4">没有</td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </td>
-                                                    <td valign="top" class="tb2">
-                                                        <table cellspacing="0" cellpadding="0" border="0">
-                                                            <thead style="height:0">
-                                                                <tr>
-                                                                    <td valign="top" class="keys"></td>
-                                                                    <td valign="top" class="txt2"></td>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td colspan="2" class="plate2">情志态</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">适应社会环境程度：</td>
-                                                                    <td valign="top" class="txt2" id="emotion_habit1">相当</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">生气频次：</td>
-                                                                    <td valign="top" class="txt2" id="emotion_habit2">偶尔</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">无故伤悲频次：</td>
-                                                                    <td valign="top" class="txt2" id="emotion_habit3">偶尔</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">常害怕频次：</td>
-                                                                    <td valign="top" class="txt2" id="emotion_habit4">偶尔</td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table xmlns="" cellspacing="0" cellpadding="0" border="0" class="box">
-                            <tbody>
-                                <tr>
-                                    <td class="tba">
-                                        <table cellspacing="0" cellpadding="0" border="0">
-                                            <tbody>
-                                                <tr>
-                                                    <td valign="top" class="tb2">
-                                                        <table cellspacing="0" cellpadding="0" border="0">
-                                                            <thead style="height:0">
-                                                                <tr>
-                                                                    <td valign="top" class="keys"></td>
-                                                                    <td valign="top" class="txt2"></td>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td colspan="2" class="plate2">职业态</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">每天坐着时间：</td>
-                                                                    <td valign="top" class="txt2" id="environment_habit1">2-4小时</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">多久起身活动：</td>
-                                                                    <td valign="top" class="txt2"id="environment_habit2">有</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">工作间隙做哪些活动：</td>
-                                                                    <td valign="top" class="txt2" id="environment_habit3">眼保健操</td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </td>
-                                                    <td valign="top" class="tb2">
-                                                        <table cellspacing="0" cellpadding="0" border="0">
-                                                            <thead style="height:0">
-                                                                <tr>
-                                                                    <td valign="top" class="keys"></td>
-                                                                    <td valign="top" class="txt2"></td>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td colspan="2" class="plate2">排泄</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">小便情况：</td>
-                                                                    <td valign="top" class="txt2" id="excretion_habit1">正常</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="keys">大便情况：</td>
-                                                                    <td valign="top" class="txt2" id="excretion_habit2">正常</td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table xmlns="" class="box">
-                            <tbody>
-                                <tr><td class="plate1">体格检查</td>
-                                </tr>
-                                <tr>
-                                    <td class="tba">
-                                        <table cellspacing="0" cellpadding="0" border="0">
-                                            <tr>
-                                                <td class="p15">
-                                                    <table cellspacing="0" cellpadding="0" border="0">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td class="tb1" colspan="2">
-                                                                    <table cellspacing="0" cellpadding="0" border="0">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td valign="top" class="keys label1" >身高：</td>
-                                                                                <td valign="top" class="txt1 label2" ><span id="height">167</span><span>cm</span></td>
-                                                                                <td valign="top" class="keys label1"> 体重：</td>
-                                                                                <td valign="top" class="txt1 label2" > <span id="weight">100</span><span>kg</span></td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="tb1" colspan="2">
-                                                                    <table cellspacing="0" cellpadding="0" border="0">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td valign="top" class="keys label1" >体重指数：</td>
-                                                                                <td valign="top" class="txt1 label2" id="baric_index">18.7</td>
-                                                                                <td valign="top" class="keys label1" >臀围：</td>
-                                                                                <td valign="top" class="txt1 label2"><span  id="hipline">80</span><span>cm</span></td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="tb1" colspan="2">
-                                                                    <table cellspacing="0" cellpadding="0" border="0">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td valign="top" class="keys label1">腰围：</td>
-                                                                                <td valign="top" class="txt1 label2"><span  id="waistline">80</span><span>cm</span></td>
-                                                                                <td valign="top" class="keys label1">腰臀比：</td>
-                                                                                <td valign="top" class="txt1 label2" ><span  id="waist_to_hipratio">0.85</span></td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="tb1" colspan="2">
-                                                                    <table cellspacing="0" cellpadding="0" border="0">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td valign="top" class="keys label1">舒张压：</td>
-                                                                                <td valign="top" class="txt1 label2" > <span  id="min_BloodPressure">80</span><span>mmHg</span></td>
-                                                                                <td valign="top" class="keys label1" >收缩压：</td>
-                                                                                <td valign="top" class="txt1 label2" > <span  id="max_BloodPressure">90</span><span>mmHg</span></td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="tb1" colspan="2">
-                                                                    <table cellspacing="0" cellpadding="0" border="0">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td valign="top" class="keys label1">总胆固醇</td>
-                                                                                <td valign="top" class="txt1 label2" > <span  id="total_cholesterol">2.68</span><span>mmol/L</span></td>
-                                                                                <td valign="top" class="keys label1" >甘油三酯：</td>
-                                                                                <td valign="top" class="txt1 label2" > <span  id="triglyceride">1.7</span><span>mmol/L</span></td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="tb1" colspan="2">
-                                                                    <table cellspacing="0" cellpadding="0" border="0">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td valign="top" class="keys label1">高密度脂蛋白：</td>
-                                                                                <td valign="top" class="txt1 label2" > <span  id="high_density_lipoprotein">1.7</span><span>mmol/L</span></td>
-                                                                                <td valign="top" class="keys label1" >低密度脂蛋白：</td>
-                                                                                <td valign="top" class="txt1 label2" > <span  id="low_density_lipoprotein">1.7</span><span>mmol/L</span></td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="tb1" colspan="2">
-                                                                    <table cellspacing="0" cellpadding="0" border="0">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td valign="top" class="keys label1">空腹血糖:</td>
-                                                                                <td valign="top" class="txt1 label2" > <span  id="b_BloodGlucose">2.68</span><span>mmol/L</span></td>
-                                                                                <td valign="top" class="keys label1" >糖化血红蛋白：</td>
-                                                                                <td valign="top" class="txt1 label2" > <span  id="glycosylated_hemoglobin">1.7</span><span>mmol/L</span></td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="tb1" colspan="2">
-                                                                    <table cellspacing="0" cellpadding="0" border="0">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td valign="top" class="keys label1">同型半胱氨酸：</td>
-                                                                                <td valign="top" class="txt1 label2" > <span  id="homocysteine">1.7</span><span>umol/L</span></td>
-                                                                                <td valign="top" class="keys label1" >谷草转氨酶：</td>
-                                                                                <td valign="top" class="txt1 label2" > <span  id="glutamic_oxaloacetic_transaminase">1.7</span><span>umol/L</span></td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="tb1" colspan="2">
-                                                                    <table cellspacing="0" cellpadding="0" border="0">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td valign="top" class="keys label1">谷丙转氨酶:</td>
-                                                                                <td valign="top" class="txt1 label2" > <span  id="glutamic_pyruvic_transaminase">2.68</span><span>umol/L</span></td>
-                                                                                <td valign="top" class="keys label1" >肌酐：</td>
-                                                                                <td valign="top" class="txt1 label2" > <span  id="creatinine">1.7</span><span>umol/L</span></td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="tb1" colspan="2">
-                                                                    <table cellspacing="0" cellpadding="0" border="0">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td valign="top" class="keys label1">尿素氮：</td>
-                                                                                <td valign="top" class="txt1 label2" > <span  id="usea_nitrogen">1.7</span><span>mmol/L</span></td>
-                                                                                <td valign="top" class="keys label1" >血尿酸：</td>
-                                                                                <td valign="top" class="txt1 label2" > <span  id="blood_uric_acid">1.7</span><span>umol/L</span></td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="tb1" colspan="2">
-                                                                    <table cellspacing="0" cellpadding="0" border="0">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td valign="top" class="keys label5">B 超：</td>
-                                                                                <td valign="top" class="txt1 " > <span  id="ultrasound">正常</span></td>
+        <div class="container wrap">
+            <div class="row external">
+                <div class="col-md-4  col-xs-4">
+                    <button type="button" class="btn  btn-default">修改</button>
+                </div>
+                <div class="col-md-4 col-xs-4" style="text-align:center">
+                    <img src="/images/print.png" align="absmiddle">
+                    <a class="blue" href="javascript:window.print();">打印</a>
+                </div>
+                <div class="col-md-4 col-xs-4" style="text-align:right">
+                    <img src="/images/export.png" align="absmiddle">
+                    <a class="blue" href="javascript:cv_export('c','http://i.51job.com/resume','335415398');">导出</a>
+                </div>
 
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="tb1" colspan="2">
-                                                                    <table cellspacing="0" cellpadding="0" border="0">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td valign="top" class="keys label5">心电图：</td>
-                                                                                <td valign="top" class="txt1 " > <span  id="electrocardiogram">正常</span></td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="tb1" colspan="2">
-                                                                    <table cellspacing="0" cellpadding="0" border="0">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td valign="top" class="keys label5">影像学检查：</td>
-                                                                                <td valign="top" class="txt1 " > <span  id="image_analysis">正常</span></td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table xmlns="" class="box">
-                            <tbody>
-                                <tr>
-                                    <td class="plate1">饮食运动习惯</td>
-                                </tr>
-                                <tr>
-                                    <td class="tba">
-                                        <table cellspacing="0" cellpadding="0" border="0">
-                                            <tr>
-                                                <td class="p15">
-                                                    <table cellspacing="0" cellpadding="0" border="0">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td class="tb1" colspan="2">
-                                                                    <table cellspacing="0" cellpadding="0" border="0">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td valign="top" class="keys label1" >主副食比例：</td>
-                                                                                <td valign="top" class="txt1 label2" id="eating_habit1">主食为主</td>
-                                                                                <td valign="top" class="keys label1"> 豆制品：</td>
-                                                                                <td valign="top" class="txt1 label2" id="eating_habit2"> 经常吃</td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="tb1" colspan="2">
-                                                                    <table cellspacing="0" cellpadding="0" border="0">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td valign="top" class="keys label1" >蔬菜：</td>
-                                                                                <td valign="top" class="txt1 label2" id="eating_habit3">250-350 克</td>
-                                                                                <td valign="top" class="keys label1" >水果：</td>
-                                                                                <td valign="top" class="txt1 label2" id="eating_habit4">不喜欢</td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="tb1" colspan="2">
-                                                                    <table cellspacing="0" cellpadding="0" border="0">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td valign="top" class="keys label1">鸡蛋：</td>
-                                                                                <td valign="top" class="txt1 label2" id="eating_habit5">1 个</td>
-                                                                                <td valign="top" class="keys label1">果仁：</td>
-                                                                                <td valign="top" class="txt1 label2" id="eating_habit6">50-75 克</td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="tb1" colspan="2">
-                                                                    <table cellspacing="0" cellpadding="0" border="0">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td valign="top" class="keys label1">摄盐量：</td>
-                                                                                <td valign="top" class="txt1 label2" id="eating_habit7"> 不超过6g</td>
-                                                                                <td valign="top" class="keys label1" >畜禽鱼肉蛋：</td>
-                                                                                <td valign="top" class="txt1 label2" id="eating_habit8"> 120-200 克</td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="tb1" colspan="2">
-                                                                    <table cellspacing="0" cellpadding="0" border="0">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td valign="top" class="keys label1">食物种类数量：</td>
-                                                                                <td valign="top" class="txt1 label2" id="eating_habit9"> 10种</td>
-                                                                                <td valign="top" class="keys label1" >每天大约饮水：</td>
-                                                                                <td valign="top" class="txt1 label2" id="eating_habit10"> 500-1000ml</td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="tb1" colspan="2">
-                                                                    <table cellspacing="0" cellpadding="0" border="0">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td valign="top" class="keys label1">习惯的饮料种类：</td>
-                                                                                <td valign="top" class="txt1 label2" id="eating_habit11"> 茶</td>
-                                                                                <td valign="top" class="keys label1" >牛奶的用量：</td>
-                                                                                <td valign="top" class="txt1 label2" id="eating_habit12"> 少于 300ml</td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+            </div>
+            <div class="row head">
+                <div class="col-lg-offset-1 col-xs-12 col-lg-11" style="margin-top: 20px;margin-bottom: 20px;">
+                    <div style="display: inline-block;float: left;">
+                        <img src="/images/1.jpg" alt="" id="patient">
+                    </div>
+                    <div style="display: inline-block;margin-top: 0px;">
+                        <h3 id="name">张三 <small><span class="label label-primary">ID : 12324365465</span></small></h3>
+                        <p>
+                            <img class="vam" src="/images/y1.png" width="20" height="20" ><span id="nation">汉族</span>
+                            <img class="vam" src="/images/y2.png" width="20" height="20" ><span id="phone">18575576754</span>
+                        </p>
+                        <p>
+                            <img class="vam" src="/images/y4.png" width="20" height="20">
+                            <span id="sex">女</span>
+                            <span class="p5">|</span>
+                            <span id="birthday">1992/11/06</span>
+                            <span class="p5">|</span>
+                            <span id="profession">教师</span>
+                            <span class="p5">|</span>
+                            <span id="marriage">未婚</span>
+                            <span class="p5">|</span>
+                            <span id="address">深圳宝安</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row content">
+                <div class="col-md-10 col-md-offset-1 col-xs-12">
+                    <h4>目前健康状况</h4>
+                </div>
+                <div class="col-md-5 col-md-offset-1 col-xs-12 ">
+                    <p>目前患有疾病：<span id="health_condition1[]">慢性支气管炎、糖尿病</span></p>
+                    <p>过去的一段时间疲劳程度：<span id="health_condition2">稍微疲劳</span></p>
+                    <p>同一年前相比体重浮动是：<span id="health_condition3">基本不变</span></p>
+                    <p>是否试图减过体重：<span id="health_condition4">是</span></p>
+                        <p>您不歇气一次可以爬几层楼梯：<span id="health_condition9">3 层</span></p>
+                </div>
+                <div class="col-md-5 col-xs-12" >
+                    <p>半年内是否测过血压：<span id="health_condition5">未测过</span></p>
+                    <p>半年是否内测过血脂：<span id="health_condition6">未测过</span></p>
+                    <p>是否经常有颈部、骨关节疼痛：<span id="health_condition7">是</span></p>
+                    <p>近一年是否主过医院：<span id="health_condition8">有</span></p>
+                </div>
+            </div>
+            <div class="row content">
+                <div class="col-md-10 col-md-offset-1 col-xs-12">
+                    <h4>家族史</h4>
+                </div>
+                <div class="col-md-5 col-md-offset-1 col-xs-12">
+                    <p>父亲患有哪种疾病：<span id="family_history_father">慢性支气管炎、糖尿病</span></p>
+                    <p>兄弟患有哪种疾病：<span id="family_history_brother">恶性肿瘤</span></p>
+                </div>
+                <div class="col-md-5  col-xs-12">
+                    <p>母亲患有哪种疾病：<span id="family_history_mother">无</span></p>
+                    <p>子女患有哪种疾病：<span id="family_history_child">无</span></p>
+                </div>
+            </div>
+            <div class="row content">
+                <div class="col-md-5 col-md-offset-1 col-xs-12">
+                    <h4>饮酒史</h4>
+                    <p>喝酒状态：<span id="drink_history1">无</span></p>
+                    <p>饮酒时间：<span id="drink_history2">无</span></p>
+                    <p>饮酒次数：<span id="drink_history3">无</span></p>
+                    <p>饮酒量：<span id="drink_history4">无</span></p>
+                </div>
+                <div class="col-md-5 col-xs-12">
+                    <h4>吸烟史</h4>
+                    <p>您现在的吸烟状态是：<span id="smoke_history1">从不吸</span></p>
+                    <p>您的吸烟时间是：<span id="smoke_history2">大于10年</span></p>
+                    <p>您每日平均吸烟量是：<span id="smoke_history3">5-20支/日</span></p>
+                    <p>您是否处在被动吸烟环境：<span id="smoke_history4">没有</span></p>
+                </div>
+            </div>
+            <div class="row content">
+                <div class="col-md-5 col-md-offset-1 col-xs-12">
+                    <h4>查体</h4>
+                    <p>多久体检：<span id="check_body1">三个月</span></p>
+                    <p>最近一次体检时间：<span id="check_body2">无</span></p>
+                    <p>拥有的家庭医疗器械：<span id="check_body3">血压计</span></p>
+                    <p>穿戴设备：<span id="check_body4">血糖仪</span></p>
+                </div>
+                <div class="col-md-5 col-xs-12">
+                    <h4>睡眠</h4>
+                    <p>目前的睡眠状态是：<span id="sleeping_habit1">多梦易醒</span></p>
+                    <p>每天睡眠时间：<span id="sleeping_habit2">大于10小时</span></p>
+                    <p>午睡时间：<span id="sleeping_habit3">半个小时</span></p>
+                    <p>熬夜频率：<span id="sleeping_habit4">没有</span></p>
+                </div>
+            </div>
+            <div class="row content">
+                <div class="col-md-5 col-md-offset-1 col-xs-12">
+                    <h4>情志态</h4>
+                    <p>适应社会环境程度：<span id="emotion_habit1">相当</span></p>
+                    <p>生气频次：<span id="emotion_habit1">偶尔</span></p>
+                    <p>无故伤悲频次：<span id="emotion_habit1">偶尔</span></p>
+                    <p>常害怕频次：<span id="emotion_habit1">偶尔</span></p>
+                </div>
+                <div class="col-md-5 col-xs-12">
+                    <h4>环境态</h4>
+                    <p>同一般人比对冬天，冷空调、电扇等的耐寒程度：<span id="environment_habit1">经常</span></p>
+                    <p>工作环境是否有绿植：<span id="environment_habit2">有</span></p>
+                    <p>生活环境是否有粉尘污染：<span id="environment_habit3">有</span></p>
+                    <p>适应外界自然变化的程度：<span id="environment_habit4">有</span></p>
+                </div>
+            </div>
+            <div class="row content">
+                <div class="col-md-5 col-md-offset-1 col-xs-12">
+                    <h4>运动习惯</h4>
+                    <p>每周的运动次数：<span id="exercise_habit1">2-3次∕周</span></p>
+                    <p>每次的运动时间：<span id="exercise_habit2">30-60 分钟∕次</span></p>
+                    <p>目前运动方式：<span id="exercise_habit3">瑜伽、快走或慢跑等中等强度运动</span></p>
+                    <p>出行方式：<span id="exercise_habit4">步行</span></p>
+                </div>
+                <div class="col-md-5 col-xs-12">
+                    <h4>职业态</h4>
+                    <p>每天坐着时间：<span id="profession_habit1">2-4小时</span></p>
+                    <p>多久起身活动：<span id="profession_habit2">有</span></p>
+                    <p>工作间隙做哪些活动：<span id="profession_habit3">眼保健操</span></p>
+                </div>
+            </div>
+            <div class="row content">
+                <div class="col-md-10 col-md-offset-1 col-xs-12">
+                    <h4>排泄</h4>
+                </div>
+                <div class="col-md-5 col-md-offset-1 col-xs-12">
+                    <p>小便情况：<span id="excretion_habit1">正常</span></p>
+                </div>
+                <div class="col-md-5 col-xs-12 ">
+                    <p>大便情况：<span id="excretion_habit1">正常</span></p>
+                </div>
+            </div>
+            <div class="row content">
+                <div class="col-md-10 col-md-offset-1 col-xs-12">
+                    <h4>饮食运动习惯</h4>
+                </div>
+                <div class="col-md-5 col-md-offset-1 col-xs-12">
+                    <p>豆制品：<span id="eating_habit2">经常吃</span></p>
+                    <p>蔬菜：<span id="eating_habit3">250-350 克</span></p>
+                    <p>水果：<span id="eating_habit4">不喜欢</span></p>
+                    <p>主副食比例：<span id="eating_habit1">主食为主</span></p>
+                    <p>畜禽鱼肉蛋：<span id="eating_habit8">120-200 克</span></p>
+                    <p>食物种类数量：<span id="eating_habit9">10种</span></p>
+                </div>
+                <div class="col-md-5 col-xs-12">
+                    <p>鸡蛋：<span id="eating_habit5">1 个</span></p>
+                    <p>果仁：<span id="eating_habit6">50-75 克</span></p>
+                    <p>摄盐量：<span id="eating_habit7">不超过6g</span></p>
+                    <p>每天大约饮水：<span id="eating_habit10">500-1000ml</span></p>
+                    <p>牛奶的用量：<span id="eating_habit12">主食为主</span></p>
+                    <p>习惯的饮料种类：<span id="eating_habit11">茶</span></p>
+                </div>
+            </div>
+            <div class="row content">
+                <div class="col-md-10 col-md-offset-1 col-xs-12">
+                    <h4>体格检查</h4>
+                </div>
+                <div class="col-md-5 col-md-offset-1 col-xs-12">
+                    <p>身高：<span id="height">167</span><span>cm</span></p>
+                    <p>臀围：<span  id="hipline">80</span><span>cm</span></p>
+                    <p>腰臀比：<span id="waist_to_hipratio">0.85</span></p>
+                    <p>舒张压：<span  id="min_BloodPressure">80</span><span>mmHg</span></p>
+                    <p>总胆固醇：<span  id="total_cholesterol">2.68</span><span>mmol/L</span></p>
+                    <p>高密度脂蛋白：<span  id="high_density_lipoprotein">1.7</span><span>mmol/L</span></p>
+                    <p>空腹血糖： <span  id="b_BloodGlucose">2.68</span><span>mmol/L</span></p>
+                    <p>同型半胱氨酸：<span  id="homocysteine">1.7</span><span>umol/L</span></p>
+                    <p>谷丙转氨酶：<span  id="glutamic_pyruvic_transaminase">2.68</span><span>umol/L</span></p>
+                    <p>尿素氮：<span  id="usea_nitrogen">1.7</span><span>mmol/L</span></p>
+                </div>
+                <div class="col-md-5 col-xs-12 ">
+                    <p>体重：<span id="weight">100</span><span>kg</span></p>
+                    <p>体重指数：<span id="baric_index">18.7</span></p>
+                    <p>腰围：<span  id="waistline">80</span><span>cm</span></p>
+                    <p>收缩压：<span  id="max_BloodPressure">90</span><span>mmHg</span></p>
+                    <p>甘油三酯：<span  id="triglyceride">1.7</span><span>mmol/L</span></p>
+                    <p>低密度脂蛋白：<span  id="low_density_lipoprotein">1.7</span><span>mmol/L</span></p>
+                    <p>糖化血红蛋白：<span  id="glycosylated_hemoglobin">1.7</span><span>mmol/L</span></p>
+                    <p>谷草转氨酶：<span  id="glutamic_oxaloacetic_transaminase">1.7</span><span>umol/L</span></p>
+                    <p>肌酐：<span  id="creatinine">1.7</span><span>umol/L</span></p>
+                    <p>血尿酸：<span  id="blood_uric_acid">1.7</span><span>umol/L</span></p>
+                </div>
+                <div class="col-md-10 col-md-offset-1 col-xs-12">
+                    <p>B 超：<span  id="ultrasound">正常</span></p>
+                    <p>心电图：<span  id="electrocardiogram">正常</span></p>
+                    <p>影像学检查：<span  id="image_analysis">正常</span></p>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
