@@ -5,13 +5,14 @@
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <title>患者档案</title>
         <style>
-            *{margin:0px;padding:0px;font-family:"Microsoft YaHei"; }
-            .head{background-color:#008B8B;border:1px solid #DCDCDC;}
+            *{margin:0px;padding:0px;font-family:"Microsoft YaHei";font-size:15px; }
+            .head{background-color:#3f4160;border:1px solid #DCDCDC;color:#FFF5EE;}
             #patient{margin:20px;border-radius:5px}
             #id_number{text-align: right;}
-            .content{border:1px solid #DCDCDC;}
+            .content{border:1px solid #DCDCDC;color:gray;}
             .external{margin:20px 0px 10px 0px;}
             .wrap{margin:0px 0px 20px 0px;}
+            .content p{text-indent:20px;}
         </style>
         <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
         <script src="/javascripts/jquery.js"></script>
@@ -58,35 +59,33 @@
 
             </div>
             <div class="row head">
-                <div class="col-sm-2 col-xs-2 col-lg-2">
-                    <img src="/images/1.jpg" alt="" id="patient" />
-                </div>
-                <div class=" col-lg-6 col-xs-6 col-xs-offset-2">
-                    <h3>张三</h3>
-                    <p>
-                        <img class="vam" src="/images/y1.png" width="20" height="20" id="nation">汉族
-                        <img class="vam" src="/images/y2.png" width="20" height="20" id="phone">18575576754
-
-                    </p>
-                    <p>
-                        <img class="vam" src="/images/y4.png" width="20" height="20"/ >
-                        <span id="sex">女</span>
-                        <span class="p5">|</span >
-                        <span id="birthday">1992/11/06</span>
-                        <span class="p5">|</span>
-                        <span id="profession">教师</span>
-                        <span class="p5">|</span>
-                        <span id="marriage">未婚</span>
-                        <span class="p5">|</span>
-                        <span id="address">深圳宝安</span>
-                    </p>
-                </div>
-                <div class=" col-lg-2  col-lg-offset-2 col-md-offset-2 col-xs-2">
-                    <p id="id_number">ID:<span>12324365465</span></p>
+                <div class="col-lg-offset-1 col-xs-12 col-lg-11" style="margin-top: 20px;margin-bottom: 20px;">
+                    <div style="display: inline-block;float: left;">
+                        <img src="/images/1.jpg" alt="" id="patient">
+                    </div>
+                    <div style="display: inline-block;margin-top: 0px;">
+                        <h3 id="name">张三 <small><span class="label label-primary">ID : 12324365465</span></small></h3>
+                        <p>
+                            <img class="vam" src="/images/y1.png" width="20" height="20" ><span id="nation">汉族</span>
+                            <img class="vam" src="/images/y2.png" width="20" height="20" ><span id="phone">18575576754</span>
+                        </p>
+                        <p>
+                            <img class="vam" src="/images/y4.png" width="20" height="20">
+                            <span id="sex">女</span>
+                            <span class="p5">|</span>
+                            <span id="birthday">1992/11/06</span>
+                            <span class="p5">|</span>
+                            <span id="profession">教师</span>
+                            <span class="p5">|</span>
+                            <span id="marriage">未婚</span>
+                            <span class="p5">|</span>
+                            <span id="address">深圳宝安</span>
+                        </p>
+                    </div>
                 </div>
             </div>
             <div class="row content">
-                <div class="col-md-2 col-md-offset-5 col-xs-12">
+                <div class="col-md-10 col-md-offset-1 col-xs-12">
                     <h4>目前健康状况</h4>
                 </div>
                 <div class="col-md-5 col-md-offset-1 col-xs-12 ">
@@ -104,7 +103,7 @@
                 </div>
             </div>
             <div class="row content">
-                <div class="col-md-2 col-md-offset-5 col-xs-12">
+                <div class="col-md-10 col-md-offset-1 col-xs-12">
                     <h4>家族史</h4>
                 </div>
                 <div class="col-md-5 col-md-offset-1 col-xs-12">
@@ -180,7 +179,7 @@
                 </div>
             </div>
             <div class="row content">
-                <div class="col-md-2 col-md-offset-5 col-xs-12">
+                <div class="col-md-10 col-md-offset-1 col-xs-12">
                     <h4>排泄</h4>
                 </div>
                 <div class="col-md-5 col-md-offset-1 col-xs-12">
@@ -191,7 +190,7 @@
                 </div>
             </div>
             <div class="row content">
-                <div class="col-md-2 col-md-offset-5 col-xs-12">
+                <div class="col-md-10 col-md-offset-1 col-xs-12">
                     <h4>饮食运动习惯</h4>
                 </div>
                 <div class="col-md-5 col-md-offset-1 col-xs-12">
@@ -212,7 +211,7 @@
                 </div>
             </div>
             <div class="row content">
-                <div class="col-md-2 col-md-offset-5 col-xs-12">
+                <div class="col-md-10 col-md-offset-1 col-xs-12">
                     <h4>体格检查</h4>
                 </div>
                 <div class="col-md-5 col-md-offset-1 col-xs-12">
