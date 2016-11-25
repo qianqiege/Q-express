@@ -1,81 +1,75 @@
 <%- include header %>
 <div class="page">
-	<div class="page-header">
-      <h1 class="page-title"><%= title %></h1>
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
-        <li class="breadcrumb-item"><a href="javascript:void(0)">Forms</a></li>
-        <li class="breadcrumb-item active">Wizard</li>
-      </ol>
+    <div class="page-header">
+        <h1 class="page-title"><%= title %></h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Forms</a></li>
+            <li class="breadcrumb-item active">Wizard</li>
+        </ol>
     </div>
-  <div class="page-content container">
-    <div class="row">
-		<div class="panel">
-			<div class="panel-heading">
-			  <h3 class="panel-title">数据图表</h3>
-			</div>
-			<div class="panel-body container-fluid">      
-				<div id="chart"></div>
-				<script>
-				///Demo Data
-				<% needjquery="<script>jQuery(document).ready(function() {var chart = c3.generate({bindto: '#chart',data: {x: 'x',columns: [['x', '2016-11-11', '2016-11-12', '2016-11-13', '2016-11-14', '2016-11-15', '2016-11-16'],['体重', 30, 200, 100, 400, 150, 250]]},axis: {x: {show: true,type: 'category',},y: {tick: {format: function (d) { return  d+' kg'; }}}}});})</script>"
-				%>
-				</script>
-			</div>
-		</div>
+    <div class="page-content container">
+        <div class="row">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">添加新记录</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-4 offset-md-1">
+                            <div class="form-group form-material floating" data-plugin="formMaterial">
+                                <input type="text" class="form-control empty" name="name">
+                                <label class="floating-label">姓名</label>
+                            </div>
 
-		<div class="panel">
-			<div class="panel-heading">
-			  <h3 class="panel-title">添加新记录</h3>
-			</div>
-			<div class="panel-body container-fluid">      
-						<form>
-						<div class="row">
-								<div class="col-xs-12 col-md-12">
-								<div class="form-group form-material">
-									<label class="form-control-label" for="id_number_c1">体重</label>
-									<div class="input-group">
-										<input type="text" class="form-control" id="id_number_c1" name="weight">
-										<span class="input-group-addon">公斤 (kg)</span>
-									</div>
-								</div>
-								</div>
-								<div class="col-xs-12 col-md-12">
-										<button type="submit" class="btn btn-block btn-success">提交</button>
-								</div>
-						</div>
-						</form>
-			</div>
-		</div>
-	  
-		<div class="panel">
-			<div class="panel-heading">
-			  <h3 class="panel-title">检测日志</h3>
-			</div>
-			<div class="panel-body container-fluid">      
-			  <table class="table table-bordered" >
-				  <thead>
-					<tr>
-					  <th>监测日期</th>
-					  <th>体重(kg)</th>
-					  <th>是否异常</th>
-					</tr>
-				  </thead>
-				  <tbody>
-					<tr>
-					  <td> 2016-10-25 </td>
-					  <td> 120/90 </td>
-					  <td>  正常/正常</td>
-					</tr>
-				  </tbody>
-				  <tfoot>
+                            <div class="form-group form-material floating" data-plugin="formMaterial">
+                                <input type="text" class="form-control empty" name="id_number">
+                                <label class="floating-label">身份证号</label>
+                            </div>
 
-				  </tfoot>
-				</table>
-			</div>
-		</div>
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            <div class="form-group form-material">
+                                <label class="form-control-label" for="sex">性别</label>
+                                <div style="margin-top: 12px;">
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="sex1" name="sex">
+                                        <label for="sex1">男</label>
+                                    </div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="sex2" name="sex">
+                                        <label for="sex2">女</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-material floating" data-plugin="formMaterial">
+                                <input type="text" class="form-control empty" name="nation">
+                                <label class="floating-label">手机号码</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body container-fluid">
+                    <form>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12">
+                                <div class="form-group form-material">
+                                    <label class="form-control-label" for="id_number_c1">体重</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="id_number_c1" name="weight">
+                                        <span class="input-group-addon">公斤 (kg)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-12">
+                                <button type="submit" class="btn btn-block btn-success">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <%- include footer %>
