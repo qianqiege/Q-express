@@ -85,4 +85,7 @@ router.get('/login', function(req, res, next) {
 router.get('/project3', function(req, res, next) {
     res.render('project3', {title: "康复科"});
 });
+router.get('/adminIndex', function(req, res, next) {
+    res.render('adminIndex', {title: "管理首页"});
+});
 module.exports = router;
