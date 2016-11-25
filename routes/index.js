@@ -22,12 +22,12 @@ router.get('/healthInfoEntry', function(req, res, next) {
     res.render('healthInfoEntry', {title: "体检信息录入"});
 });
 
-router.get('/blood_pressure', function(req, res, next) {
-    res.render('blood_pressure', {title: "血压监测"});
+router.get('/bloodPressure', function(req, res, next) {
+    res.render('bloodPressure', {title: "血压监测"});
 });
 
-router.get('/blood_sugar', function(req, res, next) {
-    res.render('blood_sugar', {title: "血糖监测"});
+router.get('/bloodSugar', function(req, res, next) {
+    res.render('bloodSugar', {title: "血糖监测"});
 });
 
 router.get('/temperature', function(req, res, next) {
@@ -38,8 +38,8 @@ router.get('/weight', function(req, res, next) {
     res.render('weight', {title: "体重监测"});
 });
 
-router.get('/heart_rate', function(req, res, next) {
-    res.render('heart_rate', {title: "心率监测"});
+router.get('/heartRate', function(req, res, next) {
+    res.render('heartRate', {title: "心率监测"});
 });
 
 router.get('/infoEntry', function(req, res, next) {
