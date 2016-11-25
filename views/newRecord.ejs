@@ -1711,16 +1711,16 @@
             </div>
             <!-- 体格检查结束  -->
         </div>
-
+$
     </div>
 
 
     <% needjquery="\
     <script src='/javascripts/jquery.form.js'></script>\n\
     <script>\n\
-        jQuery(function() {\n\
-            jQuery('input[type=radio][data-bindtext]').each(function() {\n\
-                jQuery(this).click(function() {\n\
+        $(function() {\n\
+            $('input[type=radio][data-bindtext]').each(function() {\n\
+                $(this).click(function() {\n\
                     radioOrText(this);\n\
                 });\n\
             });\n\

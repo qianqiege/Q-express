@@ -52,6 +52,19 @@ var doAjax = function(ajaxUrl, ajaxType, ajaxData, callbackFunc) {
 };
 
 /**
+* 获取 GET 传参方式得到的参数
+*
+* @param name {String} Key
+* @return String Key 所对应的 Value 或者空字符串
+* @author jshensh@126.com 2016-11-25
+*/
+var getvl = function(name) {
+   var reg = new RegExp("(^|\\?|&)"+ name +"=([^&]*)(\\s|&|$)", "i");
+   if (reg.test(location.href)) return unescape(RegExp.$2.replace(/\+/g, " "));
+   return "";
+};
+
+/**
 * 跳转至登录页
 *
 * @return void
