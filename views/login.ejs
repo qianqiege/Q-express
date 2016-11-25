@@ -41,6 +41,7 @@
     <![endif]-->
   <!-- Page -->
   <div class="page vertical-align text-xs-center" data-animsition-in="fade-in" data-animsition-out="fade-out">>
+  <div class="page vertical-align text-xs-center" data-animsition-in="fade-in" data-animsition-out="fade-out">
     <div class="page-content vertical-align-middle animation-slide-top animation-duration-1">
       <div class="panel">
         <div class="panel-body">
@@ -123,7 +124,9 @@
                   type: "success",
                   confirmButtonClass: "hidden-xxl-down",
                 })
-                location.href="/";
+                setTimeout(function() {
+                    location.href="/";
+                },1000);
                 return true;
             } else {
                 $("#loginButton").removeAttr("disabled");
@@ -135,14 +138,12 @@
         }
     };
 
-    function login_submit() {
-        if ($("#email").val() == "")
-        {
+    var login_submit=function() {
+        if ($("#email").val() == "") {
             swal("登录错误", "邮箱不能为空", "error");
             return false;
         }
-        if ($("#password").val() == "")
-        {
+        if ($("#password").val() == "") {
             swal("登录错误", "密码不能为空", "error");
             return false;
         }
@@ -150,9 +151,8 @@
         doAjax("http://192.168.1.229:3000/api/v1/auth","post",$("#loginForm").serialize(),cb);
     }
     $("input").keydown(function(event){
-        if (event.id == 13)
-        {
-          login_submit()
+        if (event.id == 13) {
+          login_submit();
         }
     })
     $("#loginButton").click(login_submit);

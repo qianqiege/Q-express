@@ -1,949 +1,1765 @@
 <%- include header %>
-  <!-- Page -->
-  <div class="page">
-	<div class="page-header">
-      <h1 class="page-title"><%= title %></h1>
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
-        <li class="breadcrumb-item"><a href="javascript:void(0)">Forms</a></li>
-        <li class="breadcrumb-item active">Wizard</li>
-      </ol>
+<!-- Page -->
+<div class="page">
+    <div class="page-header">
+        <h1 class="page-title"><%= title %></h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Forms</a></li>
+            <li class="breadcrumb-item active">Wizard</li>
+        </ol>
     </div>
     <div class="page-content container">
-        <form class="form-horizontal" role="form" method="post" action="" onsubmit="submitForm(this); return false;">
+        <form class="form-horizontal" role="form" method="post" action="" onsubmit="return false;" id="recordForm">
+            <!-- 基本信息 -->
             <div class="row">
-              <div class="col-md-12">
-                <!-- Example Panel With Heading -->
-                <div class="panel panel-bordered">
-                  <div class="panel-heading">
-                    <h3 class="panel-title">基本资料</h3>
-                  </div>
-                  <div class="panel-body">
-                    <div class="row">
-					  <div class="form-group form-material col-xs-12 col-md-6">
-                        <label class="form-control-label" for="name">姓名</label>
-                        <input type="text" class="form-control" id="name" name="name">
-                      </div>
-					  <div class="form-group form-material col-xs-12 col-md-2">
-                        <label class="form-control-label" for="height">身高</label>
-                        <input type="text" class="form-control" id="height" name="height">
-                      </div>
-					  <div class="form-group form-material col-xs-12 col-md-2">
-                        <label class="form-control-label" for="weight">体重</label>
-                        <input type="text" class="form-control" id="weight" name="weight">
-                      </div>
-					  <div class="form-group form-material col-xs-12 col-md-2">
-                        <label class="form-control-label" for="nation">民族</label>
-                        <input type="text" class="form-control" id="nation" name="nation">
-                      </div>
-					  <div class="form-group form-material col-xs-12 col-md-6">
-                        <label class="form-control-label" for="idCard">身份证号</label>
-                        <input type="text" class="form-control" id="idCard" name="id_number" maxlength="18">
-                      </div><div class="form-group form-material col-xs-12 col-md-6">
-                          <label class="form-control-label" for="born">出生日期</label>
-                          <input type="text" class="form-control" data-plugin="datepicker" data-date-format="yyyy-mm-dd" name="birthday" id="born">
+                <div class="col-md-12">
+                    <div class="panel panel-bordered">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">基本资料</h3>
                         </div>
-
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
+                                    <label class="form-control-label" for="name">姓名</label>
+                                    <input type="text" class="form-control" id="name" name="name">
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-5">
+                                    <label class="form-control-label" for="nation">民族</label>
+                                    <input type="text" class="form-control" id="nation" name="nation">
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
+                                    <label class="form-control-label" for="sex">性别</label>
+                                    <div style="margin-top: 12px;">
+                                        <div class="radio-custom radio-primary" style="display: inline;margin-right: 10px;">
+                                            <input type="radio" id="sex1" name="sex" value="男">
+                                            <label for="sex1">男</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary" style="display:inline">
+                                            <input type="radio" id="sex2" name="sex" value="女">
+                                            <label for="sex2">女</label>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-5">
+                                    <label class="form-control-label" for="marriage">婚姻状况</label>
+                                    <div style="margin-top: 12px;">
+                                        <div class="radio-custom radio-primary" style="display: inline;margin-right: 10px;">
+                                            <input type="radio" id="marriage1" name="marriage" value="已婚">
+                                            <label for="marriage1">已婚</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary" style="display:inline">
+                                            <input type="radio" id="marriage2" name="marriage" value="未婚">
+                                            <label for="marriage2">未婚</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary" style="display:inline">
+                                            <input type="radio" id="marriage3" name="marriage" value="离异">
+                                            <label for="marriage3">离异</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary" style="display:inline">
+                                            <input type="radio" id="marriage4" name="marriage" value="丧偶">
+                                            <label for="marriage4">丧偶</label>
+                                        </div>
+                                    </div><br/>
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
+                                    <label class="form-control-label" for="idCard">身份证号</label>
+                                    <input type="text" class="form-control" id="idCard" name="id_number" maxlength="18">
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-5">
+                                    <label class="form-control-label" for="born">出生日期</label>
+                                    <input type="text" class="form-control" data-plugin="datepicker" data-date-format="yyyy-mm-dd" name="birthday" id="born">
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
+                                    <label class="form-control-label" for="tel">联系方式</label>
+                                    <input type="text" class="form-control" id="tel" name="phone">
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-5">
+                                    <label class="form-control-label" for="profession">职业</label>
+                                    <input type="text" class="form-control" id="profession" name="profession">
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-10 offset-md-1">
+                                    <label class="form-control-label" for="address">通讯地址</label>
+                                    <input type="text" class="form-control" id="address" name="address">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="row">
-
-						  <div class="form-group form-material col-xs-12 col-md-3">
-							<label class="form-control-label" for="sex">性别</label>
-							<div style="margin-top: 12px;">
-								<div class="radio-custom radio-primary" style="display: inline;margin-right: 10px;">
-								  <input type="radio" id="sex1" name="sex" value="男">
-								  <label for="sex1">男</label>
-								</div>
-								<div class="radio-custom radio-primary" style="display:inline">
-								  <input type="radio" id="sex2" name="sex" value="女">
-								  <label for="sex2">女</label>
-								</div>
-							</div>
-						  </div>
-						  <div class="form-group form-material col-xs-12 col-md-3">
-							<label class="form-control-label" for="marriage">婚姻状况</label>
-							<div style="margin-top: 12px;">
-								<div class="radio-custom radio-primary" style="display: inline;margin-right: 10px;">
-								  <input type="radio" id="marriage1" name="marriage" value="已婚">
-								  <label for="marriage1">已婚</label>
-								</div>
-								<div class="radio-custom radio-primary" style="display:inline">
-								  <input type="radio" id="marriage2" name="marriage" value="未婚">
-								  <label for="marriage2">未婚</label>
-								</div>
-							</div>
-						  </div>
-
-						  <div class="form-group form-material col-xs-12 col-md-6">
-							<label class="form-control-label" for="tel">联系方式</label>
-							<input type="text" class="form-control" id="tel" name="phone">
-						  </div>
+                </div>
+            </div>
+            <!-- 目前健康情况开始 -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-bordered" >
+                        <div class="panel-heading">
+                            <h3 class="panel-title">目前健康状况</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group form-material col-xs-12 col-md-10 offset-md-1">
+                                <label for="health_condition1">a.您目前患有以下哪些疾病？</label>
+                                <select id="health_condition1" class="form-control" multiple data-plugin="select2" name="health_condition1">
+                                    <optgroup label="疾病列表">
+                                        <option>慢性支气管炎</option>
+                                        <option>哮喘</option>
+                                        <option>慢阻肺 </option>
+                                        <option>肺心病</option>
+                                        <option>高血压</option>
+                                        <option>高血脂</option>
+                                        <option>冠心病 </option>
+                                        <option>高血压性心脏病</option>
+                                        <option>脑出血</option>
+                                        <option>脑血栓</option>
+                                        <option>糖尿病</option>
+                                        <option>脂肪肝</option>
+                                        <option>肝硬化</option>
+                                        <option>骨质疏松</option>
+                                        <option>癌症 </option>
+                                        <option>肥胖</option>
+                                        <option> 痛风</option>
+                                        <option>慢性肾功不全</option>
+                                        <option>消化性溃疡</option>
+                                        <option>颈椎病 </option>
+                                        <option>腰椎间盘突出</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                            <div class="form-group form-material col-xs-12 col-md-10 offset-md-1">
+                                <label for="hospital_history" >b.您目前的健康状况是：</label>
+                                <div class="form-group form-material col-xs-12 col-md-12 ">
+                                    <label class="form-control-label">1.您在过去的一段时间感觉疲劳吗？</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="health_condition21" name="health_condition2" value="无疲劳">
+                                            <label for="health_condition21">无疲劳</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="health_condition22" name="health_condition2" value="稍微疲劳">
+                                            <label for="health_condition22">稍微疲劳</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="health_condition23" name="health_condition2" value="很疲劳">
+                                            <label for="health_condition23">很疲劳</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="health_condition24" name="health_condition2" value="非常疲劳">
+                                            <label for="health_condition24">非常疲劳</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-12 ">
+                                    <label class="form-control-label">2.同一年前相比，您的体重是？</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="health_condition31" name="health_condition3" value="增加">
+                                            <label for="health_condition31">增加</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="health_condition32" name="health_condition3" value="基本不变">
+                                            <label for="health_condition32">基本不变</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="health_condition33" name="health_condition3" value="下降">
+                                            <label for="health_condition33">下降</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="health_condition34" name="health_condition3" value="不清楚">
+                                            <label for="health_condition34">不清楚</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-12 ">
+                                    <label class="form-control-label">3.在近一年内，您曾试图减过体重吗？</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="health_condition41" name="health_condition4" value="是">
+                                            <label for="health_condition41">是</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="health_condition42" name="health_condition4" value="否">
+                                            <label for="health_condition42">否</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-12 ">
+                                    <label class="form-control-label">4.您近半年内测过血压吗？</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="health_condition51" name="health_condition5" value="未测过">
+                                            <label for="health_condition51">未测过</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="health_condition52" name="health_condition5" value="测过">
+                                            <label for="health_condition52">测过</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-12 ">
+                                    <label class="form-control-label">5.您近半年内测过血脂吗？</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="health_condition61" name="health_condition6" value="未测过">
+                                            <label for="health_condition61">未测过</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="health_condition62" name="health_condition6" value="测过">
+                                            <label for="health_condition62">测过</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-12 ">
+                                    <label class="form-control-label">6.您是否经常有颈部、腰部、骨关节疼痛？</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="health_condition71" name="health_condition7" value="是">
+                                            <label for="health_condition71">是</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="health_condition72" name="health_condition7" value="否">
+                                            <label for="health_condition72">否</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-12 ">
+                                    <label class="form-control-label">7.您近一年住过医院吗？</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="health_condition81" name="health_condition8" value="没有">
+                                            <label for="health_condition81">没有</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="health_condition82" name="health_condition8" value="有">
+                                            <label for="health_condition82">有</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-12 ">
+                                    <label class="form-control-label">8.您不歇气一次可以爬几层楼梯</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="health_condition91" name="health_condition9" value="1 层">
+                                            <label for="health_condition91">1 层</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="health_condition92" name="health_condition9" value="3 层">
+                                            <label for="health_condition92">3 层</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="health_condition93" name="health_condition9" value="5 层">
+                                            <label for="health_condition93">5 层</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="health_condition94" name="health_condition9" value="7 层">
+                                            <label for="health_condition94">7 层</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-					<div class="row">
-					  <div class="form-group form-material col-xs-12 col-md-12">
-                        <label class="form-control-label" for="address">家庭住址</label>
-                        <input type="text" class="form-control" id="address" name="address">
-                      </div>
-					</div>
-
-					<div class="row">
-
-					  <div class="form-group form-material col-xs-12 col-md-3">
-                        <label class="form-control-label" for="min_pressure">舒张压</label>
-						<div class="input-group">
-							<input type="text" class="form-control" id="min_pressure" name="min_BloodPressure">
-							<span class="input-group-addon">毫米汞柱</span>
-						</div>
-                      </div>
-
-					  <div class="form-group form-material col-xs-12 col-md-3">
-                        <label class="form-control-label" for="max_pressure">收缩压</label>
-						<div class="input-group">
-							<input type="text" class="form-control" id="max_pressure" name="max_BloodPressure">
-							<span class="input-group-addon">毫米汞柱</span>
-						</div>
-                      </div>
-
-					  <div class="form-group form-material col-xs-12 col-md-3">
-                        <label class="form-control-label" for="b_sugar">餐前血糖</label>
-						<div class="input-group">
-							<input type="text" class="form-control" id="b_sugar" name="b_BloodGlucose">
-							<span class="input-group-addon">毫克/分升</span>
-						</div>
-                      </div>
-
-					  <div class="form-group form-material col-xs-12 col-md-3">
-                        <label class="form-control-label" for="a_sugar">餐后血糖</label>
-						<div class="input-group">
-							<input type="text" class="form-control" id="a_sugar" name="a_BloodGlucose">
-							<span class="input-group-addon">毫克/分升</span>
-						</div>
-                      </div>
-
-					  <div class="form-group form-material col-xs-12 col-md-3">
-                        <label class="form-control-label" for="pluse">脉搏</label>
-						<div class="input-group">
-							<input type="text" class="form-control" id="pluse" name="Pluse">
-							<span class="input-group-addon">次/分</span>
-						</div>
-                      </div>
-					</div>
-
-                  </div>
                 </div>
-                <!-- End Example Panel With Heading -->
-              </div>
             </div>
+            <!-- 目前健康情况结束 -->
+            <!-- 家族史开始 -->
             <div class="row">
-              <div class="col-md-12">
-                <div class="panel panel-bordered" >
-                  <div class="panel-heading">
-                    <h3 class="panel-title">病史</h3>
-                  </div>
-                  <div class="panel-body">
-					<div class="form-group">
-						<label for="medical_history_detail" >请问您曾经患过何种疾病？例如：传染病、外伤手术、预防接种、过敏（特别是与目前所患疾病有密切关系的情况）</label>
-						<textarea class="form-control" rows="3" id="medical_history_detail" name="disease_history1"></textarea>
-					</div>
+                <div class="col-md-12">
+                    <div class="panel panel-bordered" >
+                        <div class="panel-heading">
+                            <h3 class="panel-title">家族史</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-xs-10 col-md-10 offset-md-1">
+                                    <label>请问您的家属中有无下列疾病? </label>
+                                    <div class="row">
 
-					<div class="form-group">
-						<label for="hospital_history" >请问您曾经有过住院的历史么？</label>
-						<textarea class="form-control" rows="3" id="hospital_history" name="disease_history2"></textarea>
-					</div>
+                                        <div class="form-group form-material col-xs-12 col-md-5">
+                                            <label for="family_history_father">父亲</label>
+                                            <select id="family_history_father" class="form-control" multiple data-plugin="select2" name="family_history_father">
+                                                <optgroup label="疾病列表">
+                                                    <option>无</option>
+                                                    <option>高血压</option>
+                                                    <option>高血脂 </option>
+                                                    <option>冠心病</option>
+                                                    <option>心肌梗塞</option>
+                                                    <option>糖尿病</option>
+                                                    <option>慢性阻塞性肺气肿 </option>
+                                                    <option>肥胖</option>
+                                                    <option>脑卒中</option>
+                                                    <option>脑出血</option>
+                                                    <option>痛风</option>
+                                                    <option>消化性溃疡</option>
+                                                    <option>恶性肿瘤</option>
+                                                    <option>肝硬化</option>
+                                                </optgroup>
+                                            </select>
+                                        </div>
 
-					<div class="form-group">
-						<label for="hospital_history" >请问您现在较明显的主要症状是什么？有无其他伴随症状？</label>
-						<textarea class="form-control" rows="3" id="case" name="disease_history3"></textarea>
-					</div>
+                                        <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
+                                            <label for="family_history_mother">母亲</label>
+                                            <select id="family_history_mother" class="form-control" multiple data-plugin="select2" name="family_history_mother">
+                                                <optgroup label="疾病列表">
+                                                    <option>无</option>
+                                                    <option>高血压</option>
+                                                    <option>高血脂 </option>
+                                                    <option>冠心病</option>
+                                                    <option>心肌梗塞</option>
+                                                    <option>糖尿病</option>
+                                                    <option>慢性阻塞性肺气肿 </option>
+                                                    <option>肥胖</option>
+                                                    <option>脑卒中</option>
+                                                    <option>脑出血</option>
+                                                    <option>痛风</option>
+                                                    <option>消化性溃疡</option>
+                                                    <option>恶性肿瘤</option>
+                                                    <option>肝硬化</option>
+                                                </optgroup>
+                                            </select>
+                                        </div>
 
-					<div class="form-group">
-						<label for="hospital_history" >请问您目前长期使用哪些药物?所用药物名称?剂量及给药途径？</label>
-						<textarea class="form-control" rows="3" id="medical" name="disease_history4"></textarea>
-					</div>
+                                    </div>
 
-					<div class="form-group">
-						<label for="disease_history5" >请问您月经周期和经期长短规律么?月经量及颜色正常么？妊娠次数？生产胎数？有无人工流产或自然流产?</label>
-						<textarea class="form-control" rows="3" id="disease_history5" name="disease_history5"></textarea>
-					</div>
+                                    <div class="row">
+                                        <div class="form-group form-material col-xs-12 col-md-5">
+                                            <label for="family_history_brother">兄弟</label>
+                                            <select  id="family_history_brother" class="form-control" multiple data-plugin="select2"name="family_history_brother">
+                                                <optgroup label="疾病列表">
+                                                    <option>无</option>
+                                                    <option>高血压</option>
+                                                    <option>高血脂 </option>
+                                                    <option>冠心病</option>
+                                                    <option>心肌梗塞</option>
+                                                    <option>糖尿病</option>
+                                                    <option>慢性阻塞性肺气肿 </option>
+                                                    <option>肥胖</option>
+                                                    <option>脑卒中</option>
+                                                    <option>脑出血</option>
+                                                    <option>痛风</option>
+                                                    <option>消化性溃疡</option>
+                                                    <option>恶性肿瘤</option>
+                                                    <option>肝硬化</option>
+                                                </optgroup>
+                                            </select>
+                                        </div>
 
-					<div class="form-group">
-						<label for="disease_history6" >男士男性病人有无生殖系统疾病？</label>
-						<textarea class="form-control" rows="3" id="disease_history6" name="disease_history6"></textarea>
-					</div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="panel panel-bordered" >
-                  <div class="panel-heading">
-                    <h3 class="panel-title">健康调查</h3>
-                  </div>
-                  <div class="panel-body">
-					<div class="row">
-
-						<div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
-						  <label class="form-control-label">1.请问您曾患有过传染病么？</label>
-						  <div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="health_survey1_radio1" name="health_survey1" value="无">
-							  <label for="health_survey1_radio1">无</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="health_survey1_radio2" name="health_survey1" value="有">
-							  <label for="health_survey1_radio2">有</label>
-							</div>
-						  </div>
-						</div>
-
-						<div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
-						  <label class="form-control-label">2.请问您曾经有过输血史么？</label>
-						  <div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="health_survey2_radio1" name="health_survey2" value="无">
-							  <label for="health_survey2_radio1">无</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="health_survey2_radio2" name="health_survey2" value="有">
-							  <label for="health_survey2_radio2">有</label>
-							</div>
-						  </div>
-						</div>
-
-						<div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
-						  <label class="form-control-label">3.请问您有无下列药物过敏症状？</label>
-						  <div>
-							<div class="checkbox-custom checkbox-primary checkbox-inline">
-							  <input type="checkbox" id="health_survey3_select1" name="health_survey3[]" value="青霉素">
-							  <label for="health_survey3_select1">青霉素</label>
-							</div>
-							<div class="checkbox-custom checkbox-primary checkbox-inline">
-							  <input type="checkbox" id="health_survey3_select2" name="health_survey3[]" value="头孢类">
-							  <label for="health_survey3_select2">头孢类</label>
-							</div>
-							<div class="checkbox-custom checkbox-primary checkbox-inline">
-							  <input type="checkbox" id="health_survey3_select3" name="health_survey3[]" value="大环内酯类">
-							  <label for="health_survey3_select3">大环内酯类</label>
-							</div>
-							<div class="checkbox-custom checkbox-primary checkbox-inline">
-							  <input type="checkbox" id="health_survey3_select4" name="health_survey3[]" value="磺胺类">
-							  <label for="health_survey3_select4">磺胺类</label>
-							</div>
-						  </div>
-						</div>
-
-						<div class="col-xs-10 col-md-10 offset-md-1">
-							<label>4. 请问您的家属中有无下列疾病? </label>
-								<div class="row">
-
-									<div class="form-group form-material col-xs-12 col-md-5">
-										<label for="health_survey4_1">父亲</label>
-										<select id="health_survey4_1" class="form-control" multiple data-plugin="select2" name="health_survey4[]">
-										  <optgroup label="疾病列表">
-											<option>高血压</option>
-											<option>糖尿病</option>
-											<option>冠心病 </option>
-											<option>恶性肿瘤</option>
-											<option>脑卒中</option>
-											<option>结核病</option>
-											<option>肝炎 </option>
-											<option>先天畸形</option>
-											<option>慢性阻塞性肺疾病</option>
-											<option>其他</option>
-											<option>无</option>
-										  </optgroup>
-										</select>
-									</div>
-
-									<div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
-										<label for="health_survey4_2">母亲</label>
-										<select id="health_survey4_2" class="form-control" multiple data-plugin="select2" name="health_survey4_mom[]">
-										  <optgroup label="疾病列表">
-											<option>高血压</option>
-											<option>糖尿病</option>
-											<option>冠心病 </option>
-											<option>恶性肿瘤</option>
-											<option>脑卒中</option>
-											<option>结核病</option>
-											<option>肝炎 </option>
-											<option>先天畸形</option>
-											<option>慢性阻塞性肺疾病</option>
-											<option>其他</option>
-											<option>无</option>
-										  </optgroup>
-										</select>
-									</div>
-
-								</div>
-
-								<div class="row">
-									<div class="form-group form-material col-xs-12 col-md-5">
-										<label for="health_survey4_3">兄弟</label>
-										<select  id="health_survey4_3" class="form-control" multiple data-plugin="select2"name="health_survey4_brother[]">
-										  <optgroup label="疾病列表">
-											<option>高血压</option>
-											<option>糖尿病</option>
-											<option>冠心病 </option>
-											<option>恶性肿瘤</option>
-											<option>脑卒中</option>
-											<option>结核病</option>
-											<option>肝炎 </option>
-											<option>先天畸形</option>
-											<option>慢性阻塞性肺疾病</option>
-											<option>其他</option>
-											<option>无</option>
-										  </optgroup>
-										</select>
-									</div>
-
-									<div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
-										<label for="health_survey4_4">子女</label>
-										<select id="health_survey4_4" class="form-control" multiple data-plugin="select2" name="health_survey4_child[]" >
-										  <optgroup label="疾病列表">
-											<option>高血压</option>
-											<option>糖尿病</option>
-											<option>冠心病 </option>
-											<option>恶性肿瘤</option>
-											<option>脑卒中</option>
-											<option>结核病</option>
-											<option>肝炎 </option>
-											<option>先天畸形</option>
-											<option>慢性阻塞性肺疾病</option>
-											<option>其他</option>
-											<option>无</option>
-										  </optgroup>
-										</select>
-									</div>
-								</div>
-					</div>
+                                        <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
+                                            <label for="family_history_child">子女</label>
+                                            <select id="family_history_child" class="form-control" multiple data-plugin="select2" name="family_history_child" >
+                                                <optgroup label="疾病列表">
+                                                    <option>无</option>
+                                                    <option>高血压</option>
+                                                    <option>高血脂 </option>
+                                                    <option>冠心病</option>
+                                                    <option>心肌梗塞</option>
+                                                    <option>糖尿病</option>
+                                                    <option>慢性阻塞性肺气肿 </option>
+                                                    <option>肥胖</option>
+                                                    <option>脑卒中</option>
+                                                    <option>脑出血</option>
+                                                    <option>痛风</option>
+                                                    <option>消化性溃疡</option>
+                                                    <option>恶性肿瘤</option>
+                                                    <option>肝硬化</option>
+                                                </optgroup>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
             </div>
+            <!-- 家族史结束 -->
+            <!-- 饮酒史开始 -->
             <div class="row">
-              <div class="col-md-12">
-                <div class="panel panel-bordered" >
-                  <div class="panel-heading">
-                    <h3 class="panel-title">吸烟史</h3>
-                  </div>
-                  <div class="panel-body">
-                    <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-bordered" >
+                        <div class="panel-heading">
+                            <h3 class="panel-title">饮酒史</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                    <label class="form-control-label">1.您的喝酒状态是？</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="drink_history1_radio1" name="drink_history1" value="从不喝" data-bindtext="dry_out_years">
+                                            <label for="drink_history1_radio1">从不喝</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="drink_history1_radio2" name="drink_history1" value="偶尔喝酒" data-bindtext="dry_out_years">
+                                            <label for="drink_history1_radio2">偶尔喝酒</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="drink_history1_radio3" name="drink_history1" value="一直喝" data-bindtext="dry_out_years">
+                                            <label for="drink_history1_radio3">一直喝</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="drink_history1_radio4" name="drink_history1" value="曾喝已戒" data-hastext="true" data-bindtext="dry_out_years">
+                                            <label for="drink_history1_radio4">曾喝已戒</label>
+                                            <input type="text" name="dry_out_years" id="dry_out_years" value="" style="border: none; text-align: center; border-bottom: 1px solid black;" disabled="true">
+                                            <span>年</span>
+                                        </div>
+                                    </div>
+                                </div>
 
-						<div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
-						  <label class="form-control-label">1.您现在的吸烟状态是？</label>
-						  <div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="smoke_history1_radio1" name="smoke_history1" value="从不吸">
-							  <label for="smoke_history1_radio1">从不吸</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="smoke_history1_radio2" name="smoke_history1" value="一直吸">
-							  <label for="smoke_history1_radio2">一直吸</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="smoke_history1_radio3" name="smoke_history1" value="已经戒烟">
-							  <label for="smoke_history1_radio3">已经戒烟</label>
-							</div>
-						  </div>
-						</div>
+                                <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                    <label class="form-control-label">2.您饮酒时间是？</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="drink_history2_radio1" name="drink_history2" value="<1年">
+                                            <label for="drink_history2_radio1">&lt;1年</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="drink_history2_radio2" name="drink_history2" value="1-5年">
+                                            <label for="drink_history2_radio2">1-5年</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="drink_history2_radio3" name="drink_history2" value="5-10年">
+                                            <label for="drink_history2_radio3">5-10年</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="drink_history2_radio4" name="drink_history2" value="大于10年">
+                                            <label for="drink_history2_radio4">大于10年</label>
+                                        </div>
+                                    </div>
+                                </div>
 
-						<div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
-						  <label class="form-control-label">2.您的吸烟时间是？</label>
-						  <div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="smoke_history2_radio1" name="smoke_history2" value="1年">
-							  <label for="smoke_history2_radio1">1年</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="smoke_history2_radio2" name="smoke_history2" value="1-5年">
-							  <label for="smoke_history2_radio2">1-5年</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="smoke_history2_radio3" name="smoke_history2" value="5-10年">
-							  <label for="smoke_history2_radio3">5-10年</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="smoke_history2_radio4" name="smoke_history2" value="大于10年">
-							  <label for="smoke_history2_radio4">大于10年</label>
-							</div>
-						  </div>
-						</div>
+                                <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                    <label class="form-control-label">3.您的饮酒次数？</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="drink_history3_radio1" name="drink_history3" value="<1次∕日">
+                                            <label for="drink_history3_radio1">&lt;1次∕日</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="drink_history3_radio2" name="drink_history3" value="1次∕日">
+                                            <label for="drink_history3_radio2">1次∕日</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="drink_history3_radio3" name="drink_history3" value=">1次∕日">
+                                            <label for="drink_history3_radio3">&gt;1次∕日</label>
+                                        </div>
+                                    </div>
+                                </div>
 
-						<div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
-						  <label class="form-control-label">3.您每日平均吸烟量是？</label>
-						  <div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="smoke_history3_radio1" name="smoke_history3" value="<5支/日">
-							  <label for="smoke_history3_radio1">&lt;5支/日</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="smoke_history3_radio2" name="smoke_history3" value="5-20支/日">
-							  <label for="smoke_history3_radio2">5-20支/日</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="smoke_history3_radio3" name="smoke_history3" value="20支/日">
-							  <label for="smoke_history3_radio3">&gt;20支/日</label>
-							</div>
-						  </div>
-						</div>
-
-						<div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
-						  <label class="form-control-label">4.您是否处在被动吸烟环境？</label>
-						  <div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="smoke_history4_radio1" name="smoke_history4" value="没有">
-							  <label for="smoke_history4_radio1">没有</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="smoke_history4_radio2" name="smoke_history4" value="偶尔">
-							  <label for="smoke_history4_radio2">偶尔</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="smoke_history4_radio3" name="smoke_history4" value="经常">
-							  <label for="smoke_history4_radio3">经常</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="smoke_history4_radio4" name="smoke_history4" value="总是">
-							  <label for="smoke_history4_radio4">总是</label>
-							</div>
-						  </div>
-						</div>
+                                <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                    <label class="form-control-label">4. 您的饮酒量是?（ 以白酒为标准，1瓶啤酒为1两白酒，1瓶葡萄酒相当于半斤白酒） </label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="drink_history4_radio1" name="drink_history4" value="< 1两∕次">
+                                            <label for="drink_history4_radio1">&lt; 1两∕次</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="drink_history4_radio2" name="drink_history4" value="1-3两∕次">
+                                            <label for="drink_history4_radio2">1-3两∕次</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="drink_history4_radio3" name="drink_history4" value="3-5两∕次">
+                                            <label for="drink_history4_radio3">3-5两∕次</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="drink_history4_radio4" name="drink_history4" value="5-10两∕次">
+                                            <label for="drink_history4_radio4">5-10两∕次</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="drink_history4_radio5" name="drink_history4" value=">1斤∕次">
+                                            <label for="drink_history4_radio5">&gt;1斤∕次</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
             </div>
+            <!-- 饮酒史结束 -->
+            <!-- 吸烟史开始 -->
             <div class="row">
-              <div class="col-md-12">
-                <div class="panel panel-bordered" >
-                  <div class="panel-heading">
-                    <h3 class="panel-title">饮酒史</h3>
-                  </div>
-                  <div class="panel-body">
-                    <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-bordered" >
+                        <div class="panel-heading">
+                            <h3 class="panel-title">吸烟史</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
 
-						<div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
-						  <label class="form-control-label">1.您的喝酒状态是？</label>
-						  <div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="drink_history1_radio1" name="drink_history1" value="从不喝">
-							  <label for="drink_history1_radio1">从不喝</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="drink_history1_radio2" name="drink_history1" value="偶尔喝酒">
-							  <label for="drink_history1_radio2">偶尔喝酒</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="drink_history1_radio3" name="drink_history1" value="一直喝">
-							  <label for="drink_history1_radio3">一直喝</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="drink_history1_radio4" name="drink_history1" value="曾喝已戒">
-							  <label for="drink_history1_radio4">曾喝已戒</label>
-							</div>
-						  </div>
-						</div>
+                                <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                    <label class="form-control-label">1.您现在的吸烟状态是？</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="smoke_history1_radio1" name="smoke_history1" value="从不吸" data-bindtext="quit_smoking_years">
+                                            <label for="smoke_history1_radio1">从不吸</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="smoke_history1_radio2" name="smoke_history1" value="一直吸" data-bindtext="quit_smoking_years">
+                                            <label for="smoke_history1_radio2">一直吸</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="smoke_history1_radio3" name="smoke_history1" value="已经戒烟" data-bindtext="quit_smoking_years" data-hastext="true">
+                                            <label for="smoke_history1_radio3">已经戒烟</label>
+                                            <input type="text" name="quit_smoking_years" id="quit_smoking_years" value="" style="border: none; text-align: center; border-bottom: 1px solid black;" disabled="true">
+                                            <span>年</span>
+                                        </div>
+                                    </div>
+                                </div>
 
-						<div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
-						  <label class="form-control-label">2.您饮酒时间是？</label>
-						  <div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="drink_history2_radio1" name="drink_history2" value="<1年">
-							  <label for="drink_history2_radio1">&lt;1年</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="drink_history2_radio2" name="drink_history2" value="1-5年">
-							  <label for="drink_history2_radio2">1-5年</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="drink_history2_radio3" name="drink_history2" value="5-10年">
-							  <label for="drink_history2_radio3">5-10年</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="drink_history2_radio4" name="drink_history2" value="大于10年">
-							  <label for="drink_history2_radio4">大于10年</label>
-							</div>
-						  </div>
-						</div>
+                                <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                    <label class="form-control-label">2.您的吸烟时间是？</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="smoke_history2_radio1" name="smoke_history2" value="1年">
+                                            <label for="smoke_history2_radio1">1年</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="smoke_history2_radio2" name="smoke_history2" value="1-5年">
+                                            <label for="smoke_history2_radio2">1-5年</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="smoke_history2_radio3" name="smoke_history2" value="5-10年">
+                                            <label for="smoke_history2_radio3">5-10年</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="smoke_history2_radio4" name="smoke_history2" value="大于10年">
+                                            <label for="smoke_history2_radio4">大于10年</label>
+                                        </div>
+                                    </div>
+                                </div>
 
-						<div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
-						  <label class="form-control-label">3.您的饮酒次数？</label>
-						  <div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="drink_history3_radio1" name="drink_history3" value="<1次∕日">
-							  <label for="drink_history3_radio1">&lt;1次∕日</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="drink_history3_radio2" name="drink_history3" value="1次∕日">
-							  <label for="drink_history3_radio2">1次∕日</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="drink_history3_radio3" name="drink_history3" value=">1次∕日">
-							  <label for="drink_history3_radio3">&gt;1次∕日</label>
-							</div>
-						  </div>
-						</div>
+                                <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                    <label class="form-control-label">3.您每日平均吸烟量是？</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="smoke_history3_radio1" name="smoke_history3" value="<5支/日">
+                                            <label for="smoke_history3_radio1">&lt;5支/日</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="smoke_history3_radio2" name="smoke_history3" value="5-20支/日">
+                                            <label for="smoke_history3_radio2">5-20支/日</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="smoke_history3_radio3" name="smoke_history3" value="20支/日">
+                                            <label for="smoke_history3_radio3">&gt;20支/日</label>
+                                        </div>
+                                    </div>
+                                </div>
 
-						<div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
-						  <label class="form-control-label">4. 您的饮酒量是?（ 以白酒为标准，1瓶啤酒为1两白酒，1瓶葡萄酒相当于半斤白酒） </label>
-						  <div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="drink_history4_radio1" name="drink_history4" value="< 1两∕次">
-							  <label for="drink_history4_radio1">&lt; 1两∕次</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="drink_history4_radio2" name="drink_history4" value="1-3两∕次">
-							  <label for="drink_history4_radio2">1-3两∕次</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="drink_history4_radio3" name="drink_history4" value="3-5两∕次">
-							  <label for="drink_history4_radio3">3-5两∕次</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="drink_history4_radio4" name="drink_history4" value="5-10两∕次">
-							  <label for="drink_history4_radio4">5-10两∕次</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="drink_history4_radio5" name="drink_history4" value=">1斤∕次">
-							  <label for="drink_history4_radio5">&gt;1斤∕次</label>
-							</div>
-						</div>
-                      </div>
+                                <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                    <label class="form-control-label">4.您是否处在被动吸烟环境？</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="smoke_history4_radio1" name="smoke_history4" value="没有">
+                                            <label for="smoke_history4_radio1">没有</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="smoke_history4_radio2" name="smoke_history4" value="偶尔">
+                                            <label for="smoke_history4_radio2">偶尔</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="smoke_history4_radio3" name="smoke_history4" value="经常">
+                                            <label for="smoke_history4_radio3">经常</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="smoke_history4_radio4" name="smoke_history4" value="总是">
+                                            <label for="smoke_history4_radio4">总是</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
             </div>
+            <!-- 吸烟史结束 -->
+            <!-- 饮食习惯开始 -->
             <div class="row">
-              <div class="col-md-12">
-                <div class="panel panel-bordered" >
-                  <div class="panel-heading">
-                    <h3 class="panel-title">饮食运动习惯</h3>
-                  </div>
-                  <div class="panel-body">
-                    <div class="row">
-						<div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
-						  <label class="form-control-label">1.您喜欢吃甜食吗？</label>
-						  <div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="eating_habit1_radio1" name="eating_habit1" value="很喜欢">
-							  <label for="eating_habit1_radio1">很喜欢</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="eating_habit1_radio2" name="eating_habit1" value="比较喜欢">
-							  <label for="eating_habit1_radio2">比较喜欢</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="eating_habit1_radio3" name="eating_habit1" value="一般">
-							  <label for="eating_habit1_radio3">一般</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="eating_habit1_radio4" name="eating_habit1" value="不喜欢">
-							  <label for="eating_habit1_radio4">不喜欢</label>
-							</div>
-						  </div>
-						</div>
+                <div class="col-md-12">
+                    <div class="panel panel-bordered" >
+                        <div class="panel-heading">
+                            <h3 class="panel-title">饮食习惯</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                    <label class="form-control-label">1.每日的主副食比例:</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="eating_habit1_radio1" name="eating_habit1" value="主食为主">
+                                            <label for="eating_habit1_radio1">主食为主</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="eating_habit1_radio2" name="eating_habit1" value="主副食各半">
+                                            <label for="eating_habit1_radio2">主副食各半</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="eating_habit1_radio3" name="eating_habit1" value="主食为辅">
+                                            <label for="eating_habit1_radio3">主食为辅</label>
+                                        </div>
+                                    </div>
+                                </div>
 
-						<div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
-						  <label class="form-control-label">2.您平常用餐口味偏重吗？</label>
-						  <div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="eating_habit2_radio1" name="eating_habit2" value="偏重">
-							  <label for="eating_habit2_radio1">偏重</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="eating_habit2_radio2" name="eating_habit2" value="偏轻">
-							  <label for="eating_habit2_radio2">偏轻</label>
-							</div>
-						  </div>
-						</div>
+                                <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                    <label class="form-control-label">2.豆腐和豆制品摄入量：</label>
 
-						<div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
-						  <label class="form-control-label">3. 您喜欢吃肉类、海鲜类吗？</label>
-						  <div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="eating_habit3_radio1" name="eating_habit3" value="喜欢">
-							  <label for="eating_habit3_radio1">喜欢</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="eating_habit3_radio2" name="eating_habit3" value="比较喜欢">
-							  <label for="eating_habit3_radio2">比较喜欢</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="eating_habit3_radio3" name="eating_habit3" value="一般">
-							  <label for="eating_habit3_radio3">一般</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="eating_habit3_radio4" name="eating_habit3" value="不喜欢">
-							  <label for="eating_habit3_radio4">不喜欢</label>
-							</div>
-						  </div>
-						</div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit2_radio1" name="eating_habit2" value="每天吃">
+                                        <label for="eating_habit2_radio1">每天吃</label>
+                                    </div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit2_radio2" name="eating_habit2" value="经常吃">
+                                        <label for="eating_habit2_radio2">经常吃</label>
+                                    </div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit2_radio3" name="eating_habit2" value="偶尔吃">
+                                        <label for="eating_habit2_radio3">偶尔吃</label>
+                                    </div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit2_radio4" name="eating_habit2" value="不吃">
+                                        <label for="eating_habit2_radio4">不吃</label>
+                                    </div>
+                                </div>
+                            </div>
 
-						<div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
-						  <label class="form-control-label">4. 您偏于喜爱吃凉食还是热食？</label>
-						  <div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="eating_habit4_radio1" name="eating_habit4" value="凉食">
-							  <label for="eating_habit4_radio1">凉食</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="eating_habit4_radio2" name="eating_habit4" value="热食">
-							  <label for="eating_habit4_radio2">热食</label>
-							</div>
-						  </div>
-						</div>
+                            <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                <label class="form-control-label">3. 平均每天吃蔬菜：</label>
+                                <div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit3_radio1" name="eating_habit3" value="小于100克">
+                                        <label for="eating_habit3_radio1">&lt;100 克</label>
+                                    </div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit3_radio2" name="eating_habit3" value="100-200克">
+                                        <label for="eating_habit3_radio2">100-200 克</label>
+                                    </div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit3_radio3" name="eating_habit3" value="250-350克">
+                                        <label for="eating_habit3_radio3">250-350 克</label>
+                                    </div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit3_radio4" name="eating_habit3" value="大于400克">
+                                        <label for="eating_habit3_radio4">&gt;400 克</label>
+                                    </div>
+                                </div>
+                            </div>
 
-						<div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
-						  <label class="form-control-label">5. 您喜欢吃面食还是米饭吗?</label>
-						  <div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="eating_habit5_radio1" name="eating_habit5" value="面食">
-							  <label for="eating_habit5_radio1">面食</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="eating_habit5_radio2" name="eating_habit5" value="米饭">
-							  <label for="eating_habit5_radio2">米饭</label>
-							</div>
-						  </div>
-						</div>
+                            <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                <label class="form-control-label">4. 平均每天吃水果：</label>
+                                <div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit4_radio1" name="eating_habit4" value="不吃">
+                                        <label for="eating_habit4_radio1">不吃</label>
+                                    </div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit4_radio2" name="eating_habit4" value="小于100克">
+                                        <label for="eating_habit4_radio2">&lt;100 克</label>
+                                    </div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit4_radio3" name="eating_habit4" value="150-200克">
+                                        <label for="eating_habit4_radio3">150-200 克</label>
+                                    </div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit4_radio4" name="eating_habit4" value="大于250克">
+                                        <label for="eating_habit4_radio4">&gt;250 克</label>
+                                    </div>
+                                </div>
+                            </div>
 
-						<div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
-						  <label class="form-control-label">6. 您每周的运动次数是？</label>
-						  <div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="eating_habit6_radio1" name="eating_habit6" value="<1次∕周">
-							  <label for="eating_habit6_radio1">&lt;1次∕周</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="eating_habit6_radio2" name="eating_habit6" value="2-3次∕周">
-							  <label for="eating_habit6_radio2">2-3次∕周</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="eating_habit6_radio3" name="eating_habit6" value="4-5次∕周">
-							  <label for="eating_habit6_radio3">4-5次∕周</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="eating_habit6_radio4" name="eating_habit6" value=">5次∕周">
-							  <label for="eating_habit6_radio4">&gt;5次∕周</label>
-							</div>
-						  </div>
-						</div>
+                            <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                <label class="form-control-label">5. 平均每天吃鸡蛋：</label>
+                                <div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit5_radio1" name="eating_habit5" value="小于1个">
+                                        <label for="eating_habit5_radio1">&lt;1个</label>
+                                    </div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit5_radio2" name="eating_habit5" value=" 1 个">
+                                        <label for="eating_habit5_radio2"> 1 个</label>
+                                    </div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit5_radio3" name="eating_habit5" value="2 个">
+                                        <label for="eating_habit5_radio3">2 个</label>
+                                    </div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit5_radio4" name="eating_habit5" value="大于3个">
+                                        <label for="eating_habit5_radio4">&gt;3 个</label>
+                                    </div>
+                                </div>
+                            </div>
 
-						<div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
-						  <label class="form-control-label">7. 您每次的运动时间是？</label>
-						  <div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="eating_habit7_radio1" name="eating_habit7" value="<30分钟∕次">
-							  <label for="eating_habit7_radio1">&lt;30分钟∕次</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="eating_habit7_radio2" name="eating_habit7" value="30-60分钟∕次">
-							  <label for="eating_habit7_radio2">30-60分钟∕次</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="eating_habit7_radio3" name="eating_habit7" value=">1小时∕次">
-							  <label for="eating_habit7_radio3">&gt;1小时∕次</label>
-							</div>
-						  </div>
-						</div>
+                            <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                <label class="form-control-label">6. 平均每周吃果仁：</label>
+                                <div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit6_radio1" name="eating_habit6" value="<小于50克">
+                                        <label for="eating_habit6_radio1">&lt;50 克</label>
+                                    </div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit6_radio2" name="eating_habit6" value="50-75 克">
+                                        <label for="eating_habit6_radio2">50-75 克</label>
+                                    </div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit6_radio3" name="eating_habit6" value="大于100克">
+                                        <label for="eating_habit6_radio3">&gt;100 克</label>
+                                    </div>
+                                </div>
+                            </div>
 
-						<div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
-						  <label class="form-control-label">8.您目前运动方式是？</label>
-						  <div>
-							<div class="checkbox-custom checkbox-primary checkbox-inline">
-							  <input type="checkbox" id="eating_habit8_select1" name="eating_habit8[]" value="瑜伽">
-							  <label for="eating_habit8_select1">瑜伽</label>
-							</div>
-							<div class="checkbox-custom checkbox-primary checkbox-inline">
-							  <input type="checkbox" id="eating_habit8_select2" name="eating_habit8[]" value="散步等低强度运动">
-							  <label for="eating_habit8_select2">散步等低强度运动</label>
-							</div>
-							<div class="checkbox-custom checkbox-primary checkbox-inline">
-							  <input type="checkbox" id="eating_habit8_select3" name="eating_habit8[]" value="球类、快跑、爬山、游泳等高强度运动">
-							  <label for="eating_habit8_select3">球类、快跑、爬山、游泳等高强度运动</label>
-							</div>
-							<div class="checkbox-custom checkbox-primary checkbox-inline">
-							  <input type="checkbox" id="eating_habit8_select4" name="eating_habit8[]" value="几乎不运动">
-							  <label for="eating_habit8_select4">几乎不运动</label>
-							</div>
-						  </div>
-						</div>
+                            <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                <label class="form-control-label">7. 每天摄盐量：</label>
+                                <div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit7_radio1" name="eating_habit7" value="不超过 6g">
+                                        <label for="eating_habit7_radio1">不超过 6g</label>
+                                    </div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit7_radio2" name="eating_habit7" value="大于6g">
+                                        <label for="eating_habit7_radio2">&gt;6g</label>
+                                    </div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit7_radio3" name="eating_habit7" value="大于8g">
+                                        <label for="eating_habit7_radio3">&gt;8g</label>
+                                    </div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit7_radio4" name="eating_habit7" value="不清楚">
+                                        <label for="eating_habit7_radio4">不清楚</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                <label class="form-control-label">8. 您每天摄入的畜禽鱼肉蛋类量：</label>
+                                <div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit8_radio1" name="eating_habit8" value="不吃">
+                                        <label for="eating_habit8_radio1">不吃</label>
+                                    </div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit8_radio2" name="eating_habit8" value="小于100g">
+                                        <label for="eating_habit8_radio2">&lt;100 克</label>
+                                    </div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit8_radio3" name="eating_habit8" value="120-200克">
+                                        <label for="eating_habit8_radio3">120-200 克</label>
+                                    </div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit8_radio4" name="eating_habit8" value="大于250克">
+                                        <label for="eating_habit8_radio4">&gt;250克</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                <label class="form-control-label">9. 您平均每周食物种类：</label>
+                                <div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit9_radio1" name="eating_habit9" value="10种">
+                                        <label for="eating_habit9_radio1">10种</label>
+                                    </div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit9_radio2" name="eating_habit9" value="15种">
+                                        <label for="eating_habit9radio2">15种</label>
+                                    </div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit9_radio3" name="eating_habit9" value="20种">
+                                        <label for="eating_habit9_radio3">20种</label>
+                                    </div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit9_radio4" name="eating_habit9" value="25种以上">
+                                        <label for="eating_habit9_radio4">25种以上</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                <label class="form-control-label">10. 您每天大约饮水：</label>
+                                <div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit10_radio1" name="eating_habit10" value="小于500ml">
+                                        <label for="eating_habit10_radio1">&lt;500ml</label>
+                                    </div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit10_radio2" name="eating_habit10" value=" 500-1000ml">
+                                        <label for="eating_habit10_radio2"> 500-1000ml</label>
+                                    </div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit10_radio3" name="eating_habit10" value="1500ml">
+                                        <label for="eating_habit10_radio3">1500ml</label>
+                                    </div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit10_radio4" name="eating_habit10" value="大于1700ml">
+                                        <label for="eating_habit10_radio4">&gt;1700ml</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                <label class="form-control-label">11.您习惯选用的饮料是：</label>
+                                <div>
+                                    <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                        <input type="checkbox" id="eating_habit11_select1" name="eating_habit11" value="茶">
+                                        <label for="eating_habit11_select1">茶</label>
+                                    </div>
+                                    <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                        <input type="checkbox" id="eating_habit11_select2" name="eating_habit11" value="咖啡">
+                                        <label for="eating_habit11_select2">咖啡</label>
+                                    </div>
+                                    <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                        <input type="checkbox" id="eating_habit11_select3" name="eating_habit11" value="含糖饮料">
+                                        <label for="eating_habit11_select3">含糖饮料</label>
+                                    </div>
+                                    <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                        <input type="checkbox" id="eating_habit11_select4" name="eating_habit11" value="白开水">
+                                        <label for="eating_habit11_select4">白开水</label>
+                                    </div>
+                                    <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                        <input type="checkbox" id="eating_habit11_select5" name="eating_habit11" value="纯净水">
+                                        <label for="eating_habit11_select5">纯净水</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                <label class="form-control-label">12. 您饮用牛奶的习惯是：</label>
+                                <div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit12_radio1" name="eating_habit12" value="每天 300ml ">
+                                        <label for="eating_habit12_radio1">每天 300ml </label>
+                                    </div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit12_radio2" name="eating_habit12" value=" 少于 300ml">
+                                        <label for="eating_habit12_radio2"> 少于 300ml</label>
+                                    </div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit12_radio3" name="eating_habit12" value="不是每天饮用">
+                                        <label for="eating_habit12_radio3">不是每天饮用</label>
+                                    </div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="eating_habit12_radio4" name="eating_habit12" value="不喝牛奶">
+                                        <label for="eating_habit12_radio4">不喝牛奶</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
             </div>
+            <!-- 饮食习惯结束 -->
+            <!-- 运动习惯开始 -->
             <div class="row">
-              <div class="col-md-12">
-                <div class="panel panel-bordered" >
-                  <div class="panel-heading">
-                    <h3 class="panel-title">心理</h3>
-                  </div>
-                  <div class="panel-body">
-                    <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-bordered" >
+                        <div class="panel-heading">
+                            <h3 class="panel-title">运动习惯</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
 
-						<div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
-						  <label class="form-control-label">您平时心情怎么样？(以上问题回答不佳时，继续提问以下问题)</label>
-						  <div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="psychology1_radio1" name="psychology1" value="佳">
-							  <label for="psychology1_radio1">佳</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="psychology1_radio2" name="psychology1" value="一般">
-							  <label for="psychology1_radio2">一般</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="psychology1_radio3" name="psychology1" value="不佳">
-							  <label for="psychology1_radio3">不佳</label>
-							</div>
-						  </div>
-						</div>
+                                <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                    <label class="form-control-label">1.您每周的运动次数是：</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="exercise_habit1_radio1" name="exercise_habit1" value="小于1次∕周">
+                                            <label for="exercise_habit1_radio1">&lt;1 次∕周</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="exercise_habit1_radio2" name="exercise_habit1" value="2-3次∕周">
+                                            <label for="exercise_habit1_radio2">2-3次∕周</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="exercise_habit1_radio3" name="exercise_habit1" value="4-5次∕周">
+                                            <label for="exercise_habit1_radio3">4-5次∕周</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="exercise_habit1_radio4" name="exercise_habit1" value="大于5次∕周">
+                                            <label for="exercise_habit1_radio4">&gt;5次∕周</label>
+                                        </div>
+                                    </div>
+                                </div>
 
-						<div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
-						  <label class="form-control-label">1. 您经常生气么？</label>
-						  <div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="psychology2_radio1" name="psychology2" value="没有">
-							  <label for="psychology2_radio1">没有</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="psychology2_radio2" name="psychology2" value="偶尔">
-							  <label for="psychology2_radio2">偶尔</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="psychology2_radio3" name="psychology2" value="有时">
-							  <label for="psychology2_radio3">有时</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="psychology2_radio4" name="psychology2" value="经常">
-							  <label for="psychology2_radio4">经常</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="psychology2_radio5" name="psychology2" value="总是">
-							  <label for="psychology2_radio5">总是</label>
-							</div>
-						  </div>
-						</div>
+                                <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                    <label class="form-control-label">2.您每次的运动时间是：</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="exercise_habit2_radio1" name="exercise_habit2" value="小于30分钟∕次">
+                                            <label for="exercise_habit2_radio1">&lt;30分钟∕次</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="exercise_habit2_radio2" name="exercise_habit2" value="30-60 分钟∕次">
+                                            <label for="exercise_habit2_radio2">30-60 分钟∕次</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="exercise_habit2_radio3" name="exercise_habit2" value="大于1小时∕次">
+                                            <label for="exercise_habit2_radio3">&gt;1小时∕次</label>
+                                        </div>
+                                    </div>
+                                </div>
 
-						<div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
-						  <label class="form-control-label">2. 您经常无故悲伤么？</label>
-						  <div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="psychology3_radio1" name="psychology3" value="没有">
-							  <label for="psychology3_radio1">没有</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="psychology3_radio2" name="psychology3" value="偶尔">
-							  <label for="psychology3_radio2">偶尔</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="psychology3_radio3" name="psychology3" value="有时">
-							  <label for="psychology3_radio3">有时</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="psychology3_radio4" name="psychology3" value="经常">
-							  <label for="psychology3_radio4">经常</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="psychology3_radio5" name="psychology3" value="总是">
-							  <label for="psychology3_radio5">总是</label>
-							</div>
-						  </div>
-						</div>
+                                <div class="form-group form-material col-xs-12 col-md-10 offset-md-1">
+                                    <label class="form-control-label">3.您目前运动方式是：</label>
+                                    <div class="checkbox-custom checkbox-primary checkbox-inline ">
+                                        <input type="checkbox" id="exercise_habit3_select1" name="exercise_habit3" value="瑜伽">
+                                        <label for="exercise_habit3_select1">瑜伽</label>
+                                    </div>
+                                    <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                        <input type="checkbox" id="exercise_habit3_select2" name="exercise_habit3" value="散步等低强度运动">
+                                        <label for="exercise_habit3_select2">散步等低强度运动</label>
+                                    </div>
+                                    <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                        <input type="checkbox" id="exercise_habit3_select3" name="exercise_habit3" value="快走或慢跑等中等强度运动">
+                                        <label for="exercise_habit3_select3">快走或慢跑等中等强度运动</label>
+                                    </div>
+                                    <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                        <input type="checkbox" id="exercise_habit3_select4" name="exercise_habit3" value="球类、快跑、爬山、游泳等高强度运动 ">
+                                        <label for="exercise_habit3_select4">球类、快跑、爬山、游泳等高强度运动 </label>
+                                    </div>
+                                    <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                        <input type="checkbox" id="exercise_habit3_select5" name="exercise_habit3" value="几乎不运动">
+                                        <label for="exercise_habit3_select5">几乎不运动</label>
+                                    </div>
+                                </div>
 
-						<div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
-						  <label class="form-control-label">3. 您经常害怕么？</label>
-						  <div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="psychology4_radio1" name="psychology4" value="没有">
-							  <label for="psychology4_radio1">没有</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="psychology4_radio2" name="psychology4" value="偶尔">
-							  <label for="psychology4_radio2">偶尔</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="psychology4_radio3" name="psychology4" value="有时">
-							  <label for="psychology4_radio3">有时</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="psychology4_radio4" name="psychology4" value="经常">
-							  <label for="psychology4_radio4">经常</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="psychology4_radio5" name="psychology4" value="总是">
-							  <label for="psychology4_radio5">总是</label>
-							</div>
-						  </div>
-						</div>
+                                <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                    <label class="form-control-label">4.您外出办事情出行方式为：</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="exercise_habit4_radio1" name="exercise_habit4" value="步行">
+                                            <label for="exercise_habit4_radio1">步行</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="exercise_habit4_radio2" name="exercise_habit4" value="骑自行车">
+                                            <label for="exercise_habit4radio2">骑自行车</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="exercise_habit4_radio3" name="exercise_habit4" value="乘车或驾车">
+                                            <label for="exercise_habit4_radio3">乘车或驾车</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
             </div>
+            <!-- 运动习惯结束 -->
+            <!-- 睡眠开始 -->
             <div class="row">
-              <div class="col-md-12">
-                <div class="panel panel-bordered" >
-                  <div class="panel-heading">
-                    <h3 class="panel-title">查体</h3>
-                  </div>
-                  <div class="panel-body">
-                    <div class="row">
-						<div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
-						  <label class="form-control-label">1.您多久做一次健康体检？</label>
-						  <div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="check_body1_radio1" name="check_body1" value="三个月">
-							  <label for="check_body1_radio1">三个月</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="check_body1_radio2" name="check_body1" value="半年">
-							  <label for="check_body1_radio2">半年</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="check_body1_radio3" name="check_body1" value="一年">
-							  <label for="check_body1_radio3">一年</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="check_body1_radio4" name="check_body1" value="两年">
-							  <label for="check_body1_radio4">两年</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="check_body1_radio5" name="check_body1" value="无规律">
-							  <label for="check_body1_radio5">无规律</label>
-							</div>
-							<div class="radio-custom radio-primary radio-inline">
-							  <input type="radio" id="check_body1_radio6" name="check_body1" value="从未做过">
-							  <label for="check_body1_radio6">从未做过</label>
-							</div>
-						  </div>
-						</div>
+                <div class="col-md-12">
+                    <div class="panel panel-bordered" >
+                        <div class="panel-heading">
+                            <h3 class="panel-title">睡眠</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
 
+                                <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                    <label class="form-control-label">1.请问您是否有：</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="sleeping_habit1_radio1" name="sleeping_habit1" value="多梦易醒">
+                                            <label for="sleeping_habit1_radio1">多梦易醒</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="sleeping_habit1_radio2" name="sleeping_habit1" value="入睡困难">
+                                            <label for="sleeping_habit1_radio2">入睡困难</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="sleeping_habit1_radio3" name="sleeping_habit1" value="醒后难以入睡">
+                                            <label for="sleeping_habit1_radio3">醒后难以入睡</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="sleeping_habit1_radio4" name="sleeping_habit1" value="辅助药物">
+                                            <label for="sleeping_habit1_radio4">辅助药物</label>
+                                        </div>
+                                    </div>
+                                </div>
 
-						<div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
-						  <label class="form-control-label">2. 您拥有哪些家庭医疗器械？（可多选）</label>
-						  <div>
-							<div class="checkbox-custom checkbox-primary checkbox-inline">
-							  <input type="checkbox" id="check_body2_select1" name="check_body2[]" value="温度计">
-							  <label for="check_body2_select1">温度计</label>
-							</div>
-							<div class="checkbox-custom checkbox-primary checkbox-inline">
-							  <input type="checkbox" id="check_body2_select2" name="check_body2[]" value="血压计">
-							  <label for="check_body2_select2">血压计</label>
-							</div>
-							<div class="checkbox-custom checkbox-primary checkbox-inline">
-							  <input type="checkbox" id="check_body2_select3" name="check_body2[]" value="血糖仪">
-							  <label for="check_body2_select3">血糖仪</label>
-							</div>
-							<div class="checkbox-custom checkbox-primary checkbox-inline">
-							  <input type="checkbox" id="check_body2_select4" name="check_body2[]" value="吸氧机">
-							  <label for="check_body2_select4">吸氧机</label>
-							</div>
-							<div class="checkbox-custom checkbox-primary checkbox-inline">
-							  <input type="checkbox" id="check_body2_select5" name="check_body2[]" value="理疗仪">
-							  <label for="check_body2_select5">理疗仪</label>
-							</div>
-							<div class="checkbox-custom checkbox-primary checkbox-inline">
-							  <input type="checkbox" id="check_body2_select6" name="check_body2[]" value="无">
-							  <label for="check_body2_select6">无</label>
-							</div>
-							<div class="checkbox-custom checkbox-primary checkbox-inline">
-							  <input type="checkbox" id="check_body2_select7" name="check_body2[]" value="其它">
-							  <label for="check_body2_select7">其它</label>
-							</div>
-						  </div>
-						</div>
+                                <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                    <label class="form-control-label">2.每天睡眠时间：</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="sleeping_habit2_radio1" name="sleeping_habit2" value="小于6小时">
+                                            <label for="sleeping_habit2_radio1">小于6小时</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="sleeping_habit2_radio2" name="sleeping_habit2" value="6-8小时">
+                                            <label for="sleeping_habit2_radio2">6-8小时</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="sleeping_habit2_radio3" name="sleeping_habit2" value="8-10小时">
+                                            <label for="sleeping_habit2_radio3">8-10小时</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="sleeping_habit2_radio4" name="sleeping_habit2" value="大于10小时">
+                                            <label for="sleeping_habit2_radio4">大于10小时</label>
+                                        </div>
+                                    </div>
+                                </div>
 
-						<div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
-						  <label class="form-control-label">3. 您拥有哪些互联网穿戴设备？</label>
-						  <div>
-							<div class="checkbox-custom checkbox-primary checkbox-inline">
-							  <input type="checkbox" id="check_body3_select1" name="check_body3[]" value="血压计">
-							  <label for="check_body3_select1">血压计</label>
-							</div>
-							<div class="checkbox-custom checkbox-primary checkbox-inline">
-							  <input type="checkbox" id="check_body3_select2" name="check_body3[]" value="血糖仪">
-							  <label for="check_body3_select2">血糖仪</label>
-							</div>
-							<div class="checkbox-custom checkbox-primary checkbox-inline">
-							  <input type="checkbox" id="check_body3_select3" name="check_body3[]" value="心电测量仪">
-							  <label for="check_body3_select3">心电测量仪</label>
-							</div>
-							<div class="checkbox-custom checkbox-primary checkbox-inline">
-							  <input type="checkbox" id="check_body3_select4" name="check_body3[]" value="睡眠监测仪">
-							  <label for="check_body3_select4">睡眠监测仪</label>
-							</div>
-							<div class="checkbox-custom checkbox-primary checkbox-inline">
-							  <input type="checkbox" id="check_body3_select5" name="check_body3[]" value="无">
-							  <label for="check_body3_select5">无</label>
-							</div>
-							<div class="checkbox-custom checkbox-primary checkbox-inline">
-							  <input type="checkbox" id="check_body3_select6" name="check_body3[]" value="其它">
-							  <label for="check_body3_select6">其它</label>
-							</div>
-						  </div>
-						</div>
+                                <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                    <label class="form-control-label">3.午睡时间：</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="sleeping_habit3_radio1" name="sleeping_habit3" value="30分钟左右">
+                                            <label for="sleeping_habit3_radio1">30分钟左右</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="sleeping_habit3_radio2" name="sleeping_habit3" value="30-60 分钟">
+                                            <label for="sleeping_habit3_radio2">30-60分钟</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="sleeping_habit3_radio3" name="sleeping_habit3" value="1小时">
+                                            <label for="sleeping_habit3_radio3">1小时</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="sleeping_habit3_radio4" name="sleeping_habit3" value="2小时">
+                                            <label for="sleeping_habit3_radio4">2小时</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="sleeping_habit3_radio5" name="sleeping_habit3" value="从来不午睡">
+                                            <label for="sleeping_habit3_radio5">从来不午睡</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                    <label class="form-control-label">4.您经常熬夜吗？</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="sleeping_habit4_radio1" name="sleeping_habit4" value="经常">
+                                            <label for="sleeping_habit4_radio1">经常</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="sleeping_habit4_radio2" name="sleeping_habit4" value="偶尔">
+                                            <label for="sleeping_habit4_radio2">偶尔</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="sleeping_habit4_radio3" name="sleeping_habit4" value="很少">
+                                            <label for="sleeping_habit4_radio3">很少</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="sleeping_habit4_radio4" name="sleeping_habit4" value="无">
+                                            <label for="sleeping_habit4_radio4">无</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
             </div>
+            <!-- 睡眠结束 -->
+            <!-- 情志态开始 -->
             <div class="row">
-              <div class="col-md-12">
-                <div class="panel panel-bordered" >
-                  <div class="panel-heading">
-                    <h3 class="panel-title">健康调查</h3>
-                  </div>
-                  <div class="panel-body">
-                    <div class="medical_history">
-                      <div class="row">
-						<div class="form-group">
-							<label for="habit_c_survey1">请问您是否有多梦易醒、入睡困难或醒后难以入睡等情况?</label>
-							<textarea class="form-control" rows="3" id="habit_c_survey1" name="habit_survey1"></textarea>
-						</div>
-						<div class="form-group">
-							<label for="habit_c_survey2">请问您每天大约饮水多少毫升？是否有尿急尿频尿痛等异常情况？</label>
-							<textarea class="form-control" rows="3" id="habit_c_survey2" name="habit_survey2"></textarea>
-						</div>
-						<div class="form-group">
-							<label for="habit_c_survey3">请问您大便规律么？有无便秘、便溏、便泻等异常情况?</label>
-							<textarea class="form-control" rows="3" id="habit_c_survey3" name="habit_survey3"></textarea>
-						</div>
+                <div class="col-md-12">
+                    <div class="panel panel-bordered" >
+                        <div class="panel-heading">
+                            <h3 class="panel-title">情志态</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+
+                                <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                    <label class="form-control-label">1.您能适应社会环境的变化吗？</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="emotion_habit1_radio1" name="emotion_habit1" value="有一点">
+                                            <label for="emotion_habit1_radio1">有一点</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="emotion_habit1_radio2" name="emotion_habit1" value="有一些">
+                                            <label for="emotion_habit1_radio2">有一些</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="emotion_habit1_radio3" name="emotion_habit1" value="相当">
+                                            <label for="emotion_habit1_radio3">相当</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="emotion_habit1_radio4" name="emotion_habit1" value="非常">
+                                            <label for="emotion_habit1_radio4">非常</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                    <label class="form-control-label">2.您经常生气吗？</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="emotion_habit2_radio1" name="emotion_habit2" value="没有">
+                                            <label for="emotion_habit2_radio1">没有</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="emotion_habit2_radio2" name="emotion_habit2" value="偶尔">
+                                            <label for="emotion_habit2_radio2">偶尔</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="emotion_habit2_radio3" name="emotion_habit2" value="有时">
+                                            <label for="emotion_habit2_radio3">有时</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="emotion_habit2_radio4" name="emotion_habit2" value="经常">
+                                            <label for="emotion_habit2_radio4">经常</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="emotion_habit2_radio5" name="emotion_habit2" value="总是">
+                                            <label for="emotion_habit2_radio5">总是</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                    <label class="form-control-label">3.您经常无故伤悲吗？</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="emotion_habit3_radio1" name="emotion_habit3" value="没有">
+                                            <label for="emotion_habit3_radio1">没有</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="emotion_habit3_radio2" name="emotion_habit3" value="偶尔">
+                                            <label for="emotion_habit3_radio2">偶尔</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="emotion_habit3_radio3" name="emotion_habit3" value="有时">
+                                            <label for="emotion_habit3_radio3">有时</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="emotion_habit3_radio4" name="emotion_habit3" value="经常">
+                                            <label for="emotion_habit3_radio4">经常</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="emotion_habit3_radio5" name="emotion_habit3" value="总是">
+                                            <label for="emotion_habit3_radio5">总是</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                    <label class="form-control-label">4.您经常害怕吗？</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="emotion_habit4_radio1" name="emotion_habit4" value="没有">
+                                            <label for="emotion_habit4_radio1">没有</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="emotion_habit4_radio2" name="emotion_habit4" value="偶尔">
+                                            <label for="emotion_habit4_radio2">偶尔</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="emotion_habit4_radio3" name="emotion_habit4" value="有时">
+                                            <label for="emotion_habit4_radio3">有时</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="emotion_habit4_radio4" name="emotion_habit4" value="经常">
+                                            <label for="emotion_habit4_radio4">经常</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="emotion_habit4_radio5" name="emotion_habit4" value="总是">
+                                            <label for="emotion_habit4_radio5">总是</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
-          <div class="input-group">
-            <div class="row">
-				<button type="submit" class="btn btn-block btn-success">提交</button>
             </div>
-          </div>
-        </form>
-      </div>
+            <!-- 情志态结束  -->
+            <!-- 环境态开始 -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-bordered" >
+                        <div class="panel-heading">
+                            <h3 class="panel-title">环境态</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+
+                                <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                    <label class="form-control-label">1.您比一般人耐受不了寒冷（冬天的寒冷，冷空调、电扇等） 吗？</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="environment_habit1_radio1" name="environment_habit1" value="没有">
+                                            <label for="environment_habit1_radio1">没有</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="environment_habit1_radio2" name="environment_habit1" value="有时 ">
+                                            <label for="environment_habit1_radio2">有时 </label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="environment_habit1_radio3" name="environment_habit1" value="经常">
+                                            <label for="environment_habit1_radio3">经常</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="environment_habit1_radio4" name="environment_habit1" value="总是">
+                                            <label for="environment_habit1_radio4">总是</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                    <label class="form-control-label">2.您工作环境有没有绿植？</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="environment_habit2_radio1" name="environment_habit2" value="有">
+                                            <label for="environment_habit2_radio1">有</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="environment_habit2_radio2" name="environment_habit2" value="没有">
+                                            <label for="environment_habit2_radio2">没有</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                    <label class="form-control-label">3.您生活的环境是否有粉尘污染？</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="environment_habit3_radio1" name="environment_habit3" value="没有">
+                                            <label for="environment_habit3_radio1">没有</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="environment_habit3_radio2" name="environment_habit3" value="有">
+                                            <label for="environment_habit3_radio2">有</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                    <label class="form-control-label">4.您能适应外界自然变化吗？</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="environment_habit4_radio1" name="environment_habit4" value="有一点">
+                                            <label for="environment_habit4_radio1">有一点</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="environment_habit4_radio2" name="environment_habit4" value="有一些">
+                                            <label for="environment_habit4_radio2">有一些</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="environment_habit4_radio3" name="environment_habit4" value="相当">
+                                            <label for="environment_habit4_radio3">相当</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="environment_habit4_radio4" name="environment_habit4" value="非常">
+                                            <label for="environment_habit4_radio4">非常</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 环境态结束  -->
+            <!-- 职业态开始 -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-bordered" >
+                        <div class="panel-heading">
+                            <h3 class="panel-title">职业态</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+
+                                <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                    <label class="form-control-label">1.您每天需要坐：</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="profession_habit1_radio1" name="profession_habit1" value="小于2小时">
+                                            <label for="profession_habit1_radio1">小于2小时</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="profession_habit1_radio2" name="profession_habit1" value="2-4小时 ">
+                                            <label for="profession_habit1_radio2">2-4小时 </label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="profession_habit1_radio3" name="profession_habit1" value="4-6小时">
+                                            <label for="profession_habit1_radio3">4-6小时</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="profession_habit1_radio4" name="profession_habit1" value="大于8小时">
+                                            <label for="profession_habit1_radio4">大于8小时</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                    <label class="form-control-label">2.您工作期间习惯多久起身活动：</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="profession_habit2_radio1" name="profession_habit2" value="1小时">
+                                            <label for="profession_habit2_radio1">1小时</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="profession_habit2_radio2" name="profession_habit2" value="小于2小时">
+                                            <label for="profession_habit2_radio2">小于2小时</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="profession_habit2_radio3" name="profession_habit2" value="2-4 小时">
+                                            <label for="profession_habit2_radio3">2-4 小时</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                    <label class="form-control-label">4.您在工作间隙常常做那些活动：</label>
+                                    <div>
+                                        <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                            <input type="checkbox" id="profession_habit3_select1" name="profession_habit3[]" value="远眺">
+                                            <label for="profession_habit3_select1">远眺</label>
+                                        </div>
+                                        <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                            <input type="checkbox" id="eprofession_habit3_select2" name="profession_habit3[]" value="看绿植">
+                                            <label for="profession_habit3_select2">看绿植</label>
+                                        </div>
+                                        <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                            <input type="checkbox" id="profession_habit3_select3" name="profession_habit3[]" value="颈腰及四肢活动">
+                                            <label for="profession_habit3_select3">颈腰及四肢活动</label>
+                                        </div>
+                                        <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                            <input type="checkbox" id="profession_habit3_select4" name="profession_habit3[]" value="眼保健操 ">
+                                            <label for="profession_habit3_select4">眼保健操 </label>
+                                        </div>
+                                        <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                            <input type="checkbox" id="profession_habit3_select5" name="profession_habit3[]" value="不活动">
+                                            <label for="profession_habit3_select5">不活动</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 职业态结束 -->
+            <!-- 排泄开始 -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-bordered" >
+                        <div class="panel-heading">
+                            <h3 class="panel-title">排泄</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+
+                                <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                    <label class="form-control-label">1.小便：</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="excretion_habit1_radio1" name="excretion_habit1" value="正常" data-bindtext="nocturnal_enuresis_times">
+                                            <label for="excretion_habit1_radio1">正常</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="excretion_habit1_radio2" name="excretion_habit1" value="尿急" data-bindtext="nocturnal_enuresis_times">
+                                            <label for="excretion_habit1_radio2">尿急 </label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="excretion_habit1_radio3" name="excretion_habit1" value="尿频" data-bindtext="nocturnal_enuresis_times">
+                                            <label for="excretion_habit1_radio3">尿频</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="excretion_habit1_radio4" name="excretion_habit1" value="尿痛" data-bindtext="nocturnal_enuresis_times">
+                                            <label for="excretion_habit1_radio4">尿痛</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="excretion_habit1_radio5" name="excretion_habit1" value="夜尿" data-bindtext="nocturnal_enuresis_times" data-hastext="true">
+                                            <label for="excretion_habit1_radio5">夜尿</label>
+                                            <input type="text" name="nocturnal_enuresis_times" id="nocturnal_enuresis_times"  value="" style="border: none; text-align: center; border-bottom: 1px solid black;" disabled="true">
+                                            <span>次</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                    <label class="form-control-label">2.大便:</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="excretion_habit2_radio1" name="excretion_habit2" value="正常" data-bindtext="constipation_times">
+                                            <label for="excretion_habit2_radio1">正常</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="excretion_habit2_radio2" name="excretion_habit2" value="便秘" data-bindtext="constipation_times" data-hastext="true">
+                                            <label for="excretion_habit2_radio2">便秘</label>
+                                            <input type="text" name="constipation_times" id="constipation_times"  value="" style="border: none; text-align: center; border-bottom: 1px solid black;" disabled="true">
+                                            <span>天/次</span>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="excretion_habit2_radio3" name="excretion_habit2" value="便溏" data-bindtext="constipation_times">
+                                            <label for="excretion_habit2_radio3">便溏</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="excretion_habit2_radio3" name="excretion_habit2" value="腹泻" data-bindtext="constipation_times">
+                                            <label for="excretion_habit2_radio3">腹泻</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 排泄结束 -->
+            <!-- 查体开始 -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-bordered" >
+                        <div class="panel-heading">
+                            <h3 class="panel-title">查体</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                    <label class="form-control-label">1.您多久做一次健康体检？</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="check_body1_radio1" name="check_body1" value="三个月">
+                                            <label for="check_body1_radio1">三个月</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="check_body1_radio2" name="check_body1" value="半年">
+                                            <label for="check_body1_radio2">半年</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="check_body1_radio3" name="check_body1" value="一年">
+                                            <label for="check_body1_radio3">一年</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="check_body1_radio4" name="check_body1" value="两年">
+                                            <label for="check_body1_radio4">两年</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="check_body1_radio5" name="check_body1" value="无规律">
+                                            <label for="check_body1_radio5">无规律</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="check_body1_radio6" name="check_body1" value="从未做过">
+                                            <label for="check_body1_radio6">从未做过</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                    <label class="form-control-label">2.您最近一次体检时间是何时？</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="check_body2_radio1" name="check_body2" value="半年">
+                                            <label for="check_body2_radio1">半年</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="check_body2_radio2" name="check_body2" value="一年">
+                                            <label for="check_body2_radio2">一年</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="check_body2_radio3" name="check_body2" value="两年以上">
+                                            <label for="check_body2_radio3">两年以上</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                    <label class="form-control-label">3. 您拥有哪些家庭医疗器械？（可多选）</label>
+                                    <div>
+                                        <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                            <input type="checkbox" id="check_body3_select1" name="check_body3" value="温度计">
+                                            <label for="check_body3_select1">温度计</label>
+                                        </div>
+                                        <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                            <input type="checkbox" id="check_body3_select2" name="check_body3" value="血压计">
+                                            <label for="check_body3_select2">血压计</label>
+                                        </div>
+                                        <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                            <input type="checkbox" id="check_body3_select3" name="check_body3" value="血糖仪">
+                                            <label for="check_body3_select3">血糖仪</label>
+                                        </div>
+                                        <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                            <input type="checkbox" id="check_body3_select4" name="check_body3" value="吸氧机">
+                                            <label for="check_body3_select4">吸氧机</label>
+                                        </div>
+                                        <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                            <input type="checkbox" id="check_body3_select5" name="check_body3" value="理疗仪">
+                                            <label for="check_body3_select5">理疗仪</label>
+                                        </div>
+                                        <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                            <input type="checkbox" id="check_body3_select6" name="check_body3" value="无">
+                                            <label for="check_body3_select6">无</label>
+                                        </div>
+                                        <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                            <input type="checkbox" id="check_body3_select7" name="check_body3" value="其它">
+                                            <label for="check_body3_select7">其它</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-material col-xs-12 col-md-12 offset-md-1">
+                                    <label class="form-control-label">4. 您拥有哪些互联网穿戴设备？</label>
+                                    <div>
+                                        <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                            <input type="checkbox" id="check_body4_select1" name="check_body4" value="血压计">
+                                            <label for="check_body4_select1">血压计</label>
+                                        </div>
+                                        <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                            <input type="checkbox" id="check_body4_select2" name="check_body4" value="血糖仪">
+                                            <label for="check_body4_select2">血糖仪</label>
+                                        </div>
+                                        <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                            <input type="checkbox" id="check_body4_select3" name="check_body4" value="心电测量仪">
+                                            <label for="check_body4_select3">心电测量仪</label>
+                                        </div>
+                                        <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                            <input type="checkbox" id="check_body4_select4" name="check_body4" value="睡眠监测仪">
+                                            <label for="check_body4_select4">睡眠监测仪</label>
+                                        </div>
+                                        <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                            <input type="checkbox" id="check_body4_select5" name="check_body4" value="无">
+                                            <label for="check_body4_select5">无</label>
+                                        </div>
+                                        <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                            <input type="checkbox" id="check_body4_select6" name="check_body4" value="其它">
+                                            <label for="check_body4_select6">其它</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 查体结束-->
+            <!-- 体格检查开始 -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-bordered" >
+                        <div class="panel-heading">
+                            <h3 class="panel-title">体格检查</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="medical_history">
+                                <div class="row">
+                                    <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
+                                        <label class="form-control-label" for="height">身高</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="height" name="height">
+                                            <span class="input-group-addon">cm</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-material col-xs-12 col-md-5">
+                                        <label class="form-control-label" for="weight">体重</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="weight" name="weight">
+                                            <span class="input-group-addon">kg</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
+                                        <label class="form-control-label" for="baric_index">体重指数</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="baric_index" name="baric_index">
+                                            <span class="input-group-addon">（18.5-23.9）</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-material col-xs-12 col-md-5">
+                                        <label class="form-control-label" for="hipline">臀围</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="hipline" name="hipline">
+                                            <span class="input-group-addon">cm</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
+                                        <label class="form-control-label" for="waistline">腰围</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="waistline" name="waistline">
+                                            <span class="input-group-addon">（男&lt;85,女&lt; 80）cm</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-material col-xs-12 col-md-5">
+                                        <label class="form-control-label" for="waist_to_hipratio">腰臀比</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="waist_to_hipratio" name="waist_to_hipratio">
+                                            <span class="input-group-addon">（男 &lt;0.9, 女&lt;0.85）</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
+                                        <label class="form-control-label" for="min_pressure">舒张压</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="min_pressure" name="min_BloodPressure">
+                                            <span class="input-group-addon">（60-90）mmHg</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-material col-xs-12 col-md-5">
+                                        <label class="form-control-label" for="max_pressure">收缩压</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="max_pressure" name="max_BloodPressure">
+                                            <span class="input-group-addon">（90-140）mmHg</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
+                                        <label class="form-control-label" for="total_cholesterol">总胆固醇</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="total_cholesterol" name="total_cholesterol">
+                                            <span class="input-group-addon">（2.84-5.68）mmol/L</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-material col-xs-12 col-md-5">
+                                        <label class="form-control-label" for="triglyceride">甘油三酯</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="triglyceride" name="triglyceride">
+                                            <span class="input-group-addon">（0.56-1.7）mmol/L </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
+                                        <label class="form-control-label" for="high_density_lipoprotein">高密度脂蛋白</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="high_density_lipoprotein" name="high_density_lipoprotein">
+                                            <span class="input-group-addon">（1.14-2.0）mmol/L</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group form-material col-xs-12 col-md-5">
+                                        <label class="form-control-label" for="low_density_lipoprotein">低密度脂蛋白</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="low_density_lipoprotein" name="low_density_lipoprotein">
+                                            <span class="input-group-addon">（0-3.1）mmol/L </span>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
+                                        <label class="form-control-label" for="b_BloodGlucose">空腹血糖</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="b_BloodGlucose" name="b_BloodGlucose">
+                                            <span class="input-group-addon">（3.9-6.1）mmol/L</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group form-material col-xs-12 col-md-5">
+                                        <label class="form-control-label" for="glycosylated_hemoglobin">糖化血红蛋白</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="glycosylated_hemoglobin" name="glycosylated_hemoglobin">
+                                            <span class="input-group-addon">（3.8-6）mmol/L</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
+                                        <label class="form-control-label" for="homocysteine">同型半胱氨酸</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="homocysteine" name="homocysteine">
+                                            <span class="input-group-addon">（0-10）umol/L</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group form-material col-xs-12 col-md-5">
+                                        <label class="form-control-label" for="glutamic_oxaloacetic_transaminase">谷草转氨酶</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="glutamic_oxaloacetic_transaminase" name=" glutamic_oxaloacetic_transaminase">
+                                            <span class="input-group-addon">（5-40）u/L</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
+                                        <label class="form-control-label" for="glutamic_pyruvic_transaminase">谷丙转氨酶</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="glutamic_pyruvic_transaminase" name="glutamic_pyruvic_transaminase">
+                                            <span class="input-group-addon">（0-55）u/L</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group form-material col-xs-12 col-md-5">
+                                        <label class="form-control-label" for="creatinine">肌酐</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="creatinine" name="creatinine">
+                                            <span class="input-group-addon">（53-136）umol/L</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
+                                        <label class="form-control-label" for="usea_nitrogen">尿素氮</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="usea_nitrogen" name="usea_nitrogen">
+                                            <span class="input-group-addon">（2.3-7.2）mmol/L</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group form-material col-xs-12 col-md-5">
+                                        <label class="form-control-label" for="blood_uric_acid">血尿酸</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="blood_uric_acid" name="blood_uric_acid">
+                                            <span class="input-group-addon">（150-420）umol/L</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group form-material col-xs-12 col-md-10 offset-md-1">
+                                        <label class="form-control-label" for="ultrasound">B超（全腹部、颈动脉）：</label>
+                                        <textarea class="form-control" placeholder="" name="ultrasound" id="ultrasound"></textarea>
+                                    </div>
+                                    <div class="form-group form-material col-xs-12 col-md-10 offset-md-1">
+                                        <label class="form-control-label" for="electrocardiogram">心电图：</label>
+                                        <textarea class="form-control" placeholder=""name="electrocardiogram" id="electrocardiogram"></textarea>
+                                    </div>
+                                    <div class="form-group form-material col-xs-12 col-md-10 offset-md-1">
+                                        <label class="form-control-label" for="image_analysis">影像学检查：</label>
+                                        <textarea class="form-control" placeholder="" name="image_analysis" id="image_analysis"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <div class="row">
+                            <button type="button" onclick="submitForm();" class="btn btn-block btn-success">提交</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- 体格检查结束  -->
+        </div>
+
     </div>
 
 
-        <script>
-            var cbFun=function(data,status) {
-              if (!status) {
-                console.error(data);
-              } else {
-                console.log(data);
-              }
-            };
-            var submitForm=function(formDom) {
-              doAjax("http://192.168.1.225:3005/api/v1/getuser/record","post",$(formDom).serialize(),cbFun,1,cbFun,0);
-              return 0;
-            };
-        </script>
+    <% needjquery="\
+    <script src='/javascripts/jquery.form.js'></script>\n\
+    <script>\n\
+        jQuery(function() {\n\
+            jQuery('input[type=radio][data-bindtext]').each(function() {\n\
+                jQuery(this).click(function() {\n\
+                    radioOrText(this);\n\
+                });\n\
+            });\n\
+        });\n\
+    </script>"
+    %>
+    <script>
+        var radioOrText = function(dom) {
+            if (jQuery(dom).data("hastext")) {
+                jQuery("#" + jQuery(dom).data("bindtext")).removeAttr("disabled").focus();
+            } else {
+                jQuery("#" + jQuery(dom).data("bindtext")).attr("disabled","disabled").val("");
+            }
+        };
+
+        var cbFun = function(data, status) {
+            if (!status) {
+                swal("提交失败", JSON.parse(data.reponseText)["error"], "error");
+            } else {
+                swal("提交成功", "正在进入患者列表", "success");
+                setTimeout(function() {
+                    location.href="/userlist";
+                },1000);
+                return true;
+            }
+        };
+        var submitForm = function(formDom) {
+            doAjax(
+                "http://192.168.1.229:3000/api/v1/patient_record/create",
+                "post",
+                JSON.stringify($('form').getValue()),
+                cbFun,
+                {},
+                {contentType: 'application/json;charset=utf-8'}
+            );
+            return 0;
+        };
+    </script>
 
 
 
-<%- include footer %>
+    <%- include footer %>

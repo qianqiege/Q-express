@@ -1,0 +1,120 @@
+<%- include header %>
+<div class="page">
+    <div class="page-header">
+        <h1 class="page-title"><%= title %></h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Forms</a></li>
+            <li class="breadcrumb-item active">Wizard</li>
+        </ol>
+    </div>
+    <div class="page-content">
+        <!-- Panel -->
+        <div class="panel">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <form class="page-search-form" role="search">
+                            <div class="input-search input-search-dark">
+                                <i class="input-search-icon wb-search" aria-hidden="true"></i>
+                                <input type="text" class="form-control" id="inputSearch" name="search" placeholder="">
+                                <button type="button" class="input-search-close icon wb-close" aria-label="Close"></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="nav-tabs-horizontal nav-tabs-animate" data-plugin="tabs">
+                    <ul class="nav nav-tabs nav-tabs-line" role="tablist">
+                        <li class="nav-item" role="presentation"><a class="active nav-link" data-toggle="tab" href="#all_contacts"
+                            aria-controls="all_contacts" role="tab">医生列表</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane animation-fade active" id="all_contacts" role="tabpanel">
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <div class="avatar avatar-online">
+                                                    <img src="/images/1.jpg" alt="...">
+                                                    <i class="avatar avatar-busy"></i>
+                                                </div>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="media-heading">
+                                                    Herman Beck
+                                                </h4>
+                                                <p>
+                                                    <i class="icon icon-color wb-user" aria-hidden="true"></i>123246557668
+                                                </p>
+                                            </div>
+                                            <div class="media-right">
+                                                <a class="btn btn-outline btn-success btn-sm" data-target="#roleDoctorsList" data-toggle="modal" data-id="1">添加权限</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <div class="avatar avatar-away">
+                                                    <img src="/images/2.jpg" alt="...">
+                                                    <i class="avatar avatar-busy"></i>
+                                                </div>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="media-heading">
+                                                    Mary Adams
+                                                </h4>
+                                                <p>
+                                                    <i class="icon icon-color wb-user" aria-hidden="true"></i>123246557668
+                                                </p>
+                                            </div>
+                                            <div class="media-right">
+                                                <a class="btn btn-outline btn-success btn-sm" data-target="#roleDoctorsList" data-toggle="modal" data-id="2">添加权限</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="modal fade modal-fade-in-scale-up" id="roleDoctorsList" aria-hidden="true"
+                            aria-labelledby="exampleModalTitle" role="dialog" tabindex="-1">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                        <h4 class="modal-title">添加用户权限</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <h4 class="text-center">用户名:</h4>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <input type="checkbox" checked value="9">
+                                                <label for="">管理员</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <input type="checkbox"  value="10">
+                                                <label for="">默认角色</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default btn-pure" data-dismiss="modal">取消</button>
+                                        <button type="button" class="btn btn-primary">保存</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Panel -->
+
+    </div>
+</div>
+<%- include footer %>

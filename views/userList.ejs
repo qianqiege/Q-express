@@ -1,96 +1,121 @@
 
 <%- include header %>
 <div class="page">
-	<div class="page-header">
-      <h1 class="page-title"><%= title %></h1>
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
-        <li class="breadcrumb-item"><a href="javascript:void(0)">Forms</a></li>
-        <li class="breadcrumb-item active">Wizard</li>
-      </ol>
+    <div class="page-header">
+        <h1 class="page-title"><%= title %></h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Forms</a></li>
+            <li class="breadcrumb-item active">Wizard</li>
+        </ol>
     </div>
-  <div class="page-content">
-    <!-- Panel -->
-    <div class="panel">
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-md-6">
-            <form class="page-search-form" role="search">
-              <div class="input-search input-search-dark">
-                <i class="input-search-icon wb-search" aria-hidden="true"></i>
-                <input type="text" class="form-control" id="inputSearch" name="search" placeholder="">
-                <button type="button" class="input-search-close icon wb-close" aria-label="Close"></button>
-              </div>
-            </form>
-          </div>
-          <div class="col-md-1 offset-md-5">
-            <a href="/newRecord" class="btn btn-block btn-info waves-effect">添加新患者</a>
-            <!-- <button type="button" class="btn btn-round btn-outline btn-default btn-lg"><i class="icon wb-plus" aria-hidden="true"></i>添加</button> -->
-          </div>
-        </div>
-        <div class="nav-tabs-horizontal nav-tabs-animate" data-plugin="tabs">
-          <ul class="nav nav-tabs nav-tabs-line" role="tablist">
-            <li class="nav-item" role="presentation"><a class="active nav-link" data-toggle="tab" href="#all_contacts"
-              aria-controls="all_contacts" role="tab">全部患者</a></li>
-          </ul>
-          <div class="tab-content">
-            <div class="tab-pane animation-fade active" id="all_contacts" role="tabpanel">
-              <ul class="list-group">
-                <li class="list-group-item">
-                  <div class="media">
-                    <div class="media-left">
-                      <div class="avatar avatar-online">
-                        <img src="/images/1.jpg" alt="...">
-                        <i class="avatar avatar-busy"></i>
-                      </div>
+    <div class="page-content">
+        <!-- Panel -->
+        <div class="panel">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <form class="page-search-form" role="search">
+                            <div class="input-search input-search-dark">
+                                <i class="input-search-icon wb-search" aria-hidden="true"></i>
+                                <input type="text" class="form-control" id="inputSearch" name="search" placeholder="" oninput="doSearch(this);" maxlength="18">
+                                <button type="button" class="input-search-close icon wb-close" aria-label="Close"></button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="media-body">
-                      <h4 class="media-heading">
-                        Herman Beck
-                      </h4>
-                      <p>
-                        <i class="icon icon-color wb-user" aria-hidden="true"></i>123246557668
-                      </p>
+                    <div class="col-md-1 offset-md-5 col-sm-3 offset-sm-3">
+                        <a href="/newRecord" class="btn btn-block btn-info waves-effect">添加新患者</a>
+                        <!-- <button type="button" class="btn btn-round btn-outline btn-default btn-lg"><i class="icon wb-plus" aria-hidden="true"></i>添加</button> -->
                     </div>
-                    <div class="media-right">
-                      <button type="button" class="btn btn-outline btn-success btn-sm">修改</button>
-                    </div>
-                    <div class="media-right">
-                      <button type="button" class="btn btn-outline btn-success btn-sm">查看</button>
-                    </div>
-                  </div>
-                </li>
-                <li class="list-group-item">
-                  <div class="media">
-                    <div class="media-left">
-                      <div class="avatar avatar-away">
-                        <img src="/images/2.jpg" alt="...">
-                        <i class="avatar avatar-busy"></i>
-                      </div>
-                    </div>
-                    <div class="media-body">
-                      <h4 class="media-heading">
-                        Mary Adams
-                      </h4>
-                      <p>
-                        <i class="icon icon-color wb-user" aria-hidden="true"></i>123246557668
-                      </p>
-                    </div>
-                    <div class="media-right">
-                      <button type="button" class="btn btn-outline btn-success btn-sm">修改</button>
-                    </div>
-                    <div class="media-right">
-                      <button type="button" class="btn btn-outline btn-success btn-sm">查看</button>
-                    </div>
-                  </div>
-                </li>
-              </ul>
+                </div>
+                <div class="nav-tabs-horizontal nav-tabs-animate" data-plugin="tabs">
+                    <ul class="nav nav-tabs nav-tabs-line" role="tablist">
+                        <li class="nav-item" role="presentation"><a class="active nav-link" data-toggle="tab" href="#all_contacts"
+                            aria-controls="all_contacts" role="tab">全部患者</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane animation-fade active" id="all_contacts" role="tabpanel">
+                                <ul class="list-group"><li class='list-group-item'>暂无搜索结果</li></ul>
+                            </div>
+                        </div>
+                    </ul>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+        <!-- End Panel -->
     </div>
-    <!-- End Panel -->
-  </div>
 </div>
+
+<script>
+    var checkIdCard = function(idcard) {
+        if (idcard.length !== 18) {
+            return false;
+        }
+        var idcard_base = idcard.substr(0, 17),
+            verify_code = idcard.substr(17, 1),
+            factor = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2],
+            verify_code_list = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'],
+            total = 0;
+        for (i = 0; i < 17; i++){
+            total += ~~idcard_base.substr(i, 1) * factor[i];
+        }
+        var mod = total % 11;
+        if (verify_code == verify_code_list[mod]){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    var searching = false;
+
+    var doSearch = function(dom) {
+        if (dom.value.length="18" && checkIdCard(dom.value) && !searching) {
+
+            var createUserDom = function(userObj) {
+                var template = "\n\
+                                        <li class='list-group-item'>\n\
+                                            <div class='media'>\n\
+                                                <div class='media-left'>\n\
+                                                    <div class='avatar avatar-online'>\n\
+                                                        <img src='{__avatar__}' alt='...'>\n\
+                                                        <i class='avatar avatar-busy'></i>\n\
+                                                    </div>\n\
+                                                </div>\n\
+                                                <div class='media-body'>\n\
+                                                    <h4 class='media-heading'>\n\
+                                                        {__name__}\n\
+                                                    </h4>\n\
+                                                    <p>\n\
+                                                        <i class='icon icon-color wb-user' aria-hidden='true'></i>{__idNumber__}\n\
+                                                    </p>\n\
+                                                </div>\n\
+                                                <div class='media-right'>\n\
+                                                    <button type='button' class='btn btn-outline btn-success btn-sm'>修改</button>\n\
+                                                </div>\n\
+                                                <div class='media-right'>\n\
+                                                    <button type='button' class='btn btn-outline btn-success btn-sm'>查看</button>\n\
+                                                </div>\n\
+                                            </div>\n\
+                                        </li>"
+                return template.replace(/\{__avatar__\}/, userObj["avatar"] || "/images/1.jpg")
+                               .replace(/\{__name__\}/, userObj["name"])
+                               .replace(/\{__idNumber__\}/, userObj["idNumber"]);
+            };
+
+            searching = true;
+            doAjax("http://192.168.1.229:3000/api/v1/patient/get_by_id_number", "get", {"id_number": dom.value}, function(data, status) {
+                searching = false;
+                if (status && data) {
+                    $("#all_contacts ul:first").html($(createUserDom($.extend(data, {"idNumber": dom.value}))));
+                } else {
+                    $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
+                }
+            });
+        } else {
+            $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
+        }
+    };
+</script>
+
 <%- include footer %>
