@@ -130,7 +130,7 @@
                     $('#all_contacts ul').append($(createUserDom(data[i])));\n\
                 }\n\
             } else {\n\
-                console.log(data);\n\
+                $('#all_contacts ul:first').html('暂无医生');\n\
             };\n\
         });\n\
     });\n\
