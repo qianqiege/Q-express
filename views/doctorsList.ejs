@@ -17,7 +17,7 @@
                         <form class="page-search-form" role="search">
                             <div class="input-search input-search-dark">
                                 <i class="input-search-icon wb-search" aria-hidden="true"></i>
-                                <input type="text" class="form-control" id="inputSearch" name="search" placeholder="">
+                                <input type="text" class="form-control" id="inputSearch" name="search" placeholder="" oninput="doSearch(this);" maxlength="18">
                                 <button type="button" class="input-search-close icon wb-close" aria-label="Close"></button>
                             </div>
                         </form>
@@ -31,48 +31,6 @@
                         <div class="tab-content">
                             <div class="tab-pane animation-fade active" id="all_contacts" role="tabpanel">
                                 <ul class="list-group">
-                                    <li class="list-group-item">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <div class="avatar avatar-online">
-                                                    <img src="/images/1.jpg" alt="...">
-                                                    <i class="avatar avatar-busy"></i>
-                                                </div>
-                                            </div>
-                                            <div class="media-body">
-                                                <h4 class="media-heading">
-                                                    Herman Beck
-                                                </h4>
-                                                <p>
-                                                    <i class="icon icon-color wb-user" aria-hidden="true"></i>123246557668
-                                                </p>
-                                            </div>
-                                            <div class="media-right">
-                                                <a class="btn btn-outline btn-success btn-sm" data-target="#roleDoctorsList" data-toggle="modal" data-id="1">添加权限</a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <div class="avatar avatar-away">
-                                                    <img src="/images/2.jpg" alt="...">
-                                                    <i class="avatar avatar-busy"></i>
-                                                </div>
-                                            </div>
-                                            <div class="media-body">
-                                                <h4 class="media-heading">
-                                                    Mary Adams
-                                                </h4>
-                                                <p>
-                                                    <i class="icon icon-color wb-user" aria-hidden="true"></i>123246557668
-                                                </p>
-                                            </div>
-                                            <div class="media-right">
-                                                <a class="btn btn-outline btn-success btn-sm" data-target="#roleDoctorsList" data-toggle="modal" data-id="2">添加权限</a>
-                                            </div>
-                                        </div>
-                                    </li>
                                 </ul>
                             </div>
                             <div class="modal fade modal-fade-in-scale-up" id="roleDoctorsList" aria-hidden="true"
@@ -117,4 +75,65 @@
 
     </div>
 </div>
+<script>
+    var createUserDom = function(userObj){
+        var template = "\n\
+                                <li class='list-group-item'>\n\
+                                    <div class='media'>\n\
+                                        <div class='media-left'>\n\
+                                            <div class='avatar avatar-online'>\n\
+                                                <img src='{__avatar__}'alt='...'>\n\
+                                                <i class='avatar avatar-busy'></i>\n\
+                                            </div>\n\
+                                        </div>\n\
+                                        <div class='media-body'>\n\
+                                            <h4 class='media-heading'>\n\
+                                                {__name__}\n\
+                                            </h4>\n\
+                                            <p>\n\
+                                                <i class='icon icon-color wb-user' aria-hidden='true'></i>{__id__}\n\
+                                            </p>\n\
+                                        </div>\n\
+                                        <div class='media-right'>\n\
+                                            <a class='btn btn-outline btn-success btn-sm' data-target='#roleDoctorsList' data-toggle='modal' data-id='1'>添加权限</a>\n\
+                                        </div>\n\
+                                    </div>\n\
+                                </li>"
+        return template.replace(/\{__avatar__\}/g, userObj["avatar"] || "/images/1.jpg")
+                       .replace(/\{__name__\}/g, userObj["name"])
+                       .replace(/\{__id__\}/g, userObj["id"])
+                       .replace(/\{__idNumber__\}/g, userObj["idNumber"]);
+    };
+    var searching = false;
+    var doSearch = function(dom){
+        if(dom.value.length="18" && checkIdCard(dom.value) && !searching){
+            searching = true;
+            doAjax("http://192.168.1.229:3000/api/v1/patient/get_by_id_number", "get", {"id_number": dom.value}, function(data, status) {
+                searching = false;
+                if (status && data) {
+                    $("#all_contacts ul:first").html($(createUserDom(data)));
+                } else {
+                    $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
+                }
+            });
+        }else{
+            $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
+        }
+    }
+</script>
+<% needjquery="\
+<script>\n\
+    $(function() {\n\
+        doAjax('http://192.168.1.229:3000/api/v1/users/all_users', 'get',{}, function(data, status) {\n\
+            if (status && data) {\n\
+                for(var i = 0;i < data.length;i++){\n\
+                    $('#all_contacts ul').append($(createUserDom(data[i])));\n\
+                }\n\
+            } else {\n\
+                console.log(data);\n\
+            };\n\
+        });\n\
+    });\n\
+</script>"
+%>
 <%- include footer %>
