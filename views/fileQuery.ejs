@@ -15,31 +15,43 @@
             .content p{text-indent:20px;}
         </style>
         <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/stylesheets/sweetalert.min.css">
         <script src="/javascripts/jquery.js"></script>
+        <script src="/javascripts/jquery.cookie.min.js"></script>
         <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="/javascripts/app.js"></script>
+        <script src="/javascripts/sweetalert.min.js"></script>
         <script>
-            function cbFunction(data,status){
-                console.log(data);
-                if (!status) {
+            $(function() {
+                var uid = ~~getvl("id");
+                if (!uid) {
+                    swal({title: "id 错误", type: "error"}, function() {
+                        window.close();
+                    });
                     return;
                 }
-                var name = data.name;
-                var sex = data.sex;
-                var nation = data.nation;
-                var address = data.address;
-                var birthday = data.birthday;
-                var marriage = data.marriage;
-                var height = data.height;
-                var id = data.id_number;
-                var phone = data.phone;
-                var pluse = data.pluse;
-                var weight = data.weight;
-                var blood_glucose = data.blood_glucose;
-                var blood_pressure = data.blood_pressure;
-                document.getElementById("name").innerHTML = name;
-            }
-            doAjax("http://192.168.1.229:3000/api/v1/getuser/record","get",{"user_id":"1"},cbFunction,{});
+                function cbFunction(data,status){
+                    console.log(data);
+                    if (!status) {
+                        return;
+                    }
+                    var name = data.name;
+                    var sex = data.sex;
+                    var nation = data.nation;
+                    var address = data.address;
+                    var birthday = data.birthday;
+                    var marriage = data.marriage;
+                    var height = data.height;
+                    var id = data.id_number;
+                    var phone = data.phone;
+                    var pluse = data.pluse;
+                    var weight = data.weight;
+                    var blood_glucose = data.blood_glucose;
+                    var blood_pressure = data.blood_pressure;
+                    document.getElementById("name").innerHTML = name;
+                }
+                doAjax("http://192.168.1.229:3000/api/v1/patient_record/check", "get", {"id": uid}, cbFunction);
+            });
         </script>
     </head>
     <body>
@@ -89,7 +101,7 @@
                     <h4>目前健康状况</h4>
                 </div>
                 <div class="col-md-5 col-md-offset-1 col-xs-12 ">
-                    <p>目前患有疾病：<span id="health_condition1[]">慢性支气管炎、糖尿病</span></p>
+                    <p>目前患有疾病：<span id="health_condition1">慢性支气管炎、糖尿病</span></p>
                     <p>过去的一段时间疲劳程度：<span id="health_condition2">稍微疲劳</span></p>
                     <p>同一年前相比体重浮动是：<span id="health_condition3">基本不变</span></p>
                     <p>是否试图减过体重：<span id="health_condition4">是</span></p>

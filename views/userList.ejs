@@ -15,7 +15,7 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <form class="page-search-form" role="search">
+                        <form class="page-search-form" role="search" onsubmit="return false;">
                             <div class="input-search input-search-dark">
                                 <i class="input-search-icon wb-search" aria-hidden="true"></i>
                                 <input type="text" class="form-control" id="inputSearch" name="search" placeholder="" oninput="doSearch(this);" maxlength="18">
@@ -87,7 +87,7 @@
                                                         {__name__}\n\
                                                     </h4>\n\
                                                     <p>\n\
-                                                        <i class='icon icon-color wb-user' aria-hidden='true'></i>{__idNumber__}\n\
+                                                        <i class='icon icon-color wb-user' aria-hidden='true'></i>{__id__}\n\
                                                     </p>\n\
                                                 </div>\n\
                                                 <div class='media-right'>\n\
@@ -97,20 +97,21 @@
                                                     <button type='button' class='btn btn-outline btn-success btn-sm'>健康检测</button>\n\
                                                 </div>\n\
                                                 <div class='media-right'>\n\
-                                                    <button type='button' class='btn btn-outline btn-success btn-sm'>患者档案</button>\n\
+                                                    <a class='btn btn-outline btn-success btn-sm' target='_blank' href='/fileQuery?id={__id__}'>患者档案查看</a>\n\
                                                 </div>\n\
                                             </div>\n\
                                         </li>"
-                return template.replace(/\{__avatar__\}/, userObj["avatar"] || "/images/1.jpg")
-                               .replace(/\{__name__\}/, userObj["name"])
-                               .replace(/\{__idNumber__\}/, userObj["idNumber"]);
+                return template.replace(/\{__avatar__\}/g, userObj["avatar"] || "/images/1.jpg")
+                               .replace(/\{__name__\}/g, userObj["name"])
+                               .replace(/\{__id__\}/g, userObj["id"])
+                               .replace(/\{__idNumber__\}/g, userObj["idNumber"]);
             };
 
             searching = true;
             doAjax("http://192.168.1.229:3000/api/v1/patient/get_by_id_number", "get", {"id_number": dom.value}, function(data, status) {
                 searching = false;
                 if (status && data) {
-                    $("#all_contacts ul:first").html($(createUserDom($.extend(data, {"idNumber": dom.value}))));
+                    $("#all_contacts ul:first").html($(createUserDom(data)));
                 } else {
                     $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
                 }
