@@ -65,6 +65,33 @@ var getvl = function(name) {
 };
 
 /**
+* 验证身份证号合法性
+*
+* @param idcard {String} 身份证号
+* @return bool 是否合法
+* @author jshensh@126.com 2016-11-28
+*/
+var checkIdCard = function(idcard) {
+    if (idcard.length !== 18) {
+        return false;
+    }
+    var idcard_base = idcard.substr(0, 17),
+        verify_code = idcard.substr(17, 1),
+        factor = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2],
+        verify_code_list = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'],
+        total = 0;
+    for (i = 0; i < 17; i++){
+        total += ~~idcard_base.substr(i, 1) * factor[i];
+    }
+    var mod = total % 11;
+    if (verify_code == verify_code_list[mod]){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/**
 * 跳转至登录页
 *
 * @return void
