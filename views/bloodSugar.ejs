@@ -19,7 +19,7 @@
                         <div class="col-xs-12 col-md-5 offset-md-1">
                             <div class="form-group form-material floating" data-plugin="formMaterial">
                                 <label class="form-control-label" for="id_number">身份证号</label>
-                                <input type="text" class="form-control empty" name="id_number">
+                                <input type="text" class="form-control empty" name="id_number" oninput="doSearch(this)" maxlength="18">
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-5">
@@ -42,13 +42,13 @@
                         <div class="col-xs-12 col-md-5 offset-md-1">
                             <div class="form-group form-material floating" data-plugin="formMaterial">
                                 <label class="form-control-label" for="name">姓名</label>
-                                <input type="text" class="form-control empty" name="name" disabled="disabled">
+                                <input type="text" class="form-control empty" name="name" disabled="disabled" id="name">
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-5">
                             <div class="form-group form-material floating" data-plugin="formMaterial">
                                 <label class="form-control-label" for="nation">手机号码</label>
-                                <input type="text" class="form-control empty" name="nation" disabled="disabled">
+                                <input type="text" class="form-control empty" name="nation" disabled="disabled" id="phone">
                             </div>
                         </div>
                     </div>
@@ -84,5 +84,30 @@
 
         </div>
     </div>
+</div>
+<script>
+    var searching = false;
 
-    <%- include footer %>
+    var doSearch = function(dom) {
+        if (dom.value.length="18" && checkIdCard(dom.value) && !searching) {
+            searching = true;
+            doAjax("http://192.168.1.229:3000/api/v1/patient/get_by_id_number", "get", {"id_number": dom.value}, function(data, status) {
+                searching = false;
+                if (status && data) {
+                    $("#sex" + ({"男": "1", "女": "2"})[data["sex"]]).prop("checked", true);
+                    $("#name").val(data["name"]);
+                    $("#phone").val(data["phone"]);
+                } else {
+                    $("input:radio[id^='sex']").prop("checked", false);
+                    $("#name").val("");
+                    $("#phone").val("");
+                }
+            });
+        } else {
+            $("input:radio[id^='sex']").prop("checked", false);
+            $("#name").val("");
+            $("#phone").val("");
+        }
+    };
+</script>
+<%- include footer %>
