@@ -110,6 +110,10 @@
         type: "text",
         width: 200
       },{
+        name: "实际数量",
+        type: "number",
+        width: 70
+      },{
         name: "数量",
         type: "number",
         width: 70
