@@ -92,6 +92,68 @@ var checkIdCard = function(idcard) {
 }
 
 /**
+* jQuery val 的替代方法，增加了 select2 的赋值，checkbox 与 radio 赋值的校验
+*
+* @param value {(String | Object)=} 值
+* @return Object
+* @author jshensh@126.com 2016-11-30
+*/
+$.fn.customVal = function() {
+    if (arguments.length > 1) {
+        return this;
+    }
+    var tag = this.prop("tagName").toLowerCase();
+    if (tag === "select") {
+        var usedSelect2 = true;
+        try {
+            this.select2("val");
+        } catch (e) {
+            usedSelect2 = false;
+        }
+        if (!arguments.length) {
+            return this.val();
+        } else {
+            if (typeof arguments[0] !== "object") {
+                return this;
+            }
+            if (usedSelect2) {
+                return this.select2().val(arguments[0]).trigger("change");
+            } else {
+                return this.val(arguments[0]);
+            }
+        }
+    } else if (tag === "input") {
+        var type = this.attr("type") || "text";
+        switch (type) {
+            case "checkbox":
+            case "radio":
+                if (!arguments.length) {
+                    var result = [];
+                    this.filter(":checked").each(function() {
+                        result.push($(this).val());
+                    });
+                    return result;
+                } else {
+                    if (typeof arguments[0] !== "object") {
+                        return this;
+                    }
+                    return this.val(arguments[0]);
+                }
+                break;
+            default:
+                if (!arguments.length) {
+                    return this.val();
+                } else {
+                    return this.val(arguments[0]);
+                }
+                break;
+        }
+    } else {
+        return this.val();
+    }
+};
+
+/**
 * 跳转至登录页
 *
 * @return void

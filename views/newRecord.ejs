@@ -1730,6 +1730,10 @@
                     radioOrText(this);\n\
                 });\n\
             });\n\
+            var uid = ~~getvl('id');\n\
+            if (uid) {\n\
+                doAjax('http://192.168.1.229:3000/api/v1/patient_record/check', 'get', {'id': uid}, getUserInfoCallback);\n\
+            }\n\
         });\n\
     </script>"
     %>
@@ -1798,8 +1802,20 @@
                 $("input:radio[id^='sex']").prop("checked",false);
             }
         };
+        var getUserInfoCallback = function(data, status) {
+            if (data && status) {
+                for (var i in data) {
+                    if (typeof data[i]==="string") {
+                        $("#" + i).val(data[i]);
+                    } else if (typeof data[i]==="object") {
+                        for (var k in data[i]) {
+                            var domId = i + "-" + k;
+                            console.log(domId);
+                        }
+                    }
+                }
+            };
+        };
     </script>
-
-
 
     <%- include footer %>
