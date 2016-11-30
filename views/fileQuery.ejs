@@ -35,33 +35,34 @@
                         for (var i in data) {
                             if (typeof data[i]==="string") {
                                 $("#" + i).html(data[i]);
+                                console.log($("#" + i).length, i, data[i]);
                             } else if (typeof data[i]==="object") {
                                 for (var k in data[i]) {
-                                    var domId = i + "_" + k.replace(/^item_/, "");
+                                    var domId = i + "-" + k;
                                     switch (domId) {
-                                        case "drink_history_dry_out_years":
-                                        case "smoke_history_quit_smoking_years":
-                                        case "excretion_nocturnal_enuresis_times":
-                                        case "excretion_constipation_times":
+                                        case "drink_history-dry_out_years":
+                                        case "smoke_history-quit_smoking_years":
+                                        case "excretion-nocturnal_enuresis_times":
+                                        case "excretion-constipation_times":
                                             break;
 
-                                        case "drink_history_1":
-                                            $("#drink_history_1").html(
+                                        case "drink_history-item_1":
+                                            $("#drink_history-item_1").html(
                                                 data[i]["dry_out_years"] ? (data[i][k] + data[i]["dry_out_years"] + "年") : data[i][k]
                                             );
                                             break;
-                                        case "smoke_history_1":
-                                            $("#smoke_history_1").html(
+                                        case "smoke_history-item_1":
+                                            $("#smoke_history-item_1").html(
                                                 data[i]["quit_smoking_years"] ? (data[i][k] + data[i]["quit_smoking_years"] + "年") : data[i][k]
                                             );
                                             break;
-                                        case "excretion_1":
-                                            $("#excretion_1").html(
+                                        case "excretion-item_1":
+                                            $("#excretion-item_1").html(
                                                 data[i]["nocturnal_enuresis_times"] ? (data[i][k] + data[i]["nocturnal_enuresis_times"] + "年") : data[i][k]
                                             );
                                             break;
-                                        case "excretion_2":
-                                            $("#excretion_2").html(
+                                        case "excretion-item_2":
+                                            $("#excretion-item_2").html(
                                                 data[i]["constipation_times"] ? (data[i][k] + data[i]["constipation_times"] + "年") : data[i][k]
                                             );
                                             break;
@@ -70,6 +71,7 @@
                                             $("#" + domId).html(data[i][k] || "无");
                                             break;
                                     }
+                                    console.log($("#" + domId).length, i + "-" + k, data[i][k]);
                                 }
                             }
                         }
@@ -131,17 +133,17 @@
                     <h4>目前健康状况</h4>
                 </div>
                 <div class="col-md-5 col-md-offset-1 col-xs-12 ">
-                    <p>目前患有疾病：<span id="health_status_a"></span></p>
-                    <p>过去的一段时间疲劳程度：<span id="health_status_b1"></span></p>
-                    <p>同一年前相比体重浮动是：<span id="health_status_b2"></span></p>
-                    <p>是否试图减过体重：<span id="health_status_b3"></span></p>
-                    <p>您不歇气一次可以爬几层楼梯：<span id="health_status_b8"></span></p>
+                    <p>目前患有疾病：<span id="health_status-item_a"></span></p>
+                    <p>过去的一段时间疲劳程度：<span id="health_status-item_b1"></span></p>
+                    <p>同一年前相比体重浮动是：<span id="health_status-item_b2"></span></p>
+                    <p>是否试图减过体重：<span id="health_status-item_b3"></span></p>
+                    <p>您不歇气一次可以爬几层楼梯：<span id="health_status-item_b8"></span></p>
                 </div>
                 <div class="col-md-5 col-xs-12" >
-                    <p>半年内是否测过血压：<span id="health_status_b4"></span></p>
-                    <p>半年是否内测过血脂：<span id="health_status_b5"></span></p>
-                    <p>是否经常有颈部、骨关节疼痛：<span id="health_status_b6"></span></p>
-                    <p>近一年是否主过医院：<span id="health_status_b7"></span></p>
+                    <p>半年内是否测过血压：<span id="health_status-item_b4"></span></p>
+                    <p>半年是否内测过血脂：<span id="health_status-item_b5"></span></p>
+                    <p>是否经常有颈部、骨关节疼痛：<span id="health_status-item_b6"></span></p>
+                    <p>近一年是否主过医院：<span id="health_status-item_b7"></span></p>
                 </div>
             </div>
             <div class="row content">
@@ -149,28 +151,28 @@
                     <h4>家族史</h4>
                 </div>
                 <div class="col-md-5 col-md-offset-1 col-xs-12">
-                    <p>父亲患有哪种疾病：<span id="family_history_father"></span></p>
-                    <p>兄弟患有哪种疾病：<span id="family_history_brother"></span></p>
+                    <p>父亲患有哪种疾病：<span id="family_history-father"></span></p>
+                    <p>兄弟患有哪种疾病：<span id="family_history-brother"></span></p>
                 </div>
                 <div class="col-md-5  col-xs-12">
-                    <p>母亲患有哪种疾病：<span id="family_history_mother"></span></p>
-                    <p>子女患有哪种疾病：<span id="family_history_child"></span></p>
+                    <p>母亲患有哪种疾病：<span id="family_history-mother"></span></p>
+                    <p>子女患有哪种疾病：<span id="family_history-child"></span></p>
                 </div>
             </div>
             <div class="row content">
                 <div class="col-md-5 col-md-offset-1 col-xs-12">
                     <h4>饮酒史</h4>
-                    <p>喝酒状态：<span id="drink_history_1"></span></p>
-                    <p>饮酒时间：<span id="drink_history_2"></span></p>
-                    <p>饮酒次数：<span id="drink_history_3"></span></p>
-                    <p>饮酒量：<span id="drink_history_4"></span></p>
+                    <p>喝酒状态：<span id="drink_history-item_1"></span></p>
+                    <p>饮酒时间：<span id="drink_history-item_2"></span></p>
+                    <p>饮酒次数：<span id="drink_history-item_3"></span></p>
+                    <p>饮酒量：<span id="drink_history-item_4"></span></p>
                 </div>
                 <div class="col-md-5 col-xs-12">
                     <h4>吸烟史</h4>
-                    <p>您现在的吸烟状态是：<span id="smoke_history_1"></span></p>
-                    <p>您的吸烟时间是：<span id="smoke_history_2"></span></p>
-                    <p>您每日平均吸烟量是：<span id="smoke_history_3"></span></p>
-                    <p>您是否处在被动吸烟环境：<span id="smoke_history_4"></span></p>
+                    <p>您现在的吸烟状态是：<span id="smoke_history-item_1"></span></p>
+                    <p>您的吸烟时间是：<span id="smoke_history-item_2"></span></p>
+                    <p>您每日平均吸烟量是：<span id="smoke_history-item_3"></span></p>
+                    <p>您是否处在被动吸烟环境：<span id="smoke_history-item_4"></span></p>
                 </div>
             </div>
             <div class="row content">
@@ -236,10 +238,10 @@
                     <h4>饮食运动习惯</h4>
                 </div>
                 <div class="col-md-5 col-md-offset-1 col-xs-12">
-                    <p>豆制品：<span id="eating_habit_2"></span></p>
-                    <p>蔬菜：<span id="eating_habit_3"></span></p>
+                    <p>豆制品：<span id="eating_habit-item_2"></span></p>
+                    <p>蔬菜：<span id="eating_habit-item_3"></span></p>
                     <p>水果：<span id="eating_habit_4"></span></p>
-                    <p>主副食比例：<span id="eating_habit_1"></span></p>
+                    <p>主副食比例：<span id="eating_habit-item_1"></span></p>
                     <p>畜禽鱼肉蛋：<span id="eating_habit_8"></span></p>
                     <p>食物种类数量：<span id="eating_habit_9"></span></p>
                 </div>
