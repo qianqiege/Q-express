@@ -50,8 +50,8 @@ router.get('/newRecord', function(req, res, next) {
     res.render('newRecord', {title: "建立健康档案"});
 });
 
-router.get('/userList', function(req, res, next) {
-    res.render('userList', {title: "患者列表"});
+router.get('/patientList', function(req, res, next) {
+    res.render('patientList', {title: "患者列表"});
 });
 
 router.get('/doctorsList', function(req, res, next) {

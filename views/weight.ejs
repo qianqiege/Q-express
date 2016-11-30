@@ -65,7 +65,7 @@
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-12">
-                            <button type="submit" class="btn btn-block btn-success" onclick="submitForm()">提交</button>
+                            <button type="submit" class="btn btn-block btn-success" onclick="submitForm()" id="submitResult" disabled>提交</button>
                         </div>
                     </div>
                 </div>
@@ -85,6 +85,7 @@
                     $("#sex" + ({"男": "1", "女": "2"})[data["sex"]]).prop("checked", true);
                     $("#name").val(data["name"]);
                     $("#phone").val(data["phone"]);
+                    $("#submitResult").prop("disabled",false);
                 } else {
                     $("input:radio[id^='sex']").prop("checked", false);
                     $("#name").val("");
@@ -98,6 +99,11 @@
         }
     };
     var submitForm = function() {
+        var id_number_c1 = $("#id_number_c1").val();
+        if(!id_number_c1) {
+            swal("请填入数据","","error");
+            return false;
+        }
         swal({
             title: "确认提交",
             text: "请核对提交数据：\n体重：" + $("#id_number_c1").val(),
@@ -117,7 +123,7 @@
                     function(data, status) {
                         if (status && data) {
                             swal({
-                                title: "提交成功",
+                                title: data.info || "提交成功",
                                 type: "success"
                             },
                             function() {
