@@ -247,11 +247,27 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Tab panes -->
             </div>
         </div>
     </div>
 </div>
+<% needjquery="\
+    <script>\n\
+        $(function(){\n\
+            var uid =  ~~getvl('id');\n\
+            if (!uid) {\n\
+                swal({title: 'id 错误', type: 'error'}, function() {\n\
+                    window.close();\n\
+                });\n\
+                return;\n\
+            }\n\
+            var cbFunction = function(data,status){\n\
+                console.log(data);\n\
+            }\n\
+            doAjax('http://192.168.1.229:3000/api/v1/examination_check', 'get', {'patient_id': uid}, cbFunction);\n\
+        });\n\
+    </script>"
+%>
 
 <%- include footer %>
