@@ -28,19 +28,11 @@
                                     <label class="form-control-label" for="nation">民族</label>
                                     <input type="text" class="form-control" id="nation" name="nation">
                                 </div>
+                            </div>
+                            <div class="row">
                                 <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
-                                    <label class="form-control-label" for="sex">性别</label>
-                                    <div style="margin-top: 12px;">
-                                        <div class="radio-custom radio-primary" style="display: inline;margin-right: 10px;">
-                                            <input type="radio" id="sex1" name="sex" value="男">
-                                            <label for="sex1">男</label>
-                                        </div>
-                                        <div class="radio-custom radio-primary" style="display:inline">
-                                            <input type="radio" id="sex2" name="sex" value="女">
-                                            <label for="sex2">女</label>
-                                        </div>
-                                    </div>
-                                    <br/>
+                                    <label class="form-control-label" for="idCard">身份证号</label>
+                                    <input type="text" class="form-control" id="idCard" name="id_number" oninput="showBirthSex(this);" maxlength="18">
                                 </div>
                                 <div class="form-group form-material col-xs-12 col-md-5">
                                     <label class="form-control-label" for="marriage">婚姻状况</label>
@@ -61,24 +53,39 @@
                                             <input type="radio" id="marriage4" name="marriage" value="丧偶">
                                             <label for="marriage4">丧偶</label>
                                         </div>
-                                    </div><br/>
+                                    </div>
                                 </div>
+                            </div>
+                            <div class="row">
                                 <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
-                                    <label class="form-control-label" for="idCard">身份证号</label>
-                                    <input type="text" class="form-control" id="idCard" name="id_number" maxlength="18">
+                                    <label class="form-control-label" for="born">出生日期</label>
+                                    <input type="text" class="form-control" disabled="disabled" name="birthday" id="born">
                                 </div>
                                 <div class="form-group form-material col-xs-12 col-md-5">
-                                    <label class="form-control-label" for="born">出生日期</label>
-                                    <input type="text" class="form-control" data-plugin="datepicker" data-date-format="yyyy-mm-dd" name="birthday" id="born">
+                                    <label class="form-control-label" for="sex">性别</label>
+                                    <div style="margin-top: 12px;">
+                                        <div class="radio-custom radio-primary" style="display:inline">
+                                            <input type="radio" id="sex0" name="sex" value="女" disabled="disabled">
+                                            <label for="sex0">女</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary" style="display: inline;margin-right: 10px;">
+                                            <input type="radio" id="sex1" name="sex" value="男" disabled="disabled">
+                                            <label for="sex1">男</label>
+                                        </div>
+                                    </div>
                                 </div>
+                            </div>
+                            <div class="row">
                                 <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
                                     <label class="form-control-label" for="tel">联系方式</label>
                                     <input type="text" class="form-control" id="tel" name="phone">
                                 </div>
                                 <div class="form-group form-material col-xs-12 col-md-5">
-                                    <label class="form-control-label" for="profession">职业</label>
-                                    <input type="text" class="form-control" id="profession" name="profession">
+                                    <label class="form-control-label" for="occupation">职业</label>
+                                    <input type="text" class="form-control" id="occupation" name="occupation">
                                 </div>
+                            </div>
+                            <div class="row">
                                 <div class="form-group form-material col-xs-12 col-md-10 offset-md-1">
                                     <label class="form-control-label" for="address">通讯地址</label>
                                     <input type="text" class="form-control" id="address" name="address">
@@ -116,7 +123,7 @@
                                         <option>骨质疏松</option>
                                         <option>癌症 </option>
                                         <option>肥胖</option>
-                                        <option> 痛风</option>
+                                        <option>痛风</option>
                                         <option>慢性肾功不全</option>
                                         <option>消化性溃疡</option>
                                         <option>颈椎病 </option>
@@ -1711,7 +1718,6 @@
             </div>
             <!-- 体格检查结束  -->
         </div>
-$
     </div>
 
 
@@ -1742,21 +1748,55 @@ $
             } else {
                 swal("提交成功", "正在进入患者列表", "success");
                 setTimeout(function() {
-                    location.href="/userlist";
+                    //location.href="/userlist";
                 },1000);
                 return true;
             }
         };
         var submitForm = function(formDom) {
+            var obj = $('#recordForm').getValue(),
+                postObj = {
+                    "health_status": {},
+                    "family_history": {},
+                    "drink_history": {},
+                    "smoke_history": {},
+                    "eating_habit": {},
+                    "exercise_habit": {},
+                    "sleep_habit": {},
+                    "emotional_state": {},
+                    "environment_state": {},
+                    "professional_state": {},
+                    "excretion": {},
+                    "check_body": {},
+                    "physical_examination": {}
+                };
+            for (var i in obj) {
+                var isChild = i.split("-");
+                if (isChild.length > 1) {
+                    postObj[isChild[0]][isChild[1]] = obj[i];
+                } else {
+                    postObj[isChild[0]] = obj[i];
+                }
+            }
             doAjax(
                 "http://192.168.1.229:3000/api/v1/patient_record/create",
                 "post",
-                JSON.stringify($('form').getValue()),
+                JSON.stringify(postObj),
                 cbFun,
                 {},
                 {contentType: 'application/json;charset=utf-8'}
             );
             return 0;
+        };
+        var showBirthSex = function(idCardDom) {
+            if (checkIdCard(idCardDom.value)) {
+                var bas = idCardDom.value.match(/^\d{6}(\d{4})(\d{2})(\d{2})\d{2}(\d)\d/);
+                $("#born").val(bas[1] + "-" + bas[2] + "-" + bas[3]);
+                $("#sex" + (~~bas[4]%2)).prop("checked",true);
+            } else {
+                $("#born").val("");
+                $("input:radio[id^='sex']").prop("checked",false);
+            }
         };
     </script>
 

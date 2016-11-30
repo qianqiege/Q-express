@@ -21,74 +21,12 @@
         <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="/javascripts/app.js"></script>
         <script src="/javascripts/sweetalert.min.js"></script>
-        <script>
-            $(function() {
-                var uid = ~~getvl("id");
-                if (!uid) {
-                    swal({title: "id 错误", type: "error"}, function() {
-                        window.close();
-                    });
-                    return;
-                }
-                function cbFunction(data,status){
-                    if (status) {
-                        for (var i in data) {
-                            if (typeof data[i]==="string") {
-                                $("#" + i).html(data[i]);
-                            } else if (typeof data[i]==="object") {
-                                for (var k in data[i]) {
-                                    var domId = i + "_" + k.replace(/^item_/, "");
-                                    switch (domId) {
-                                        case "drink_history_dry_out_years":
-                                        case "smoke_history_quit_smoking_years":
-                                        case "excretion_nocturnal_enuresis_times":
-                                        case "excretion_constipation_times":
-                                            break;
-
-                                        case "drink_history_1":
-                                            $("#drink_history_1").html(
-                                                data[i]["dry_out_years"] ? (data[i][k] + data[i]["dry_out_years"] + "年") : data[i][k]
-                                            );
-                                            break;
-                                        case "smoke_history_1":
-                                            $("#smoke_history_1").html(
-                                                data[i]["quit_smoking_years"] ? (data[i][k] + data[i]["quit_smoking_years"] + "年") : data[i][k]
-                                            );
-                                            break;
-                                        case "excretion_1":
-                                            $("#excretion_1").html(
-                                                data[i]["nocturnal_enuresis_times"] ? (data[i][k] + data[i]["nocturnal_enuresis_times"] + "年") : data[i][k]
-                                            );
-                                            break;
-                                        case "excretion_2":
-                                            $("#excretion_2").html(
-                                                data[i]["constipation_times"] ? (data[i][k] + data[i]["constipation_times"] + "年") : data[i][k]
-                                            );
-                                            break;
-
-                                        default:
-                                            $("#" + domId).html(data[i][k] || "无");
-                                            break;
-                                    }
-                                }
-                            }
-                        }
-                    } else {
-                        swal({title: "id 错误", type: "error"}, function() {
-                            window.close();
-                        });
-                        return false;
-                    }
-                }
-                doAjax("http://192.168.1.229:3000/api/v1/patient_record/check", "get", {"id": uid}, cbFunction);
-            });
-        </script>
     </head>
     <body>
         <div class="container wrap">
             <div class="row external">
-                <div class="col-md-4  col-xs-4">
-                    <button type="button" class="btn  btn-default">修改</button>
+                <div class="col-md-4 col-xs-4">
+                    <a target="_blank" href="" class="btn btn-default" id="editRecord">修改</a>
                 </div>
                 <div class="col-md-4 col-xs-4" style="text-align:center">
                     <img src="/images/print.png" align="absmiddle">
@@ -131,17 +69,17 @@
                     <h4>目前健康状况</h4>
                 </div>
                 <div class="col-md-5 col-md-offset-1 col-xs-12 ">
-                    <p>目前患有疾病：<span id="health_status_a"></span></p>
-                    <p>过去的一段时间疲劳程度：<span id="health_status_b1"></span></p>
-                    <p>同一年前相比体重浮动是：<span id="health_status_b2"></span></p>
-                    <p>是否试图减过体重：<span id="health_status_b3"></span></p>
-                    <p>您不歇气一次可以爬几层楼梯：<span id="health_status_b8"></span></p>
+                    <p>目前患有疾病：<span id="health_status-item_a"></span></p>
+                    <p>过去的一段时间疲劳程度：<span id="health_status-item_b1"></span></p>
+                    <p>同一年前相比体重浮动是：<span id="health_status-item_b2"></span></p>
+                    <p>是否试图减过体重：<span id="health_status-item_b3"></span></p>
+                    <p>您不歇气一次可以爬几层楼梯：<span id="health_status-item_b8"></span></p>
                 </div>
                 <div class="col-md-5 col-xs-12" >
-                    <p>半年内是否测过血压：<span id="health_status_b4"></span></p>
-                    <p>半年是否内测过血脂：<span id="health_status_b5"></span></p>
-                    <p>是否经常有颈部、骨关节疼痛：<span id="health_status_b6"></span></p>
-                    <p>近一年是否主过医院：<span id="health_status_b7"></span></p>
+                    <p>半年内是否测过血压：<span id="health_status-item_b4"></span></p>
+                    <p>半年是否内测过血脂：<span id="health_status-item_b5"></span></p>
+                    <p>是否经常有颈部、骨关节疼痛：<span id="health_status-item_b6"></span></p>
+                    <p>近一年是否主过医院：<span id="health_status-item_b7"></span></p>
                 </div>
             </div>
             <div class="row content">
@@ -149,75 +87,75 @@
                     <h4>家族史</h4>
                 </div>
                 <div class="col-md-5 col-md-offset-1 col-xs-12">
-                    <p>父亲患有哪种疾病：<span id="family_history_father"></span></p>
-                    <p>兄弟患有哪种疾病：<span id="family_history_brother"></span></p>
+                    <p>父亲患有哪种疾病：<span id="family_history-father"></span></p>
+                    <p>兄弟患有哪种疾病：<span id="family_history-brother"></span></p>
                 </div>
                 <div class="col-md-5  col-xs-12">
-                    <p>母亲患有哪种疾病：<span id="family_history_mother"></span></p>
-                    <p>子女患有哪种疾病：<span id="family_history_child"></span></p>
+                    <p>母亲患有哪种疾病：<span id="family_history-mother"></span></p>
+                    <p>子女患有哪种疾病：<span id="family_history-child"></span></p>
                 </div>
             </div>
             <div class="row content">
                 <div class="col-md-5 col-md-offset-1 col-xs-12">
                     <h4>饮酒史</h4>
-                    <p>喝酒状态：<span id="drink_history_1"></span></p>
-                    <p>饮酒时间：<span id="drink_history_2"></span></p>
-                    <p>饮酒次数：<span id="drink_history_3"></span></p>
-                    <p>饮酒量：<span id="drink_history_4"></span></p>
+                    <p>喝酒状态：<span id="drink_history-item_1"></span></p>
+                    <p>饮酒时间：<span id="drink_history-item_2"></span></p>
+                    <p>饮酒次数：<span id="drink_history-item_3"></span></p>
+                    <p>饮酒量：<span id="drink_history-item_4"></span></p>
                 </div>
                 <div class="col-md-5 col-xs-12">
                     <h4>吸烟史</h4>
-                    <p>您现在的吸烟状态是：<span id="smoke_history_1"></span></p>
-                    <p>您的吸烟时间是：<span id="smoke_history_2"></span></p>
-                    <p>您每日平均吸烟量是：<span id="smoke_history_3"></span></p>
-                    <p>您是否处在被动吸烟环境：<span id="smoke_history_4"></span></p>
+                    <p>您现在的吸烟状态是：<span id="smoke_history-item_1"></span></p>
+                    <p>您的吸烟时间是：<span id="smoke_history-item_2"></span></p>
+                    <p>您每日平均吸烟量是：<span id="smoke_history-item_3"></span></p>
+                    <p>您是否处在被动吸烟环境：<span id="smoke_history-item_4"></span></p>
                 </div>
             </div>
             <div class="row content">
                 <div class="col-md-5 col-md-offset-1 col-xs-12">
                     <h4>查体</h4>
-                    <p>多久体检：<span id="check_body_1"></span></p>
-                    <p>最近一次体检时间：<span id="check_body_2"></span></p>
-                    <p>拥有的家庭医疗器械：<span id="check_body_3"></span></p>
-                    <p>穿戴设备：<span id="check_body_4"></span></p>
+                    <p>多久体检：<span id="check_body-item_1"></span></p>
+                    <p>最近一次体检时间：<span id="check_body-item_2"></span></p>
+                    <p>拥有的家庭医疗器械：<span id="check_body-item_3"></span></p>
+                    <p>穿戴设备：<span id="check_body-item_4"></span></p>
                 </div>
                 <div class="col-md-5 col-xs-12">
                     <h4>睡眠</h4>
-                    <p>目前的睡眠状态是：<span id="sleep_habit_1"></span></p>
-                    <p>每天睡眠时间：<span id="sleep_habit_2"></span></p>
-                    <p>午睡时间：<span id="sleep_habit_3"></span></p>
-                    <p>熬夜频率：<span id="sleep_habit_4"></span></p>
+                    <p>目前的睡眠状态是：<span id="sleep_habit-item_1"></span></p>
+                    <p>每天睡眠时间：<span id="sleep_habit-item_2"></span></p>
+                    <p>午睡时间：<span id="sleep_habit-item_3"></span></p>
+                    <p>熬夜频率：<span id="sleep_habit-item_4"></span></p>
                 </div>
             </div>
             <div class="row content">
                 <div class="col-md-5 col-md-offset-1 col-xs-12">
                     <h4>情志态</h4>
-                    <p>适应社会环境程度：<span id="emotional_state_1"></span></p>
-                    <p>生气频次：<span id="emotional_state_2"></span></p>
-                    <p>无故伤悲频次：<span id="emotional_state_3"></span></p>
-                    <p>常害怕频次：<span id="emotional_state_4"></span></p>
+                    <p>适应社会环境程度：<span id="emotional_state-item_1"></span></p>
+                    <p>生气频次：<span id="emotional_state-item_2"></span></p>
+                    <p>无故伤悲频次：<span id="emotional_state-item_3"></span></p>
+                    <p>常害怕频次：<span id="emotional_state-item_4"></span></p>
                 </div>
                 <div class="col-md-5 col-xs-12">
                     <h4>环境态</h4>
-                    <p>同一般人比对冬天，冷空调、电扇等的耐寒程度：<span id="environment_state_1"></span></p>
-                    <p>工作环境是否有绿植：<span id="environment_state_2"></span></p>
-                    <p>生活环境是否有粉尘污染：<span id="environment_state_3"></span></p>
-                    <p>适应外界自然变化的程度：<span id="environment_state_4"></span></p>
+                    <p>同一般人比对冬天，冷空调、电扇等的耐寒程度：<span id="environment_state-item_1"></span></p>
+                    <p>工作环境是否有绿植：<span id="environment_state-item_2"></span></p>
+                    <p>生活环境是否有粉尘污染：<span id="environment_state-item_3"></span></p>
+                    <p>适应外界自然变化的程度：<span id="environment_state-item_4"></span></p>
                 </div>
             </div>
             <div class="row content">
                 <div class="col-md-5 col-md-offset-1 col-xs-12">
                     <h4>运动习惯</h4>
-                    <p>每周的运动次数：<span id="exercise_habit_1"></span></p>
-                    <p>每次的运动时间：<span id="exercise_habit_2"></span></p>
-                    <p>目前运动方式：<span id="exercise_habit_3"></span></p>
-                    <p>出行方式：<span id="exercise_habit_4"></span></p>
+                    <p>每周的运动次数：<span id="exercise_habit-item_1"></span></p>
+                    <p>每次的运动时间：<span id="exercise_habit-item_2"></span></p>
+                    <p>目前运动方式：<span id="exercise_habit-item_3"></span></p>
+                    <p>出行方式：<span id="exercise_habit-item_4"></span></p>
                 </div>
                 <div class="col-md-5 col-xs-12">
                     <h4>职业态</h4>
-                    <p>每天坐着时间：<span id="professional_state_1"></span></p>
-                    <p>多久起身活动：<span id="professional_state_2"></span></p>
-                    <p>工作间隙做哪些活动：<span id="professional_state_3"></span></p>
+                    <p>每天坐着时间：<span id="professional_state-item_1"></span></p>
+                    <p>多久起身活动：<span id="professional_state-item_2"></span></p>
+                    <p>工作间隙做哪些活动：<span id="professional_state-item_3"></span></p>
                 </div>
             </div>
             <div class="row content">
@@ -225,10 +163,10 @@
                     <h4>排泄</h4>
                 </div>
                 <div class="col-md-5 col-md-offset-1 col-xs-12">
-                    <p>小便情况：<span id="excretion_1"></span></p>
+                    <p>小便情况：<span id="excretion-item_1"></span></p>
                 </div>
                 <div class="col-md-5 col-xs-12 ">
-                    <p>大便情况：<span id="excretion_2"></span></p>
+                    <p>大便情况：<span id="excretion-item_2"></span></p>
                 </div>
             </div>
             <div class="row content">
@@ -236,20 +174,20 @@
                     <h4>饮食运动习惯</h4>
                 </div>
                 <div class="col-md-5 col-md-offset-1 col-xs-12">
-                    <p>豆制品：<span id="eating_habit_2"></span></p>
-                    <p>蔬菜：<span id="eating_habit_3"></span></p>
-                    <p>水果：<span id="eating_habit_4"></span></p>
-                    <p>主副食比例：<span id="eating_habit_1"></span></p>
-                    <p>畜禽鱼肉蛋：<span id="eating_habit_8"></span></p>
-                    <p>食物种类数量：<span id="eating_habit_9"></span></p>
+                    <p>豆制品：<span id="eating_habit-item_2"></span></p>
+                    <p>蔬菜：<span id="eating_habit-item_3"></span></p>
+                    <p>水果：<span id="eating_habit-item_4"></span></p>
+                    <p>主副食比例：<span id="eating_habit-item_1"></span></p>
+                    <p>畜禽鱼肉蛋：<span id="eating_habit-item_8"></span></p>
+                    <p>食物种类数量：<span id="eating_habit-item_9"></span></p>
                 </div>
                 <div class="col-md-5 col-xs-12">
-                    <p>鸡蛋：<span id="eating_habit_5"></span></p>
-                    <p>果仁：<span id="eating_habit_6"></span></p>
-                    <p>摄盐量：<span id="eating_habit_7"></span></p>
-                    <p>每天大约饮水：<span id="eating_habit_10"></span></p>
-                    <p>牛奶的用量：<span id="eating_habit_12"></span></p>
-                    <p>习惯的饮料种类：<span id="eating_habit_11"></span></p>
+                    <p>鸡蛋：<span id="eating_habit-item_5"></span></p>
+                    <p>果仁：<span id="eating_habit-item_6"></span></p>
+                    <p>摄盐量：<span id="eating_habit-item_7"></span></p>
+                    <p>每天大约饮水：<span id="eating_habit-item_10"></span></p>
+                    <p>牛奶的用量：<span id="eating_habit-item_12"></span></p>
+                    <p>习惯的饮料种类：<span id="eating_habit-item_11"></span></p>
                 </div>
             </div>
             <div class="row content">
@@ -257,35 +195,98 @@
                     <h4>体格检查</h4>
                 </div>
                 <div class="col-md-5 col-md-offset-1 col-xs-12">
-                    <p>身高：<span id="physical_examination_height"></span><span>cm</span></p>
-                    <p>臀围：<span id="physical_examination_hipline"></span><span>cm</span></p>
-                    <p>腰臀比：<span id="physical_examination_waist_to_hipratio"></span></p>
-                    <p>舒张压：<span id="physical_examination_min_BloodPressure"></span><span>mmHg</span></p>
-                    <p>总胆固醇：<span id="physical_examination_total_cholesterol"></span><span>mmol/L</span></p>
-                    <p>高密度脂蛋白：<span id="physical_examination_high_density_lipoprotein"></span><span>mmol/L</span></p>
-                    <p>空腹血糖： <span id="physical_examination_b_BloodGlucose"></span><span>mmol/L</span></p>
-                    <p>同型半胱氨酸：<span id="physical_examination_homocysteine"></span><span>umol/L</span></p>
-                    <p>谷丙转氨酶：<span id="physical_examination_glutamic_pyruvic_transaminase"></span><span>umol/L</span></p>
-                    <p>尿素氮：<span id="physical_examination_usea_nitrogen"></span><span>mmol/L</span></p>
+                    <p>身高：<span id="physical_examination-height"></span><span>cm</span></p>
+                    <p>臀围：<span id="physical_examination-hipline"></span><span>cm</span></p>
+                    <p>腰臀比：<span id="physical_examination-waist_to_hipratio"></span></p>
+                    <p>舒张压：<span id="physical_examination-min_BloodPressure"></span><span>mmHg</span></p>
+                    <p>总胆固醇：<span id="physical_examination-total_cholesterol"></span><span>mmol/L</span></p>
+                    <p>高密度脂蛋白：<span id="physical_examination-high_density_lipoprotein"></span><span>mmol/L</span></p>
+                    <p>空腹血糖： <span id="physical_examination-b_BloodGlucose"></span><span>mmol/L</span></p>
+                    <p>同型半胱氨酸：<span id="physical_examination-homocysteine"></span><span>umol/L</span></p>
+                    <p>谷丙转氨酶：<span id="physical_examination-glutamic_pyruvic_transaminase"></span><span>umol/L</span></p>
+                    <p>尿素氮：<span id="physical_examination-usea_nitrogen"></span><span>mmol/L</span></p>
                 </div>
                 <div class="col-md-5 col-xs-12 ">
-                    <p>体重：<span id="physical_examination_weight"></span><span>kg</span></p>
-                    <p>体重指数：<span id="physical_examination_baric_index"></span></p>
-                    <p>腰围：<span id="physical_examination_waistline"></span><span>cm</span></p>
-                    <p>收缩压：<span id="physical_examination_max_BloodPressure"></span><span>mmHg</span></p>
-                    <p>甘油三酯：<span id="physical_examination_triglyceride"></span><span>mmol/L</span></p>
-                    <p>低密度脂蛋白：<span id="physical_examination_low_density_lipoprotein"></span><span>mmol/L</span></p>
-                    <p>糖化血红蛋白：<span id="physical_examination_glycosylated_hemoglobin"></span><span>mmol/L</span></p>
-                    <p>谷草转氨酶：<span id="physical_examination_glutamic_oxaloacetic_transaminase"></span><span>umol/L</span></p>
-                    <p>肌酐：<span id="physical_examination_creatinine"></span><span>umol/L</span></p>
-                    <p>血尿酸：<span id="physical_examination_blood_uric_acid"></span><span>umol/L</span></p>
+                    <p>体重：<span id="physical_examination-weight"></span><span>kg</span></p>
+                    <p>体重指数：<span id="physical_examination-baric_index"></span></p>
+                    <p>腰围：<span id="physical_examination-waistline"></span><span>cm</span></p>
+                    <p>收缩压：<span id="physical_examination-max_BloodPressure"></span><span>mmHg</span></p>
+                    <p>甘油三酯：<span id="physical_examination-triglyceride"></span><span>mmol/L</span></p>
+                    <p>低密度脂蛋白：<span id="physical_examination-low_density_lipoprotein"></span><span>mmol/L</span></p>
+                    <p>糖化血红蛋白：<span id="physical_examination-glycosylated_hemoglobin"></span><span>mmol/L</span></p>
+                    <p>谷草转氨酶：<span id="physical_examination-glutamic_oxaloacetic_transaminase"></span><span>umol/L</span></p>
+                    <p>肌酐：<span id="physical_examination-creatinine"></span><span>umol/L</span></p>
+                    <p>血尿酸：<span id="physical_examination-blood_uric_acid"></span><span>umol/L</span></p>
                 </div>
                 <div class="col-md-10 col-md-offset-1 col-xs-12">
-                    <p>B 超：<span id="physical_examination_ultrasound">正常</span></p>
-                    <p>心电图：<span id="physical_examination_electrocardiogram">正常</span></p>
-                    <p>影像学检查：<span id="physical_examination_image_analysis">正常</span></p>
+                    <p>B 超：<span id="physical_examination-ultrasound">正常</span></p>
+                    <p>心电图：<span id="physical_examination-electrocardiogram">正常</span></p>
+                    <p>影像学检查：<span id="physical_examination-image_analysis">正常</span></p>
                 </div>
             </div>
         </div>
     </body>
+    <script>
+        $(function() {
+            var uid = ~~getvl("id");
+            if (!uid) {
+                swal({title: "id 错误", type: "error"}, function() {
+                    window.close();
+                });
+                return;
+            }
+            var cbFunction = function(data,status){
+                if (status) {
+                    $("#editRecord").attr("href", "/newRecord?id=" + uid);
+                    for (var i in data) {
+                        if (typeof data[i]==="string") {
+                            $("#" + i).html(data[i]);
+                        } else if (typeof data[i]==="object") {
+                            for (var k in data[i]) {
+                                var domId = i + "-" + k;
+                                switch (domId) {
+                                    case "drink_history-dry_out_years":
+                                    case "smoke_history-quit_smoking_years":
+                                    case "excretion-nocturnal_enuresis_times":
+                                    case "excretion-constipation_times":
+                                        break;
+
+                                    case "drink_history-item_1":
+                                        $("#drink_history-item_1").html(
+                                            data[i]["dry_out_years"] ? (data[i][k] + data[i]["dry_out_years"] + "年") : data[i][k]
+                                        );
+                                        break;
+                                    case "smoke_history-item_1":
+                                        $("#smoke_history-item_1").html(
+                                            data[i]["quit_smoking_years"] ? (data[i][k] + data[i]["quit_smoking_years"] + "年") : data[i][k]
+                                        );
+                                        break;
+                                    case "excretion-item_1":
+                                        $("#excretion-item_1").html(
+                                            data[i]["nocturnal_enuresis_times"] ? (data[i][k] + data[i]["nocturnal_enuresis_times"] + "年") : data[i][k]
+                                        );
+                                        break;
+                                    case "excretion-item_2":
+                                        $("#excretion-item_2").html(
+                                            data[i]["constipation_times"] ? (data[i][k] + data[i]["constipation_times"] + "年") : data[i][k]
+                                        );
+                                        break;
+
+                                    default:
+                                        $("#" + domId).html(data[i][k] || "无");
+                                        break;
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    swal({title: "id 错误", type: "error"}, function() {
+                        window.close();
+                    });
+                    return false;
+                }
+            }
+            doAjax("http://192.168.1.229:3000/api/v1/patient_record/check", "get", {"id": uid}, cbFunction);
+        });
+    </script>
 </html>
