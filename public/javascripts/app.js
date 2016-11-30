@@ -151,7 +151,6 @@ $.fn.customVal = function() {
     } else {
         return this.val();
     }
-    console.log(this);
 };
 
 /**
