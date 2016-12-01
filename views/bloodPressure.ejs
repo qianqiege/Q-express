@@ -10,6 +10,7 @@
     </div>
     <div class="page-content container">
         <div class="row">
+
             <div class="panel">
                 <div class="panel-heading">
                     <h3 class="panel-title">添加新记录</h3>
@@ -19,7 +20,7 @@
                         <div class="col-xs-12 col-md-5 offset-md-1">
                             <div class="form-group form-material floating" data-plugin="formMaterial">
                                 <label class="form-control-label" for="id_number">身份证号</label>
-                                <input type="text" class="form-control empty" name="id_number" id="id_number" oninput="doSearch(this)" maxlength="18">
+                                <input type="text" class="form-control empty" name="id_number" id="id_number" oninput="doSearch(this);" maxlength="18">
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-5">
@@ -42,37 +43,48 @@
                         <div class="col-xs-12 col-md-5 offset-md-1">
                             <div class="form-group form-material floating" data-plugin="formMaterial">
                                 <label class="form-control-label" for="name">姓名</label>
-                                <input type="text" class="form-control empty" name="name" disabled="disabled" id="name">
+                                <input type="text" class="form-control empty" name="name" id="name" disabled="disabled">
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-5">
                             <div class="form-group form-material floating" data-plugin="formMaterial">
                                 <label class="form-control-label" for="nation">手机号码</label>
-                                <input type="text" class="form-control empty" name="phone" disabled="disabled" id="phone">
+                                <input type="text" class="form-control empty" name="nation" id="nation" disabled="disabled">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="panel-body container-fluid">
                     <div class="row">
-                        <div class="col-xs-12 col-md-12">
+                        <div class="col-xs-12 col-md-6">
                             <div class="form-group form-material">
-                                <label class="form-control-label" for="id_number_c1">体重</label>
+                                <label class="form-control-label" for="min_BloodPressure">舒张压</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="id_number_c1" name="weight">
-                                    <span class="input-group-addon">公斤 (kg)</span>
+                                    <input type="text" class="form-control" id="min_BloodPressure" name="min_BloodPressure">
+                                    <span class="input-group-addon">毫米汞柱</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            <div class="form-group form-material">
+                                <label class="form-control-label" for="max_BloodPressure">收缩压</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="max_BloodPressure" name="max_BloodPressure">
+                                    <span class="input-group-addon">毫米汞柱</span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-12">
-                            <button type="submit" class="btn btn-block btn-success" onclick="submitForm()" id="submitResult" disabled>提交</button>
+                            <button type="button" class="btn btn-block btn-success" onclick="submitForm();" id="submitResult" disabled>提交</button>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
+
 <script>
     var searching = false;
 
@@ -84,29 +96,31 @@
                 if (status && data) {
                     $("#sex" + ({"男": "1", "女": "2"})[data["sex"]]).prop("checked", true);
                     $("#name").val(data["name"]);
-                    $("#phone").val(data["phone"]);
+                    $("#nation").val(data["phone"]);
                     $("#submitResult").prop("disabled",false);
                 } else {
                     $("input:radio[id^='sex']").prop("checked", false);
                     $("#name").val("");
-                    $("#phone").val("");
+                    $("#nation").val("");
                 }
             });
         } else {
             $("input:radio[id^='sex']").prop("checked", false);
             $("#name").val("");
-            $("#phone").val("");
+            $("#nation").val("");
         }
     };
+
     var submitForm = function() {
-        var id_number_c1 = $("#id_number_c1").val();
-        if(!id_number_c1) {
+        var max_BloodPressure = $("#max_BloodPressure").val();
+        var min_BloodPressure = $("#min_BloodPressure").val();
+        if(!max_BloodPressure || !min_BloodPressure) {
             swal("请填入数据","","error");
             return false;
         }
         swal({
             title: "确认提交",
-            text: "请核对提交数据：\n体重：" + $("#id_number_c1").val(),
+            text: "请核对提交数据：\n收缩压：" + $("#max_BloodPressure").val() + "\n舒张压：" + $("#min_BloodPressure").val(),
             type: "warning",
             showCancelButton: true,
             confirmButtonClass: "btn-danger",
@@ -118,10 +132,11 @@
         },
         function(isConfirm) {
             if (isConfirm) {
-                doAjax("http://192.168.1.229:3000/api/v1/examination_input/weight", "post",
-                    {"id_number": $("#id_number").val(), "weight": $("#id_number_c1").val()},
+                doAjax("http://192.168.1.229:3000/api/v1/examination_input/blood_pressure", "post",
+                    {"id_number": $("#id_number").val(), "max_BloodPressure": $("#max_BloodPressure").val(), "min_BloodPressure": $("#min_BloodPressure").val()},
                     function(data, status) {
                         if (status && data) {
+
                             swal({
                                 title: data.info || "提交成功",
                                 type: "success"
@@ -139,4 +154,5 @@
         });
     };
 </script>
+
 <%- include footer %>
