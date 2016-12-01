@@ -230,60 +230,32 @@
     </div>
 </div>
 <script>
-var createBloodGlucosesDom = function (dom){
-    var template = "\n\
-                            <tr>\n\
-                                <td>{__datetime__}</td>\n\
-                                <td>{__before_blood_glucose__}</td>\n\
-                                <td>{__after_blood_glucose__}</td>\n\
-                                <td>  正常/正常</td>\n\
-                            </tr>"
-    return template.replace(/\{__before_blood_glucose__\}/g,dom["before_blood_glucose"] || "")
-                    .replace(/\{__after_blood_glucose__\}/g,dom["after_blood_glucose"] || "")
-                    .replace(/\{__datetime__\}/g,dom["datetime"]);
-};
-var createBloodPressuresDom = function (dom){
-    var template = "\n\
-                            <tr>\n\
-                                <td>{__datetime__}</td>\n\
-                                <td>{__max_blood_pressure__}</td>\n\
-                                <td>{__min_blood_pressure__}</td>\n\
-                                <td>  正常/正常</td>\n\
-                            </tr>"
-    return template.replace(/\{__max_blood_pressure__\}/g,dom["max_blood_pressure"] || "")
-                    .replace(/\{__min_blood_pressure__\}/g,dom["min_blood_pressure"] || "")
-                    .replace(/\{__datetime__\}/g,dom["datetime"]);
-};
-var createTemperaturesDom = function (dom){
-    var template = "\n\
-                            <tr>\n\
-                                <td>{__datetime__}</td>\n\
-                                <td>{__value__}</td>\n\
-                                <td>  正常/正常</td>\n\
-                            </tr>"
-    return template.replace(/\{__value__\}/g,dom["value"] || "")
-                    .replace(/\{__datetime__\}/g,dom["datetime"]);
-};
-var createHeartRatesDom = function (dom){
-    var template = "\n\
-                            <tr>\n\
-                                <td>{__datetime__}</td>\n\
-                                <td>{__value__}</td>\n\
-                                <td>  正常/正常</td>\n\
-                            </tr>"
-    return template.replace(/\{__value__\}/g,dom["value"] || "")
-                    .replace(/\{__datetime__\}/g,dom["datetime"]);
-};
-var createWeightsDom = function (dom){
-    var template = "\n\
-                            <tr>\n\
-                                <td>{__datetime__}</td>\n\
-                                <td>{__value__}</td>\n\
-                                <td>  正常/正常</td>\n\
-                            </tr>"
-    return template.replace(/\{__value__\}/g,dom["value"] || "")
-                    .replace(/\{__datetime__\}/g,dom["datetime"]);
-};
+    var createTr = function (obj) {
+        return "<tr><td>" + obj.join("</td><td>") + "</td></tr>";
+    };
+
+    var cbFunction = function(data,status){
+        var tabs = ['blood_glucoses', 'blood_pressures', 'temperatures', 'heart_rates', 'weights'];
+        for (var k = 0; k < tabs.length; k++) {
+            for(var i = 0; i < data[tabs[k]].length; i++){
+                switch (tabs[k]) {
+                    case 'blood_glucoses':
+                        var tr = [data[tabs[k]][i]['before_blood_glucose'], data[tabs[k]][i]['before_blood_glucose'], data[tabs[k]][i]['datetime']];
+                        break;
+                    case 'blood_pressures':
+                        var tr = [data[tabs[k]][i]['max_blood_pressure'], data[tabs[k]][i]['min_blood_pressure'], data[tabs[k]][i]['datetime']];
+                        break;
+                    case 'blood_pressures':
+                    case 'blood_pressures':
+                    case 'blood_pressures':
+                        var tr = [data[tabs[k]][i]['value'], data[tabs[k]][i]['datetime']];
+                        break;
+                }
+                tr.push('正常/正常');
+                $('#' + tabs[k]).append($(createTr(tr)));
+            }
+        }
+    };
 </script>
 <% needjquery="\
     <script>\n\
@@ -294,28 +266,6 @@ var createWeightsDom = function (dom){
                     window.close();\n\
                 });\n\
                 return;\n\
-            }\n\
-            var cbFunction = function(data,status){\n\
-                for(var i = 0;i < data.blood_glucoses.length;i++){\n\
-                    $('#blood_gloucoses').append($(createBloodGlucosesDom(data.blood_glucoses[i])));\n\
-                    console.log(data)\n\
-                }\n\
-                for(var i = 0;i < data.blood_pressures.length;i++){\n\
-                    $('#blood_pressures').append($(createBloodPressuresDom(data.blood_pressures[i])));\n\
-                    console.log(data.blood_pressures[i])\n\
-                }\n\
-                for(var i = 0;i < data.temperatures.length;i++){\n\
-                    $('#temperatures').append($(createTemperaturesDom(data.temperatures[i])));\n\
-                    console.log(data.temperatures[i])\n\
-                }\n\
-                for(var i = 0;i < data.heart_rates.length;i++){\n\
-                    $('#heart_rates').append($(createHeartRatesDom(data.heart_rates[i])));\n\
-                    console.log(data.heart_rates[i])\n\
-                }\n\
-                for(var i = 0;i < data.weights.length;i++){\n\
-                    $('#weights').append($(createWeightsDom(data.weights[i])));\n\
-                    console.log(data.weights[i])\n\
-                }\n\
             }\n\
             doAjax('http://192.168.1.229:3000/api/v1/examination_check', 'get', {'patient_id': uid}, cbFunction);\n\
         });\n\
