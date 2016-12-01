@@ -83,7 +83,7 @@
                                                     <th>是否异常</th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="blood_gloucoses">
+                                            <tbody id="blood_glucoses">
                                             </tbody>
                                             <tfoot>
 
@@ -240,15 +240,19 @@
             for(var i = 0; i < data[tabs[k]].length; i++){
                 switch (tabs[k]) {
                     case 'blood_glucoses':
-                        var tr = [data[tabs[k]][i]['before_blood_glucose'], data[tabs[k]][i]['before_blood_glucose'], data[tabs[k]][i]['datetime']];
+                        var tr = [data[tabs[k]][i]['datetime'], data[tabs[k]][i]['before_blood_glucose'], data[tabs[k]][i]['before_blood_glucose']];
                         break;
                     case 'blood_pressures':
-                        var tr = [data[tabs[k]][i]['max_blood_pressure'], data[tabs[k]][i]['min_blood_pressure'], data[tabs[k]][i]['datetime']];
+                        var tr = [data[tabs[k]][i]['datetime'], data[tabs[k]][i]['max_blood_pressure'], data[tabs[k]][i]['min_blood_pressure']];
                         break;
-                    case 'blood_pressures':
-                    case 'blood_pressures':
-                    case 'blood_pressures':
-                        var tr = [data[tabs[k]][i]['value'], data[tabs[k]][i]['datetime']];
+                    case 'temperatures':
+                        var tr = [data[tabs[k]][i]['datetime'], data[tabs[k]][i]['value']];
+                        break;
+                    case 'heart_rates':
+                    var tr = [data[tabs[k]][i]['datetime'], data[tabs[k]][i]['value']];
+                        break;
+                    case 'weights':
+                        var tr = [data[tabs[k]][i]['datetime'], data[tabs[k]][i]['value']];
                         break;
                 }
                 tr.push('正常/正常');
