@@ -102,6 +102,9 @@ $.fn.customVal = function() {
     if (arguments.length > 1) {
         return this;
     }
+    if (!this.length) {
+        return this;
+    }
     var tag = this.prop("tagName").toLowerCase();
     if (tag === "select") {
         var usedSelect2 = true;
@@ -113,6 +116,9 @@ $.fn.customVal = function() {
         if (!arguments.length) {
             return this.val();
         } else {
+            if (typeof arguments[0] === "string") {
+                arguments[0] = [arguments[0]];
+            }
             if (typeof arguments[0] !== "object") {
                 return this;
             }
@@ -134,6 +140,9 @@ $.fn.customVal = function() {
                     });
                     return result;
                 } else {
+                    if (typeof arguments[0] === "string") {
+                        return this.val([arguments[0]]);
+                    }
                     if (typeof arguments[0] !== "object") {
                         return this;
                     }
