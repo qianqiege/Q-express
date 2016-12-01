@@ -298,23 +298,18 @@ var createWeightsDom = function (dom){
             var cbFunction = function(data,status){\n\
                 for(var i = 0;i < data.blood_glucoses.length;i++){\n\
                     $('#blood_gloucoses').append($(createBloodGlucosesDom(data.blood_glucoses[i])));\n\
-                    console.log(data)\n\
                 }\n\
                 for(var i = 0;i < data.blood_pressures.length;i++){\n\
                     $('#blood_pressures').append($(createBloodPressuresDom(data.blood_pressures[i])));\n\
-                    console.log(data.blood_pressures[i])\n\
                 }\n\
                 for(var i = 0;i < data.temperatures.length;i++){\n\
                     $('#temperatures').append($(createTemperaturesDom(data.temperatures[i])));\n\
-                    console.log(data.temperatures[i])\n\
                 }\n\
                 for(var i = 0;i < data.heart_rates.length;i++){\n\
                     $('#heart_rates').append($(createHeartRatesDom(data.heart_rates[i])));\n\
-                    console.log(data.heart_rates[i])\n\
                 }\n\
                 for(var i = 0;i < data.weights.length;i++){\n\
                     $('#weights').append($(createWeightsDom(data.weights[i])));\n\
-                    console.log(data.weights[i])\n\
                 }\n\
             }\n\
             doAjax('http://192.168.1.229:3000/api/v1/examination_check', 'get', {'patient_id': uid}, cbFunction);\n\
