@@ -35,37 +35,32 @@
                             </div>
                             <div class="modal fade modal-fade-in-scale-up" id="roleDoctorsList" aria-hidden="true"
                             aria-labelledby="exampleModalTitle" role="dialog" tabindex="-1">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                        <h4 class="modal-title">添加用户权限</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <h4 class="text-center">用户名:</h4>
+                            <form onsubmit="return false;" id="roleDoctorsListForm">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                            <h4 class="modal-title">添加用户权限</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <h4 class="text-center">用户名:</h4>
+                                                </div>
+                                            </div>
+                                            <div class="row" id="roleList">
+
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <input type="checkbox" checked value="9">
-                                                <label for="">管理员</label>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <input type="checkbox"  value="10">
-                                                <label for="">默认角色</label>
-                                            </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default btn-pure" data-dismiss="modal">取消</button>
+                                            <button type="submit" class="btn btn-primary" onclick="roleSubmit();" >保存</button>
                                         </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default btn-pure" data-dismiss="modal">取消</button>
-                                        <button type="button" class="btn btn-primary">保存</button>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -95,7 +90,7 @@
                                             </p>\n\
                                         </div>\n\
                                         <div class='media-right'>\n\
-                                            <a class='btn btn-outline btn-success btn-sm' data-target='#roleDoctorsList' data-toggle='modal' data-id='1'>添加权限</a>\n\
+                                            <a class='btn btn-outline btn-success btn-sm' data-target='#roleDoctorsList' data-toggle='modal' data-id={__id__} onclick='requestRole()'>添加权限</a>\n\
                                         </div>\n\
                                     </div>\n\
                                 </li>"
@@ -119,10 +114,42 @@
         }else{
             $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
         }
-    }
+    };
+    //角色列表HTML模板
+    var createRoleDom = function (dom){
+        var template = "\n\
+                                <div class='col-sm-6'>\n\
+                                    <input type='checkbox' value='{__id__}' name='roleID'>\n\
+                                    <label for=''>{__name__}</label> \n\
+                                </div>"
+        return template.replace(/\{__name__\}/g, dom["name"])
+                        .replace(/\{__id__\}/g, dom["id"]);
+    };
+    //角色列表获取
+    var requestRole = function(){
+        doAjax("http://192.168.1.229:3000/api/v1/roles","get",{"page":1,"per_page":10},function(data, status){
+            $("#roleList").children('div').remove();
+            if (status && data){
+                 for(var i = 0;i < data.data.length;i++){
+                     var name = data.data[i];
+                     $("#roleList").append($(createRoleDom(name)));
+                 }
+            }
+        });
+    };
+    var roleSubmit = function(){
+        console.log(userId);
+        console.log($("form").serialize());
+        debugger;
+        doAjax('http://192.168.1.229:3000/api/v1/users/' + userId, 'put', JSON.stringify($('#roleDoctorsListForm').getValue()), function(data, status) {
+            console.log(data,status);
+        }, {}, {contentType: 'application/json;charset=utf-8'})
+    };
 </script>
 <% needjquery="\
+<script src='/javascripts/jquery.form.js'></script>\n\
 <script>\n\
+    var userId;\n\
     $(function() {\n\
         doAjax('http://192.168.1.229:3000/api/v1/users/all_users', 'get',{}, function(data, status) {\n\
             if (status && data) {\n\
@@ -132,6 +159,10 @@
             } else {\n\
                 $('#all_contacts ul:first').html('暂无医生');\n\
             };\n\
+        });\n\
+        $('#roleDoctorsList').on('show.bs.modal', function (e) {\n\
+            userId = $(e.relatedTarget).data('id');\n\
+            // console.log(userId);\n\
         });\n\
     });\n\
 </script>"
