@@ -243,6 +243,12 @@
                             $("#" + i).html(data[i]);
                         } else if (typeof data[i]==="object") {
                             for (var k in data[i]) {
+                                try {
+                                    var tmp = JSON.parse(data[i][k]).join(", ");
+                                    data[i][k] = tmp;
+                                } catch(e) {
+
+                                }
                                 var domId = i + "-" + k;
                                 switch (domId) {
                                     case "drink_history-dry_out_years":

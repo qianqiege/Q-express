@@ -99,7 +99,7 @@ var checkIdCard = function(idcard) {
 * @author jshensh@126.com 2016-11-30
 */
 $.fn.customVal = function() {
-    if (arguments.length > 1) {
+    if (arguments.length > 1 || !arguments[0]) {
         return this;
     }
     if (!this.length) {
@@ -116,7 +116,10 @@ $.fn.customVal = function() {
         if (!arguments.length) {
             return this.val();
         } else {
-            if (typeof arguments[0] === "string") {
+            try {
+                var tmp = JSON.parse(arguments[0]);
+                arguments[0] = tmp;
+            } catch(e) {
                 arguments[0] = [arguments[0]];
             }
             if (typeof arguments[0] !== "object") {
@@ -140,8 +143,11 @@ $.fn.customVal = function() {
                     });
                     return result;
                 } else {
-                    if (typeof arguments[0] === "string") {
-                        return this.val([arguments[0]]);
+                    try {
+                        var tmp = JSON.parse(arguments[0]);
+                        arguments[0] = tmp;
+                    } catch(e) {
+                        arguments[0] = [arguments[0]];
                     }
                     if (typeof arguments[0] !== "object") {
                         return this;
