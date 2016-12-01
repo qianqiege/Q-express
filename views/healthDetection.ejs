@@ -50,7 +50,7 @@
                                                     <th>是否异常</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody >
                                                 <tr>
                                                     <td> 2016-10-25 </td>
                                                     <td> 120/90 </td>
@@ -82,16 +82,12 @@
                                             <thead>
                                                 <tr>
                                                     <th>监测日期</th>
-                                                    <th>餐前血糖/餐后血糖</th>
+                                                    <th>餐前血糖</th>
+                                                    <th>餐后血糖</th>
                                                     <th>是否异常</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td> 2016-10-25 </td>
-                                                    <td> 6/5.2 </td>
-                                                    <td>  正常/正常</td>
-                                                </tr>
+                                            <tbody id="blood_gloucoses">
                                             </tbody>
                                             <tfoot>
 
@@ -252,6 +248,22 @@
         </div>
     </div>
 </div>
+<script>
+var createTdDom = function (dom){
+    var template = "\n\
+                            <tr>\n\
+                                <td>{__datetime__}</td>\n\
+                                <td>{__before_blood_glucose__}</td>\n\
+                                <td>{__after_blood_glucose__}</td>\n\
+                                <td>  正常/正常</td>\n\
+                            </tr>"
+    return template.replace(/\{__before_blood_glucose__\}/g,dom["before_blood_glucose"] || "")
+                    .replace(/\{__after_blood_glucose__\}/g,dom["after_blood_glucose"] || "")
+                    .replace(/\{__begore_blood_glucose__\}/g,dom["before_blood_glucose"] || "")
+                    .replace(/\{__datetime__\}/g,dom["datetime"]);
+};
+
+</script>
 <% needjquery="\
     <script>\n\
         $(function(){\n\
@@ -263,7 +275,10 @@
                 return;\n\
             }\n\
             var cbFunction = function(data,status){\n\
-                console.log(data);\n\
+                for(var i = 0;i < data.blood_glucoses.length;i++){\n\
+                    $('#blood_gloucoses').append($(createTdDom(data.blood_glucoses[i])));\n\
+                    console.log(data.blood_glucoses[i])\n\
+                }\n\
             }\n\
             doAjax('http://192.168.1.229:3000/api/v1/examination_check', 'get', {'patient_id': uid}, cbFunction);\n\
         });\n\
