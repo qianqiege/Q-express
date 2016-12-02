@@ -1793,8 +1793,9 @@
             return 0;
         };
         var showBirthSex = function(idCardDom) {
-            if (checkIdCard(idCardDom.value)) {
-                var bas = idCardDom.value.match(/^\d{6}(\d{4})(\d{2})(\d{2})\d{2}(\d)\d/);
+            var val = idCardDom.value = idCardDom.value.toLocaleUpperCase();
+            if (checkIdCard(val)) {
+                var bas = val.match(/^\d{6}(\d{4})(\d{2})(\d{2})\d{2}(\d)(\d|X)$/);
                 $("#born").val(bas[1] + "-" + bas[2] + "-" + bas[3]);
                 $("#sex" + (~~bas[4]%2)).prop("checked",true);
             } else {
