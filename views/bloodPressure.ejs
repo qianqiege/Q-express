@@ -119,40 +119,67 @@
             swal("请填入数据","","error");
             return false;
         }
-        swal({
-            title: "确认提交",
-            text: "请核对提交数据：\n收缩压：" + $("#max_BloodPressure").val() + "\n舒张压：" + $("#min_BloodPressure").val(),
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonClass: "btn-danger",
-            confirmButtonText: "提交",
-            cancelButtonText: "取消",
-            closeOnConfirm: false,
-            closeOnCancel: true,
-            showLoaderOnConfirm: true
-        },
-        function(isConfirm) {
-            if (isConfirm) {
-                doAjax("http://192.168.1.229:3000/api/v1/examination_input/blood_pressure", "post",
-                    {"id_number": $("#id_number").val(), "max_BloodPressure": $("#max_BloodPressure").val(), "min_BloodPressure": $("#min_BloodPressure").val()},
-                    function(data, status) {
-                        if (status && data) {
+        thebar = '<div id="theshowblock" style="width: 1%;height: 20px;background-color: rgba(154, 145, 145, 0.67);position: absolute;top: 18px;z-index: 99;left: 50%;"></div><div class="progress"><div class="progress-bar progress-bar-indicating progress-bar-warning active" style="width: 1%" role="progressbar"></div><div class="progress-bar progress-bar-indicating progress-bar-success active" style="width: 1%" role="progressbar"></div><div class="progress-bar progress-bar-indicating progress-bar-danger active" style="width: 1%" role="progressbar"></div></div>';
 
-                            swal({
-                                title: data.info || "提交成功",
-                                type: "success"
-                            },
-                            function() {
-                                $("input:radio[id^='sex']").prop("checked", false);
-                                $("input").val("");
-                            });
-                        } else {
-                            swal("提交失败", "", "error");
+        total = 300
+        p_min = (~~$("#min_BloodPressure").val() / total * 100)
+        p1_min = (~~$("#min_BloodPressure").val() / total * 94)
+        p_max = (~~$("#max_BloodPressure").val() / total * 100)
+        if (p_max >=  ~~(75 / total * 100) && p_max <= 42){
+            status = "正常"
+        }
+        else if (p_max < ~~(75 / total * 100)){
+            status = "偏低"
+        }
+        else {
+            status = "偏高"
+        }
+
+        bootbox.confirm({
+            title: "确认提交",
+            message: thebar+"请核对提交数据：<br/>舒张压：" + $("#min_BloodPressure").val() + "<br/>收缩压：" + $("#max_BloodPressure").val()+"<br/> 血压 : "+status,
+            buttons: {
+                confirm: {
+                    label: '提交',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: '取消',
+                    className: 'btn-normal'
+                }
+            },
+            callback : function(isConfirm){
+                if (isConfirm) {
+                    doAjax("http://192.168.1.229:3000/api/v1/examination_input/blood_pressure", "post",
+                        {"id_number": $("#id_number").val(), "max_BloodPressure": $("#max_BloodPressure").val(), "min_BloodPressure": $("#min_BloodPressure").val()},
+                        function(data, status) {
+                            if (status && data) {
+
+                                swal({
+                                    title: data.info || "提交成功",
+                                    type: "success"
+                                },
+                                function() {
+                                    $("input:radio[id^='sex']").prop("checked", false);
+                                    $("input").val("");
+                                });
+                            } else {
+                                swal("提交失败", "", "error");
+                            }
                         }
-                    }
-                );
-            }
+                    );
+                }
+            },
         });
+        setTimeout(function(){
+            $("div.progress .progress-bar:first").width((75 / total * 100)+"%")
+            $("div.progress .progress-bar:eq(1)").width((50 / total * 100)+"%")
+            $("div.progress .progress-bar:last").width((((total - 125) /total) * 100)+"%")
+            $("#theshowblock").css("left",(p1_min +3.5)+"%")
+            $("#theshowblock").width((p_max - p_min - 2)+"%")
+        },500)
+        console.log(p_min)
+
     };
 </script>
 
