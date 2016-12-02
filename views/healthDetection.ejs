@@ -265,31 +265,34 @@
         columns_weights.push(weights_date,weights_value);
         columns_heart_rates.push(heart_rates_date,heart_rates_value);
         columns.push(columns_blood_glucose,columns_blood_pressure,columns_temperatures,columns_heart_rates,columns_weights);
-        var unit =["毫克/分升","毫米汞柱","°C","次/分钟","kg"];
-        for (var j = 0; j < tabs.length; j++) {
-            var chart = c3.generate({
-                bindto: '#chart_'+tabs[j],
-                data: {
-                    x: 'x',
-                    columns: columns[j]
-                },
-                axis: {
-                    x: {
-                        show: true,
-                        type: 'category',
+        var unit = ["毫克/分升","毫米汞柱","°C","次/分钟","kg"], charts = [],
+            createChart = function(id, columns, unit) {
+                c3.generate({
+                    bindto: '#chart_' + id,
+                    data: {
+                        x: 'x',
+                        columns: columns
                     },
-                    y: {
-                        tick: {
-                            format: function(d) {
-                                return (d);
+                    axis: {
+                        x: {
+                            show: true,
+                            type: 'category',
+                        },
+                        y: {
+                            tick: {
+                                format: function(d) {
+                                    return (d.toString() + " " + unit);
+                                }
                             }
                         }
+                    },
+                    subchart: {
+                       show: true
                     }
-                },
-                subchart: {
-                   show: true
-                }
-            });
+                });
+            };
+        for (var j = 0; j < tabs.length; j++) {
+            charts[j] = createChart(tabs[j], columns[j], unit[j]);
         }
     };
     $(function(){
