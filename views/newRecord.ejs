@@ -1774,23 +1774,19 @@
     </div>
 
 
-    <% needjquery="\
-    <script src='/javascripts/jquery.form.js'></script>\n\
-    <script>\n\
-        $(function() {\n\
-            $('input[type=radio][data-bindtext]').each(function() {\n\
-                $(this).click(function() {\n\
-                    radioOrText(this);\n\
-                });\n\
-            });\n\
-            var uid = ~~getvl('id');\n\
-            if (uid) {\n\
-                doAjax('http://192.168.1.229:3000/api/v1/patient_record/check', 'get', {'id': uid}, getUserInfoCallback);\n\
-            }\n\
-        });\n\
-    </script>"
-    %>
+    <script src='/javascripts/jquery.form.js'></script>
     <script>
+        $(function() {
+            $('input[type=radio][data-bindtext]').each(function() {
+                $(this).click(function() {
+                    radioOrText(this);
+                });
+            });
+            var uid = ~~getvl('id');
+            if (uid) {
+                doAjax('http://192.168.1.229:3000/api/v1/patient_record/check', 'get', {'id': uid}, getUserInfoCallback);
+            }
+        });
         var radioOrText = function(dom) {
             if (jQuery(dom).data("hastext")) {
                 jQuery("#" + jQuery(dom).data("bindtext")).removeAttr("disabled").focus();
