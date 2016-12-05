@@ -42,11 +42,16 @@ var doAjax = function(ajaxUrl, ajaxType, ajaxData, callbackFunc) {
             }
         }
     };
+    var authToken = false;
     if (typeof arguments[5] === "object") {
+        if (typeof arguments[5]["access-authorization"] !== "undefined") {
+            authToken = arguments[5]["access-authorization"];
+            delete arguments[5]["access-authorization"];
+        }
         $.extend(ajaxObj, arguments[5]);
     }
     ajaxObj.beforeSend = function (XHR) {
-        XHR.setRequestHeader('access-authorization', $.cookie('access_token') || "");
+        XHR.setRequestHeader('access-authorization', authToken || $.cookie('access_token') || "");
     };
     jQuery.ajax(ajaxObj);
 };
@@ -99,7 +104,7 @@ var checkIdCard = function(idcard) {
 * @author jshensh@126.com 2016-11-30
 */
 $.fn.customVal = function() {
-    if (arguments.length > 1 || !arguments[0]) {
+    if (arguments.length > 1) {
         return this;
     }
     if (!this.length) {
