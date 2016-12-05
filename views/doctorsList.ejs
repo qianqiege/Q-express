@@ -70,6 +70,7 @@
 
     </div>
 </div>
+<script src='/javascripts/jquery.form.js'></script>
 <script>
     var createUserDom = function(userObj){
         var template = "\n\
@@ -119,7 +120,7 @@
     var createRoleDom = function (dom){
         var template = "\n\
                                 <div class='col-sm-6'>\n\
-                                    <input type='checkbox' value='{__id__}' name='roleID'>\n\
+                                    <input type='checkbox' value='{__id__}' name='role_ids'>\n\
                                     <label for=''>{__name__}</label> \n\
                                 </div>"
         return template.replace(/\{__name__\}/g, dom["name"])
@@ -140,31 +141,29 @@
     var roleSubmit = function(){
         console.log(userId);
         console.log($("form").serialize());
-        debugger;
         doAjax('http://192.168.1.229:3000/api/v1/users/' + userId, 'put', JSON.stringify($('#roleDoctorsListForm').getValue()), function(data, status) {
-            console.log(data,status);
+            if(data,status){
+                $("#roleDoctorsList").modal("hide");
+                swal("提交成功", "", "success");
+            }
         }, {}, {contentType: 'application/json;charset=utf-8'})
     };
-</script>
-<% needjquery="\
-<script src='/javascripts/jquery.form.js'></script>\n\
-<script>\n\
-    var userId;\n\
-    $(function() {\n\
-        doAjax('http://192.168.1.229:3000/api/v1/users/all_users', 'get',{}, function(data, status) {\n\
-            if (status && data) {\n\
-                for(var i = 0;i < data.length;i++){\n\
-                    $('#all_contacts ul').append($(createUserDom(data[i])));\n\
-                }\n\
-            } else {\n\
-                $('#all_contacts ul:first').html('暂无医生');\n\
-            };\n\
-        });\n\
-        $('#roleDoctorsList').on('show.bs.modal', function (e) {\n\
-            userId = $(e.relatedTarget).data('id');\n\
+    var userId;
+    $(function() {
+        doAjax('http://192.168.1.229:3000/api/v1/users/all_users', 'get',{}, function(data, status) {
+            if (status && data) {
+                for(var i = 0;i < data.length;i++){
+                    $('#all_contacts ul').append($(createUserDom(data[i])));
+                }
+            } else {
+                $('#all_contacts ul:first').html('暂无医生');
+            };
+        });
+        $('#roleDoctorsList').on('show.bs.modal', function (e) {
+            userId = $(e.relatedTarget).data('id');
             // console.log(userId);\n\
-        });\n\
-    });\n\
-</script>"
-%>
+        });
+    });
+</script>
+
 <%- include footer %>
