@@ -88,7 +88,7 @@
 
     var doSearch = function(dom) {
         var val = dom.value.toLocaleUpperCase();
-        if (val.length="18" && checkIdCard(val) && !searching) {
+        if (val.length === 18 && checkIdCard(val) && !searching) {
             searching = true;
             doAjax("http://192.168.1.229:3000/api/v1/patient/get_by_id_number", "get", {"id_number": val}, function(data, status) {
                 searching = false;
