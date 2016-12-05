@@ -120,6 +120,7 @@
             doAjax("http://192.168.1.229:3000/api/v1/patient/get_by_id_number", "get", {"id_number": val}, function(data, status) {
                 searching = false;
                 if (status && data) {
+                    var todaydata =new Date().Format("yyyy-MM-dd");
                     $("#all_contacts ul:first").html($(createUserDom(data)));
                     $("#name").text(data.name);
                     $("#nation").text(data.nation);
@@ -128,7 +129,7 @@
                     $("#marriage").text(data.marriage);
                     $("#phone").text(data.phone);
                     $("#address").text(data.address);
-                    $("#today").text(currentDate.toLocaleDateString());
+                    $("#today").text(todaydata);
                 } else {
                     $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
                 }
