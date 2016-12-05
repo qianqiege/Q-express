@@ -1,118 +1,108 @@
 <%- include header %>
 <div class="page">
-  <div class="page-header">
-    <h1 class="page-title" style="text-align:center">深圳市第二人民医院</h1>
-  </div>
-  <div class="page-content">
-    <!-- Panel -->
-    <div class="panel">
-      <div class="panel-body container-fluid">
-        <form class="form-horizontal">
-          <div class="row">
-            <div class="col-xs-6 col-lg-3 offset-lg-1" style="float: left; display: inline;">
-              <label for="">处方编号：</label><span>212212121</span>
-            </div>
-            <div class="col-xs-12 col-lg-6">
-              <div class="form-group " style=" margin-bottom: 0px;">
-                  <div class="input-search">
-                    <button type="submit" class="input-search-btn"><i class="icon wb-search" aria-hidden="true"></i></button>
-                    <input type="text" class="form-control" style="padding-top: 2px;padding-bottom: 2px;" name="id_number" id="id_number" oninput="doSearch(this)" maxlength="18">
-                  </div>
+    <div class="page-header">
+        <h1 class="page-title" style="text-align:center">深圳市第二人民医院</h1>
+    </div>
+    <div class="page-content">
+        <!-- Panel -->
+        <div class="panel">
+            <div class="panel-body container-fluid">
+                <form class="form-horizontal">
+                    <div class="row">
+                        <div class="col-xs-6 col-lg-3 offset-lg-1" style="float: left; display: inline;">
+                            <label for="">处方编号：</label><span>212212121</span>
+                        </div>
+                        <div class="col-xs-12 col-lg-6">
+                            <div class="form-group " style=" margin-bottom: 0px;">
+                                <div class="input-search">
+                                    <button type="submit" class="input-search-btn"><i class="icon wb-search" aria-hidden="true"></i></button>
+                                    <input type="text" class="form-control" style="padding-top: 2px;padding-bottom: 2px;" name="id_number" id="id_number" oninput="doSearch(this)" maxlength="18">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-xs-12">
+                            <div class="tab-content">
+                                <div class="tab-pane animation-fade active" id="all_contacts" role="tabpanel">
+                                    <ul class="list-group"><li class='list-group-item text-md-center'>暂无搜索结果</li></ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <hr/>
+                    <div class="row">
+                        <p class="col-md-4 col-xs-12 offset-lg-1">
+                            医生：<span>医生1</span>
+                        </p>
+                        <p class="col-md-4 col-xs-12 offset-lg-2 ">
+                            开具日期：<span id= 'today'> </span>
+                        </p>
+                    </div>
+
+                    </form>
+
                 </div>
-             </div>
-            <div class="col-md-12 col-xs-12">
-                <div class="tab-content">
-                    <div class="tab-pane animation-fade active" id="all_contacts" role="tabpanel">
-                        <ul class="list-group"><li class='list-group-item text-md-center'>暂无搜索结果</li></ul>
+            </div>
+            <!-- End Panel -->
+        </div>
+    </div>
+    <div id="template" style="display:none">
+        <!-- 基本信息 -->
+        <br/>
+        <div id = "showProject" >
+            <div class="row">
+                <div class="form-group col-lg-11 offset-lg-1  col-xs-12">
+                    <h4>
+                        <i class="icon icon-color wb-user" aria-hidden="true"></i>个人信息
+                    </h4>
+                </div>
+                <div class="form-group col-lg-2 offset-lg-2  col-xs-12">
+                    姓名：<span id="name">name</span>
+                </div>
+                <div class="form-group col-lg-2 offset-lg-1  col-xs-12">
+                    民族：<span id="nation">{__nation__}</span>
+                </div>
+                <div class="form-group col-lg-2 offset-lg-1 col-xs-12">
+                    性别：<span id="sex">女</span>
+                </div>
+                <div class="form-group col-lg-4 offset-lg-2 col-xs-12">
+                    婚姻状况：<span id="marriage">未婚</span>
+                </div>
+                <div class="form-group col-lg-4  col-xs-12">
+                    出生日期：<span id="birthday">24</span>
+                </div>
+                <div class="form-group col-lg-4 offset-lg-2  col-xs-12">
+                    联系方式：<span id="phone">123456789</span>
+                </div>
+                <div class="form-group col-lg-4  col-xs-12">
+                    通讯地址：<span id="address">深圳市南山区</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-10 offset-lg-1  ">
+                    <h4><i class="icon icon-color wb-eye" aria-hidden="true"></i>个人健康状况评价</h4>
+                    <div class="form-group">
+                        <label class="form-control-label">生理方面: </label>
+                        <textarea class="form-control" rows="2"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label">情志方面: </label>
+                        <textarea class="form-control" rows="2"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label">营养方面: </label>
+                        <textarea class="form-control" rows="2"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label">生活方式方面: </label>
+                        <textarea class="form-control" rows="2"></textarea>
                     </div>
                 </div>
             </div>
-
-          </div>
-
-
-          <hr/>
-          <div class="row">
-            <p class="col-md-4 col-xs-12 offset-lg-1">
-              医生：<span>医生1</span>
-            </p>
-            <p class="col-md-4 col-xs-12 offset-lg-2 ">
-              费用：<span>444</span>
-            </p>
-          </div>
-          <div class="row">
-            <p class="col-md-4 col-xs-12 offset-lg-1">
-              收费员：<span>444</span>
-            <p class="col-md-4 col-xs-12 offset-lg-2 ">
-              开具日期：<span>2016-11-2</span>
-            </p>
-          </div>
-        </form>
-
-      </div>
-    </div>
-    <!-- End Panel -->
-  </div>
-</div>
-<div id="template" style="display:none">
-    <!-- 基本信息 -->
-    <br/>
-    <div id = "showProject" >
-        <div class="row">
-              <div class="form-group col-lg-11 offset-lg-1  col-xs-12">
-                <h4>
-                  <i class="icon icon-color wb-user" aria-hidden="true"></i>个人信息
-                </h4>
-              </div>
-              <div class="form-group col-lg-2 offset-lg-2  col-xs-12">
-                  姓名：<span id="name"> </span>
-              </div>
-              <div class="form-group col-lg-2 offset-lg-1  col-xs-12">
-                  民族：<span id="nation"> </span>
-              </div>
-              <div class="form-group col-lg-3 offset-lg-1 col-xs-12">
-                  出生日期：<span id="birthday"> </span>
-              </div>
-              <div class="form-group col-lg-2 offset-lg-2  col-xs-12">
-                  性别：<span id="sex"> </span>
-              </div>
-              <div class="form-group col-lg-2 offset-lg-1 col-xs-12">
-                  婚姻状况：<span id="marriage"> </span>
-              </div>
-              <div class="form-group col-lg-2 offset-lg-1  col-xs-12">
-                  职业：<span id="occupation"> </span>
-              </div>
-              <div class="form-group col-lg-4 offset-lg-2  col-xs-12">
-                  联系方式：<span id="phone"> </span>
-              </div>
-              <div class="form-group col-lg-4  col-xs-12">
-                  通讯地址：<span accesskey="" id="address"> </span>
-              </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-md-10 offset-lg-1  ">
-              <h4><i class="icon icon-color wb-eye" aria-hidden="true"></i>个人健康状况评价</h4>
-              <div class="form-group">
-                <label class="form-control-label">生理方面: </label>
-                <textarea class="form-control" rows="2"></textarea>
-              </div>
-              <div class="form-group">
-                <label class="form-control-label">情志方面: </label>
-                <textarea class="form-control" rows="2"></textarea>
-              </div>
-              <div class="form-group">
-                <label class="form-control-label">营养方面: </label>
-                <textarea class="form-control" rows="2"></textarea>
-              </div>
-              <div class="form-group">
-                <label class="form-control-label">生活方式方面: </label>
-                <textarea class="form-control" rows="2"></textarea>
-              </div>
-            </div>
         </div>
     </div>
-</div>
-<script>
+    <script>
     var searching = false;
 
     var doSearch = function(dom) {
@@ -122,16 +112,14 @@
             var createUserDom = function(userObj) {
                 var template = $("#template").html();
                 return template.replace(/\{__avatar__\}/g, userObj["avatar"] || "/images/1.jpg")
-                               .replace(/\{__name__\}/g, userObj["name"])
-                               .replace(/\{__id__\}/g, userObj["id"])
-                               .replace(/\{__idNumber__\}/g, userObj["idNumber"]);
+                .replace(/\{__name__\}/g, userObj["name"])
+                .replace(/\{__id__\}/g, userObj["id"])
+                .replace(/\{__idNumber__\}/g, userObj["idNumber"]);
             };
             searching = true;
             doAjax("http://192.168.1.229:3000/api/v1/patient/get_by_id_number", "get", {"id_number": val}, function(data, status) {
                 searching = false;
                 if (status && data) {
-                    console.log(data);
-                    console.log(data.name);
                     $("#all_contacts ul:first").html($(createUserDom(data)));
                     $("#name").text(data.name);
                     $("#nation").text(data.nation);
@@ -139,7 +127,8 @@
                     $("#sex").text(data.sex);
                     $("#marriage").text(data.marriage);
                     $("#phone").text(data.phone);
-                    $("#address").text(data.address);;
+                    $("#address").text(data.address);
+                    $("#today").text(currentDate.toLocaleDateString());
                 } else {
                     $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
                 }
@@ -148,6 +137,6 @@
             $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
         }
     };
-</script>
+    </script>
 
-<%- include footer %>
+    <%- include footer %>
