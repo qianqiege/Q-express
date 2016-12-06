@@ -1,0 +1,116 @@
+<%- include header %>
+<div class="page">
+	<div class="page-header">
+      <h1 class="page-title"><%= title %></h1>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+        <li class="breadcrumb-item"><a href="javascript:void(0)">Forms</a></li>
+        <li class="breadcrumb-item active">Wizard</li>
+      </ol>
+      <div class="page-header-actions">
+        <a class="btn btn-sm btn-primary btn-round waves-effect" href="#" onclick='$("#print-this").printArea()'>
+          <i class="icon wb-print" aria-hidden="true"></i>
+          <span class="hidden-sm-down">打印该页面</span>
+        </a>
+      </div>
+    </div>
+  <div class="page-content">
+    <div class="page-content">
+        <div class="panel">
+            <div class="panel-body">
+            <div id="print-this">
+                <div id="head">
+                    <img id="table-logo" src="/images/logo-blue.png"/>
+                    <h4 class="vertical-align-bottom pull-xs-right">御邦医通健康俱乐部 </h4>
+                    <script>
+                     setTimeout(function(){ $("#table-logo").next().css("margin-top",$("#table-logo").height() - $("#table-logo").next().height()+"px")},100)
+                    </script>
+                    <hr/>
+                </div>
+                <h2 class="text-xs-center">御邦医通疾病谱定位表</h2>
+                <h4 class="text-xs-right">编号: <span id="table_id">1234567890</span></h4>
+                <div>
+                  <div id="base_info">
+                      <h4>
+                        <i class="icon wb-user" aria-hidden="true"></i> 基本信息
+                      </h4>
+                      <table class="table">
+                          <tr>
+                            <td>姓名 : <span id="name">0-0</span></td>
+                            <td>性别 : <span id="sex">是个男的</span></td>
+                            <td>出生年月 : <span id="born_date">1926年8月17日</span></td>
+                          </tr>
+                          <tr>
+                            <td>婚姻状况 : <span id="marriage">还没找</span></td>
+                            <td>民族 : <span id="country">汉族</span></td>
+                            <td>联系方式 : <span id="contact">13800138000</span></td>
+                          </tr>
+                      </table>
+                  </div>
+                  <div id="rate">
+                      <h4>
+                        <i class="icon wb-book" aria-hidden="true"></i> 个人健康状态评价 
+                      </h4>
+                      <div class="row" style="font-size:16px; padding-bottom: 10px;">
+                            <div class="col-md-12">
+                                <div>生理方面 :
+                                  <p style="text-indent:25px" id="rate_sl">
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud officia deserunt mollit exercitation.
+                                  </p>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div>情志方面 :
+                                  <p style="text-indent:25px" id="rate_qz">
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud officia deserunt mollit exercitation.
+                                  </p>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div>营养方面 :
+                                  <p style="text-indent:25px" id="rate_yy">
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud officia deserunt mollit exercitation.
+                                  </p>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div>生活方式方面 :
+                                  <p style="text-indent:25px" id="rate_shfs">
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud officia deserunt mollit exercitation.
+                                  </p>
+                                </div>
+                            </div>
+                      </div>
+                  </div>
+                  <div id="issue">
+                      <table class="table">
+                          <tr>
+                              <th><h4>主症</h4></th>
+                              <th><h4>急症</h4></th>
+                              <th><h4>兼症</h4></th>
+                              <th><h4>次兼症</h4></th>
+                          </tr>
+                          <tr>
+                              <th>无</th>    
+                              <th>无</th> 
+                              <th>无</th> 
+                              <th>无</th> 
+                          </tr>
+                      </table>
+                  </div>
+                  <div>
+                      <h4>评估专家 : 某某某</h4>
+                      <h4>客服人员 : 某某某</h4>
+                      <h4>评估日期 : 某某某某年某月某日</h4>
+                  </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  </div>
+</div>
+<script src="/javascripts/jquery.PrintArea.js"></script>
+<%- include footer %>
