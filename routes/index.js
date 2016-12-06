@@ -92,4 +92,15 @@ router.get('/project3', function(req, res, next) {
 router.get('/adminIndex', function(req, res, next) {
     res.render('adminIndex', {title: "管理首页"});
 });
+
+router.get('/page/jibin', function(req, res, next) {
+    res.render('page_jibin', {title: "疾病谱定位表"});
+});
+
+router.get('/page/jiankang', function(req, res, next) {
+    res.render('page_jiankang', {title: "疾病谱定位表"});
+});
+
+
+
 module.exports = router;
