@@ -42,11 +42,16 @@ var doAjax = function(ajaxUrl, ajaxType, ajaxData, callbackFunc) {
             }
         }
     };
+    var authToken = false;
     if (typeof arguments[5] === "object") {
+        if (typeof arguments[5]["access-authorization"] !== "undefined") {
+            authToken = arguments[5]["access-authorization"];
+            delete arguments[5]["access-authorization"];
+        }
         $.extend(ajaxObj, arguments[5]);
     }
     ajaxObj.beforeSend = function (XHR) {
-        XHR.setRequestHeader('access-authorization', $.cookie('access_token') || "");
+        XHR.setRequestHeader('access-authorization', authToken || $.cookie('access_token') || "");
     };
     jQuery.ajax(ajaxObj);
 };
@@ -92,6 +97,83 @@ var checkIdCard = function(idcard) {
 }
 
 /**
+* jQuery val 的替代方法，增加了 select2 的赋值，checkbox 与 radio 赋值的校验
+*
+* @param value {(String | Object)=} 值
+* @return Object
+* @author jshensh@126.com 2016-11-30
+*/
+$.fn.customVal = function() {
+    if (arguments.length > 1) {
+        return this;
+    }
+    if (!this.length) {
+        return this;
+    }
+    var tag = this.prop("tagName").toLowerCase();
+    if (tag === "select") {
+        var usedSelect2 = true;
+        try {
+            this.select2("val");
+        } catch (e) {
+            usedSelect2 = false;
+        }
+        if (!arguments.length) {
+            return this.val();
+        } else {
+            try {
+                var tmp = JSON.parse(arguments[0]);
+                arguments[0] = tmp;
+            } catch(e) {
+                arguments[0] = [arguments[0]];
+            }
+            if (typeof arguments[0] !== "object") {
+                return this;
+            }
+            if (usedSelect2) {
+                return this.select2().val(arguments[0]).trigger("change");
+            } else {
+                return this.val(arguments[0]);
+            }
+        }
+    } else if (tag === "input") {
+        var type = this.attr("type") || "text";
+        switch (type) {
+            case "checkbox":
+            case "radio":
+                if (!arguments.length) {
+                    var result = [];
+                    this.filter(":checked").each(function() {
+                        result.push($(this).val());
+                    });
+                    return result;
+                } else {
+                    try {
+                        var tmp = JSON.parse(arguments[0]);
+                        arguments[0] = tmp;
+                    } catch(e) {
+                        arguments[0] = [arguments[0]];
+                    }
+                    if (typeof arguments[0] !== "object") {
+                        return this;
+                    }
+                    return this.val(arguments[0]);
+                }
+                break;
+            default:
+                if (!arguments.length) {
+                    return this.val();
+                } else {
+                    return this.val(arguments[0]);
+                }
+                break;
+        }
+    } else {
+        return this.val();
+    }
+};
+
+/**
 * 跳转至登录页
 *
 * @return void
@@ -102,6 +184,34 @@ var gotoLogin = function() {
         location.href = "/login";
         return true;
     }
+};
+
+/**
+* DateTime Format Prototype
+*
+* @param fmt {String} 输出格式
+* @return String 指定日期
+* @author jshensh@126.com 2016-12-05
+*/
+Date.prototype.Format = function(fmt) {
+    var o = {
+        "M+" : this.getMonth()+1,
+        "d+" : this.getDate(),
+        "h+" : this.getHours(),
+        "m+" : this.getMinutes(),
+        "s+" : this.getSeconds(),
+        "q+" : Math.floor((this.getMonth()+3)/3),
+        "S"  : this.getMilliseconds()
+    };
+    if (/(y+)/.test(fmt)) {
+        fmt = fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
+    }
+    for (var k in o) {
+        if (new RegExp("("+ k +")").test(fmt)) {
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+        }
+    }
+    return fmt;
 };
 
 $(function() {

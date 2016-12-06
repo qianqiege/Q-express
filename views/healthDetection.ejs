@@ -31,13 +31,7 @@
                                 <div role="tabpanel" class="tab-pane active" id="blood_pressure">
                                     <div style="margin-top: 10px;">
                                         <h3>数据图表</h3>
-                                        <div id="chart_blood_pressure"></div>
-                                        <script>
-                                        ///Demo Data
-                                        <% needjquery="<script>jQuery(document).ready(function() {var chart = c3.generate({bindto: '#chart_blood_pressure',data: {x: 'x',columns: [['x', '2016-11-11', '2016-11-12', '2016-11-13', '2016-11-14', '2016-11-15', '2016-11-16'],['收缩压', 110, 120, 115, 125, 120, 125],['舒张压', 88, 90, 92, 88, 90, 88]]},axis: {x: {show: true,type: 'category',},y: {tick: {format: function (d) { return  d+' 毫米汞柱'; }}}}});})</script>"
-                                        %>
-
-                                        </script>
+                                        <div id="chart_blood_pressures"></div>
                                     </div>
 
                                     <div style="margin-top: 10px;">
@@ -46,16 +40,12 @@
                                             <thead>
                                                 <tr>
                                                     <th>监测日期</th>
-                                                    <th>收缩压/舒张压</th>
+                                                    <th>收缩压</th>
+                                                    <th>舒张压</th>
                                                     <th>是否异常</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td> 2016-10-25 </td>
-                                                    <td> 120/90 </td>
-                                                    <td>  正常/正常</td>
-                                                </tr>
+                                            <tbody id="blood_pressures">
                                             </tbody>
                                             <tfoot>
 
@@ -67,13 +57,7 @@
                                 <div role="tabpanel" class="tab-pane" id="blood_sugar">
                                     <div style="margin-top: 10px;">
                                         <h3>数据图表</h3>
-                                        <div id="chart_blood_sugar"></div>
-                                        <script>
-                                        ///Demo Data
-                                        <% needjquery = needjquery+"<script>jQuery(document).ready(function() {var chart = c3.generate({bindto: '#chart_blood_sugar',data: {x: 'x',columns: [['x', '2016-11-11', '2016-11-12', '2016-11-13', '2016-11-14', '2016-11-15', '2016-11-16'],['餐前血糖', 5.2, 5, 5.3, 5.2, 4.9, 5.1],['餐后血糖', 6.0, 6.1, 7, 6.5, 6.1, 6.2]]},axis: {x: {show: true,type: 'category',},y: {tick: {format: function (d) { return ~~(d*10)/10+' 毫克/分升'; }}}}});})</script>"
-                                        %>
-
-                                        </script>
+                                        <div id="chart_blood_glucoses"></div>
                                     </div>
 
                                     <div style="margin-top: 10px;">
@@ -82,16 +66,12 @@
                                             <thead>
                                                 <tr>
                                                     <th>监测日期</th>
-                                                    <th>餐前血糖/餐后血糖</th>
+                                                    <th>餐前血糖</th>
+                                                    <th>餐后血糖</th>
                                                     <th>是否异常</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td> 2016-10-25 </td>
-                                                    <td> 6/5.2 </td>
-                                                    <td>  正常/正常</td>
-                                                </tr>
+                                            <tbody id="blood_glucoses">
                                             </tbody>
                                             <tfoot>
 
@@ -103,13 +83,7 @@
                                 <div role="tabpanel" class="tab-pane" id="temperature">
                                     <div style="margin-top: 10px;">
                                         <h3>数据图表</h3>
-                                        <div id="chart_temperature"></div>
-                                        <script>
-                                        ///Demo Data
-                                        <% needjquery= needjquery+"<script>jQuery(document).ready(function() {var chart = c3.generate({bindto: '#chart_temperature',data: {x: 'x',columns: [['x', '2016-11-11', '2016-11-12', '2016-11-13', '2016-11-14', '2016-11-15', '2016-11-16'],['体温', 36.7, 37.1, 37.2, 37.0, 36.8, 37.1]]},axis: {x: {show: true,type: 'category'},y: {tick: {format: function (d) { return  ~~(d*10)/10 +' °C'; }}}}});})</script>"
-                                        %>
-
-                                        </script>
+                                        <div id="chart_temperatures"></div>
                                     </div>
 
                                     <div style="margin-top: 10px;">
@@ -122,12 +96,7 @@
                                                     <th>是否异常</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td> 2016-10-25 </td>
-                                                    <td> 37.1 </td>
-                                                    <td>  正常</td>
-                                                </tr>
+                                            <tbody id="temperatures">
                                             </tbody>
                                             <tfoot>
 
@@ -139,13 +108,7 @@
                                 <div role="tabpanel" class="tab-pane" id="weight">
                                     <div style="margin-top: 10px;">
                                         <h3>数据图表</h3>
-                                        <div id="chart_weight"></div>
-                                        <script>
-                                        ///Demo Data
-                                        <% needjquery= needjquery+"<script>jQuery(document).ready(function() {var chart = c3.generate({bindto: '#chart_weight',data: {x: 'x',columns: [['x', '2016-11-11', '2016-11-12', '2016-11-13', '2016-11-14', '2016-11-15', '2016-11-16'],['体重', 65.4, 66, 65.8, 65.9, 65.5, 66]]},axis: {x: {show: true,type: 'category',},y: {tick: {format: function (d) { return  ~~(d*10)/10+' kg'; }}}}});})</script>"
-                                        %>
-
-                                        </script>
+                                        <div id="chart_weights"></div>
                                     </div>
 
                                     <div style="margin-top: 10px;">
@@ -158,12 +121,7 @@
                                                     <th>是否异常</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td> 2016-10-25 </td>
-                                                    <td> 65.8 </td>
-                                                    <td>  正常</td>
-                                                </tr>
+                                            <tbody id="weights">
                                             </tbody>
                                             <tfoot>
 
@@ -175,13 +133,7 @@
                                 <div role="tabpanel" class="tab-pane" id="heart_rate">
                                     <div style="margin-top: 10px;">
                                         <h3>数据图表</h3>
-                                        <div id="chart_heart_rate"></div>
-                                        <script>
-                                        ///Demo Data
-                                        <% needjquery= needjquery+"<script>jQuery(document).ready(function() {var chart = c3.generate({bindto: '#chart_heart_rate',data: {x: 'x',columns: [['x', '2016-11-11', '2016-11-12', '2016-11-13', '2016-11-14', '2016-11-15', '2016-11-16'],['心率', 72, 65, 68, 81, 72, 76]]},axis: {x: {show: true,type: 'category',},y: {tick: {format: function (d) { return  d+' 次/分钟'; }}}}});})</script>"
-                                        %>
-
-                                        </script>
+                                        <div id="chart_heart_rates"></div>
                                     </div>
 
                                     <div style="margin-top: 10px;">
@@ -194,12 +146,7 @@
                                                     <th>是否异常</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td> 2016-10-25 </td>
-                                                    <td> 72 </td>
-                                                    <td> 正常</td>
-                                                </tr>
+                                            <tbody id="heart_rates">
                                             </tbody>
                                             <tfoot>
 
@@ -247,11 +194,116 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Tab panes -->
             </div>
         </div>
     </div>
 </div>
+<script>
+    var createTr = function (obj) {
+        return "<tr><td>" + obj.join("</td><td>") + "</td></tr>";
+    };
 
+    var cbFunction = function(data,status){
+        var tabs = ['blood_glucoses', 'blood_pressures', 'temperatures', 'heart_rates', 'weights'];
+        var columns = [];
+        var max_blood_pressure = ['收缩压'];
+        var min_blood_pressure = ['舒张压'];
+        var blood_pressure_date = ['x'];
+        var columns_blood_pressure =[];
+        var before_blood_glucose = ['餐前血糖'];
+        var after_blood_glucose = ['餐后血糖'];
+        var blood_glucose_date = ['x'];
+        var columns_blood_glucose =[];
+        var temperatures_value = ['体温'];
+        var temperatures_date = ['x'];
+        var columns_temperatures =[];
+        var weights_value = ['	体重'];
+        var weights_date = ['x'];
+        var columns_weights =[];
+        var heart_rates_value = ['心率'];
+        var heart_rates_date = ['x'];
+        var columns_heart_rates =[];
+        for (var k = 0; k < tabs.length; k++) {
+            for(var i = 0; i < data[tabs[k]].length; i++){
+                switch (tabs[k]) {
+                    case 'blood_glucoses':
+                        var tr = [data[tabs[k]][i]['datetime'], data[tabs[k]][i]['before_blood_glucose'], data[tabs[k]][i]['after_blood_glucose']];
+                        before_blood_glucose.push(data[tabs[k]][i]['before_blood_glucose']);
+                        after_blood_glucose.push(data[tabs[k]][i]['after_blood_glucose']);
+                        blood_glucose_date.push(data[tabs[k]][i]['datetime']);
+                        break;
+                    case 'blood_pressures':
+                        var tr = [data[tabs[k]][i]['datetime'], data[tabs[k]][i]['max_blood_pressure'], data[tabs[k]][i]['min_blood_pressure']];
+                        max_blood_pressure.push(data[tabs[k]][i]['max_blood_pressure']);
+                        min_blood_pressure.push(data[tabs[k]][i]['min_blood_pressure']);
+                        blood_pressure_date.push(data[tabs[k]][i]['datetime']);
+                        break;
+                    case 'temperatures':
+                        var tr = [data[tabs[k]][i]['datetime'], data[tabs[k]][i]['value']];
+                        temperatures_value.push(data[tabs[k]][i]['value']);
+                        temperatures_date.push(data[tabs[k]][i]['datetime']);
+                        break;
+                    case 'heart_rates':
+                        var tr = [data[tabs[k]][i]['datetime'], data[tabs[k]][i]['value']];
+                        heart_rates_value.push(data[tabs[k]][i]['value']);
+                        heart_rates_date.push(data[tabs[k]][i]['datetime']);
+                        break;
+                    case 'weights':
+                        var tr = [data[tabs[k]][i]['datetime'], data[tabs[k]][i]['value']];
+                        weights_value.push(data[tabs[k]][i]['value']);
+                        weights_date.push(data[tabs[k]][i]['datetime']);
+                        break;
+                }
+                tr.push('正常/正常');
+                $('#' + tabs[k]).append($(createTr(tr)));
+            }
+        }
+        columns_blood_pressure.push(blood_pressure_date,min_blood_pressure,max_blood_pressure);
+        columns_blood_glucose.push(blood_glucose_date,before_blood_glucose,after_blood_glucose);
+        columns_temperatures.push(temperatures_date,temperatures_value);
+        columns_weights.push(weights_date,weights_value);
+        columns_heart_rates.push(heart_rates_date,heart_rates_value);
+        columns.push(columns_blood_glucose,columns_blood_pressure,columns_temperatures,columns_heart_rates,columns_weights);
+        var unit = ["毫克/分升","毫米汞柱","°C","次/分钟","kg"], charts = [],
+            createChart = function(id, columns, unit) {
+                c3.generate({
+                    bindto: '#chart_' + id,
+                    data: {
+                        x: 'x',
+                        columns: columns
+                    },
+                    axis: {
+                        x: {
+                            show: true,
+                            type: 'category',
+                        },
+                        y: {
+                            tick: {
+                                format: function(d) {
+                                    return (d.toString() + " " + unit);
+                                }
+                            }
+                        }
+                    },
+                    subchart: {
+                       show: true
+                    }
+                });
+            };
+        for (var j = 0; j < tabs.length; j++) {
+            charts[j] = createChart(tabs[j], columns[j], unit[j]);
+        }
+    };
+    $(function(){
+        var uid =  ~~getvl('id');
+        if (!uid) {
+            swal({title: 'id 错误', type: 'error'}, function() {
+                window.close();
+            });
+            return;
+        }
+        doAjax('http://192.168.1.229:3000/api/v1/examination_check', 'get', {'patient_id': uid}, cbFunction);
+    });
+</script>
 <%- include footer %>

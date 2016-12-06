@@ -70,6 +70,10 @@ router.get('/fileQuery', function(req, res, next) {
     res.render('fileQuery', {title: "档案查询"});
 });
 
+router.get('/diseaseLocation', function(req, res, next) {
+    res.render('diseaseLocation', {title: "疾病定位"});
+});
+
 router.get('/project2', function(req, res, next) {
     res.render('project2', {title: "档案查询"});
 });
