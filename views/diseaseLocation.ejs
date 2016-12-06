@@ -1,7 +1,7 @@
 <%- include header %>
 <div class="page">
     <div class="page-header">
-        <h1 class="page-title" style="text-align:center">深圳市第二人民医院</h1>
+        <h1 class="page-title" style="text-align:center" id="hospital-title"> </h1>
     </div>
     <div class="page-content">
         <!-- Panel -->
@@ -10,7 +10,7 @@
                 <form class="form-horizontal">
                     <div class="row">
                         <div class="col-xs-6 col-lg-3 offset-lg-1" style="float: left; display: inline;">
-                            <label for="">处方编号：</label><span>212212121</span>
+                            <label for="">病例编号：</label><span id="recipe_number"> </span>
                         </div>
                         <div class="col-xs-12 col-lg-6">
                             <div class="form-group " style=" margin-bottom: 0px;">
@@ -27,9 +27,7 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
                     <hr/>
                     <div class="row">
                         <p class="col-md-4 col-xs-12 offset-lg-1">
@@ -134,6 +132,14 @@
 <script>
 var searching = false;
 var temp_data;
+var dogethospital = function() {
+    doAjax("http://192.168.1.229:3000/api/v1/recipe/recipe_info", "get", {"category": "疾病谱定位科"}, function(data, status) {
+        if (status && data) {
+            $("#hospital-title").html(data.hospital);
+            $("#recipe_number").text(data.recipe_number)
+        }
+    });
+};
 var doSearch = function(dom) {
     var val = dom.value.toLocaleUpperCase();
     if (val.length===18  && checkIdCard(val) && !searching) {
@@ -146,7 +152,6 @@ var doSearch = function(dom) {
         doAjax("http://192.168.1.229:3000/api/v1/patient/get_by_id_number", "get", {"id_number": val}, function(data, status) {
             searching = false;
             if (status && data) {
-                console.log(data);
                 var todaydata =new Date().Format("yyyy-MM-dd");
                 $("#all_contacts ul:first").html($(createUserDom(data)));
                 $("#name").text(data.name);
@@ -158,6 +163,7 @@ var doSearch = function(dom) {
                 $("#address").text(data.address);
                 $("#today").text(todaydata);
                 temp_data = data;
+                dogethospital();
             } else {
                 $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
             }
