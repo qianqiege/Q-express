@@ -25,7 +25,6 @@
             </div>
           </div>
           <br/>
-          <div id="projects"><div>
           <div id = "showProject" style="display:none">
               <div class="row">
                     <div class="form-group col-lg-11 offset-lg-1  col-xs-12">
@@ -148,19 +147,14 @@
     //
     // });
     var searching = false;
+    var template = $("#showProject").html()
     var doSearch = function (dom){
         if (dom.value.length="18" && checkIdCard(dom.value) && !searching){
-            var createUserDom = function(userObj) {
-                var template = $("#showProject").html();
-                console.log($("#showProject").html());
-                return template;
-            };
             searching = true;
             doAjax("http://192.168.1.229:3000/api/v1/patient/get_by_id_number","get",{"id_number": dom.value},function(data, status){
                 searching = false;
                 if (status && data){
-                    console.log($(createUserDom(data)),createUserDom(data));
-                    $("#projects").html($(createUserDom(data)));
+                    $("#showProject").html(template);
                     $("#name").text(data.name);
                     $("#nation").text(data.nation);
                     $("#sex").text(data.sex);
@@ -168,13 +162,13 @@
                     $("#address").text(data.address);
                     $("#birthday").text(data.birthday);
                     $("#marriage").text(data.marriage);
-                    $("#showProject").html("helo");
+                    $("#showProject").show();
                 }else{
-                    $("#projects").html("暂无搜索结果");
+                    $("#showProject").html("暂无搜索结果");
                 }
             });
         } else {
-            $("#projects").html("暂无搜索结果");
+            $("#showProject").html("暂无搜索结果");
         }
     };
 
