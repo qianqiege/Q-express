@@ -98,7 +98,7 @@ router.get('/page/jibin', function(req, res, next) {
 });
 
 router.get('/page/jiankang', function(req, res, next) {
-    res.render('page_jiankang', {title: "疾病谱定位表"});
+    res.render('page_jiankang', {title: "健康管理方案"});
 });
 
 
