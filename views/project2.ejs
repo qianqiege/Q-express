@@ -1,7 +1,7 @@
 <%- include header %>
 <div class="page">
     <div class="page-header">
-        <h1 class="page-title" style="text-align:center" id="hospital-title"> </h1>
+        <h1 class="page-title" style="text-align:center" id="hospital"> </h1>
     </div>
     <div class="page-content">
         <!-- Panel -->
@@ -46,7 +46,7 @@
         <!-- End Panel -->
     </div>
 </div>
-<div id = "showProject" style="display:none">
+<div id="showProject">
     <hr/>
     <div class="row">
         <div class="form-group col-lg-11 offset-lg-1  col-xs-12">
@@ -105,37 +105,26 @@
     <div class="row">
         <div class="form-group col-xs-12 col-md-4 offset-lg-1">
             <label for="health_survey4_1">方案</label>
-            <select id="health_survey4_1" class="form-control" multiple data-plugin="select2" name="health_survey4" onclick="">
-                <optgroup label="">
-                    <option>排毒方</option>
-                    <option>减肥美容方</option>
-                    <option>糖尿病方 </option>
-                    <option>冠心病方</option>
-                    <option>高脂血症方</option>
-                    <option>慢性阻塞性肺病方 </option>
-                    <option>活力功能方</option>
-                </optgroup>
+            <select id="health_survey4_1" class="form-control" multiple data-plugin="select2" name="health_survey4">
+
             </select>
         </div>
         <div class="form-group col-xs-12 col-md-4 offset-lg-2 ">
-            <label for="health_survey4_1">费别</label>
-            <select id="health_survey4_1" class="form-control"  data-plugin="select2" name="health_survey4">
-                <optgroup label="">
-                    <option>公费</option>
-                    <option>自费</option>
-                    <option>医保 </option>
-                    <option>其它</option>
-                </optgroup>
+            <label for="health_survey4_2">费别</label>
+            <select id="health_survey4_2" class="form-control" data-plugin="select2" name="health_survey5">
+                <option>公费</option>
+                <option>自费</option>
+                <option>医保 </option>
+                <option>其它</option>
             </select>
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-12 col-lg-10 offset-lg-1"><div id="exampleBasic" class="form-group jsgrid" ></div></div>
-
+        <div class="col-xs-12 col-lg-10 offset-lg-1"><div id="exampleBasic" class="form-group jsgrid"></div></div>
     </div>
     <div class="row">
         <div class="col-xs-12 col-lg-2 offset-lg-9 ">
-            <button type="button" class="btn  btn-block btn-primary">开方 </button>
+            <button type="button" class="btn btn-block btn-primary">开方 </button>
         </div>
     </div>
     <hr/>
@@ -151,10 +140,61 @@
 <script>
 var searching = false;
 var temp_data;
-var dogethospital = function() {
-    doAjax("http://192.168.1.229:3000/api/v1/recipe/recipe_info", "get", {"category": "疾病谱定位科"}, function(data, status) {
+var template = $("#showProject").html();
+$("#showProject").remove();
+var jsgriddata = function() {
+    (function() {
+        $('#exampleBasic').jsGrid({
+            height: "300px",
+            width: "100%",
+
+            inserting: true,
+            editing: true,
+            sorting: true,
+            paging: true,
+            autoload: true,
+
+            pageSize: 15,
+            pageButtonCount: 5,
+
+            deleteConfirm: "确定要删除吗?",
+
+            controller: db,
+
+            fields: [{
+                name: "方案",
+                type: "select",
+                items: db.projects,
+                valueField: "Id",
+                textField: "Name"
+            },{
+                name: "产品名",
+                type: "select",
+                items: db.products,
+                valueField: "Id",
+                textField: "Name"
+            }, {
+                name: "用法",
+                type: "text",
+                width: 200
+            },{
+                name: "实际数量",
+                type: "number",
+                width: 70
+            },{
+                name: "数量",
+                type: "number",
+                width: 70
+            }, {
+                type: "control"
+            }]
+        });
+    })();
+};
+var gethospital = function() {
+    doAjax("http://192.168.1.229:3000/api/v1/recipe/recipe_info", "get", {"category": "健康管理科"}, function(data, status) {
         if (status && data) {
-            $("#hospital-title").html(data.hospital);
+            $("#hospital").html(data.hospital);
             $("#doctor").html(data.doctor);
         }
     });
@@ -164,8 +204,8 @@ var doSearch = function(dom) {
     if (val.length===18  && checkIdCard(val) && !searching) {
 
         var createUserDom = function(userObj) {
-            var template = $("#showProject").html();
-            return template;
+            t_template = template;
+            return t_template;
         };
         searching = true;
         doAjax("http://192.168.1.229:3000/api/v1/registration/get_number", "get", {"id_number": val}, function(data, status) {
@@ -173,13 +213,17 @@ var doSearch = function(dom) {
             if (status && data) {
                 var todaydata =new Date().Format("yyyy-MM-dd");
                 $("#all_contacts ul:first").html($(createUserDom(data)));
+                $("#health_survey4_1").select2();
+                $("#health_survey4_2").select2();
+                jsgriddata();
                 for (var i in data.patient) {
                     $("#" + i).text(data.patient[i] || "无");
-                }
-                $("#recipe_number").text(data.registration.number)
+                };
+                $("#recipe_number").text(data.registration.number);
                 $("#today").text(todaydata);
                 temp_data = data;
-                dogethospital();
+                gethospital();
+                console.log(data);
             } else {
                 $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
             }
