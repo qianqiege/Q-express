@@ -142,7 +142,8 @@ var searching = false;
 var temp_data;
 var template = $("#showProject").html();
 $("#showProject").remove();
-var jsgriddata = function() {
+
+var jsGridFrom = function() {
     (function() {
         $('#exampleBasic').jsGrid({
             height: "300px",
@@ -191,6 +192,15 @@ var jsgriddata = function() {
         });
     })();
 };
+var getProgramme = function() {
+    doAjax("http://192.168.1.229:3000/api/v1/programme/programme_list", "get", {}, function(data, status) {
+        if (status && data) {
+            for (var i in data) {
+                $("#health_survey4_1").append($('<option value="'+data[i]["id"]+'">'+data[i]["name"]+"</option>"));
+            }
+        }
+    });
+};
 var gethospital = function() {
     doAjax("http://192.168.1.229:3000/api/v1/recipe/recipe_info", "get", {"category": "健康管理科"}, function(data, status) {
         if (status && data) {
@@ -214,8 +224,9 @@ var doSearch = function(dom) {
                 var todaydata =new Date().Format("yyyy-MM-dd");
                 $("#all_contacts ul:first").html($(createUserDom(data)));
                 $("#health_survey4_1").select2();
+                getProgramme();
                 $("#health_survey4_2").select2();
-                jsgriddata();
+                jsGridFrom();
                 for (var i in data.patient) {
                     $("#" + i).text(data.patient[i] || "无");
                 };
@@ -223,7 +234,6 @@ var doSearch = function(dom) {
                 $("#today").text(todaydata);
                 temp_data = data;
                 gethospital();
-                console.log(data);
             } else {
                 $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
             }
