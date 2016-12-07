@@ -1,176 +1,147 @@
 <%- include header %>
 <div class="page">
-  <div class="page-header">
-    <h1 class="page-title" style="text-align:center">深圳市第二人民医院</h1>
-  </div>
-  <div class="page-content">
-    <!-- Panel -->
-    <div class="panel">
-      <div class="panel-body container-fluid">
-        <form class="form-horizontal" onsubmit="return false;">
-          <div class="row">
-            <div class="col-xs-6 col-lg-3 offset-lg-1" style="float: left; display: inline;">
-              <label for="">处方号：</label><span>212212121</span>
-            </div>
-            <div class="col-xs-6 col-lg-2 offset-lg-2 text-xs-right" style="float: right;display: inline;">
-              <label for="">科室：</label><span>健康管理科</span>
-            </div>
-            <div class="col-xs-12 col-lg-4">
-              <div class="form-group " style=" margin-bottom: 0px ;">
-                  <div class="input-search">
-                    <button type="submit" class="input-search-btn"><i class="icon wb-search" aria-hidden="true"></i></button>
-                    <input type="text" class="form-control" name="search" placeholder="" style="padding-top: 2px;padding-bottom: 2px;" oninput="doSearch(this);" maxlength="18">
-                  </div>
-                </div>
-            </div>
-          </div>
-          <br/>
-          <div id = "showProject" style="display:none">
-              <div class="row">
-                    <div class="form-group col-lg-11 offset-lg-1  col-xs-12">
-                      <h4>
-                        <i class="icon icon-color wb-user" aria-hidden="true"></i>个人信息
-                      </h4>
-                    </div>
-                    <div class="form-group col-lg-2 offset-lg-2  col-xs-12">
-                        姓名：<span id="name"></span>
-                    </div>
-                    <div class="form-group col-lg-2 offset-lg-1  col-xs-12">
-                        民族：<span id="nation"></span>
-                    </div>
-                    <div class="form-group col-lg-2 offset-lg-1 col-xs-12">
-                        性别：<span id="sex"></span>
-                    </div>
-                    <div class="form-group col-lg-4 offset-lg-2 col-xs-12">
-                        婚姻状况：<span id="marriage"></span>
-                    </div>
-                    <div class="form-group col-lg-4  col-xs-12">
-                        出生日期：<span id="birthday"></span>
-                    </div>
-                    <div class="form-group col-lg-4 offset-lg-2  col-xs-12">
-                        联系方式：<span id="phone"></span>
-                    </div>
-                    <div class="form-group col-lg-4  col-xs-12">
-                        通讯地址：<span id="address"></span>
-                    </div>
-              </div>
-              <div class="row">
-                  <div class="col-xs-12 col-md-10 offset-lg-1  ">
-                    <h4><i class="icon icon-color wb-eye" aria-hidden="true"></i>健康管理指导意见</h4>
-                    <div class="form-group">
-                      <label class="form-control-label">生理方面: </label>
-                      <textarea class="form-control" rows="2"></textarea>
-                    </div>
-                    <div class="form-group">
-                      <label class="form-control-label">情志方面: </label>
-                      <textarea class="form-control" rows="2"></textarea>
-                    </div>
-                    <div class="form-group">
-                      <label class="form-control-label">营养方面: </label>
-                      <textarea class="form-control" rows="2"></textarea>
-                    </div>
-                    <div class="form-group">
-                      <label class="form-control-label">生活方式方面: </label>
-                      <textarea class="form-control" rows="2"></textarea>
-                    </div>
-                  </div>
-              </div>
-              <div class="row">
-                <h4 class=" col-xs-12 col-lg-10 offset-lg-1">
-                  <i class="icon icon-color wb-order" aria-hidden="true"></i>方案
-                </h4>
-              </div>
-              <div class="row">
-                <div class="form-group col-xs-12 col-md-4 offset-lg-1">
-                  <label for="health_survey4_1">方案</label>
-                  <select id="health_survey4_1" class="form-control" multiple data-plugin="select2" name="health_survey4" onclick="">
-                    <optgroup label="">
-                    <option>排毒方</option>
-                    <option>减肥美容方</option>
-                    <option>糖尿病方 </option>
-                    <option>冠心病方</option>
-                    <option>高脂血症方</option>
-                    <option>慢性阻塞性肺病方 </option>
-                    <option>活力功能方</option>
-                    </optgroup>
-                  </select>
-                </div>
-                <div class="form-group col-xs-12 col-md-4 offset-lg-2 ">
-                 <label for="health_survey4_1">费别</label>
-                 <select id="health_survey4_1" class="form-control"  data-plugin="select2" name="health_survey4">
-                   <optgroup label="">
-                   <option>公费</option>
-                   <option>自费</option>
-                   <option>医保 </option>
-                   <option>其它</option>
-                   </optgroup>
-                 </select>
-               </div>
-              </div>
-              <div class="row">
-                <div class="col-xs-12 col-lg-10 offset-lg-1"><div id="exampleBasic" class="form-group jsgrid" ></div></div>
-
-              </div>
-              <div class="row">
-                <div class="col-xs-12 col-lg-2 offset-lg-9 ">
-                  <button type="button" class="btn  btn-block btn-primary">开方 </button>
-                </div>
-              </div>
-          </div>
-          <hr/>
-          <div class="row">
-            <p class="col-md-4 col-xs-12 offset-lg-1">
-              医生：<span>医生1</span>
-            </p>
-            <p class="col-md-4 col-xs-12 offset-lg-2 ">
-              费用：<span>444</span>
-            </p>
-          </div>
-          <div class="row">
-            <p class="col-md-4 col-xs-12 offset-lg-1">
-              收费员：<span>444</span>
-            <p class="col-md-4 col-xs-12 offset-lg-2 ">
-              开具日期：<span>2016-11-2</span>
-            </p>
-          </div>
-        </form>
-
-      </div>
+    <div class="page-header">
+        <h1 class="page-title" style="text-align:center">深圳市第二人民医院</h1>
     </div>
-    <!-- End Panel -->
-  </div>
-</div>
-<script>
-    // $(function(){
-    //     var cbFunction = function(data,status){console.log(data)};
-    //     doAjax("http://192.168.1.229:3000/api/v1/single_recipe/recipe_info","get",{},cbFunction);
-    //
-    // });
-    var searching = false;
-    var template = $("#showProject").html()
-    var doSearch = function (dom){
-        if (dom.value.length="18" && checkIdCard(dom.value) && !searching){
-            searching = true;
-            doAjax("http://192.168.1.229:3000/api/v1/patient/get_by_id_number","get",{"id_number": dom.value},function(data, status){
-                searching = false;
-                if (status && data){
-                    $("#showProject").html(template);
-                    $("#name").text(data.name);
-                    $("#nation").text(data.nation);
-                    $("#sex").text(data.sex);
-                    $("#phone").text(data.phone);
-                    $("#address").text(data.address);
-                    $("#birthday").text(data.birthday);
-                    $("#marriage").text(data.marriage);
-                    $("#showProject").show();
-                }else{
-                    $("#showProject").html("暂无搜索结果");
-                }
-            });
-        } else {
-            $("#showProject").html("暂无搜索结果");
-        }
-    };
+    <div class="page-content">
+        <!-- Panel -->
+        <div class="panel">
+            <div class="panel-body container-fluid">
+                <form class="form-horizontal" onsubmit="return false;">
+                    <div class="row">
+                        <div class="col-xs-6 col-lg-3 offset-lg-1" style="float: left; display: inline;">
+                            <label for="">处方号：</label><span>212212121</span>
+                        </div>
+                        <div class="col-xs-6 col-lg-2 offset-lg-2 text-xs-right" style="float: right;display: inline;">
+                            <label for="">科室：</label><span>健康管理科</span>
+                        </div>
+                        <div class="col-xs-12 col-lg-4">
+                            <div class="form-group " style=" margin-bottom: 0px ;">
+                                <div class="input-search">
+                                    <button type="submit" class="input-search-btn"><i class="icon wb-search" aria-hidden="true"></i></button>
+                                    <input type="text" class="form-control" name="search" placeholder="" style="padding-top: 2px;padding-bottom: 2px;" oninput="doSearch(this);" maxlength="18">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <div id = "showProject" style="display:none">
+                        <div class="row">
+                            <div class="form-group col-lg-11 offset-lg-1  col-xs-12">
+                                <h4>
+                                    <i class="icon icon-color wb-user" aria-hidden="true"></i>个人信息
+                                </h4>
+                            </div>
+                            <div class="form-group col-lg-2 offset-lg-2  col-xs-12">
+                                姓名：<span id="name"></span>
+                            </div>
+                            <div class="form-group col-lg-2 offset-lg-1  col-xs-12">
+                                民族：<span id="nation"></span>
+                            </div>
+                            <div class="form-group col-lg-2 offset-lg-1 col-xs-12">
+                                性别：<span id="sex"></span>
+                            </div>
+                            <div class="form-group col-lg-4 offset-lg-2 col-xs-12">
+                                婚姻状况：<span id="marriage"></span>
+                            </div>
+                            <div class="form-group col-lg-4  col-xs-12">
+                                出生日期：<span id="birthday"></span>
+                            </div>
+                            <div class="form-group col-lg-4 offset-lg-2  col-xs-12">
+                                联系方式：<span id="phone"></span>
+                            </div>
+                            <div class="form-group col-lg-4  col-xs-12">
+                                通讯地址：<span id="address"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-10 offset-lg-1  ">
+                                <h4><i class="icon icon-color wb-eye" aria-hidden="true"></i>健康管理指导意见</h4>
+                                <div class="form-group">
+                                    <label class="form-control-label">生理方面: </label>
+                                    <textarea class="form-control" rows="2"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-control-label">情志方面: </label>
+                                    <textarea class="form-control" rows="2"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-control-label">营养方面: </label>
+                                    <textarea class="form-control" rows="2"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-control-label">生活方式方面: </label>
+                                    <textarea class="form-control" rows="2"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <h4 class=" col-xs-12 col-lg-10 offset-lg-1">
+                                <i class="icon icon-color wb-order" aria-hidden="true"></i>方案
+                            </h4>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-xs-12 col-md-4 offset-lg-1">
+                                <label for="health_survey4_1">方案</label>
+                                <select id="health_survey4_1" class="form-control" multiple data-plugin="select2" name="health_survey4" onclick="">
+                                    <optgroup label="">
+                                        <option>排毒方</option>
+                                        <option>减肥美容方</option>
+                                        <option>糖尿病方 </option>
+                                        <option>冠心病方</option>
+                                        <option>高脂血症方</option>
+                                        <option>慢性阻塞性肺病方 </option>
+                                        <option>活力功能方</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-4 offset-lg-2 ">
+                                <label for="health_survey4_1">费别</label>
+                                <select id="health_survey4_1" class="form-control"  data-plugin="select2" name="health_survey4">
+                                    <optgroup label="">
+                                        <option>公费</option>
+                                        <option>自费</option>
+                                        <option>医保 </option>
+                                        <option>其它</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-lg-10 offset-lg-1"><div id="exampleBasic" class="form-group jsgrid" ></div></div>
 
-</script>
-<%- include footer %>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-lg-2 offset-lg-9 ">
+                                <button type="button" class="btn  btn-block btn-primary">开方 </button>
+                            </div>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="row">
+                        <p class="col-md-4 col-xs-12 offset-lg-1">
+                            医生：<span>医生1</span>
+                        </p>
+                        <p class="col-md-4 col-xs-12 offset-lg-2 ">
+                            费用：<span>444</span>
+                        </p>
+                    </div>
+                    <div class="row">
+                        <p class="col-md-4 col-xs-12 offset-lg-1">
+                            收费员：<span>444</span>
+                            <p class="col-md-4 col-xs-12 offset-lg-2 ">
+                                开具日期：<span>2016-11-2</span>
+                            </p>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+            <!-- End Panel -->
+        </div>
+    </div>
+    <script>
+
+
+    </script>
+    <%- include footer %>
