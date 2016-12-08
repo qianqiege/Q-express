@@ -74,6 +74,11 @@ router.get('/diseaseLocation', function(req, res, next) {
     res.render('diseaseLocation', {title: "疾病定位"});
 });
 
+router.get('/registeredPost', function(req, res, next) {
+    res.render('registeredPost', {title: "挂号"});
+});
+
+
 router.get('/project2', function(req, res, next) {
     res.render('project2', {title: "档案查询"});
 });
@@ -100,6 +105,7 @@ router.get('/page/jibin', function(req, res, next) {
 router.get('/page/jiankang', function(req, res, next) {
     res.render('page_jiankang', {title: "健康管理方案"});
 });
+
 
 
 
