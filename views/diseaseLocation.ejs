@@ -31,10 +31,10 @@
                     <hr/>
                     <div class="row">
                         <p class="col-md-4 col-xs-12 offset-lg-1">
-                            医生：<span>医生1</span>
+                            医生：<span id="doctor"> </span>
                         </p>
                         <p class="col-md-4 col-xs-12 offset-lg-2 ">
-                            开具日期：<span id= 'today'> </span>
+                            开具日期：<span id= "today"> </span>
                         </p>
                     </div>
 
@@ -132,11 +132,11 @@
 <script>
 var searching = false;
 var temp_data;
-var dogethospital = function() {
+var getHospital = function() {
     doAjax("http://192.168.1.229:3000/api/v1/recipe/recipe_info", "get", {"category": "疾病谱定位科"}, function(data, status) {
         if (status && data) {
-            $("#hospital-title").html(data.hospital);
-            $("#recipe_number").text(data.recipe_number)
+            $("#hospital-title").text(data.hospital);
+            $("#doctor").text(data.doctor);
         }
     });
 };
@@ -149,21 +149,19 @@ var doSearch = function(dom) {
             return template;
         };
         searching = true;
-        doAjax("http://192.168.1.229:3000/api/v1/patient/get_by_id_number", "get", {"id_number": val}, function(data, status) {
+        doAjax("http://192.168.1.229:3000/api/v1/registration/get_number", "get", {"id_number": val}, function(data, status) {
             searching = false;
             if (status && data) {
                 var todaydata =new Date().Format("yyyy-MM-dd");
                 $("#all_contacts ul:first").html($(createUserDom(data)));
-                $("#name").text(data.name);
-                $("#nation").text(data.nation);
-                $("#birthday").text(data.birthday);
-                $("#sex").text(data.sex);
-                $("#marriage").text(data.marriage);
-                $("#phone").text(data.phone);
-                $("#address").text(data.address);
+                for (var i in data.patient) {
+                    $("#" + i).text(data.patient[i] || "无");
+                };
+                $("#recipe_number").text(data.registration.number);
                 $("#today").text(todaydata);
                 temp_data = data;
-                dogethospital();
+                getHospital();
+                console.log(data);
             } else {
                 $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
             }
@@ -174,8 +172,8 @@ var doSearch = function(dom) {
 };
 var submitForm = function() {
     postObj = {
-        "patient_id": temp_data.id,
-        "recipe_number": 12121212,
+        "patient_id": temp_data.patient.id,
+        "recipe_number": temp_data.registration.number,
         "physiology": $("#physiology").val(),
         "emotion": $("#emotion").val(),
         "nutrition": $("#nutrition").val(),
