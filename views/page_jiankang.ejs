@@ -92,14 +92,11 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
                                  <p style="text-indent:25px" id="issue_fa">
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud officia deserunt mollit exercitation.
                                 </p>
-                                <p style="text-indent:25px" id="issue_fa">
-Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui anim id est laborum.
-                                 </p>
                   </div>
                   <hr/>
                   <div>
-                      <h4  class="pull-xs-left">健管专家 : 某某某</h4>
-                      <h4  class="pull-xs-right">日期 : 某某某某年某月某日</h4>
+                      <h4  class="pull-xs-left">健管专家 : <span id="docter_name"></span></h4>
+                      <h4  class="pull-xs-right">日期 : <span id="date"></span></h4>
                   </div>
                 </div>
             </div>
@@ -110,5 +107,51 @@ Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor i
 
   </div>
 </div>
+<script>
+        $(function() {
+          var uid = ~~getvl("id");
+          uid = "YB20161208225708";
+          console.log(uid);
+          if (!uid) {
+               swal({title: "id 错误", type: "error"}, function() {
+                  window.close();
+              });
+               return;
+          }
+          var cbFunction = function(data,status){
+               if (status) {
+                  
+                  if (data.status == "有效")
+                  {
+                    console.log(data);
+                    $("#rate_sl").text(data.health_manage_recipes[0].physiology) // 生理
+                    $("#rate_qz").text(data.health_manage_recipes[0].emotion) // 情志
+                    $("#rate_yy").text(data.health_manage_recipes[0].nutrition) // 营养
+                    $("#rate_shfs").text(data.health_manage_recipes[0].life_style)  // 生活方式
+                    $("#docter_name").text(data.health_manage_recipes[0].doctor_name)
+                    $("#issue_fa").text(data.health_manage_recipes[0].detail)
+                    $("#date").text(new Date().Format("yyyy-MM-dd"))
+                  } else {
+                    swal({title: "id 错误", type: "error"}, function() {
+                        window.close();
+                    });
+                    return false;
+                  }
+                } else {
+                    swal({title: "id 错误", type: "error"}, function() {
+                        window.close();
+                    });
+                    return false;
+                }
+          
+
+
+          }
+          doAjax("http://192.168.1.229:3000/api/v1/registration/check_info", "get", {"number": uid}, cbFunction);
+        })
+          
+
+
+</script>
 <script src="/javascripts/jquery.PrintArea.js"></script>
 <%- include footer %>
