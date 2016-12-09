@@ -928,24 +928,20 @@
                                 <div class="form-group form-material col-xs-12 col-md-10 offset-md-1">
                                     <label class="form-control-label">3.您目前运动方式是：</label>
                                     <div class="checkbox-custom checkbox-primary checkbox-inline ">
-                                        <input type="checkbox" id="exercise_habit3_select1" name="exercise_habit-item_3" value="瑜伽" onchange="docheckBox(this);">
+                                        <input type="checkbox" id="exercise_habit3_select1" name="exercise_habit-item_3" value="瑜伽" >
                                         <label for="exercise_habit3_select1">瑜伽</label>
                                     </div>
                                     <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                        <input type="checkbox" id="exercise_habit3_select2" name="exercise_habit-item_3" value="散步等低强度运动" onchange="docheckBox(this);">
+                                        <input type="checkbox" id="exercise_habit3_select2" name="exercise_habit-item_3" value="散步等低强度运动" >
                                         <label for="exercise_habit3_select2">散步等低强度运动</label>
                                     </div>
                                     <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                        <input type="checkbox" id="exercise_habit3_select3" name="exercise_habit-item_3" value="快走或慢跑等中等强度运动" onchange="docheckBox(this);">
+                                        <input type="checkbox" id="exercise_habit3_select3" name="exercise_habit-item_3" value="快走或慢跑等中等强度运动" >
                                         <label for="exercise_habit3_select3">快走或慢跑等中等强度运动</label>
                                     </div>
                                     <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                        <input type="checkbox" id="exercise_habit3_select4" name="exercise_habit-item_3" value="球类、快跑、爬山、游泳等高强度运动 " onchange="docheckBox(this);">
+                                        <input type="checkbox" id="exercise_habit3_select4" name="exercise_habit-item_3" value="球类、快跑、爬山、游泳等高强度运动 " >
                                         <label for="exercise_habit3_select4">球类、快跑、爬山、游泳等高强度运动 </label>
-                                    </div>
-                                    <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                        <input type="checkbox" id="exercise_habit3_select5" name="exercise_habit-item_3" value="无" onchange="docheckBox(this);">
-                                        <label for="exercise_habit3_select5">无</label>
                                     </div>
                                 </div>
 
@@ -1338,24 +1334,24 @@
                                     <label class="form-control-label">4.您在工作间隙常常做那些活动：</label>
                                     <div>
                                         <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                            <input type="checkbox" id="profession_habit3_select1" name="professional_state-item_3" value="远眺">
+                                            <input type="checkbox" id="profession_habit3_select1" name="professional_state-item_3" value="远眺" onchange="docheckBox(this)">
                                             <label for="profession_habit3_select1">远眺</label>
                                         </div>
                                         <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                            <input type="checkbox" id="eprofession_habit3_select2" name="professional_state-item_3" value="看绿植">
+                                            <input type="checkbox" id="eprofession_habit3_select2" name="professional_state-item_3" value="看绿植" onchange="docheckBox(this)">
                                             <label for="profession_habit3_select2">看绿植</label>
                                         </div>
                                         <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                            <input type="checkbox" id="profession_habit3_select3" name="professional_state-item_3" value="颈腰及四肢活动">
+                                            <input type="checkbox" id="profession_habit3_select3" name="professional_state-item_3" value="颈腰及四肢活动" onchange="docheckBox(this)">
                                             <label for="profession_habit3_select3">颈腰及四肢活动</label>
                                         </div>
                                         <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                            <input type="checkbox" id="profession_habit3_select4" name="professional_state-item_3" value="眼保健操 ">
+                                            <input type="checkbox" id="profession_habit3_select4" name="professional_state-item_3" value="眼保健操 " onchange="docheckBox(this)">
                                             <label for="profession_habit3_select4">眼保健操 </label>
                                         </div>
                                         <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                            <input type="checkbox" id="profession_habit3_select5" name="professional_state-item_3" value="不活动">
-                                            <label for="profession_habit3_select5">不活动</label>
+                                            <input type="checkbox" id="profession_habit3_select5" name="professional_state-item_3" value="无" onchange="docheckBox(this)">
+                                            <label for="profession_habit3_select5">无</label>
                                         </div>
                                     </div>
                                 </div>
@@ -1781,7 +1777,7 @@
             }else if (name ==="smoke_history-item_1") {
                 var v_len =4;
             }else {
-                var v_len = 3;
+                var v_len = 4;
             }
             if (patt.test($("input[name='"+name+"']:checked").val())) {
                 for (var i = 2; i < v_len;i++) {
