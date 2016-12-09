@@ -74,6 +74,10 @@ router.get('/diseaseLocation', function(req, res, next) {
     res.render('diseaseLocation', {title: "疾病定位"});
 });
 
+router.get('/diseaseLocationSearch', function(req, res, next) {
+    res.render('diseaseLocationSearch', {title: "疾病定位查询"});
+});
+
 router.get('/registeredPost', function(req, res, next) {
     res.render('registeredPost', {title: "挂号"});
 });
