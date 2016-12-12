@@ -25,10 +25,6 @@
                     </div>
                 </div>
                 <div class="nav-tabs-horizontal nav-tabs-animate" data-plugin="tabs">
-                    <ul class="nav nav-tabs nav-tabs-line" role="tablist">
-                        <li class="nav-item" role="presentation"><a class="active nav-link" data-toggle="tab" href="#all_contacts"
-                            aria-controls="all_contacts" role="tab">全部记录</a></li>
-                        </ul>
                         <div class="tab-content">
                             <div class="tab-pane animation-fade active" id="all_contacts" role="tabpanel">
                                 <ul class="list-group"><li class='list-group-item'>暂无搜索结果</li></ul>
@@ -45,20 +41,45 @@
     <br/>
     <div id = "showProject" >
         <div class="row">
-            <div class="form-group col-lg-11 offset-lg-4  col-xs-12">
-                <div class="form-group " style=" margin-bottom: 0px;">
-                    <div class="input-search">
-                        <P >
-                            <h1 id="recipe_number">river </h1>
-                        </P>
-                    </div>
+            <div class="form-group">
+                <div class="panel-body">
+                    <table class="table" >
+                        <thead>
+                            <tr>
+                                <th>挂号编号</th>
+                                <th>挂号时间</th>
+                                <th>挂号号码</th>
+                                <th>查看记录</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody">
+                        </tbody>
+                    </table>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 <script>
     var searching = false;
+    //角色列表HTML模板
+    var createRoleDom = function (dom){
+        var template2 = '<tr>\n\
+            <td>{__id__}</td>\n\
+            <td>{__time__}</td>\n\
+            <td>{__number__}</td>\n\
+            <td>\n\
+                <div>\n\
+                    <a class="btn btn-outline btn-success btn-sm" href="http://192.168.1.228:3000/page/jibin?id={__number__}"> 查看记录</a>\n\
+                </div>\n\
+            </td>\n\
+        </tr>'
+        return template2.replace(/\{__id__\}/g, dom["id"])
+                       .replace(/\{__time__\}/g, dom["created_at"].substr(0,10))
+                       .replace(/\{__number__\}/g, dom["number"]);
+    };
 
     var doSearch = function(dom) {
         var val = dom.value.toLocaleUpperCase();
@@ -73,6 +94,16 @@
                 searching = false;
                 if (status && data) {
                     $("#all_contacts ul:first").html($(createUserDom(data)));
+                    console.log(data);
+                    doAjax("http://192.168.1.229:3000/api/v1/registration/check_registration","get",{"id_number": dom.value},function(data, status){
+                        if (status && data){
+                            console.log(data);
+                             for(var i = 0;i < data.registration.length;i++){
+                                 var name = data.registration[i];
+                                 $("#tbody").append($(createRoleDom(name)));
+                             }
+                        }
+                    });
                 } else {
                     $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
                 }
@@ -81,6 +112,7 @@
             $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
         }
     };
+
 </script>
 
 <%- include footer %>
