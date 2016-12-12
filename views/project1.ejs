@@ -1,7 +1,7 @@
 <%- include header %>
 <div class="page">
   <div class="page-header">
-    <h1 class="page-title" style="text-align:center">深圳市第二人民医院</h1>
+    <h1 class="page-title" style="text-align:center" id = "hospital-title">深圳市第二人民医院</h1>
   </div>
   <div class="page-content">
     <!-- Panel -->
@@ -18,7 +18,7 @@
               <div class="form-group " style=" margin-bottom: 0px;">
                   <div class="input-search">
                     <button type="submit" class="input-search-btn"><i class="icon wb-search" aria-hidden="true"></i></button>
-                    <input type="text" class="form-control" name="" placeholder="" style="padding-top: 2px;padding-bottom: 2px;">
+                    <input type="text" class="form-control" name="" placeholder="" style="padding-top: 2px;padding-bottom: 2px;" id="id_number" oninput="doSearch(this);" maxlength="18">
                   </div>
                 </div>
             </div>
@@ -26,89 +26,13 @@
           </div>
 
           <br/>
-          <div class="row">
-            <div class="form-group col-md-4 offset-lg-1  col-xs-12">
-              <h4>
-                <i class="icon icon-color wb-user" aria-hidden="true"></i>个人信息
-              </h4>
-              <p>
-                姓名：<span>徐宁</span><br/><br/>
-                性别：<span>女</span><br/><br/>
-                体重：<span>55kg</span><br/><br/>
-                年龄：<span>24</span><br/><br/>
-                电话：<span>123456789</span><br/><br/>
-                地址：<span>深圳市南山区</span><br/><br/>
-              </p>
-            </div>
-            <div class="col-xs-12 col-md-4 offset-lg-2  ">
-              <h4><i class="icon icon-color wb-eye" aria-hidden="true"></i>医生诊断</h4>
-              <div class="form-group">
-                <label class="form-control-label">身体状况描述: </label>
-                <textarea class="form-control" rows="3" ></textarea>
-              </div>
-              <div class="form-group">
-                <label class="form-control-label">诊断建议: </label>
-                <textarea class="form-control" rows="3" ></textarea>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <h4 class=" col-xs-12 col-lg-10 offset-lg-1">
-              <i class="icon icon-color wb-order" aria-hidden="true"></i>方案
-            </h4>
-          </div>
-          <div class="row">
-            <div class="form-group col-xs-12 col-md-4 offset-lg-1">
-              <label for="health_survey4_1">治疗级别</label>
-              <select id="health_survey4_1" class="form-control" multiple data-plugin="select2" name="health_survey4">
-                <optgroup label="">
-                <option>初级</option>
-                <option>中级</option>
-                <option>高级 </option>
-                <option>尊享级</option>
-                </optgroup>
-              </select>
-            </div>
-            <div class="form-group col-xs-12 col-md-4 offset-lg-2 ">
-             <label for="health_survey4_1">治疗部位</label>
-             <select id="health_survey4_1" class="form-control" multiple data-plugin="select2" name="health_survey4">
-               <optgroup label="">
-               <option>颈椎</option>
-               <option>胸椎</option>
-               <option>腰椎 </option>
-               <option>骨盆</option>
-               <option>全脊</option>
-               </optgroup>
-             </select>
-           </div>
-          </div>
-          <div class="row">
-            <div class="form-group col-md-4 offset-lg-1  col-xs-12 ">
-              <label for="health_survey4_1">治疗手法</label>
-              <select id="health_survey4_1" class="form-control" multiple data-plugin="select2" name="health_survey4">
-                <optgroup label="">
-                <option>松</option>
-                <option>正</option>
-                <option>理 </option>
-                </optgroup>
-              </select>
-            </div>
-            <div class="form-group col-xs-12 col-md-4 offset-lg-2   ">
-              <label for="">治疗次数</label>
-              <input type="text" class="form-control" id="inputBasicLastName"/>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-12 col-lg-2 offset-lg-9 ">
-              <button type="button" class="btn  btn-block btn-primary">开方 </button>
-            </div>
-          </div>
+          <div class="" id = "showProject">
 
-
+          </div>
           <hr/>
           <div class="row">
             <p class="col-md-4 col-xs-12 offset-lg-1">
-              医生：<span>医生1</span>
+              医生：<span id ="doctor">医生1</span>
             </p>
             <p class="col-md-4 col-xs-12 offset-lg-2 ">
               单次金额：<span>444</span>
@@ -118,7 +42,7 @@
               <p class="col-md-4 col-xs-12 offset-lg-1">
                 总额：<span>444</span>
               <p class="col-md-4 col-xs-12 offset-lg-2 ">
-                开具日期：<span>2016-11-2</span>
+                开具日期：<span id = "issued_date">2016-11-2</span>
               </p>
           </div>
         </form>
@@ -128,4 +52,173 @@
     <!-- End Panel -->
   </div>
 </div>
+<div class="" id = "hideProject" style="display:none;">
+    <div class="row">
+        <div class="form-group col-lg-11 offset-lg-1  col-xs-12">
+            <h4>
+                <i class="icon icon-color wb-user" aria-hidden="true"></i>个人信息
+            </h4>
+        </div>
+        <div class="form-group col-lg-2 offset-lg-2  col-xs-12">
+            姓名：<span id="name"> </span>
+        </div>
+        <div class="form-group col-lg-2 offset-lg-1  col-xs-12">
+            民族：<span id="nation"> </span>
+        </div>
+        <div class="form-group col-lg-2 offset-lg-1 col-xs-12">
+            性别：<span id="sex"> </span>
+        </div>
+        <div class="form-group col-lg-4 offset-lg-2 col-xs-12">
+            婚姻状况：<span id="marriage"> </span>
+        </div>
+        <div class="form-group col-lg-4  col-xs-12">
+            出生日期：<span id="birthday"> </span>
+        </div>
+        <div class="form-group col-lg-4 offset-lg-2  col-xs-12">
+            联系方式：<span id="phone"> </span>
+        </div>
+        <div class="form-group col-lg-4  col-xs-12">
+            通讯地址：<span id="address"> </span>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-10 offset-lg-1">
+        <h4><i class="icon icon-color wb-eye" aria-hidden="true"></i>医生诊断</h4>
+        <div class="form-group">
+          <label class="form-control-label">身体状况描述: </label>
+          <textarea class="form-control" rows="2" ></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label">诊断建议: </label>
+          <textarea class="form-control" rows="2" ></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <h4 class=" col-xs-12 col-lg-10 offset-lg-1">
+        <i class="icon icon-color wb-order" aria-hidden="true"></i>方案
+      </h4>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-xs-12 col-md-4 offset-lg-1   ">
+        <label for="">治疗次数</label>
+        <input type="text" class="form-control" id="health_survey4_4"/>
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-10 offset-lg-1  col-xs-12 ">
+            <table class="table table-bordered">
+                <tr>
+                    <th>脊柱干预步骤/筑脊师级别 </th>
+                    <th>松</th>
+                    <th>正</th>
+                    <th>理</th>
+                    <th>首次调理总价</th>
+                    <th>养护（第二次起）</th>
+                </tr>
+                <tr>
+                    <td rowspan="6">
+                        <select id="grade" class="form-control"  data-plugin="select2" name="issue_grade" onchange="changePrice()">
+                          <optgroup label="">
+                          <option>初级</option>
+                          <option>中级</option>
+                          <option>高级 </option>
+                          <option>尊享级</option>
+                          </optgroup>
+                        </select>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td> <label> <input type="checkbox"> 颈椎：<span id="pineCervicalVertebra"></span></label></td>
+                    <td> <label> <input type="checkbox"> 颈椎：<span id ="justCervicalVertebra"></span></label></td>
+                    <td> <label> <input type="checkbox"> 颈椎：<span id ="logicCervicalVertebra"></span></label></td>
+                    <td> <label> <input type="checkbox"> 颈椎：<span id ="firstCervicalVertebra"></span></label></td>
+                    <td> <label> <input type="checkbox"> 颈椎：<span id ="secondCervicalVertebra"></span></label></td>
+                </tr>
+                <tr>
+                    <td> <label> <input type="checkbox"> 胸椎：<span id="pineThoracicVertebra"></span></label></td>
+                    <td> <label> <input type="checkbox"> 胸椎：<span id ="justThoracicVertebra"></span></label></td>
+                    <td> <label> <input type="checkbox"> 胸椎：<span id ="logicThoracicVertebra"></span></label></td>
+                    <td> <label> <input type="checkbox"> 胸椎：<span id ="firstThoracicVertebra"></span></label></td>
+                    <td> <label> <input type="checkbox"> 胸椎：<span id ="secondThoracicVertebra"></label></td>
+                </tr>
+                <tr>
+                    <td> <label> <input type="checkbox"> 腰椎：<span id="pineLumbar"></span></label> </td>
+                    <td> <label> <input type="checkbox"> 腰椎：<span id="justLumbar"></span></label></td>
+                    <td> <label> <input type="checkbox"> 腰椎：<span id="logicLumbar"></span></label></td>
+                    <td> <label> <input type="checkbox"> 腰椎：<span id="firstLumbar"></span></label></td>
+                    <td> <label> <input type="checkbox"> 腰椎：<span id="secondLumbar"></span></label></td>
+                </tr>
+                <tr>
+                    <td> <label> <input type="checkbox"> 骨盆： <span id="pinePelvis"></span></label></td>
+                    <td> <label> <input type="checkbox"> 骨盆： <span id="justPelvis"></span></label></td>
+                    <td> <label> <input type="checkbox"> 骨盆： <span id="logicPelvis"></span></label> </td>
+                    <td> <label> <input type="checkbox"> 骨盆： <span id="firstPelvis"></span></label> </td>
+                    <td> <label> <input type="checkbox"> 骨盆： <span id="secondPelvis"></span></label></td>
+                </tr>
+                <tr>
+                    <td> <label> <input type="checkbox"> 全脊： <span id="pineWholeRidge"></span></label> </td>
+                    <td> <label> <input type="checkbox"> 全脊： <span id="justWholeRidge"></span></label>  </td>
+                    <td> <label> <input type="checkbox"> 全脊： <span id="logicWholeRidge"></span></label>  </td>
+                    <td> <label> <input type="checkbox"> 全脊： <span id="firstWholeRidge"></span></label>  </td>
+                    <td> <label> <input type="checkbox"> 全脊：<span id="secondWholeRidge"></span> </label>  </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-lg-2 offset-lg-9 ">
+        <button type="button" class="btn  btn-block btn-primary">开方 </button>
+      </div>
+    </div>
+</div>
+<script>
+$(function () {
+    doAjax("http://192.168.1.229:3000/api/v1/recipe/recipe_info", "get", {"category": "筑脊科"}, function(data, status) {
+        if (status && data) {
+            $("#hospital-title").text(data.hospital);
+            $("#doctor").text(data.doctor);
+            $("#issued_date").text(data.issued_date);
+        }
+    });
+})
+var template = $("#hideProject").html();
+$("#hideProject").remove();
+var searching = false;
+var doSearch = function (dom) {
+    var val = dom.value.toLocaleUpperCase();
+    if (val.length===18 && checkIdCard(val) && !searching) {
+        var createUserDom = function (userObj) {
+            t_template = template
+            return t_template;
+        };
+        doAjax("http://192.168.1.229:3000/api/v1/patient/get_by_id_number","get",{"id_number":val},function (data, status) {
+            searching = false;
+            if (status && data) {
+                $("#showProject").html($(createUserDom(data)));
+                $("#health_survey4_1").select2();
+                $("#health_survey4_2").select2();
+                $("#health_survey4_3").select2();
+                $("#grade").select2();
+                for (var i in data) {
+                    $("#"+ i).text(data[i]);
+                }
+            } else {
+                $("#showProject").html("暂无搜索结果");
+            }
+
+        });
+    } else {
+        $("#showProject").html("暂无搜索结果");
+    }
+
+};
+var changePrice = function () {
+    var grade = $("#grade").val();
+
+};
+</script>
 <%- include footer %>
