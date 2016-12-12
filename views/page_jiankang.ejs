@@ -53,34 +53,34 @@
                   </div>
                   <div id="rate">
                       <h4>
-                        <i class="icon wb-book" aria-hidden="true"></i> 健康管理指导意见  
+                        <i class="icon wb-book" aria-hidden="true"></i> 健康管理指导意见
                       </h4>
                       <div class="row" style="font-size:16px; padding-bottom: 5px;">
                             <div class="col-md-12">
                                 <div>生理方面 :
                                   <p style="text-indent:25px" id="rate_sl">
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                                   </p>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div>情志方面 :
                                   <p style="text-indent:25px" id="rate_qz">
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                                   </p>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div>营养方面 :
                                   <p style="text-indent:25px" id="rate_yy">
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                                   </p>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div>生活方式方面 :
                                   <p style="text-indent:25px" id="rate_shfs">
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                                   </p>
                                 </div>
                             </div>
@@ -110,8 +110,6 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 <script>
         $(function() {
           var uid = ~~getvl("id");
-          uid = "YB20161208225708";
-          console.log(uid);
           if (!uid) {
                swal({title: "id 错误", type: "error"}, function() {
                   window.close();
@@ -120,7 +118,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
           }
           var cbFunction = function(data,status){
                if (status) {
-                  
+
                   if (data.status == "有效")
                   {
                     console.log(data);
@@ -143,13 +141,13 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
                     });
                     return false;
                 }
-          
+
 
 
           }
           doAjax("http://192.168.1.229:3000/api/v1/registration/check_info", "get", {"number": uid}, cbFunction);
         })
-          
+
 
 
 </script>
