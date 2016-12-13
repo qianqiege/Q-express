@@ -10,8 +10,8 @@ router.get('/test', function(req, res, next) {
     res.render('test', {title: "test"});
 });
 
-router.get('/ExceptionData', function(req, res, next) {
-    res.render('ExceptionData', {title: "异常数据查询"});
+router.get('/exceptionData', function(req, res, next) {
+    res.render('exceptionData', {title: "异常管理"});
 });
 
 router.get('/healthDetection', function(req, res, next) {

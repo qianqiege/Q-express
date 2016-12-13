@@ -1,80 +1,62 @@
 <%- include header %>
 <div class="page">
-	<div class="page-header">
-      <h1 class="page-title"><%= title %></h1>
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
-        <li class="breadcrumb-item"><a href="javascript:void(0)">Forms</a></li>
-        <li class="breadcrumb-item active">Wizard</li>
-      </ol>
-    </div>
-  <div class="page-content container">
-    <div class="row">
-      <div class="">
-		<div class="page-header-actions">
-		</div>
-    </div>
-  <div class="page-content container">
-		<div class="panel">
-			<div class="panel-body container-fluid">
-				<div id="page_header" class="row">
-						<div class="col-xs-12 col-md-6">
-								<div class="btn-group" data-toggle="buttons">
-								  <label class="btn btn-primary active">
-									<input type="radio" name="options" id="option1" autocomplete="off" checked> 未处理异常
-								  </label>
-								  <label class="btn btn-primary">
-									<input type="radio" name="options" id="option2" autocomplete="off"> 已处理异常
-								  </label>
-								  <label class="btn btn-primary">
-									<input type="radio" name="options" id="option3" autocomplete="off"> 全部健康
-								  </label>
-								</div>
-						</div>
-						<div class="col-xs-12 col-md-3 offset-md-3">
-						  <form autocomplete="off">
-							<div class="input-search clearfix">
-							  <input type="text" class="form-control" id="exampleTypeaheadStyle" name="exampleTypeaheadStyle"
-							  placeholder="搜索...">
-							  <button type="submit" class="input-search-btn">
-								<i class="icon md-search" aria-hidden="true"></i>
-							  </button>
-							</div>
-						  </form>
-						</div>
-						<div id="data_table" class="col-xs-12 col-md-12" style="margin-top: 10px;">
-						  <table class="table table-bordered" >
-							<thead>
-							  <tr>
-								<th>姓名</th>
-								<th>检测项目</th>
-								<th>体征值</th>
-								<th>体征单位</th>
-								<th>异常状态</th>
-								<th>检测时间</th>
-								<th>操作</th>
-							  </tr>
-							</thead>
-							<tbody>
-							  <tr>
-								<td> 张三 </td>
-								<td>  </td>
-								<td>  </td>
-								<td>  </td>
-								<td>  </td>
-								<td>  </td>
-								<td>  </td>
-							  </tr>
+  <div class="page-header">
+    <h1 class="page-title"><%= title %></h1>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+      <li class="breadcrumb-item"><a href="javascript:void(0)">Forms</a></li>
+      <li class="breadcrumb-item active">Wizard</li>
+    </ol>
+  </div>
+  <div class="page-content">
+    <div class="panel">
+      <div class="panel-body container-fluid">
+        <div class="row row-lg">
+          <div class="col-md-6 col-xs-12">
+            <h3>最新患者异常信息</h3>
+          <table class="table">
+            <thead>
+                <tr>
+                    <td>姓名</td>
+                    <td>异常状态</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="3"><i class="fa fa-refresh fa-spin fa-3x fa-fw"></i> 正在加载中</td>
+                </tr>
+            </tbody>
+          </table>
+        <table id="iamtempalte" style="display:none">
+                <tr>
+                    <td>NNAME</td>
+                    <td>RREASON</td>
+                    <td><a class="btn btn-primary btn-block card-link m-r-5" href="healthDetection?id=IID" role="button">处理异常</a></td>
+                </tr>
+        </table>
+          <script>
+            var template = $("#iamtempalte :first").html()
+            $("#iamtempalte").remove()
+            var cbFunction = function(data,status){
+                $("table tr:eq(1)").remove()
+                for ( var i in data)
+                {
+                    adata = data[data.length - i - 1];
+                    reason = adata.test_item+" ("+adata.status1+")"
+                    name = adata.patient.name
+                    id = adata.patient.id
+                    t_template = template.replace("NNAME",name).replace("NNAME",name).replace("RREASON",reason).replace("IID",id)
+                    $("table tbody").append(t_template);
+                }
 
-							</tbody>
-							<tfoot>
-
-							</tfoot>
-						  </table>
-						</div>
-				</div>
-			</div>
-		</div>
+            }
+            doAjax("http://192.168.1.229:3000/api/v1/exception", "get", {}, cbFunction);
+          </script>
+        </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <%- include footer %>
