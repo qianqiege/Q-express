@@ -70,6 +70,15 @@ router.get('/fileQuery', function(req, res, next) {
     res.render('fileQuery', {title: "档案查询"});
 });
 
+router.get('/diseaseLocation', function(req, res, next) {
+    res.render('diseaseLocation', {title: "疾病定位"});
+});
+
+router.get('/registeredPost', function(req, res, next) {
+    res.render('registeredPost', {title: "挂号"});
+});
+
+
 router.get('/project2', function(req, res, next) {
     res.render('project2', {title: "档案查询"});
 });
@@ -85,7 +94,24 @@ router.get('/login', function(req, res, next) {
 router.get('/project3', function(req, res, next) {
     res.render('project3', {title: "康复科"});
 });
+
+router.get('/viewTDS', function(req, res, next) {
+    res.render('viewTDS', {title: "数字中医"});
+});
+
 router.get('/adminIndex', function(req, res, next) {
     res.render('adminIndex', {title: "管理首页"});
 });
+
+router.get('/page/jibin', function(req, res, next) {
+    res.render('page_jibin', {title: "疾病谱定位表"});
+});
+
+router.get('/page/jiankang', function(req, res, next) {
+    res.render('page_jiankang', {title: "健康管理方案"});
+});
+
+
+
+
 module.exports = router;

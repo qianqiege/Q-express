@@ -19,11 +19,11 @@
                             <div class="input-search input-search-dark">
                                 <i class="input-search-icon wb-search" aria-hidden="true"></i>
                                 <input type="text" class="form-control" id="inputSearch" name="search" placeholder="" oninput="doSearch(this);" maxlength="18">
-                                <button type="button" class="input-search-close icon wb-close" aria-label="Close"></button>
+                                <button type="button" class="input-search-close icon wb-close" aria-label="Close" onclick="$('#inputSearch').val('');doSearch($('#inputSearch')[0])"></button>
                             </div>
                         </form>
                     </div>
-                    <div class="col-md-2 offset-md-4 col-sm-3 offset-sm-2">
+                    <div class="col-md-3 offset-md-3 col-sm-3 offset-sm-9">
                         <a href="/newRecord" class="btn btn-block btn-info waves-effect">添加新患者</a>
                         <!-- <button type="button" class="btn btn-round btn-outline btn-default btn-lg"><i class="icon wb-plus" aria-hidden="true"></i>添加</button> -->
                     </div>

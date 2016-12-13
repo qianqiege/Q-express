@@ -203,8 +203,8 @@ Date.prototype.Format = function(fmt) {
         "q+" : Math.floor((this.getMonth()+3)/3),
         "S"  : this.getMilliseconds()
     };
-    if( /(y+)/.test(fmt)) {
-        fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
+    if (/(y+)/.test(fmt)) {
+        fmt = fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
     }
     for (var k in o) {
         if (new RegExp("("+ k +")").test(fmt)) {
