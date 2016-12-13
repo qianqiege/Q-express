@@ -95,10 +95,8 @@ var doSearch = function(dom) {
             searching = false;
             if (status && data) {
                 $("#all_contacts ul:first").html($(createUserDom(data)));
-                console.log(data);
                 doAjax("http://192.168.1.229:3000/api/v1/registration/check_registration","get",{"id_number": dom.value},function(data, status){
                     if (status && data){
-                        console.log(data);
                         for(var i = 0;i < data.registration.length;i++){
                             var name = data.registration[i];
                             $("#tbody").append($(createRoleDom(name)));

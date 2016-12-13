@@ -82,7 +82,6 @@ var createRoleDom = function (dom,id){
 var doSearch = function(dom) {
     var val = dom.value.toLocaleUpperCase();
     if (val.length === 18 && checkIdCard(val) && !searching) {
-
         var createUserDom = function(userObj) {
             var template = $("#template").html();
             return template;
@@ -109,7 +108,5 @@ var doSearch = function(dom) {
         $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
     }
 };
-
 </script>
-
 <%- include footer %>
