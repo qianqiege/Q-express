@@ -10,7 +10,7 @@
         <form class="form-horizontal">
           <div class="row">
             <div class="col-xs-6 col-lg-3 offset-lg-1" style="float: left; display: inline;">
-              <label for="">病历号：</label><span>212212121</span>
+              <label for="">病历号：</label><span></span>
             </div><div class="col-xs-6 col-lg-2 offset-lg-2 text-xs-right" style="float: right;display: inline;">
               <label for="">科室：</label><span>单病科</span>
             </div>
@@ -18,7 +18,7 @@
               <div class="form-group " style=" margin-bottom: 0px;">
                   <div class="input-search">
                     <button type="submit" class="input-search-btn"><i class="icon wb-search" aria-hidden="true"></i></button>
-                    <input type="text" class="form-control" name="" placeholder="" style="padding-top: 2px;padding-bottom: 2px;">
+                    <input type="text" class="form-control" name="" placeholder="" style="padding-top: 2px;padding-bottom: 2px;" oninput="doSearch(this);" maxlength="18">
                   </div>
                 </div>
             </div>
@@ -32,12 +32,12 @@
                 <i class="icon icon-color wb-user" aria-hidden="true"></i>个人信息
               </h4>
               <p>
-                姓名：<span>徐宁</span><br/><br/>
-                性别：<span>女</span><br/><br/>
-                体重：<span>55kg</span><br/><br/>
-                年龄：<span>24</span><br/><br/>
-                电话：<span>123456789</span><br/><br/>
-                地址：<span>深圳市南山区</span><br/><br/>
+                姓名：<span id="name"></span><br/><br/>
+                性别：<span id="sex"></span><br/><br/>
+                体重：<span id="weight"></span><br/><br/>
+                年龄：<span id="age"></span><br/><br/>
+                电话：<span id="phone"></span><br/><br/>
+                地址：<span id="address"></span><br/><br/>
               </p>
             </div>
             <div class="col-xs-12 col-md-4 offset-lg-2  ">
@@ -80,7 +80,7 @@
 
           <div class="row">
             <div class="col-xs-12 col-lg-2 offset-lg-9 ">
-              <button type="button" class="btn  btn-block btn-primary">开方 </button>
+              <button type="button" class="btn  btn-block btn-primary" onclick="kf();">开方 </button>
             </div>
           </div>
 
@@ -108,4 +108,46 @@
     <!-- End Panel -->
   </div>
 </div>
+
+<script>
+    var searching = false;
+    var doSearch = function(dom) {
+        var val = dom.value = dom.value.toLocaleUpperCase(), infoDom = ["name", "sex", "weight", "age", "phone", "address"];
+        if (val.length === 18 && checkIdCard(val) && !searching) {
+            searching = true;
+            doAjax("http://192.168.1.229:3000/api/v1/patient/get_by_id_number", "get", {"id_number": dom.value}, function(data, status) {
+                searching = false;
+                if (status && data) {
+                    for (var i = 0; i < infoDom.length; i++) {
+                        switch(infoDom[i]) {
+                            case "age":
+                                var val = new Date().getFullYear() - ~~(data["birthday"].match(/^\d{4}/)[0]);
+                                break;
+
+                            case "weight":
+                                var val = data["weights"].length ? data["weights"][0]["value"] : "暂无数据";
+                                break;
+
+                            default:
+                                var val = data[infoDom[i]];
+                        }
+                        $("#" + infoDom[i]).text(val);
+                    }
+                } else {
+                    for (var i = 0; i < infoDom.length; i++) {
+                        $("#" + infoDom[i]).text("");
+                    }
+                }
+            });
+        } else {
+            for (var i = 0; i < infoDom.length; i++) {
+                $("#" + infoDom[i]).text("");
+            }
+        }
+    };
+
+    var kf = function() {
+        console.log(this);
+    };
+</script>
 <%- include footer %>
