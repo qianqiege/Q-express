@@ -1,0 +1,554 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="bootstrap admin template">
+    <meta name="author" content="">
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/tds_report.css">
+</head>
+
+<body>
+<div style="PAGE-BREAK-AFTER: always">
+	<table border="0" width="630" align="center">
+		<tbody>
+			<tr>
+				<td colspan="10" align="center"><img src="/images/tds_reportlogo.png" ><br>
+				</td>
+			</tr>
+			<tr>
+				<td class="a4" width="100%" colspan="2" align="left">检测时间：<span id="lb_dt">2016/10/25 18:19:49</span>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="10">
+					<table class="a1" border="0" cellspacing="0" cellpadding="0" width="100%" align="center">
+						<tbody>
+							<tr>
+								<td class="table_top table_left" height="25" width="63" align="center">姓名</td>
+								<td class="table_top table_left" height="10" width="30%" colspan="3" align="center"><span id="lb_name">孙金秀</span>&nbsp;</td>
+								<td class="table_top table_left" width="10%" align="center">性别</td>
+								<td class="table_top table_left" width="10%" align="center"><span id="lb_sex">女</span>&nbsp;</td>
+								<td class="table_top table_left" width="10%" align="center">年龄</td>
+								<td class="table_top table_left" width="10%" align="center"><span id="lb_age">0</span>&nbsp;</td>
+								<td class="table_top table_left" width="10%" align="center">民族</td>
+								<td class="table_top table_left table_right" width="10%" align="center">&nbsp;</td>
+							</tr>
+							<tr>
+								<td class="table_top table_left" height="25" align="center">身高</td>
+								<td class="table_top table_left" width="10%" align="center"><span id="lb_height">166cm</span>&nbsp;</td>
+								<td class="table_top table_left" width="10%" align="center">体重</td>
+								<td class="table_top table_left" width="10%" align="center"><span id="lb_weight">63kg</span>&nbsp;</td>
+								<td class="table_top table_left" width="10%" align="center">血压</td>
+								<td class="table_top table_left" width="10%" align="center"><span id="lb_blood">121/70mmHg</span>&nbsp;</td>
+								<td class="table_top table_left" width="10%" align="center">脉率</td>
+								<td class="table_top table_left" width="10%" align="center"><span id="lb_heart">72s/m</span>&nbsp;</td>
+								<td class="table_top table_left" width="10%" align="center">婚否</td>
+								<td class="table_top table_left table_right" width="10%" align="center"><span id="lb_marry">已婚</span>&nbsp;</td>
+							</tr>
+							<tr>
+								<td class="table_top table_left" height="25" align="center">会员卡号</td>
+								<td class="table_top table_left" colspan="5" align="center"><span id="lb_cardno"></span>&nbsp;
+									<a onclick="win()" href="#">
+										<span id="Label1">绑定会员卡</span></a>
+								</td>
+								<td class="table_top table_left" align="center">出生地</td>
+								<td class="table_top table_left" align="center"><span id="lb_nation">新疆维吾尔</span>&nbsp;</td>
+								<td class="table_top table_left" align="center">职业</td>
+								<td class="table_top table_left table_right" align="center">&nbsp;</td>
+							</tr>
+							<tr>
+								<td class="table_top table_left table_right table_bottom" colspan="10" align="center">
+									<table class="a5" border="0" cellspacing="0" cellpadding="0" width="100%">
+										<tbody>
+											<tr>
+												<td class="a4" height="25" width="150" colspan="6" align="center">经络生物电检测结果</td>
+											</tr>
+											<tr>
+												<td><img alt="" src="../QuImg5.aspx" width="630" height="255"></td>
+											</tr>
+										</tbody>
+									</table>
+									<table class="a5" border="0" cellspacing="0" cellpadding="0" width="100%">
+										<tbody>
+											<tr style="COLOR: red">
+												<td align="center">左&nbsp;
+												</td>
+												<td align="center">肺经
+												</td>
+												<td align="center">大肠
+												</td>
+												<td align="center">&nbsp;胃经
+												</td>
+												<td align="center">&nbsp;&nbsp;脾经
+												</td>
+												<td align="center">心经
+												</td>
+												<td align="center">&nbsp;小肠
+												</td>
+												<td align="center">膀胱
+												</td>
+												<td align="center">&nbsp;肾经
+												</td>
+												<td align="center">&nbsp;心包
+												</td>
+												<td align="center">三焦
+												</td>
+												<td align="center">胆经
+												</td>
+												<td align="center">肝经
+												</td>
+												<td align="center">&nbsp;&nbsp;
+												</td>
+											</tr>
+											<tr style="COLOR: red">
+												<td align="center">&nbsp;&nbsp;
+												</td>
+												<td align="center"><span id="L_1">(43.75)</span></td>
+												<td align="center"><span id="L_2">(14.52)</span></td>
+												<td align="center"><span id="L_3">(22.81)</span></td>
+												<td align="center">&nbsp;<span id="L_4">(77.32)</span>
+												</td>
+												<td align="center"><span id="L_5">(40.54)</span></td>
+												<td align="center">&nbsp;<span id="L_6">(44.13)</span>
+												</td>
+												<td align="center"><span id="L_7">(35.64)</span></td>
+												<td align="center">&nbsp;<span id="L_8">(90.90)</span>
+												</td>
+												<td align="center">&nbsp;<span id="L_9">(34.51)</span>
+												</td>
+												<td align="center"><span id="L_10">(38.47)</span></td>
+												<td align="center"><span id="L_11">(16.40)</span></td>
+												<td align="center"><span id="L_12">(63.37)</span></td>
+												<td align="center">&nbsp;
+												</td>
+											</tr>
+											<tr>
+												<td class="table_top" colspan="14">&nbsp;
+												</td>
+											</tr>
+											<tr style="COLOR: blue">
+												<td align="center">右&nbsp;
+												</td>
+												<td align="center">肺经
+												</td>
+												<td align="center">大肠
+												</td>
+												<td align="center">&nbsp;胃经
+												</td>
+												<td align="center">&nbsp;&nbsp;脾经
+												</td>
+												<td align="center">心经
+												</td>
+												<td align="center">&nbsp;小肠
+												</td>
+												<td align="center">膀胱
+												</td>
+												<td align="center">&nbsp;肾经
+												</td>
+												<td align="center">&nbsp;心包
+												</td>
+												<td align="center">三焦
+												</td>
+												<td align="center">胆经
+												</td>
+												<td align="center">肝经
+												</td>
+												<td align="center">&nbsp;&nbsp;
+												</td>
+											</tr>
+											<tr style="COLOR: blue">
+												<td align="center">&nbsp;&nbsp;
+												</td>
+												<td align="center"><span id="R_1">(51.86)</span></td>
+												<td align="center"><span id="R_2">(35.64)</span></td>
+												<td align="center"><span id="R_3">(33.19)</span></td>
+												<td align="center"><span id="R_4">(73.17)</span></td>
+												<td align="center"><span id="R_5">(33.00)</span></td>
+												<td align="center">&nbsp;<span id="R_6">(60.54)</span>
+												</td>
+												<td align="center"><span id="R_7">(55.63)</span></td>
+												<td align="center">&nbsp;<span id="R_8">(86.19)</span>
+												</td>
+												<td align="center">&nbsp;<span id="R_9">(47.90)</span>
+												</td>
+												<td align="center"><span id="R_10">(23.19)</span></td>
+												<td align="center"><span id="R_11">(44.88)</span></td>
+												<td align="center"><span id="R_12">(59.03)</span></td>
+												<td align="center">&nbsp;
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td class=" " height="30" colspan="10" align="center">
+									<font size="3"><b>数字中医评估报告</b></font>
+								</td>
+							</tr>
+							<tr>
+								<td class="a1 table_top table_right table_left" valign="top" colspan="10" align="center"><img id="img3" src="../../ZhongYi/zy/1.jpg"></td>
+							</tr>
+							<tr>
+								<td class=" table_left  table_bottom table_top table_right" height="30" width="10%" align="center">证型</td>
+								<td class="table_bottom table_top a1 table_right" width="60%" colspan="9" align="left">&nbsp;
+									<a id="HY1" href="tl.aspx?tid=d:\www\ybyt\3\1.txt">肺气虚</a>&nbsp;&nbsp;
+									<a id="HY2" href="tl.aspx?tid=d:\www\ybyt\3\21.txt" style="Z-INDEX: 0">胃寒</a></td>
+							</tr>
+							<tr>
+								<td class="table_bottom a1" height="30" colspan="10" align="center"><strong>调理建议</strong></td>
+							</tr>
+							<tr>
+								<td class="a1  table_right table_left" colspan="10" align="left"><br> &nbsp;&nbsp;
+									<span id="Label2" style="font-weight:bold;">证型：</span><span id="Lab_zx">肺气虚</span></td>
+							</tr>
+							<tr>
+								<td class="a1  table_right table_left" colspan="10" align="left">&nbsp;&nbsp;
+									<span id="lab_sj" style="font-weight:bold;">肺经活跃时间3点--5点</span></td>
+							</tr>
+							<tr>
+								<td class="a1  table_right table_left" colspan="10" align="left">&nbsp;&nbsp;
+									<span id="Label4" style="font-weight:bold;">治则(参考)：</span><span id="Lab_ck">补肺益气</span></td>
+							</tr>
+							<tr>
+								<td class="a1  table_right table_left table_bottom" colspan="10" align="left">&nbsp;&nbsp;
+									<span id="Label5" style="font-weight:bold;">医师意见：</span></td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<div style="PAGE-BREAK-AFTER: always">
+	<table width="630" align="center">
+		<tbody>
+			<tr>
+				<td class="a4" width="100%" colspan="2" align="center">
+					<font face="宋体"><img style="Z-INDEX: 0" src="/images/tds_reportlogo.png"></font>
+				</td>
+			</tr>
+			<tr>
+				<td style="HEIGHT: 13px" class="a4" width="100%" align="left">姓名：
+					<span id="Label6" style="Z-INDEX: 0">孙金秀</span>&nbsp; 检测时间：
+					<span id="lb_dt1">2016/10/25 18:19:49</span></td>
+				<td style="HEIGHT: 13px" class="a4" width="100%" align="right">报告单编号：
+					<span id="lb_reportno2">R010695858</span></td>
+			</tr>
+			<tr>
+				<td class="a4" width="100%" colspan="2" align="left">
+					<table id="Table1" class="a1" cellspacing="0" cellpadding="0" width="100%">
+						<tbody>
+							<tr>
+								<td class="table_top table_right table_left" height="30" colspan="4" align="center">
+									<font size="3"><b>健康状况综合评估</b></font>
+								</td>
+							</tr>
+							<tr>
+								<td class="table_top table_left" height="25" width="100" align="center">系统状态</td>
+								<td class="table_top table_left" width="88" align="center">正常参考值</td>
+								<td class="table_top table_left" width="88" align="center">测定值</td>
+								<td class="table_top table_left table_right" align="center">状态提示（仅供医师解读参考）</td>
+							</tr>
+							<tr>
+								<td class="table_left table_top" height="35" align="center">体能状态</td>
+								<td class="table_top table_left" height="35" align="center">20--75</td>
+								<td class=" table_left table_top" height="35" align="center"><span id="lb_M3">46.94</span></td>
+								<td class="table_left table_right table_top" height="35" align="left"><span id="lb_M1">机体精气神的综合反映，标准值内数值愈大说明身体营养状态愈良好，机体调节适应能力愈强。</span></td>
+							</tr>
+							<tr>
+								<td class="table_top table_left" height="35" align="center">代谢状态</td>
+								<td class="table_top table_left" height="35" align="center">0.8--1.2</td>
+								<td class="table_top table_left" height="35" align="center"><span id="lb_yy3">1.57</span></td>
+								<td class="table_top table_left table_right" height="35" align="left"><span id="lb_yy1"> 机体代谢减慢：可能服用某些药物等因素所致，或患有某些代谢减慢的疾病。</span></td>
+							</tr>
+							<tr>
+								<td class="table_top table_left" height="35" align="center">精神神经活动状态</td>
+								<td class="table_top table_left" height="35" align="center">0.8--1.2</td>
+								<td class="table_top table_left" height="35" align="center"><span id="lb_sx3">0.71</span></td>
+								<td class="table_top table_left table_right" height="35" align="left"><span id="lb_sx1"> 表现为情绪低落、脑疲劳状态。</span></td>
+							</tr>
+							<tr>
+								<td class="table_top table_left" height="35" align="center">运动状态</td>
+								<td class="table_top table_left" height="35" align="center">0.8--1.2</td>
+								<td class="table_top table_left" height="35" align="center"><span id="lb_zy3">0.86</span></td>
+								<td class="table_top table_left table_right" height="35" align="left"><span id="lb_zy1">左右经气相对平衡，运动调适机能良好。</span></td>
+							</tr>
+							<tr>
+								<td class="table_top   table_left" height="35" align="center">植物神经状态</td>
+								<td class="table_top table_left " height="35" align="center">≤2.0</td>
+								<td class="table_top table_left " height="35" align="center"><span id="lb_dx3">3.09</span></td>
+								<td class="table_top table_left  table_right" height="35" align="left"><span id="lb_dx1">植物神经功能失调，可能有情绪波动、睡眠不宁。</span></td>
+							</tr>
+							<tr>
+								<td class=" table_left table_top" height="35" align="center">免疫功能状态</td>
+								<td class=" table_left table_top" height="35" align="center">4.0--6.0</td>
+								<td class=" table_left table_top" height="35" align="center"><span id="lb_mygn">9.1</span></td>
+								<td class=" table_left table_right table_top" height="35" align="left"><span id="lb_mygn1">免疫亢奋：对疾病反应灵敏，但易发生应激或过敏等反应。</span></td>
+							</tr>
+							<tr>
+								<td class=" table_left table_top" height="35" align="center">心理状态</td>
+								<td class=" table_left table_top" height="35" align="center">48--52</td>
+								<td class=" table_left table_top" height="35" align="center"><span id="lb_xlzt">36.91</span></td>
+								<td class=" table_left table_right table_top" height="35" align="left"><span id="lb_xlzt1">抑郁情绪：有时对事物缺乏兴趣或精力不足，可有自我评价降低等。</span></td>
+							</tr>
+							<tr>
+								<td class=" table_left table_top" height="35" align="center">疲劳状态</td>
+								<td class=" table_left table_top" height="35" align="center">≥20
+								</td>
+								<td class=" table_left table_top" height="35" align="center"><span id="lb_plcd">16.69</span></td>
+								<td class=" table_left table_right table_top" height="35" align="left"><span id="lb_plcd1">轻度疲劳：长时间工作、学习后较易感到疲劳，休息后能缓解。</span></td>
+							</tr>
+							<tr>
+								<td class=" table_left  table_bottom table_top" height="35" align="center">体重指数</td>
+								<td class="table_left  table_bottom table_top" height="35" align="center">18.5--24.9</td>
+								<td class=" table_left  table_bottom table_top" height="35" align="center"><span id="lb_Tzzs">22.86</span></td>
+								<td class=" table_left table_right  table_bottom table_top" height="35" align="left"><span id="lb_Tzzs1">正常，注意保持。</span></td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<table border="0" width="630" align="center">
+		<tbody>
+			<tr>
+				<td>
+					<table class="a1" border="0" cellspacing="0" bordercolorlight="#000000" bordercolordark="#ffffff" cellpadding="0" width="100%"
+									align="center">
+						<tbody>
+							<tr>
+								<td class="table_left table_right table_top" height="30" colspan="2" align="center"><strong><font size="3">重 
+												大 疾 病 筛 查</font></strong></td>
+							</tr>
+							<tr>
+								<td class="a1 table_top table_left" height="35" width="130" align="center">冠心病</td>
+								<td class="a1 table_top table_left table_right" width="500" align="left">&nbsp;
+									<span id="lbl_gxb">----</span></td>
+							</tr>
+							<tr>
+								<td class="a1 table_top table_left" height="35" width="130" align="center">中风</td>
+								<td class="a1 table_top table_left table_right" width="500" align="left">&nbsp;
+									<span id="lbl_zf">----</span></td>
+							</tr>
+							<tr>
+								<td class="a1 table_top table_left" height="35" width="130" align="center">肝病</td>
+								<td class="a1 table_top table_left table_right" width="500" align="left">&nbsp;
+									<span id="lbl_gba">异常</span></td>
+							</tr>
+							<tr>
+								<td class="a1 table_top table_left" height="35" width="130" align="center">糖尿病</td>
+								<td class="a1 table_top table_left table_right" width="500" align="left">&nbsp;
+									<span id="lbl_tnb">----</span></td>
+							</tr>
+							<tr>
+								<td class="a1 table_top table_left table_bottom" height="35" width="130" align="center">肿瘤粗筛</td>
+								<td class="a1 table_top table_left table_right table_bottom" width="500" align="left">&nbsp;
+									<span id="lbl_zl">----</span></td>
+							</tr>
+							<tr>
+								<td class="  table_left table_right table_bottom" height="30" colspan="2" align="center"><strong><font size="3">健 
+												康 问 题 提 示</font></strong></td>
+							</tr>
+						</tbody>
+					</table>
+					<table class="a1" border="0" cellspacing="0" bordercolorlight="#000000" bordercolordark="#ffffff" cellpadding="0" width="100%"
+									align="center">
+						<tbody>
+							<tr>
+								<td style="HEIGHT: 33px" class="a1 table_left" valign="middle" width="20%" align="center">呼吸道 肺
+								</td>
+								<td style="HEIGHT: 33px" class="a1 table_left" valign="middle" width="30%" align="center"><span id="lab_hxf">----</span></td>
+								<td style="HEIGHT: 33px" class="a1 table_left" valign="middle" width="20%" align="center">心、脑&nbsp;&nbsp; 冠状动脉、大血管
+								</td>
+								<td style="HEIGHT: 33px" class="a1 table_left table_right" valign="middle" align="center"><span id="lab_xn">----</span></td>
+							</tr>
+							<tr>
+								<td class="a1 table_top table_left" height="30" valign="middle" align="center">肝</td>
+								<td class="a1 table_top table_left" valign="middle" align="center"><span id="lbl_gan">----</span></td>
+								<td class="a1 table_top table_left" valign="middle" align="center">胆囊</td>
+								<td class="a1 table_top table_left table_right" valign="middle" align="center"><span id="lbl_dn">----</span></td>
+							</tr>
+							<tr>
+								<td class="a1 table_top table_left" height="30" valign="middle" width="20%" align="center">肾</td>
+								<td class="a1 table_top table_left" valign="middle" width="30%" align="center"><span id="lbl_shen">----</span></td>
+								<td class="a1 table_top table_left" valign="middle" width="20%" align="center">输尿管<br> 膀胱
+								</td>
+								<td class="a1 table_top table_left table_right" valign="middle" align="center"><span id="lbl_sng">----</span></td>
+							</tr>
+							<tr>
+								<td class="a1 table_top table_left" height="30" valign="middle" width="20%" align="center">胃、上消化道</td>
+								<td class="a1 table_top table_left" valign="middle" width="30%" align="center"><span id="lbl_wei">----</span></td>
+								<td class="a1 table_top table_left" valign="middle" width="20%" align="center">结肠</td>
+								<td class="a1 table_top table_left table_right" valign="middle" align="center"><span id="lbl_jc">----</span></td>
+							</tr>
+							<tr>
+								<td class="a1 table_top table_left" height="30" valign="middle" width="20%" align="center">内分泌、代谢</td>
+								<td class="a1 table_top table_left" valign="middle" width="30%" align="center"><span id="lbl_nfm">----</span></td>
+								<td class="a1 table_top table_left" valign="middle" width="20%" align="center"><span id="Label17">子宫附件</span></td>
+								<td class="a1 table_top table_left table_right" valign="middle" align="center"><span id="lbl_qlx"><a href="bing_sm.aspx?id=i100000052" target="_blank">月经不调;</a>&nbsp;</span></td>
+							</tr>
+							<tr>
+								<td class="a1 table_top table_left table_bottom" height="30" valign="middle" width="20%" align="center">骨与关节</td>
+								<td class="a1 table_top table_left table_bottom" valign="middle" width="30%" align="center"><span id="lbl_jz">----</span><span id="lbl_ggj"></span></td>
+								<td class="a1 table_top table_left table_bottom" valign="middle" width="20%" align="center">外周神经</td>
+								<td class="a1 table_top table_left table_right table_bottom" valign="middle" align="center"><span id="lbl_wzsj"><a href="bing_sm.aspx?id=i100000075" target="_blank">植物神经功能失调;</a>&nbsp;</span></td>
+							</tr>
+							<tr>
+								<td class="a1 table_left table_bottom" height="30" valign="middle" width="20%" align="center"><span id="Label10">乳腺</span></td>
+								<td class="a1  table_left table_bottom table_right" valign="middle" colspan="3" align="center"><span id="lbl_zg">----</span></td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<table width="630" align="center">
+	<tbody>
+		<tr>
+			<td colspan="3"><img id="Image1" src="/images/tds_reportlogo_sub.png" style="width:620px;"></td>
+		</tr>
+		<tr>
+			<td class=" a1" colspan="3">姓名：
+				<span id="Label8" style="Z-INDEX: 0">孙金秀</span></td>
+		</tr>
+		<tr>
+			<td class="table_top  table_left" width="20"></td>
+			<td class="table_top   a1">
+				<p>
+					<font style="Z-INDEX: 0" face="宋体">&nbsp;&nbsp;</font>
+				</p>
+			</td>
+			<td class="table_top  table_right a1" width="20"></td>
+		</tr>
+		<tr>
+			<td class="table_left" width="20">&nbsp;</td>
+			<td class=" a1"><br>
+				<font style="LINE-HEIGHT: 15pt; FONT-SIZE: 9pt">
+					<span id="lab_jkfa2"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;依据您最近一次的检测结果，系统为您确定的主要体质状况是肺气虚。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;一、肺气虚：<br>
+&nbsp;&nbsp;&nbsp;&nbsp;轻度表现为气短、爱出虚汗、呼吸表浅、说话声音低弱、全身虚乏无力、面色淡白、免疫力下降、易患感冒等疾病。中重度表现为晨起嗓子痰多、痰液清稀、气短明显、呼吸不足以维持、稍有活动感觉气短更为明显、自我感觉上气不接下气、皮肤粗糙，毛孔粗大，皮肤缺乏营养不光滑，皮肤瘙痒、容易引起咳嗽、喘息、呼吸道的病变等。形成原因：主要有吸烟时间愈长，肺气虚越明显，感染因素、各种理化因素如；刺激性性烟雾、粉尘、大气污染（二氧化硫、二氧化氮、氯气、臭氧等）的慢性刺激，常常导致肺功能下降肺气亏虚。冷空气直接刺激呼吸道，使呼吸道的防御能力减弱，都会导致肺气不足情况。过敏因素；喘息性支气管炎往往有过敏史，也会造成肺气虚损的情况。长期缺乏锻炼运动，心肺功能下降。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;二、预后：如不及时调治将可能导致免疫力下降，上呼吸道感染，气管炎，慢性支气管炎，肺结核等病症。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;三、给您的养生建议：<br>
+&nbsp;&nbsp;&nbsp;&nbsp;尊敬的贵宾：从秋季气候特点来看，秋季主气是燥，这个时期空气干燥，燥气过盛，而燥邪致病的特点是侵袭肺所主的皮毛和鼻窍，若肺的宣发正常，就能很快做出应答，将卫气宣发输布至皮肤、鼻窍，使皮肤，毛发滋润，腠理致密，鼻窍通利，则无论何种燥邪均不能进入人体，使人可以顺利度过秋季，肺气虚燥邪耗伤肺阴，引发口干、唇干、鼻干等呼吸道疾病。所以肺气虚者秋季饮食养生首先着眼于补肺益气，其次要滋养肺阴。 <br>
+&nbsp;&nbsp;&nbsp;&nbsp;下面是推荐给肺气虚的朋友的一些具体的养生保健措施，您看看，建议您从中选择一些适合的方式坚持下去——温馨提示：坚持经常很重要，有什么问题请及时与我们联系啊！<br>
+&nbsp;&nbsp;&nbsp;&nbsp;四、饮食调理；<br>
+&nbsp;&nbsp;&nbsp;&nbsp;1、肺气虚者宜食食品作用解析：（前期首要调理食品——补益肺气）<br>
+&nbsp;&nbsp;&nbsp;&nbsp;（1）粳米：性平，味甘，能补中益气。气虚者宜常食之”。梗米可以熬粥或做成甜点吃。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;（2）牛肉：性平，味甘，有益气血，补脾胃，强筋骨的作用。牛肉可以与黄芪一块炖，做成炖牛肉，既可以吃肉又可以喝汤，达到补益气血的目的。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;（3）紫河车：性温，味甘咸，是最常用的补气之物，紫河车可用烤箱烘烤焙干，研末冲服，简单又方便。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;（4）鸡肉：性温，味甘，有温中、益气、补精、养血的功效。民间对气虚之人，有用黄芪煨老母鸡的习惯，更能增加补气作用。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;（5）鲢鱼：性温，味甘，能入脾肺而补气，故气虚者宜食”。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;（6）鳝鱼：性温，味甘，有补虚损、益气力、强筋骨的作用，气虚者宜常食之。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;（7）鳜鱼：俗称桂鱼，可以补气血，益脾胃，尤以气虚兼脾虚者最宜。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;（8）大枣：性温，味甘，为常食之物，它有益气补血的功效，历代医家常用之于气虚病人。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;（9）樱桃：性温，味甘，既能补气补血，又能补脾补肾，又能大补元气”。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;（10）葡萄：性平，味甘酸，是一种补气血果品，所以凡气虚伴有肾虚、肺虚和脾虚者皆宜食之。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;（11）花生：性平，味甘，有补脾和补肺的作用，这对气虚而兼有肺虚或脾虚者更宜，且以水煮花生食用为妥。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;（12）山药：为补气食品，凡气虚体质或久病气虚者，宜常食之，最为有益。山药可以补肺气，补脾气，补肾气，山药可以做成粥，也可以和其他如肉类一起炖食。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;（13）人参：性温，味甘微苦，它能大补元气。可与小鸡、鸽子、牛肉等脂肪低的食物一起炖食。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;（14）黄芪：性微温，味甘，也是中医极为常用的补气中药，黄芪常与小鸡或鸽子炖食，既可补充营养又可补气。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;2、滋养肺阴宜食食品解析：（最后调理食品）<br>
+&nbsp;&nbsp;&nbsp;&nbsp;（1）牛奶：中医认为牛奶性微寒，可以通过滋阴、解热毒来发挥“去火”功效。 <br>
+&nbsp;&nbsp;&nbsp;&nbsp;（2）草莓：中医认为它有“去火”功效，能清暑、解热、除烦。 <br>
+&nbsp;&nbsp;&nbsp;&nbsp;（3）西瓜：性凉，吃了不会引起“上火”、心烦，而且含有丰富钾盐，能弥补人体大量造成的体内钾盐缺乏。 <br>
+&nbsp;&nbsp;&nbsp;&nbsp;（4）大豆：在滋阴、“去火”的同时还能补充因为高温而被大量消耗的蛋白质。 <br>
+&nbsp;&nbsp;&nbsp;&nbsp;（5）西红柿：可以清热解毒、平肝“去火”除肺之热。 <br>
+&nbsp;&nbsp;&nbsp;&nbsp;（6）苦瓜 ：苦瓜去内火、帮助改善烦躁情绪的最佳食物。 <br>
+&nbsp;&nbsp;&nbsp;&nbsp;（7）柚子、梨：性寒味微酸，除能清热外，其特点是能清润肺系。对于肺热胃热极适宜。 <br>
+&nbsp;&nbsp;&nbsp;&nbsp;（8）鲜莲子：生吃可以去心肺之火，清热除烦、养心安神。 <br>
+&nbsp;&nbsp;&nbsp;&nbsp;（9）荸荠：其性微寒，果汁丰富，凡热病引起的心烦口渴、咽喉干痛、咳嗽、口舌生疮、便干尿黄等非常适宜食用。 <br>
+&nbsp;&nbsp;&nbsp;&nbsp;（10）杨桃：性寒，味酸甜，清热生津，内火炽盛、口腔溃疡破烂最适宜。 <br>
+&nbsp;&nbsp;&nbsp;&nbsp;（11）白菜：性微寒，有清热除烦，利二便的作用。 <br>
+&nbsp;&nbsp;&nbsp;&nbsp;（12）芹菜：性寒凉，能去肝火解肺胃郁热，容易“上火”的常食有益。 <br>
+&nbsp;&nbsp;&nbsp;&nbsp;（13）莴笋：功效特点为清热、顺气、化痰，适合肺胃有热的食用。 <br>
+&nbsp;&nbsp;&nbsp;&nbsp;（14）莲藕：性平寒，功效是清热生津、润肺止咳，若与梨汁搅和同服其效更佳。 <br>
+&nbsp;&nbsp;&nbsp;&nbsp;（15）茄子：性寒凉，可以清热解毒，给易“上火”的食用时不要用油烧的方法烹饪，可以采用蒸茄子的方法。 <br>
+&nbsp;&nbsp;&nbsp;&nbsp;（16）百合：性平微寒，具有清热润肺止咳功效，对热病后余热未清、咽喉肿痛、心烦口渴诸症均有疗效。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;3、几种比较简单的补气的方法；<br>
+&nbsp;&nbsp;&nbsp;&nbsp;气虚的保健药膳；<br>
+&nbsp;&nbsp;&nbsp;&nbsp;（1）大麦茶： <br>
+&nbsp;&nbsp;&nbsp;&nbsp;大麦茶30克水煎服。消食化积。(本方适用于米食积滞) 通过健脾益气，达到提升全身之气的目的。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;（2）胡萝卜茶： <br>
+&nbsp;&nbsp;&nbsp;&nbsp;胡萝卜 50克，茶叶10克。胡萝卜与茶叶煎水服。理气消食。通过健脾益气，达到提升全身之气的目的。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;（3）鸡内金汤： <br>
+&nbsp;&nbsp;&nbsp;&nbsp;鸡内金100克，晒干研碎过筛，每次用3克，用米汤冲服，每天2次。可治消化不良、食积等症。通过健脾益气，达到提升全身之气的目的。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;（4）消宣散： <br>
+&nbsp;&nbsp;&nbsp;&nbsp;谷芽、山楂、槟榔、枳壳各等份，将它们共研细末。每次服3克-5克，每日3次。 <br>
+&nbsp;&nbsp;&nbsp;&nbsp;功效：理气消食，健脾开胃。适用于食积气滞，消化不良，脘腹胀满，腹泻便溏等症。通过健脾益气，达到提升全身之气的目的。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;（5）三鲜消滞饮： <br>
+&nbsp;&nbsp;&nbsp;&nbsp;鲜山楂20克，鲜萝卜 30克，鲜青橘皮6克，冰糖适量。将鲜山楂、鲜萝卜、鲜青橘皮洗净、切丝，放人锅中加水适量，用旺火烧开后改用文火煨半小时，然后用干净纱布过滤，弃渣取汁后，加人冰糖继续煮沸即成。每次20毫升-30毫升，每日3次，连饮3日为1个疗程。 <br>
+&nbsp;&nbsp;&nbsp;&nbsp;功效：健脾行气，开胃，助消化，散结消滞。适用于积滞伤脾型疳积症。通过健脾益气，达到提升全身之气的目的。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4、气虚保健药膳；<br>
+&nbsp;&nbsp;&nbsp;&nbsp;（1）黄芪粥：<br>
+&nbsp;&nbsp;&nbsp;&nbsp;【原料】黄芪30克，粳米50克。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;【制作工艺】先用水煮黄芪取汁去渣，再用汁煮米做粥，晨起空腹食用。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;【应用】适用于气虚，容易感冒者。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;（2）人参胡桃煎：<br>
+&nbsp;&nbsp;&nbsp;&nbsp;【原料】人参3克，胡桃肉三个。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;【制作工艺】煮熬一小时，饮汤后将参及胡桃肉一起食用。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;【应用】适用于肺肾气虚，胆气不足，动则气喘、气短者。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;（3）虫草鸡：<br>
+&nbsp;&nbsp;&nbsp;&nbsp;【原料】虫草6－7条，鸡肉半斤，葱、姜、盐适量。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;【制作工艺】将虫草、肌肉洗净，与葱、姜、盐等调料一起加水文火慢炖2小时即可饮汤食肉。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;【应用】适用于一切气虚者。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;（4）人参粥：<br>
+&nbsp;&nbsp;&nbsp;&nbsp;【原料】白米５０－１００克，人参１０克。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;【制作工艺】：将人参切成小块，用清水浸泡４０分钟，放入沙锅（或铝锅）内，先用武火煮开，后改用文火熬约两小时，再将米洗净放入参汤中煮成粥。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;【服法】早晚各食１次，常服有效。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;【应用】胆气虚所导致的气短、胆小怕事以及脾胃气虚所致的饮食不香，腹部虚胀，甚至泄泻者。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;【注意事项】忌铁器；服粥期间忌食萝卜和茶。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;（5）补虚正气粥：<br>
+&nbsp;&nbsp;&nbsp;&nbsp;【原料】炙黄芪２０克，党参１０克，粳米１００克，白糖适量。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;【制作工艺】将黄芪、党参切片，用清水浸泡４０分钟，按水煮提取法，提取黄芪、党参浓缩液３０毫升，番米洗净煮粥，粥将成时加入黄芪、党参浓缩液，稍煮片刻即可。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;【服法】早晚各食１次，服时酌加白糖。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;【应用】脾、肺、胆气虚等症。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;【注意事项】一般连服３－５天后，间隔２－３天再服。服粥期间忌食萝卜和茶叶。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;（6）人参莲肉汤：<br>
+&nbsp;&nbsp;&nbsp;&nbsp;【原料】白人参１０克，莲子１０枚，冰糖３０克。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;【制作工艺】将白人参、莲子（去心）放在碗里，加洁净水适量泡发，再加入冰糖。将盛药物的碗置蒸锅内，隔水蒸炖１小时。人参可连续使用３次，次日再加莲子、冰糖和水适量，如前法蒸炖。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;【服法】喝汤，吃莲肉，第３次时，同人参一起吃下。早晚各食１次。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;【应用】病后体弱，胆气虚，自汗及脾虚泄泻等症。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;【注意事项】忌铁器，忌食萝卜和茶。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;（7）黄芪汽锅鸡：<br>
+&nbsp;&nbsp;&nbsp;&nbsp;【原料】嫩母鸡１只，黄芪３０克，精盐５克，料酒１５克，葱、生姜各１０克，味精适量。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;【制作工艺】鸡宰杀后，去毛，剁去爪，剖去内脏，洗净后先入沸水锅内焯至皮伸，再用凉水冲洗，滤干水待用。黄芪洗净，切成６－７厘米长的段，每段再对剖成两半，整齐地装入鸡腹腔内。葱、姜洗净后切段、片待用。将鸡放入汽锅内，加入葱段、姜片、料酒、清水、盐，用棉纸封口，上屉用旺火蒸至沸后约２小时。出屉后，拣出葱、姜，把黄芪片从鸡腹内取出，码放在鸡上即可食。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;【服法】可作佐餐食用。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;【应用】气虚所导致的胆气虚、肺气虚、脾气虚、肾气虚等症。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;五、运动方法：<br>
+&nbsp;&nbsp;&nbsp;&nbsp;以下介绍两种运动方法：<br>
+&nbsp;&nbsp;&nbsp;&nbsp;1、 跑步：<br>
+&nbsp;&nbsp;&nbsp;&nbsp;先慢跑5-1O分钟，身体渐渐发热后稍加快速度，再跑15-20分钟，先后共用20-30分钟。跑时动作要自然、放松，呼吸与跑的节奏相配合，一股情况下，跑3-4步一呼，再3--4步一吸，用鼻和口呼气。跑动的步伐不要过大，脚后跟先着地，再过渡到脚掌，两臂自然屈肘前后摆动。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;作用：可增强心肺及呼吸功能，提高身体的耐力。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;2、骑自行车<br>
+&nbsp;&nbsp;&nbsp;&nbsp;练习方法：骑车时，身体放松，精力集中。根据家离单位的距离来掌握车速，如距离10公里可用35分钟。5公里用15分钟即可。每天锻炼两次，每周10次。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;作用：提高耐力，增强心肺功能。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;运动强度以有效运动心率指数为监测指标，运动时心率维持在170-N（N=年龄）的水平上，锻炼效果最好。（例如40岁的人，锻炼时心率维持在130次/分左右的水平上，效果最好；170-40=130次/分）。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;六、生活起居调摄建议：<br>
+&nbsp;&nbsp;&nbsp;&nbsp;平常增加锻炼，提高心肺功能，保持生活规律、精神愉快，睡眠充足，做到劳逸结合；天气变化时要注意保暖，天气忽然变凉时，或天冷大风时，若到空气污染较重的地方去，最好戴上口罩；避免冷空气、污染空气等直接刺激呼吸道（口腔、咽、气管等）。饮食上要少食辛辣刺激性食物。<br>
+
+</span></font>
+			</td>
+			<td class=" table_right a1" width="20">&nbsp;</td>
+		</tr>
+		<tr>
+			<td class=" table_bottom table_left" width="20"></td>
+			<td class=" table_bottom  a1">&nbsp;&nbsp;</td>
+			<td class=" table_bottom  table_right a1" width="20"></td>
+		</tr>
+	</tbody>
+</table>
+</body>
+
+</html>
