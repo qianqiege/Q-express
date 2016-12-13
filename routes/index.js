@@ -103,8 +103,8 @@ router.get('/project3', function(req, res, next) {
     res.render('project3', {title: "康复科"});
 });
 
-router.get('/viewTDS', function(req, res, next) {
-    res.render('viewTDS', {title: "数字中医"});
+router.get('/viewTDSSearch', function(req, res, next) {
+    res.render('viewTDSSearch', {title: "数字中医信息查询"});
 });
 
 router.get('/adminIndex', function(req, res, next) {
