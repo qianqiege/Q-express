@@ -128,35 +128,35 @@
 
                 </tr>
                 <tr>
-                    <td> <label> <input type="checkbox" value="1" onchange="caculate()" id ="松_neck" name = "pine" /> 颈椎：<span></span></label></td>
+                    <td> <label> <input type="checkbox" value="1" onchange="caculate()" id ="松_neck" name = "pine" onclick = "autoJust(this)" /> 颈椎：<span></span></label></td>
                     <td> <label> <input type="checkbox" value="1" onchange="caculate()" id ="正_neck" name = "just" /> 颈椎：<span></span></label></td>
                     <td> <label> <input type="checkbox" value="1" onchange="caculate()" id ="理_neck" name = "logic" /> 颈椎：<span></span></label></td>
                     <td> <label> <input type="checkbox" value="1" onchange="caculate()" id ="首次调理总价_neck" name = "first" /> 颈椎：<span></span></label></td>
                     <td> <label> <input type="checkbox" value="1" onchange="caculate()" id ="养护（第二次起）_neck" name="second" /> 颈椎：<span></span></label></td>
                 </tr>
                 <tr>
-                    <td> <label> <input type="checkbox" value="1" onchange="caculate()" id ="松_thoracic" name = "pine" /> 胸椎：<span></span></label></td>
+                    <td> <label> <input type="checkbox" value="1" onchange="caculate()" id ="松_thoracic" name = "pine"  onclick = "autoJust(this)"/> 胸椎：<span></span></label></td>
                     <td> <label> <input type="checkbox" value="1" onchange="caculate()" id ="正_thoracic" name = "just" /> 胸椎：<span></span></label></td>
                     <td> <label> <input type="checkbox" value="1" onchange="caculate()" id ="理_thoracic" name = "logic" /> 胸椎：<span></span></label></td>
                     <td> <label> <input type="checkbox" value="1" onchange="caculate()" id ="首次调理总价_thoracic" name = "first" /> 胸椎：<span></span></label></td>
                     <td> <label> <input type="checkbox" value="1" onchange="caculate()" id ="养护（第二次起）_thoracic" name="second"  /> 胸椎：<span></label></td>
                 </tr>
                 <tr>
-                    <td> <label> <input type="checkbox" value="1" onchange="caculate()"  id ="松_lumbar" name = "pine"> 腰椎：<span></span></label> </td>
-                    <td> <label> <input type="checkbox" value="1" onchange="caculate()"  id ="正_lumbar" name = "just"> 腰椎：<span></span></label></td>
-                    <td> <label> <input type="checkbox" value="1" onchange="caculate()"  id ="理_lumbar" name = "logic"> 腰椎：<span></span></label></td>
-                    <td> <label> <input type="checkbox" value="1" onchange="caculate()"  id ="首次调理总价_lumbar" name = "first"> 腰椎：<span></span></label></td>
-                    <td> <label> <input type="checkbox" value="1" onchange="caculate()"  id ="养护（第二次起）_lumbar" name="second"> 腰椎：<span></span></label></td>
+                    <td> <label> <input type="checkbox" value="1" onchange="caculate()"  id ="松_lumbar" name = "pine" onclick = "autoJust(this)" /> 腰椎：<span></span></label> </td>
+                    <td> <label> <input type="checkbox" value="1" onchange="caculate()"  id ="正_lumbar" name = "just" /> 腰椎：<span></span></label></td>
+                    <td> <label> <input type="checkbox" value="1" onchange="caculate()"  id ="理_lumbar" name = "logic" /> 腰椎：<span></span></label></td>
+                    <td> <label> <input type="checkbox" value="1" onchange="caculate()"  id ="首次调理总价_lumbar" name = "first" /> 腰椎：<span></span></label></td>
+                    <td> <label> <input type="checkbox" value="1" onchange="caculate()"  id ="养护（第二次起）_lumbar" name="second" /> 腰椎：<span></span></label></td>
                 </tr>
                 <tr>
-                    <td> <label> <input type="checkbox" value="1" onchange="caculate()" id="松_pelvis" name = "pine" /> 骨盆：<span></span></label></td>
+                    <td> <label> <input type="checkbox" value="1" onchange="caculate()" id="松_pelvis" name = "pine" onclick = "autoJust(this)" /> 骨盆：<span></span></label></td>
                     <td> <label> <input type="checkbox" value="1" onchange="caculate()" id="正_pelvis" name = "just" /> 骨盆：<span></span></label></td>
                     <td> <label> <input type="checkbox" value="1" onchange="caculate()" id="理_pelvis" name = "logic" /> 骨盆：<span></span></label> </td>
                     <td> <label> <input type="checkbox" value="1" onchange="caculate()" id="首次调理总价_pelvis" name = "first" /> 骨盆：<span></span></label> </td>
                     <td> <label> <input type="checkbox" value="1" onchange="caculate()" id="养护（第二次起）_pelvis" name="second" /> 骨盆：<span></span></label></td>
                 </tr>
                 <tr>
-                    <td> <label> <input type="checkbox" value="1" onchange="caculate()" id="松_whole_ridge" /> 全脊：<span></span></label> </td>
+                    <td> <label> <input type="checkbox" value="1" onchange="caculate()" id="松_whole_ridge" onclick = "autoJust(this)"  /> 全脊：<span></span></label> </td>
                     <td> <label> <input type="checkbox" value="1" onchange="caculate()" id="正_whole_ridge" /> 全脊：<span></span></label>  </td>
                     <td> <label> <input type="checkbox" value="1" onchange="caculate()" id="理_whole_ridge" /> 全脊：<span></span></label>  </td>
                     <td> <label> <input type="checkbox" value="1" onchange="caculate()" id="首次调理总价_whole_ridge" /> 全脊：<span></span></label>  </td>
@@ -247,6 +247,15 @@ var changeGrade = function () {
         }
     })
 
+};
+var autoJust = function (dom) {
+    var part = "";
+    if (dom.id.split("_").length >2) {
+        var part =  dom.id.split("_")[1] +"_"+ dom.id.split("_")[2];
+    } else {
+        var part = dom.id.split("_")[1];
+    }
+    $("#正_"+part).prop("checked",true);
 };
 //计算开票价钱
 var caculate = function () {
