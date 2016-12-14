@@ -183,6 +183,7 @@ $(function () {
     });
 })
 //搜索展示相关人员信息
+var patient_id;
 var template = $("#hideProject").html();
 $("#hideProject").remove();
 var searching = false;
@@ -204,7 +205,8 @@ var doSearch = function (dom) {
                 for (var i in data.patient) {
                     $("#"+ i).text(data.patient[i] || "无");
                 }
-                $("#recipe_number").text(data.registration.number || "未挂号");
+                patient_id = data.patient.id;
+                $("#recipe_number").text(data.registration.number);
             } else {
                 $("#showProject").html("暂无搜索结果");
             }
@@ -267,41 +269,45 @@ var caculate = function () {
     $("#total").text(sum*times);
     $("#single").text(sum);
 }
-// var cbFun = function(data, status) {
-//     if (!status) {
-//         swal("提交失败", JSON.parse(data.reponseText)["error"], "error");
-//     } else {
-//         swal("提交成功", "正在进入查询页面", "success");
-//         setTimeout(function() {
-//             // location.href="/";
-//         },1000);
-//         return true;
-//     }
-// };
+
+
 //提交数据
 var submitForm = function () {
     var arr = [];
     $("input[type=checkbox]:checked").each(function(){arr.push($(this)[0].id)});
     var postObj = {
-        "cureTimes": $("#cureTimes").val(),
-        "descriptionOfPhysicalCondition": $("#descriptionOfPhysicalCondition").val(),
+        "treatment_times": $("#cureTimes").val(),
+        "physical_condition": $("#descriptionOfPhysicalCondition").val(),
+        "diagnostic_advice" : $("#diagnosticAdvice").val(),
         "treatment_level": $("#treatment_level").val(),
         "total": $("#total").text(),
-        "single":$("#single").text(),
-        "treatment_checked": arr,
-        "doctor" : $("#doctor").text()
+        "single_amount":$("#single").text(),
+        "detail": arr,
+        "patient_id" : patient_id
     };
-    console.log(postObj);
-
-    // doAjax(
-    //     "http://192.168.1.229:3000/api/v1/",
-    //     "post",
-    //     JSON.stringify(postObj),
-    //     cbFun,
-    //     {},
-    //     {contentType: 'application/json;charset=utf-8'}
-    // );
-    // return 0;
+    doAjax(
+        "http://192.168.1.229:3000/api/v1/recipe/create_spine_recipe",
+        "post",
+        postObj,
+        function (data, status) {
+            if (status && data) {
+                swal({
+                    title: data.info || "提交成功",
+                    type: "success"
+                },
+                function() {
+                    $("input:checkbox").prop("checked", false);
+                    $("input").val("");
+                    $("textarea").val("");
+                    $("#single").text(0);
+                    $("#total").text(0);
+                });
+            } else {
+                swal("提交失败", "", "error");
+            }
+        }
+    );
+    return 0;
 };
 </script>
 <%- include footer %>
