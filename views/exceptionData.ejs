@@ -46,7 +46,6 @@
                         $("#iamtempalte").remove()
                         var cbFunction = function(data,status){
                             $("table tr:eq(1)").remove();
-                            console.log(data);
                             for ( var i in data) {
                                 adata = data[data.length - i - 1];
                                 name = adata.patient.name
