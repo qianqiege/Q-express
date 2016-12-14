@@ -123,6 +123,11 @@ router.get('/page/jiankang', function(req, res, next) {
     res.render('page_jiankang', {title: "健康管理方案"});
 });
 
+router.get('/page/spine', function(req, res, next) {
+    res.render('page_spine', {title: "健康管理方案"});
+});
+
+
 
 
 
