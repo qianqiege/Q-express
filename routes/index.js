@@ -95,6 +95,10 @@ router.get('/project1', function(req, res, next) {
     res.render('project1', {title: "档案查询"});
 });
 
+router.get('/spineSearch', function(req, res, next) {
+    res.render('spineSearch', {title: "脊柱查询"});
+});
+
 router.get('/login', function(req, res, next) {
     res.render('login', {title: "登录"});
 });
