@@ -106,8 +106,8 @@
         <div class="form-group col-xs-12 col-md-4 offset-lg-1">
             <label for="health_survey4_2">费别</label>
             <select id="health_survey4_2" class="form-control" data-plugin="select2" name="health_survey5">
-                <option>公费</option>
                 <option>自费</option>
+                <option>公费</option>
                 <option>医保 </option>
                 <option>其它</option>
             </select>
@@ -142,6 +142,114 @@ var jsGridFrom = function(products) {
         name: "",
         id: 0
     }].concat(products || []);
+
+    var productSelect = function(config) {
+        jsGrid.Field.call(this, config);
+    };
+
+    // 产品选择 select
+    productSelect.prototype = new jsGrid.Field({
+        align: "left",
+        itemTemplate: function(value) {
+            return value;
+        },
+        insertTemplate: function(value) {
+            var selectDom = $("<select>").attr("name", this["name"]).addClass("form-control input-sm"), self = this;
+            for (var i = 0; i < this["items"].length; i++) {
+                selectDom.append($("<option>")
+                    .val(this["items"][i][this["valueField"]])
+                    .text(this["items"][i][this["textField"]])
+                    .data("id", this["items"][i][this["idField"]]));
+            }
+            return this._insertSelect = selectDom.change(function() {
+                var linkageDom = $(this).parent().parent().find("input[linkage='" + self["linkageField"] + "']");
+                doAjax("http://192.168.1.229:3000/api/v1/product/product_usage_list", "get", {"product_id": $(this).find("option:selected").data("id")}, function(data, status) {
+                    if (status && data) {
+                        linkageDom.val(data[0] ? data[0]["usage"] : "");
+                    }
+                });
+            });
+        },
+        editTemplate: function(value) {
+            var selectDom = $("<select>").attr("name", this["name"]).addClass("form-control input-sm"), self = this;
+            for (var i = 0; i < this["items"].length; i++) {
+                selectDom.append($("<option>")
+                    .val(this["items"][i][this["valueField"]])
+                    .text(this["items"][i][this["textField"]])
+                    .data("id", this["items"][i][this["idField"]]));
+            }
+            return this._editSelect = selectDom.change(function() {
+                var linkageDom = $(this).parent().parent().find("input[linkage='" + self["linkageField"] + "']");
+                doAjax("http://192.168.1.229:3000/api/v1/product/product_usage_list", "get", {"product_id": $(this).find("option:selected").data("id")}, function(data, status) {
+                    if (status && data) {
+                        linkageDom.val(data[0] ? data[0]["usage"] : "");
+                    }
+                });
+            }).val([value]);
+        },
+        insertValue: function() {
+            return this._insertSelect.val();
+        },
+        editValue: function() {
+            return this._editSelect.val();
+        }
+    });
+
+    jsGrid.fields.product = productSelect;
+
+    // 用法输入框
+    var productUsageInput = function(config) {
+        jsGrid.Field.call(this, config);
+    };
+
+    productUsageInput.prototype = new jsGrid.Field({
+        align: "left",
+        itemTemplate: function(value) {
+            return value;
+        },
+        insertTemplate: function(value) {
+            return this._insertPicker = $("<input>").addClass("form-control input-sm").attr("linkage", "productUsage");
+        },
+        editTemplate: function(value) {
+            return this._editPicker = $("<input>").val(value).addClass("form-control input-sm").attr("linkage", "productUsage");
+        },
+        insertValue: function() {
+            return this._insertPicker.val();
+        },
+        editValue: function() {
+            return this._editPicker.val();
+        }
+    });
+
+    jsGrid.fields.productUsage = productUsageInput;
+
+
+    // 数量输入框
+    var numInput = function(config) {
+        jsGrid.Field.call(this, config);
+    };
+
+    numInput.prototype = new jsGrid.Field({
+        align: "left",
+        itemTemplate: function(value) {
+            return value;
+        },
+        insertTemplate: function(value) {
+            return this._insertPicker = $("<input>").addClass("form-control input-sm").attr("type", "text");
+        },
+        editTemplate: function(value) {
+            return this._editPicker = $("<input>").addClass("form-control input-sm").attr("type", "text").val(value);
+        },
+        insertValue: function() {
+            return this._insertPicker.val();
+        },
+        editValue: function() {
+            return this._editPicker.val();
+        }
+    });
+
+    jsGrid.fields.num = numInput;
+
     $('#exampleBasic').jsGrid({
         height: "300px",
         width: "100%",
@@ -181,22 +289,28 @@ var jsGridFrom = function(products) {
 
         fields: [{
             name: "产品名",
-            type: "select",
+            type: "product",
             items: products,
             valueField: "name",
-            textField: "name"
+            textField: "name",
+            idField: "id",
+            linkageField: "productUsage",
+            validate: "required"
         }, {
             name: "用法",
-            type: "text",
-            width: 200
-        },{
-            name: "实际数量",
-            type: "number",
-            width: 70
+            type: "productUsage",
+            validate: "required"
         },{
             name: "数量",
-            type: "number",
-            width: 70
+            type: "num",
+            width: "30px",
+            validate: {
+                validator: "range",
+                message: function(value, item) {
+                    return "数量需要大于 0，小于 101";
+                },
+                param: [1, 100]
+            }
         }, {
             type: "control"
         }]
@@ -231,7 +345,11 @@ var doSearch = function(dom) {
         doAjax("http://192.168.1.229:3000/api/v1/registration/get_number", "get", {"id_number": val}, function(data, status) {
             searching = false;
             if (status && data) {
-                var todaydata =new Date().Format("yyyy-MM-dd");
+                if (!data.registration) {
+                    swal("没有 registration 记录", "", "error");
+                    return false;
+                }
+                var todaydata = new Date().Format("yyyy-MM-dd");
                 $("#all_contacts ul:first").html($(createUserDom(data)));
                 $("#health_survey4_1").select2();
                 getProgrammeAndProduct();
@@ -257,6 +375,7 @@ var doSearch = function(dom) {
     }
 };
 var submitForm = function() {
+    console.log(temp_data);
     var postObj = {
         "patient_id": temp_data["patient"]["id"],
         "physiology": $("#physiology").val(),
