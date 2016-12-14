@@ -10,8 +10,8 @@ router.get('/test', function(req, res, next) {
     res.render('test', {title: "test"});
 });
 
-router.get('/ExceptionData', function(req, res, next) {
-    res.render('ExceptionData', {title: "异常数据查询"});
+router.get('/exceptionData', function(req, res, next) {
+    res.render('exceptionData', {title: "异常管理"});
 });
 
 router.get('/healthDetection', function(req, res, next) {
@@ -95,6 +95,10 @@ router.get('/project1', function(req, res, next) {
     res.render('project1', {title: "档案查询"});
 });
 
+router.get('/spineSearch', function(req, res, next) {
+    res.render('spineSearch', {title: "脊柱查询"});
+});
+
 router.get('/login', function(req, res, next) {
     res.render('login', {title: "登录"});
 });
@@ -103,8 +107,8 @@ router.get('/project3', function(req, res, next) {
     res.render('project3', {title: "康复科"});
 });
 
-router.get('/viewTDS', function(req, res, next) {
-    res.render('viewTDS', {title: "数字中医"});
+router.get('/viewTDSSearch', function(req, res, next) {
+    res.render('viewTDSSearch', {title: "数字中医信息查询"});
 });
 
 router.get('/adminIndex', function(req, res, next) {
