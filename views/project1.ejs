@@ -101,9 +101,9 @@
     </div>
 
     <div class="row">
-      <div class="form-group col-xs-12 col-md-10 offset-lg-1   ">
+      <div class="form-group col-xs-12 col-md-10 offset-lg-1  ">
         <label for="">治疗次数</label>
-        <input type="number" class="form-control" id="cureTimes" value="1" min='1' onblur = "if(value == ''){value = '1'}"/>
+        <input type="number" class="form-control" id="cureTimes" value="1" min='1' onblur = "if(value == ''){value = '1'}" onchange="caculate()"/>
       </div>
     </div>
 
@@ -120,7 +120,7 @@
                 </tr>
                 <tr>
                     <td rowspan="6">
-                        <select id="grade" class="form-control"  data-plugin="select2" name="issue_grade" onchange="changeGrade()">
+                        <select id="treatment_level" class="form-control"  data-plugin="select2" name="issue_grade" onchange="changeGrade()">
                           <optgroup label="" id = "optionGroup">
                           </optgroup>
                         </select>
@@ -172,6 +172,7 @@
     </div>
 </div>
 <script>
+//页面初始化加载医院、医生、日期
 $(function () {
     doAjax("http://192.168.1.229:3000/api/v1/recipe/recipe_info", "get", {"category": "筑脊科"}, function(data, status) {
         if (status && data) {
@@ -181,6 +182,7 @@ $(function () {
         }
     });
 })
+//搜索展示相关人员信息
 var template = $("#hideProject").html();
 $("#hideProject").remove();
 var searching = false;
@@ -198,7 +200,7 @@ var doSearch = function (dom) {
                 $("#health_survey4_1").select2();
                 $("#health_survey4_2").select2();
                 $("#health_survey4_3").select2();
-                $("#grade").select2();
+                $("#treatment_level").select2();
                 for (var i in data.patient) {
                     $("#"+ i).text(data.patient[i] || "无");
                 }
@@ -214,7 +216,7 @@ var doSearch = function (dom) {
                     var j = ~~i+1;
                     $("#optionGroup").append("<option value =" + j +">"+data[i].treatment_level+"</option>");
                 }
-                $("#grade").trigger("change");
+                $("#treatment_level").trigger("change");
             } else {
                 $("#optionGroup").append("暂无等级");
             }
@@ -224,10 +226,10 @@ var doSearch = function (dom) {
     }
 
 };
+//改变筑脊等级相应改变价钱与禁用相关项
 var changeGrade = function () {
-    var grade = $("#grade").val();
-    doAjax("http://192.168.1.229:3000/api/v1/spine/spine_level_charge", "get" , {"spine_level_id":grade}, function (data, status) {
-        console.log(data);
+    var treatment_level = $("#treatment_level").val();
+    doAjax("http://192.168.1.229:3000/api/v1/spine/spine_level_charge", "get" , {"spine_level_id":treatment_level}, function (data, status) {
         $("#total").text(0);
         $("#single").text(0);
         $("input[type = checkbox]").each (function () {
@@ -246,6 +248,7 @@ var changeGrade = function () {
     })
 
 };
+//计算开票价钱
 var caculate = function () {
     var sum = 0;
     $("input[type = checkbox]:checked").each(function () {
@@ -255,15 +258,41 @@ var caculate = function () {
     $("#total").text(sum*times);
     $("#single").text(sum);
 }
+// var cbFun = function(data, status) {
+//     if (!status) {
+//         swal("提交失败", JSON.parse(data.reponseText)["error"], "error");
+//     } else {
+//         swal("提交成功", "正在进入查询页面", "success");
+//         setTimeout(function() {
+//             // location.href="/";
+//         },1000);
+//         return true;
+//     }
+// };
+//提交数据
 var submitForm = function () {
     var arr = [];
-    $("input[type=checkbox]:checked").each(function(){arr.push($(this)[0].id)})
-    console.log(arr);
-    console.log($("#cureTimes").val());
-    console.log($("#descriptionOfPhysicalCondition").val());
-    console.log($("#diagnosticAdvice").val());
-    console.log($("#grade").val());
-    console.log($("#total").text());
+    $("input[type=checkbox]:checked").each(function(){arr.push($(this)[0].id)});
+    var postObj = {
+        "cureTimes": $("#cureTimes").val(),
+        "descriptionOfPhysicalCondition": $("#descriptionOfPhysicalCondition").val(),
+        "treatment_level": $("#treatment_level").val(),
+        "total": $("#total").text(),
+        "single":$("#single").text(),
+        "treatment_checked": arr,
+        "doctor" : $("#doctor").text()
+    };
+    console.log(postObj);
+
+    // doAjax(
+    //     "http://192.168.1.229:3000/api/v1/",
+    //     "post",
+    //     JSON.stringify(postObj),
+    //     cbFun,
+    //     {},
+    //     {contentType: 'application/json;charset=utf-8'}
+    // );
+    // return 0;
 };
 </script>
 <%- include footer %>
