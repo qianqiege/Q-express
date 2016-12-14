@@ -241,10 +241,10 @@ var jsGridFrom = function(products) {
             return this._editPicker = $("<input>").addClass("form-control input-sm").attr("type", "text").val(value);
         },
         insertValue: function() {
-            return this._insertPicker.val();
+            return ~~this._insertPicker.val();
         },
         editValue: function() {
-            return this._editPicker.val();
+            return ~~this._editPicker.val();
         }
     });
 
@@ -375,7 +375,6 @@ var doSearch = function(dom) {
     }
 };
 var submitForm = function() {
-    console.log(temp_data);
     var postObj = {
         "patient_id": temp_data["patient"]["id"],
         "physiology": $("#physiology").val(),
