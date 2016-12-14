@@ -123,6 +123,61 @@
     });
   })();
 
+  // showProject
+  // -------------------
+  (function() {
+    $('#showProject').jsGrid({
+      height: "300px",
+      width: "100%",
+
+      inserting: true,
+      editing: true,
+      sorting: true,
+      paging: true,
+      autoload: true,
+
+      pageSize: 15,
+      pageButtonCount: 5,
+
+      deleteConfirm: "确定要删除吗?",
+
+      controller: db,
+
+      fields: [{
+        name: "脊柱干预步骤/筑脊师级别",
+        type: "select",
+        items: db.projects,
+        valueField: "Id",
+        textField: "Name"
+      },{
+        name: "松",
+        type: "select",
+        items: db.products,
+        valueField: "Id",
+        textField: "Name"
+      }, {
+        name: "正",
+        type: "text",
+        width: 200
+      },{
+        name: "理",
+        type: "number",
+        width: 70
+      },{
+        name: "首次调理总价",
+        type: "number",
+        width: 70
+      }, ,{
+        name: "养护（第二次起）",
+        type: "number",
+        width: 70
+      }, {
+        type: "control"
+      }]
+    });
+  })();
+
+
   // Example Static Data
   // -------------------
   (function() {
