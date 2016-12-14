@@ -96,7 +96,7 @@ router.get('/project1', function(req, res, next) {
 });
 
 router.get('/spineSearch', function(req, res, next) {
-    res.render('spineSearch', {title: "疾病定位查询"});
+    res.render('spineSearch', {title: "脊柱查询"});
 });
 
 router.get('/login', function(req, res, next) {
