@@ -110,6 +110,9 @@ $.fn.customVal = function() {
     if (!this.length) {
         return this;
     }
+    if (arguments[0] === null) {
+        return this;
+    }
     var tag = this.prop("tagName").toLowerCase();
     if (tag === "select") {
         var usedSelect2 = true;
@@ -135,6 +138,12 @@ $.fn.customVal = function() {
             } else {
                 return this.val(arguments[0]);
             }
+        }
+    } else if (tag === "textarea") {
+        if (!arguments.length) {
+            return this.val();
+        } else {
+            return this.val(arguments[0]);
         }
     } else if (tag === "input") {
         var type = this.attr("type") || "text";
