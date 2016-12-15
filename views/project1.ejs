@@ -215,7 +215,7 @@ var doSearch = function (dom) {
         doAjax("http://192.168.1.229:3000/api/v1/spine/spine_level", "get", {}, function (data, status){
             if (status && data) {
                 for (var i in data) {
-                    $("#optionGroup").append("<option value =" + data[i].treatment_level +">"+data[i].treatment_level+"</option>");
+                    $("#optionGroup").append("<option value =" + data[i].id +">"+data[i].treatment_level+"</option>");
                 }
                 $("#treatment_level").trigger("change");
             } else {
