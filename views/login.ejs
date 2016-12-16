@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html class="no-js css-menubar" lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
   <meta name="description" content="bootstrap admin template">
   <meta name="author" content="">
-  <title><%= title %></title>
+  <title>
+    <%= title %>
+  </title>
   <!-- Stylesheets -->
   <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
   <link rel="stylesheet" href="/stylesheets/bootstrap-extend.min.css">
@@ -21,7 +24,6 @@
   <link rel="stylesheet" href="/stylesheets/login-v3.min.css">
   <link rel="stylesheet" href="/stylesheets/bootstrap-select.css">
   <link rel="stylesheet" href="/stylesheets/select2.css">
-
   <!-- Fonts -->
   <link rel="stylesheet" href="/stylesheets/web-icons.min.css">
   <link rel="stylesheet" href="/stylesheets/sweetalert.min.css">
@@ -35,9 +37,10 @@
   <!-- Scripts -->
   <script src="/javascripts/breakpoints.js"></script>
   <script>
-  Breakpoints();
+    Breakpoints();
   </script>
 </head>
+
 <body class="animsition page-login-v3 layout-full">
   <!--[if lt IE 8]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -71,7 +74,6 @@
         </div>
       </div>
       <footer class="page-copyright page-copyright-inverse">
-        <p>Powered By sweet NodeJS</p>
         <p>© 2016. 御邦医通版权所有.</p>
         <div class="social">
           <a class="btn btn-icon btn-pure" href="javascript:void(0)">
@@ -119,82 +121,91 @@
   <script src="/javascripts/Site.js"></script>
   <script src="/javascripts/sweetalert.min.js"></script>
   <script>
-  (function(document, window, $) {
-    'use strict';
-    var Site = window.Site;
-    $(document).ready(function() {
+    (function (document, window, $) {
+      'use strict';
+      var Site = window.Site;
+      $(document).ready(function () {
         Site.run();
-    });
-    var cb = function(data,status) {
+      });
+      var cb = function (data, status) {
         if (status) {
-            if (data["access_token"]) {
-                $("#authToken").val(data["access_token"]);
-                doAjax("http://192.168.1.229:3000/api/v1/hospital/current_user_hospital_list", "get", {}, function(data, status) {
-                  if (data && status) {
-                    for (var i in data) {
-                      $("#selectHospital").append($('<option value="' + data[i]["id"] + '">' + data[i]["name"] + '</option>'));
-                    }
-                    $("#email").parent().slideUp();
-                    $("#password").parent().slideUp();
-                    $("#selectHospital").parent().slideDown();
-                    $("#loginButton").prop("disabled", false).html("选择医院");
-                  }
-                }, {}, {"access-authorization": data["access_token"]});
-                return true;
-            } else {
-                $("#loginButton").removeAttr("disabled");
-				swal("登录错误", "邮箱或密码有误", "error");
-            }
-        } else {
-		    swal("登录错误", "邮箱或密码有误", "error");
+          if (data["access_token"]) {
+            $("#authToken").val(data["access_token"]);
+            doAjax("http://192.168.1.229:3000/api/v1/hospital/current_user_hospital_list", "get", {}, function (
+              data, status) {
+              if (data && status) {
+                for (var i in data) {
+                  $("#selectHospital").append($('<option value="' + data[i]["id"] + '">' + data[i]["name"] +
+                    '</option>'));
+                }
+                $("#email").parent().slideUp();
+                $("#password").parent().slideUp();
+                $("#selectHospital").parent().slideDown();
+                $("#loginButton").prop("disabled", false).html("选择医院");
+              }
+            }, {}, {
+              "access-authorization": data["access_token"]
+            });
+            return true;
+          } else {
             $("#loginButton").removeAttr("disabled");
+            swal("登录错误", "邮箱或密码有误", "error");
+          }
+        } else {
+          swal("登录错误", "邮箱或密码有误", "error");
+          $("#loginButton").removeAttr("disabled");
         }
-    };
+      };
 
-    var cb2 = function(data,status) {
+      var cb2 = function (data, status) {
         if (data && status) {
-            $.cookie("access_token", $("#authToken").customVal());
-            swal({
-              title: "登录成功",
-              text: "正在进入首页",
-              type: "success",
-              confirmButtonClass: "hidden-xxl-down",
-            })
-            setTimeout(function() {
-                location.href = "/";
-            },1000);
+          $.cookie("access_token", $("#authToken").customVal());
+          swal({
+            title: "登录成功",
+            text: "正在进入首页",
+            type: "success",
+            confirmButtonClass: "hidden-xxl-down",
+          })
+          setTimeout(function () {
+            location.href = "/";
+          }, 1000);
         } else {
-            swal("未知错误", "", "error");
-            $("#loginButton").removeAttr("disabled");
+          swal("未知错误", "", "error");
+          $("#loginButton").removeAttr("disabled");
         }
-    };
+      };
 
-    var login_submit = function() {
+      var login_submit = function () {
         if ($("#email").customVal() == "") {
-            swal("登录错误", "邮箱不能为空", "error");
-            return false;
+          swal("登录错误", "邮箱不能为空", "error");
+          return false;
         }
         if ($("#password").customVal() == "") {
-            swal("登录错误", "密码不能为空", "error");
-            return false;
+          swal("登录错误", "密码不能为空", "error");
+          return false;
         }
         $("#loginButton").prop("disabled", true);
         if ($("#authToken").customVal()) {
-            doAjax("http://192.168.1.229:3000/api/v1/hospital/set_current_hospital", "post", {"hospital_id": $("#selectHospital").customVal()}, cb2, {}, {"access-authorization": $("#authToken").customVal()});
+          doAjax("http://192.168.1.229:3000/api/v1/hospital/set_current_hospital", "post", {
+            "hospital_id": $("#selectHospital").customVal()
+          }, cb2, {}, {
+            "access-authorization": $("#authToken").customVal()
+          });
         } else {
-            doAjax("http://192.168.1.229:3000/api/v1/auth", "post", $("#loginForm").serialize(), cb);
+          doAjax("http://192.168.1.229:3000/api/v1/auth", "post", $("#loginForm").serialize(), cb);
         }
-    }
-    $("input").keydown(function(event){
+      }
+      $("input").keydown(function (event) {
         if (event.id == 13) {
           login_submit();
         }
-    })
-    $("#loginButton").click(login_submit);
+      })
+      $("#loginButton").click(login_submit);
 
-    $("#selectHospital").parent().hide();
+      $("#selectHospital").parent().hide();
 
-  })(document, window, jQuery);
+    })(document, window, jQuery);
   </script>
-  </body>
+</body>
+
 </html>
