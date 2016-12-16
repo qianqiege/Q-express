@@ -77,7 +77,7 @@
         var val = dom.value.toLocaleUpperCase();
         if (val.length === 18 && checkIdCard(val) && !searching) {
             searching = true;
-            doAjax("http://192.168.1.229:3000/api/v1/patient/get_by_id_number", "get", {"id_number": val}, function(data, status) {
+            doAjax(window.baseUrl + "/patient/get_by_id_number", "get", {"id_number": val}, function(data, status) {
                 searching = false;
                 if (status && data) {
                     $("#sex" + ({"男": "1", "女": "2"})[data["sex"]]).prop("checked", true);
@@ -115,7 +115,7 @@
         },
         function(isConfirm) {
             if (isConfirm) {
-                doAjax("http://192.168.1.229:3000/api/v1/examination_input/temperature", "post",
+                doAjax(window.baseUrl + "/examination_input/temperature", "post",
                     {"id_number": $("#id_number").val(), "temperature": $("#id_number_c1").val()},
                     function(data, status) {
                         if (status && data) {

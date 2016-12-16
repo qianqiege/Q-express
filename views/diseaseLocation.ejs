@@ -133,7 +133,7 @@
 var searching = false;
 var temp_data;
 var getHospital = function() {
-    doAjax("http://192.168.1.229:3000/api/v1/recipe/recipe_info", "get", {"category": "疾病谱定位科"}, function(data, status) {
+    doAjax(window.baseUrl + "/recipe/recipe_info", "get", {"category": "疾病谱定位科"}, function(data, status) {
         if (status && data) {
             $("#hospital-title").text(data.hospital);
             $("#doctor").text(data.doctor);
@@ -149,7 +149,7 @@ var doSearch = function(dom) {
             return template;
         };
         searching = true;
-        doAjax("http://192.168.1.229:3000/api/v1/registration/get_number", "get", {"id_number": val}, function(data, status) {
+        doAjax(window.baseUrl + "/registration/get_number", "get", {"id_number": val}, function(data, status) {
             searching = false;
             if (status && data) {
                 var todaydata =new Date().Format("yyyy-MM-dd");
@@ -183,7 +183,7 @@ var submitForm = function() {
         "second_part_symptom": $("#second_part_symptom").val()
     };
     doAjax(
-        "http://192.168.1.229:3000/api/v1/recipe/create_disease_location_recipe",
+        window.baseUrl + "/recipe/create_disease_location_recipe",
         "post",
         postObj,
         function(data, status) {

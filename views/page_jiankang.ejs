@@ -140,7 +140,7 @@
 
 
           }
-          doAjax("http://192.168.1.229:3000/api/v1/registration/check_info", "get", {"number": uid}, cbFunction);
+          doAjax(window.baseUrl + "/registration/check_info", "get", {"number": uid}, cbFunction);
         })
 
 

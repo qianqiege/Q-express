@@ -1,6 +1,6 @@
 <script>
 function g_breadcumb() {
-    doAjax("http://192.168.1.229:3000/api/v1/menus", "get", {},
+    doAjax(window.baseUrl + "/menus", "get", {},
         function(data, status) {
             if (status) {
                 if (data["data"]) {

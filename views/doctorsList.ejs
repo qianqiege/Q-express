@@ -2,7 +2,7 @@
 <div class="page">
     <div class="page-header">
         <h1 class="page-title"><%= title %></h1>
-        <ol class="breadcrumb"> 
+        <ol class="breadcrumb">
         </ol>
     </div>
     <div class="page-content">
@@ -101,7 +101,7 @@
     var doSearch = function(dom){
         if(dom.value.length === 18 && checkIdCard(dom.value) && !searching){
             searching = true;
-            doAjax("http://192.168.1.229:3000/api/v1/users/get_user", "get", {"id_number": dom.value}, function(data, status) {
+            doAjax(window.baseUrl + "/users/get_user", "get", {"id_number": dom.value}, function(data, status) {
                 searching = false;
                 if (status && data) {
                     $("#all_contacts ul:first").html($(createUserDom(data)));
@@ -125,7 +125,7 @@
     };
     //角色列表获取
     var requestRole = function(){
-        doAjax("http://192.168.1.229:3000/api/v1/roles","get",{"page":1,"per_page":10},function(data, status){
+        doAjax(window.baseUrl + "/roles","get",{"page":1,"per_page":10},function(data, status){
             $("#roleList").children('div').remove();
             if (status && data){
                  for(var i = 0;i < data.data.length;i++){
@@ -138,7 +138,7 @@
     var roleSubmit = function(){
         console.log(userId);
         console.log($("form").serialize());
-        doAjax('http://192.168.1.229:3000/api/v1/users/' + userId, 'put', JSON.stringify($('#roleDoctorsListForm').getValue()), function(data, status) {
+        doAjax(window.baseUrl + "/users/" + userId, 'put', JSON.stringify($('#roleDoctorsListForm').getValue()), function(data, status) {
             if(data,status){
                 $("#roleDoctorsList").modal("hide");
                 swal("提交成功", "", "success");
@@ -147,7 +147,7 @@
     };
     var userId;
     $(function() {
-        doAjax('http://192.168.1.229:3000/api/v1/users/all_users', 'get',{}, function(data, status) {
+        doAjax(window.baseUrl + "/users/all_users", 'get',{}, function(data, status) {
             if (status && data) {
                 for(var i = 0;i < data.length;i++){
                     $('#all_contacts ul').append($(createUserDom(data[i])));

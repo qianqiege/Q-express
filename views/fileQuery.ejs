@@ -292,7 +292,7 @@
                     return false;
                 }
             }
-            doAjax("http://192.168.1.229:3000/api/v1/patient_record/check", "get", {"id": uid}, cbFunction);
+            doAjax(window.baseUrl + "/patient_record/check", "get", {"id": uid}, cbFunction);
         });
     </script>
 </html>

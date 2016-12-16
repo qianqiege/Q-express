@@ -3,7 +3,7 @@
 <div class="page">
     <div class="page-header">
         <h1 class="page-title"><%= title %></h1>
-        <ol class="breadcrumb"> 
+        <ol class="breadcrumb">
         </ol>
     </div>
     <div class="page-content container">
@@ -1801,7 +1801,7 @@
             });
             var uid = ~~getvl('id');
             if (uid) {
-                doAjax('http://192.168.1.229:3000/api/v1/patient_record/check', 'get', {'id': uid}, getUserInfoCallback);
+                doAjax(window.baseUrl + "/patient_record/check", 'get', {'id': uid}, getUserInfoCallback);
             }
         });
         var radioOrText = function(dom) {
@@ -1849,7 +1849,7 @@
                 }
             }
             doAjax(
-                "http://192.168.1.229:3000/api/v1/patient_record/create",
+                window.baseUrl + "/patient_record/create",
                 "post",
                 JSON.stringify(postObj),
                 cbFun,

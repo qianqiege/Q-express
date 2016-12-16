@@ -82,7 +82,7 @@
             };
 
             searching = true;
-            doAjax("http://192.168.1.229:3000/api/v1/patient/get_by_id_number", "get", {"id_number": dom.value}, function(data, status) {
+            doAjax(window.baseUrl + "/patient/get_by_id_number", "get", {"id_number": dom.value}, function(data, status) {
                 searching = false;
                 if (status && data) {
                     $("#all_contacts ul:first").html($(createUserDom(data)));

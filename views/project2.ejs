@@ -163,7 +163,7 @@ var jsGridFrom = function(products) {
             }
             return this._insertSelect = selectDom.change(function() {
                 var linkageDom = $(this).parent().parent().find("input[linkage='" + self["linkageField"] + "']");
-                doAjax("http://192.168.1.229:3000/api/v1/product/product_usage_list", "get", {"product_id": $(this).find("option:selected").data("id")}, function(data, status) {
+                doAjax(window.baseUrl + "/product/product_usage_list", "get", {"product_id": $(this).find("option:selected").data("id")}, function(data, status) {
                     if (status && data) {
                         linkageDom.val(data[0] ? data[0]["usage"] : "");
                     }
@@ -180,7 +180,7 @@ var jsGridFrom = function(products) {
             }
             return this._editSelect = selectDom.change(function() {
                 var linkageDom = $(this).parent().parent().find("input[linkage='" + self["linkageField"] + "']");
-                doAjax("http://192.168.1.229:3000/api/v1/product/product_usage_list", "get", {"product_id": $(this).find("option:selected").data("id")}, function(data, status) {
+                doAjax(window.baseUrl + "/product/product_usage_list", "get", {"product_id": $(this).find("option:selected").data("id")}, function(data, status) {
                     if (status && data) {
                         linkageDom.val(data[0] ? data[0]["usage"] : "");
                     }
@@ -317,7 +317,7 @@ var jsGridFrom = function(products) {
     });
 };
 var getProgrammeAndProduct = function() {
-    doAjax("http://192.168.1.229:3000/api/v1/programme/programme_list", "get", {}, function(data, status) {
+    doAjax(window.baseUrl + "/programme/programme_list", "get", {}, function(data, status) {
         if (status && data) {
             for (var i in data) {
                 $("#health_survey4_1").append($('<option value="'+data[i]["id"]+'">'+data[i]["name"]+"</option>"));
@@ -326,7 +326,7 @@ var getProgrammeAndProduct = function() {
     });
 };
 var gethospital = function() {
-    doAjax("http://192.168.1.229:3000/api/v1/recipe/recipe_info", "get", {"category": "健康管理科"}, function(data, status) {
+    doAjax(window.baseUrl + "/recipe/recipe_info", "get", {"category": "健康管理科"}, function(data, status) {
         if (status && data) {
             $("#hospital").html(data.hospital);
             $("#doctor").html(data.doctor);
@@ -342,7 +342,7 @@ var doSearch = function(dom) {
             return t_template;
         };
         searching = true;
-        doAjax("http://192.168.1.229:3000/api/v1/registration/get_number", "get", {"id_number": val}, function(data, status) {
+        doAjax(window.baseUrl + "/registration/get_number", "get", {"id_number": val}, function(data, status) {
             searching = false;
             if (status && data) {
                 if (!data.registration) {
@@ -354,7 +354,7 @@ var doSearch = function(dom) {
                 $("#health_survey4_1").select2();
                 getProgrammeAndProduct();
                 $("#health_survey4_2").select2();
-                doAjax("http://192.168.1.229:3000/api/v1/product/product_list", "get", {}, function(data, status) {
+                doAjax(window.baseUrl + "/product/product_list", "get", {}, function(data, status) {
                     if (data && status) {
                         jsGridFrom(data);
                     }
@@ -384,7 +384,7 @@ var submitForm = function() {
         "detail": JSON.stringify($("#exampleBasic").data("JSGrid").data)
     };
     doAjax(
-        "http://192.168.1.229:3000/api/v1/recipe/create_health_manage_recipe",
+        window.baseUrl + "/recipe/create_health_manage_recipe",
         "post",
         postObj,
         function(data, status) {
