@@ -1,0 +1,99 @@
+
+<%- include ../header %>
+<div class="page">
+    <div class="page-header">
+        <h1 class="page-title"><%= title %></h1>
+        <ol class="breadcrumb"> 
+        </ol>
+    </div>
+    <div class="page-content">
+        <!-- Panel -->
+        <div class="panel">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <form class="page-search-form" role="search" onsubmit="return false;">
+                            <div class="input-search input-search-dark">
+                                <i class="input-search-icon wb-search" aria-hidden="true"></i>
+                                <input type="text" class="form-control" id="inputSearch" name="search" placeholder="" oninput="doSearch(this);" maxlength="18">
+                                <button type="button" class="input-search-close icon wb-close" aria-label="Close" onclick="$('#inputSearch').val('');doSearch($('#inputSearch')[0])"></button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-3 offset-md-3 col-sm-3 offset-sm-9">
+                        <a href="/newRecord" class="btn btn-block btn-info waves-effect">添加新客户</a>
+                        <!-- <button type="button" class="btn btn-round btn-outline btn-default btn-lg"><i class="icon wb-plus" aria-hidden="true"></i>添加</button> -->
+                    </div>
+                </div>
+                <div class="nav-tabs-horizontal nav-tabs-animate" data-plugin="tabs">
+                    <ul class="nav nav-tabs nav-tabs-line" role="tablist">
+                        <li class="nav-item" role="presentation"><a class="active nav-link" data-toggle="tab" href="#all_contacts"
+                            aria-controls="all_contacts" role="tab">全部客户</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane animation-fade active" id="all_contacts" role="tabpanel">
+                                <ul class="list-group"><li class='list-group-item'>暂无搜索结果</li></ul>
+                            </div>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- End Panel -->
+    </div>
+</div>
+
+<script>
+    var searching = false;
+
+    var doSearch = function(dom) {
+        if (dom.value.length === 18 && checkIdCard(dom.value) && !searching) {
+
+            var createUserDom = function(userObj) {
+                var template = "\n\
+                                        <li class='list-group-item'>\n\
+                                            <div class='media'>\n\
+                                                <div class='media-left'>\n\
+                                                    <div class='avatar avatar-online'>\n\
+                                                        <img src='{__avatar__}' alt='...'>\n\
+                                                        <i class='avatar avatar-busy'></i>\n\
+                                                    </div>\n\
+                                                </div>\n\
+                                                <div class='media-body'>\n\
+                                                    <h4 class='media-heading'>\n\
+                                                        {__name__}\n\
+                                                    </h4>\n\
+                                                    <p>\n\
+                                                        <i class='icon icon-color wb-user' aria-hidden='true'></i>{__id__}\n\
+                                                    </p>\n\
+                                                </div>\n\
+                                                <div class='media-right'>\n\
+                                                    <a class='btn btn-outline btn-success btn-sm' target='_blank' href='/fileQuery?id={__id__}'>档案查看 / 修改</a>\n\
+                                                </div>\n\
+                                                <div class='media-right'>\n\
+                                                    <a class='btn btn-outline btn-success btn-sm'  href='/healthDetection?id={__id__}'>健康检测查看</a>\n\
+                                                </div>\n\
+                                            </div>\n\
+                                        </li>"
+                return template.replace(/\{__avatar__\}/g, userObj["avatar"] || "/images/1.jpg")
+                               .replace(/\{__name__\}/g, userObj["name"])
+                               .replace(/\{__id__\}/g, userObj["id"])
+                               .replace(/\{__idNumber__\}/g, userObj["idNumber"]);
+            };
+
+            searching = true;
+            doAjax(window.baseUrl + "/patient/get_by_id_number", "get", {"id_number": dom.value}, function(data, status) {
+                searching = false;
+                if (status && data) {
+                    $("#all_contacts ul:first").html($(createUserDom(data)));
+                } else {
+                    $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
+                }
+            });
+        } else {
+            $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
+        }
+    };
+</script>
+
+<%- include ../footer %>
