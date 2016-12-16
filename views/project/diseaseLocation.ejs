@@ -16,7 +16,7 @@
                             <div class="form-group " style=" margin-bottom: 0px;">
                                 <div class="input-search">
                                     <button type="submit" class="input-search-btn"><i class="icon wb-search" aria-hidden="true"></i></button>
-                                    <input type="text" class="form-control" style="padding-top: 2px;padding-bottom: 2px;" name="id_number" id="id_number" maxlength="18">
+                                    <input type="text" class="form-control" style="padding-top: 2px;padding-bottom: 2px;" name="id_number" id="id_number" maxlength="18" oninput="logSearch(this)">
                                 </div>
                             </div>
                         </div>
@@ -212,6 +212,20 @@ var submitForm = function() {
     );
     return 0;
 };
+var logSearch = function(dom) {
+    var val1 = dom.value.toLocaleUpperCase();
+    if (val1.length===18  && checkIdCard(val1) && !searching) {
+        
+        };
+        doAjax(window.baseUrl + "/registration/get_number", "get", {"id_number": val1}, function(data, status) {
+            if (status && data) {
+                if (!data.registration) {
+                    swal("没有 registration 记录", "", "error");
+                    return false;
+                }
+                $("#diseaseLocationSearch").attr("href", "/diseaseLocationSearch?id_number=" + val1);
+            }
+        });
+};
 </script>
-
 <%- include ../footer %>
