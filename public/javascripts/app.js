@@ -134,6 +134,15 @@ $.fn.customVal = function() {
             if (typeof arguments[0] !== "object") {
                 return this;
             }
+            var optionsDom = this.find("option"), valueObj = [];
+            for (var oi = 0; oi < optionsDom.length; oi++) {
+                valueObj.push(optionsDom[oi].innerHTML);
+            }
+            for (var i = 0; i < arguments[0].length; i++) {
+                if (valueObj.indexOf(arguments[0][i]) < 0) {
+                    this.append($('<option />').attr("value", arguments[0][i]).text(arguments[0][i]));
+                }
+            }
             if (usedSelect2) {
                 return this.select2().val(arguments[0]).trigger("change");
             } else {
