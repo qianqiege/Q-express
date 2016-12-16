@@ -1824,7 +1824,7 @@
             if (!status) {
                 swal("提交失败", JSON.parse(data.reponseText)["error"], "error");
             } else {
-                swal("提交成功", "正在进入患者列表", "success");
+                swal("提交成功", "正在进入客户列表", "success");
                 setTimeout(function() {
                     location.href="/patientList";
                 },1000);
