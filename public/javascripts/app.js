@@ -1,3 +1,4 @@
+window.baseUrl = "http://192.168.1.229:3000/api/v1"
 /**
 * Ajax 封装
 *
@@ -272,7 +273,7 @@ $(function() {
     * @author jshensh@126.com 2016-11-23
     */
     var getMenu = function() {
-        doAjax("http://192.168.1.229:3000/api/v1/menus", "get", {},
+        doAjax(window.baseUrl + "/menus", "get", {},
             function(data, status) {
                 if (status) {
                     if (data["data"]) {
@@ -288,7 +289,7 @@ $(function() {
     };
 
     // 判断用户登录状态
-    doAjax("http://192.168.1.229:3000/api/v1/users/current_user", "get", {},
+    doAjax(window.baseUrl + "/users/current_user", "get", {},
         function(data, status) {
             if (status) {
                 if (data["access_token"]) {
@@ -309,7 +310,7 @@ $(function() {
     // HeartBeat
     if (location.href.indexOf("/login") === -1) {
         setInterval(function() {
-            doAjax("http://192.168.1.229:3000/api/v1/users/current_user", "get", {},
+            doAjax(window.baseUrl + "/users/current_user", "get", {},
                 function(data, status) {
                     if (status) {
                         if (!data["access_token"]) {

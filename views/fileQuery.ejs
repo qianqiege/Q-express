@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <title>患者档案</title>
+        <title>客户档案</title>
         <style>
             *{margin:0px;padding:0px;font-family:"Microsoft YaHei";font-size:15px; }
             .head{background-color:#3f4160;border:1px solid #DCDCDC;color:#FFF5EE;}
@@ -292,7 +292,7 @@
                     return false;
                 }
             }
-            doAjax("http://192.168.1.229:3000/api/v1/patient_record/check", "get", {"id": uid}, cbFunction);
+            doAjax(window.baseUrl + "/patient_record/check", "get", {"id": uid}, cbFunction);
         });
     </script>
 </html>

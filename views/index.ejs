@@ -10,7 +10,7 @@
       <div class="panel-body container-fluid">
         <div class="row row-lg">
           <div class="col-md-6 col-xs-12">
-            <h3>最新患者异常信息</h3>
+            <h3>最新客户异常信息</h3>
           <table class="table">
             <thead>
                 <tr>
@@ -48,7 +48,7 @@
                 }
                 
             }
-            doAjax("http://192.168.1.229:3000/api/v1/exception", "get", {}, cbFunction);
+            doAjax(window.baseUrl + "/exception", "get", {}, cbFunction);
           </script>
         </div>
         </div>

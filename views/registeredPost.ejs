@@ -60,14 +60,14 @@ var doSearch = function(dom) {
             return template;
         };
         searching = true;
-        doAjax("http://192.168.1.229:3000/api/v1/registration/create_number", "post", {"id_number": val}, function(data, status) {
+        doAjax(window.baseUrl + "/registration/create_number", "post", {"id_number": val}, function(data, status) {
             searching = false;
             if (status && data) {
                 $("#all_contacts ul:first").html($(createUserDom(data)));
                 $("#recipe_number").text(data.number)
             } else {
                 dom.value = "";
-                swal("没有找到患者，请先前往档案室建档", "", "error");
+                swal("没有找到客户，请先前往档案室建档", "", "error");
             }
         });
     } else {

@@ -32,7 +32,7 @@
           <hr/>
           <div class="row">
             <p class="col-md-4 col-xs-12 offset-lg-1">
-              医生：<span id ="doctor"></span>
+              健康管理师：<span id ="doctor"></span>
             </p>
             <p class="col-md-4 col-xs-12 offset-lg-2 ">
               单次金额：<span id = "single"></span>
@@ -83,7 +83,7 @@
     </div>
     <div class="row">
       <div class="col-xs-12 col-md-10 offset-lg-1">
-        <h4><i class="icon icon-color wb-eye" aria-hidden="true"></i>医生诊断</h4>
+        <h4><i class="icon icon-color wb-eye" aria-hidden="true"></i>健康管理师诊断</h4>
         <div class="form-group">
           <label class="form-control-label">身体状况描述: </label>
           <textarea class="form-control" rows="2" id="descriptionOfPhysicalCondition" ></textarea>
@@ -172,9 +172,9 @@
     </div>
 </div>
 <script>
-//页面初始化加载医院、医生、日期
+//页面初始化加载医院、健康管理师、日期
 $(function () {
-    doAjax("http://192.168.1.229:3000/api/v1/recipe/recipe_info", "get", {"category": "筑脊科"}, function(data, status) {
+    doAjax(window.baseUrl + "/recipe/recipe_info", "get", {"category": "筑脊科"}, function(data, status) {
         if (status && data) {
             $("#hospital-title").text(data.hospital);
             $("#doctor").text(data.doctor);
@@ -194,7 +194,7 @@ var doSearch = function (dom) {
             t_template = template
             return t_template;
         };
-        doAjax("http://192.168.1.229:3000/api/v1/registration/get_number","get",{"id_number":val},function (data, status) {
+        doAjax(window.baseUrl + "/registration/get_number","get",{"id_number":val},function (data, status) {
             searching = false;
             if (status && data) {
                 $("#showProject").html($(createUserDom(data)));
@@ -212,7 +212,7 @@ var doSearch = function (dom) {
             }
 
         });
-        doAjax("http://192.168.1.229:3000/api/v1/spine/spine_level", "get", {}, function (data, status){
+        doAjax(window.baseUrl + "/spine/spine_level", "get", {}, function (data, status){
             if (status && data) {
                 for (var i in data) {
                     $("#optionGroup").append("<option value =" + data[i].id +">"+data[i].treatment_level+"</option>");
@@ -230,7 +230,7 @@ var doSearch = function (dom) {
 //改变筑脊等级相应改变价钱与禁用相关项
 var changeGrade = function () {
     var treatment_level = $("#treatment_level").val();
-    doAjax("http://192.168.1.229:3000/api/v1/spine/spine_level_charge", "get" , {"spine_level_id":treatment_level}, function (data, status) {
+    doAjax(window.baseUrl + "/spine/spine_level_charge", "get" , {"spine_level_id":treatment_level}, function (data, status) {
         $("#total").text(0);
         $("#single").text(0);
         $("input[type = checkbox]").each (function () {
@@ -285,7 +285,7 @@ var submitForm = function () {
         "patient_id" : patient_id
     };
     doAjax(
-        "http://192.168.1.229:3000/api/v1/recipe/create_spine_recipe",
+        window.baseUrl + "/recipe/create_spine_recipe",
         "post",
         postObj,
         function (data, status) {
