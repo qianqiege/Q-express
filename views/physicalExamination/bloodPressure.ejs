@@ -1,0 +1,183 @@
+<%- include ../header %>
+<div class="page">
+    <div class="page-header">
+        <h1 class="page-title"><%= title %></h1>
+        <ol class="breadcrumb"> 
+        </ol>
+    </div>
+    <div class="page-content container">
+        <div class="row">
+
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">添加新记录</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-5 offset-md-1">
+                            <div class="form-group form-material floating" data-plugin="formMaterial">
+                                <label class="form-control-label" for="id_number">身份证号</label>
+                                <input type="text" class="form-control empty" name="id_number" id="id_number" oninput="doSearch(this);" maxlength="18">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-5">
+                            <div class="form-group form-material">
+                                <label class="form-control-label" for="sex">性别</label>
+                                <div style="margin-top: 12px;">
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="sex1" name="sex" disabled="disabled">
+                                        <label for="sex1">男</label>
+                                    </div>
+                                    <div class="radio-custom radio-primary radio-inline">
+                                        <input type="radio" id="sex2" name="sex" disabled="disabled">
+                                        <label for="sex2">女</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-5 offset-md-1">
+                            <div class="form-group form-material floating" data-plugin="formMaterial">
+                                <label class="form-control-label" for="name">姓名</label>
+                                <input type="text" class="form-control empty" name="name" id="name" disabled="disabled">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-5">
+                            <div class="form-group form-material floating" data-plugin="formMaterial">
+                                <label class="form-control-label" for="nation">手机号码</label>
+                                <input type="text" class="form-control empty" name="nation" id="nation" disabled="disabled">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body container-fluid">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6">
+                            <div class="form-group form-material">
+                                <label class="form-control-label" for="min_BloodPressure">舒张压</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="min_BloodPressure" name="min_BloodPressure">
+                                    <span class="input-group-addon">毫米汞柱</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            <div class="form-group form-material">
+                                <label class="form-control-label" for="max_BloodPressure">收缩压</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="max_BloodPressure" name="max_BloodPressure">
+                                    <span class="input-group-addon">毫米汞柱</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-12">
+                            <button type="button" class="btn btn-block btn-success" onclick="submitForm();" id="submitResult" disabled>提交</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    var searching = false;
+
+    var doSearch = function(dom) {
+        var val = dom.value.toLocaleUpperCase();
+        if (val.length === 18 && checkIdCard(val) && !searching) {
+            searching = true;
+            doAjax(window.baseUrl + "/patient/get_by_id_number", "get", {"id_number": val}, function(data, status) {
+                searching = false;
+                if (status && data) {
+                    $("#sex" + ({"男": "1", "女": "2"})[data["sex"]]).prop("checked", true);
+                    $("#name").val(data["name"]);
+                    $("#nation").val(data["phone"]);
+                    $("#submitResult").prop("disabled",false);
+                } else {
+                    $("input:radio[id^='sex']").prop("checked", false);
+                    $("#name").val("");
+                    $("#nation").val("");
+                }
+            });
+        } else {
+            $("input:radio[id^='sex']").prop("checked", false);
+            $("#name").val("");
+            $("#nation").val("");
+        }
+    };
+
+    var submitForm = function() {
+        var max_BloodPressure = $("#max_BloodPressure").val();
+        var min_BloodPressure = $("#min_BloodPressure").val();
+        if(!max_BloodPressure || !min_BloodPressure) {
+            swal("请填入数据","","error");
+            return false;
+        }
+        thebar = '<div id="theshowblock" style="width: 1%;height: 20px;background-color: rgba(154, 145, 145, 0.67);position: absolute;top: 18px;z-index: 99;left: 50%;"></div><div class="progress"><div class="progress-bar progress-bar-indicating progress-bar-warning active" style="width: 1%" role="progressbar"></div><div class="progress-bar progress-bar-indicating progress-bar-success active" style="width: 1%" role="progressbar"></div><div class="progress-bar progress-bar-indicating progress-bar-danger active" style="width: 1%" role="progressbar"></div></div>';
+
+        total = 300
+        p_min = (~~$("#min_BloodPressure").val() / total * 100)
+        p1_min = (~~$("#min_BloodPressure").val() / total * 94)
+        p_max = (~~$("#max_BloodPressure").val() / total * 100)
+        if (p_max >=  ~~(75 / total * 100) && p_max <= 42){
+            status = "正常"
+        }
+        else if (p_max < ~~(75 / total * 100)){
+            status = "偏低"
+        }
+        else {
+            status = "偏高"
+        }
+
+        bootbox.confirm({
+            title: "确认提交",
+            message: thebar+"请核对提交数据：<br/>舒张压：" + $("#min_BloodPressure").val() + "<br/>收缩压：" + $("#max_BloodPressure").val()+"<br/> 血压 : "+status,
+            buttons: {
+                confirm: {
+                    label: '提交',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: '取消',
+                    className: 'btn-normal'
+                }
+            },
+            callback : function(isConfirm){
+                if (isConfirm) {
+                    doAjax(window.baseUrl + "/examination_input/blood_pressure", "post",
+                        {"id_number": $("#id_number").val(), "max_BloodPressure": $("#max_BloodPressure").val(), "min_BloodPressure": $("#min_BloodPressure").val()},
+                        function(data, status) {
+                            if (status && data) {
+
+                                swal({
+                                    title: data.info || "提交成功",
+                                    type: "success"
+                                },
+                                function() {
+                                    $("input:radio[id^='sex']").prop("checked", false);
+                                    $("input").val("");
+                                });
+                            } else {
+                                swal("提交失败", "", "error");
+                            }
+                        }
+                    );
+                }
+            },
+        });
+        setTimeout(function(){
+            $("div.progress .progress-bar:first").width((75 / total * 100)+"%")
+            $("div.progress .progress-bar:eq(1)").width((50 / total * 100)+"%")
+            $("div.progress .progress-bar:last").width((((total - 125) /total) * 100)+"%")
+            $("#theshowblock").css("left",(p1_min +3.5)+"%")
+            $("#theshowblock").width((p_max - p_min - 2)+"%")
+        },500)
+        console.log(p_min)
+
+    };
+</script>
+
+<%- include ../footer %>
