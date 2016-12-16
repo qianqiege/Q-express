@@ -12,6 +12,7 @@ window.baseUrl = "http://192.168.1.229:3000/api/v1"
 * @author jshensh@126.com 2016-11-23
 */
 var doAjax = function(ajaxUrl, ajaxType, ajaxData, callbackFunc) {
+    ajaxData["_t"] = new Date().getTime();
     var ajaxObj = {
         type: ajaxType,
         url: ajaxUrl,
