@@ -18,7 +18,8 @@ module.exports = {
    */
   deploy : {
     production : {
-      user : "node",
+	  key : "thekey",
+      user : "qolm",
       host : "120.25.81.41",
       ref  : "origin/master",
       repo : "git@git.oschina.net:ybyt/QOLM-V.git",

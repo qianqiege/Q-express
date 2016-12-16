@@ -2,10 +2,7 @@
 <div class="page">
     <div class="page-header">
         <h1 class="page-title"><%= title %></h1>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Forms</a></li>
-            <li class="breadcrumb-item active">Wizard</li>
+        <ol class="breadcrumb"> 
         </ol>
     </div>
     <div class="page-content">
@@ -46,7 +43,6 @@
                         $("#iamtempalte").remove()
                         var cbFunction = function(data,status){
                             $("table tr:eq(1)").remove();
-                            console.log(data);
                             for ( var i in data) {
                                 adata = data[data.length - i - 1];
                                 name = adata.patient.name
