@@ -1,0 +1,34 @@
+<script>
+function g_breadcumb() {
+    doAjax("http://192.168.1.229:3000/api/v1/menus", "get", {},
+        function(data, status) {
+            if (status) {
+                if (data["data"]) {
+                    for (var i = 0; i < data["data"].length; i++) {
+                        if (window.location.pathname == data["data"][i].url){
+                            if (window.location.pathname == "/"){
+                                $(".breadcrumb").html('<li class="breadcrumb-item"><a href="/">首页</a></li>')
+                            }
+                            else {
+                                $(".breadcrumb").html('<li class="breadcrumb-item"><a href="/">首页</a></li><li class="breadcrumb-item">'+data["data"][i].name+'</li>')
+                            }
+                        }
+                        else{
+                            if (data["data"][i]["children"]){
+                                for (var ii = 0;ii < data["data"][i]["children"].length; ii++) {
+                                    console.log(data["data"][i]["children"][ii].name)
+                                    if (window.location.pathname == data["data"][i]["children"][ii].url){
+                                        $(".breadcrumb").html('<li class="breadcrumb-item"><a href="/">首页</a></li><li class="breadcrumb-item">'+data["data"][i]["children"][ii].name+'</li>')
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+    );
+};
+g_breadcumb();
+</script>
