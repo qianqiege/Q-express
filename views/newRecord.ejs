@@ -3,10 +3,7 @@
 <div class="page">
     <div class="page-header">
         <h1 class="page-title"><%= title %></h1>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Forms</a></li>
-            <li class="breadcrumb-item active">Wizard</li>
+        <ol class="breadcrumb"> 
         </ol>
     </div>
     <div class="page-content container">
@@ -26,7 +23,15 @@
                                 </div>
                                 <div class="form-group form-material col-xs-12 col-md-5">
                                     <label class="form-control-label" for="nation">民族</label>
-                                    <input type="text" class="form-control" id="nation" name="nation">
+                                    <div class="wrapped">
+                                        <select class="js-example-tokenizer form-control select2-hidden-accessible" id="nation" name="nation" data-plugin="select2" data-tags="true" data-maximum-selection-length="2">
+                                            <option>汉族</option>
+                                            <option>维吾尔族</option>
+                                            <option>蒙古族</option>
+                                            <option>满族</option>
+                                            <option>回族</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -807,7 +812,7 @@
                                         <label for="eating_habit10_radio2">&lt;500ml</label>
                                     </div>
                                     <div class="radio-custom radio-primary radio-inline">
-                                        <input type="radio" id="eating_habit10_radio3" name="eating_habit-item_10" value=" 500-1000ml">
+                                        <input type="radio" id="eating_habit10_radio3" name="eating_habit-item_10" value="500-1000ml">
                                         <label for="eating_habit10_radio3"> 500-1000ml</label>
                                     </div>
                                     <div class="radio-custom radio-primary radio-inline">
@@ -1821,7 +1826,7 @@
             } else {
                 swal("提交成功", "正在进入患者列表", "success");
                 setTimeout(function() {
-                    location.href="/userlist";
+                    location.href="/patientList";
                 },1000);
                 return true;
             }

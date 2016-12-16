@@ -4,7 +4,7 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function (req, res, next) {
     res.render('index', {
-        title: 'Express'
+        title: '首页'
     });
 });
 
@@ -14,9 +14,10 @@ router.get('/test', function (req, res, next) {
     });
 });
 
-router.get('/ExceptionData', function (req, res, next) {
-    res.render('ExceptionData', {
-        title: "异常数据查询"
+
+router.get('/exceptionData', function (req, res, next) {
+    res.render('exceptionData', {
+        title: "异常管理"
     });
 });
 
@@ -141,6 +142,12 @@ router.get('/project1', function (req, res, next) {
     });
 });
 
+router.get('/spineSearch', function (req, res, next) {
+    res.render('spineSearch', {
+        title: "脊柱查询"
+    });
+});
+
 router.get('/login', function (req, res, next) {
     res.render('login', {
         title: "登录"
@@ -153,9 +160,9 @@ router.get('/project3', function (req, res, next) {
     });
 });
 
-router.get('/viewTDS', function (req, res, next) {
-    res.render('viewTDS', {
-        title: "数字中医"
+router.get('/viewTDSSearch', function (req, res, next) {
+    res.render('viewTDSSearch', {
+        title: "数字中医信息查询"
     });
 });
 
@@ -177,12 +184,10 @@ router.get('/page/jiankang', function (req, res, next) {
     });
 });
 
-router.get('/page/tds_report', function (req, res, next) {
-    res.render('page_tdsreport', {
-        title: "数字中医评估报告"
+router.get('/page/spine', function (req, res, next) {
+    res.render('page_spine', {
+        title: "龙氏脊柱方案"
     });
 });
-
-
 
 module.exports = router;

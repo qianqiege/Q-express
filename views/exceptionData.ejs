@@ -1,0 +1,80 @@
+<%- include header %>
+<div class="page">
+    <div class="page-header">
+        <h1 class="page-title"><%= title %></h1>
+        <ol class="breadcrumb"> 
+        </ol>
+    </div>
+    <div class="page-content">
+        <div class="panel">
+            <div class="panel-body container-fluid">
+                <div class="row row-lg">
+                    <div class="col-md-12 col-xs-12">
+                        <h3>最新异常信息</h3>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <td>姓名</td>
+                                    <td>检测项目</td>
+                                    <td>体征值</td>
+                                    <td>异常状态</td>
+                                    <td>检测时间</td>
+                                    <td>操作</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="3"><i class="fa fa-refresh fa-spin fa-3x fa-fw"></i> 正在加载中</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table id="iamtempalte" style="display:none">
+                            <tr>
+                                <td>NNAME</td>
+                                <td>RREASON</td>
+                                <td style="color:red">SIGNVALUE</td>
+                                <td style="color:red">STATUS</td>
+                                <td>TIME</td>
+                                <td><a class="btn btn-primary btn-block card-link m-r-5" href="#" role="button">处理异常</a></td>
+                            </tr>
+                        </table>
+                        <script>
+                        var template = $("#iamtempalte :first").html()
+                        $("#iamtempalte").remove()
+                        var cbFunction = function(data,status){
+                            $("table tr:eq(1)").remove();
+                            for ( var i in data) {
+                                adata = data[data.length - i - 1];
+                                name = adata.patient.name
+                                reason = adata.test_item
+                                if (adata.value2){
+                                    signvalue = adata.value1+"/"+adata.value2
+                                } else {
+                                    signvalue = adata.value1
+                                }
+                                if (adata.status2) {
+                                    status = adata.status1+"/"+adata.status2
+                                } else {
+                                    status = adata.status1
+                                }
+                                time = adata.created_at.substr(0,10);
+                                id = adata.patient.id
+                                t_template = template.replace("NNAME",name)
+                                .replace("RREASON",reason)
+                                .replace("SIGNVALUE",signvalue)
+                                .replace("STATUS",status)
+                                .replace("TIME",time)
+                                .replace("IID",id)
+                                $("table tbody").append(t_template);
+                            }
+
+                        }
+                        doAjax("http://192.168.1.229:3000/api/v1/exception", "get", {}, cbFunction);
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include footer %>
