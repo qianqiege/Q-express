@@ -54,8 +54,7 @@
 var searching = false;
 var doSearch = function(dom) {
     var val = dom.value.toLocaleUpperCase();
-    if (val.length===18  && checkIdCard(val) && !searching) {
-
+    if (val.length===18 && checkIdCard(val) && !searching) {
         var createUserDom = function(userObj) {
             var template = $("#template").html();
             return template;
@@ -67,7 +66,8 @@ var doSearch = function(dom) {
                 $("#all_contacts ul:first").html($(createUserDom(data)));
                 $("#recipe_number").text(data.number)
             } else {
-                $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
+                dom.value = "";
+                swal("没有找到患者，请先前往档案室建档", "", "error");
             }
         });
     } else {
