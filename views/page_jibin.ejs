@@ -5,165 +5,165 @@
 }
 </style>
 <div class="page">
-	<div class="page-header">
-      <h1 class="page-title"><%= title %></h1>
-      <ol class="breadcrumb"> 
-      </ol>
-      <div class="page-header-actions">
-        <a class="btn btn-primary btn-round waves-effect" href="#" onclick='$("#print-this").printArea()'>
-          <i class="icon wb-print" aria-hidden="true"></i>
-          <span class="hidden-sm-down">打印该页面</span>
-        </a>
-      </div>
+    <div class="page-header">
+        <h1 class="page-title"><%= title %></h1>
+        <ol class="breadcrumb">
+        </ol>
+        <div class="page-header-actions">
+            <a class="btn btn-primary btn-round waves-effect" href="#" onclick='$("#print-this").printArea()'>
+                <i class="icon wb-print" aria-hidden="true"></i>
+                <span class="hidden-sm-down">打印该页面</span>
+            </a>
+        </div>
     </div>
-  <div class="page-content">
     <div class="page-content">
-        <div class="panel">
-            <div class="panel-body">
-            <div id="print-this">
-                <div id="head">
-                    <img id="table-logo" src="/images/logo-blue.png"/>
-                    <h4 class="vertical-align-bottom pull-xs-right">编号: <span id="table_id"></span> </h4>
-                    <script>
-                     setTimeout(function(){ $("#table-logo").next().css("margin-top",$("#table-logo").height() - $("#table-logo").next().height()+"px")},100)
-                    </script>
-                    <hr/>
-                </div>
-                <h2 class="text-xs-center">御邦医通疾病谱定位表</h2>
-                <div>
-                  <div id="base_info">
-                      <h4>
-                        <i class="icon wb-user" aria-hidden="true"></i> 基本信息
-                      </h4>
-                      <table class="table">
-                          <tr>
-                            <td>姓名 : <span id="name"></span></td>
-                            <td>性别 : <span id="sex"></span></td>
-                            <td>出生年月 : <span id="born_date"></span></td>
-                          </tr>
-                          <tr>
-                            <td>婚姻状况 : <span id="marriage"></span></td>
-                            <td>民族 : <span id="country"></span></td>
-                            <td>联系方式 : <span id="contact"></span></td>
-                          </tr>
-                      </table>
-                  </div>
-                  <div id="rate">
-                      <h4>
-                        <i class="icon wb-book" aria-hidden="true"></i> 个人健康状态评价
-                      </h4>
-                      <div class="row" style="font-size:16px; padding-bottom: 5px;">
-                            <div class="col-md-12">
-                                <div>生理方面 :
-                                  <p style="text-indent:25px" id="rate_sl"></p>
+        <div class="page-content">
+            <div class="panel">
+                <div class="panel-body">
+                    <div id="print-this">
+                        <div id="head">
+                            <img id="table-logo" src="/images/logo-blue.png"/>
+                            <h4 class="vertical-align-bottom pull-xs-right">编号: <span id="table_id"></span> </h4>
+                            <script>
+                            setTimeout(function(){ $("#table-logo").next().css("margin-top",$("#table-logo").height() - $("#table-logo").next().height()+"px")},100)
+                            </script>
+                            <hr/>
+                        </div>
+                        <h2 class="text-xs-center">御邦医通疾病谱定位表</h2>
+                        <div>
+                            <div id="base_info">
+                                <h4>
+                                    <i class="icon wb-user" aria-hidden="true"></i> 基本信息
+                                </h4>
+                                <table class="table">
+                                    <tr>
+                                        <td>姓名 : <span id="name"></span></td>
+                                        <td>性别 : <span id="sex"></span></td>
+                                        <td>出生年月 : <span id="born_date"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>婚姻状况 : <span id="marriage"></span></td>
+                                        <td>民族 : <span id="country"></span></td>
+                                        <td>联系方式 : <span id="contact"></span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div id="rate">
+                                <h4>
+                                    <i class="icon wb-book" aria-hidden="true"></i> 个人健康状态评价
+                                </h4>
+                                <div class="row" style="font-size:16px; padding-bottom: 5px;">
+                                    <div class="col-md-12">
+                                        <div>生理方面 :
+                                            <p style="text-indent:25px" id="rate_sl"></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div>情志方面 :
+                                            <p style="text-indent:25px" id="rate_qz"></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div>营养方面 :
+                                            <p style="text-indent:25px" id="rate_yy"></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div>生活方式方面 :
+                                            <p style="text-indent:25px" id="rate_shfs"></p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-12">
-                                <div>情志方面 :
-                                  <p style="text-indent:25px" id="rate_qz"></p>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div>营养方面 :
-                                  <p style="text-indent:25px" id="rate_yy"></p>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div>生活方式方面 :
-                                  <p style="text-indent:25px" id="rate_shfs"></p>
-                                </div>
-                            </div>
-                      </div>
-                  </div>
-                  <hr/>
-                  <div id="issue" style="font-size:16px; padding-bottom: 5px;">
+                            <hr/>
+                            <div id="issue" style="font-size:16px; padding-bottom: 5px;">
                                 <div>主症 :
-                                  <p style="text-indent:25px" id="issue_main">
-Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                                  </p>
+                                    <p style="text-indent:25px" id="issue_main">
+
+                                    </p>
                                 </div>
                                 <div>急症 :
-                                  <p style="text-indent:25px" id="issue_em">
-Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                                  </p>
+                                    <p style="text-indent:25px" id="issue_em">
+
+                                    </p>
                                 </div>
                                 <div>兼症 :
-                                  <p style="text-indent:25px" id="issue_co">
-Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                                  </p>
+                                    <p style="text-indent:25px" id="issue_co">
+
+                                    </p>
                                 </div>
                                 <div>次兼症 :
-                                  <p style="text-indent:25px" id="issue_se">
-Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                                  </p>
+                                    <p style="text-indent:25px" id="issue_se">
+
+                                    </p>
                                 </div>
-                  </div>
-                  <hr/>
-                  <div>
-                      <h4  class="pull-xs-left">评估专家 : <span id="doctor"></span></h4>
-                      <h4  class="pull-xs-right">评估日期 : <span id="date"></span></h4>
-                  </div>
+                            </div>
+                            <hr/>
+                            <div>
+                                <h4  class="pull-xs-left">评估专家 : <span id="doctor"></span></h4>
+                                <h4  class="pull-xs-right">评估日期 : <span id="date"></span></h4>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
     </div>
-  </div>
 
-  </div>
+</div>
 </div>
 <script>
-        $(function() {
-          var uid = getvl('id');
-          if (!uid) {
-               swal({title: "id 错误", type: "error"}, function() {
-                  window.close();
-              });
-               return;
-          }
-          var cbFunction = function(data,status){
-               if (status) {
-                  if (data.patient.name)
-                  {
-                    console.log(data);
-                    $("#rate_sl").text(data.disease_location_recipes[0].physiology) // 生理
-                    $("#rate_qz").text(data.disease_location_recipes[0].emotion) // 情志
-                    $("#rate_yy").text(data.disease_location_recipes[0].nutrition) // 营养
-                    $("#rate_shfs").text(data.disease_location_recipes[0].life_style)  // 生活方式
-                    $("#docter_name").text(data.disease_location_recipes[0].doctor_name)
-                    $("#issue_fa").text(data.disease_location_recipes[0].detail)
-                    $("#issue_main").text(data.disease_location_recipes[0].main_symptom)
-                    $("#issue_em").text(data.disease_location_recipes[0].emergency_symptom)
-                    $("#issue_co").text(data.disease_location_recipes[0].part_symptom)
-                    $("#issue_se").text(data.disease_location_recipes[0].second_part_symptom)
-                    $("#date").text(new Date().Format("yyyy-MM-dd"))
-                    $("#table_id").text(uid)
-                    $("#doctor").text(data.disease_location_recipes[0].doctor_name)
+$(function() {
+    var uid = getvl('id');
+    if (!uid) {
+        swal({title: "id 错误", type: "error"}, function() {
+            window.close();
+        });
+        return;
+    }
+    var cbFunction = function(data,status){
+        if (status) {
+            if (data.patient.name)
+            {
+                console.log(data);
+                $("#rate_sl").text(data.disease_location_recipes[0].physiology) // 生理
+                $("#rate_qz").text(data.disease_location_recipes[0].emotion) // 情志
+                $("#rate_yy").text(data.disease_location_recipes[0].nutrition) // 营养
+                $("#rate_shfs").text(data.disease_location_recipes[0].life_style)  // 生活方式
+                $("#docter_name").text(data.disease_location_recipes[0].doctor_name)
+                $("#issue_fa").text(data.disease_location_recipes[0].detail)
+                $("#issue_main").text(data.disease_location_recipes[0].main_symptom)
+                $("#issue_em").text(data.disease_location_recipes[0].emergency_symptom)
+                $("#issue_co").text(data.disease_location_recipes[0].part_symptom)
+                $("#issue_se").text(data.disease_location_recipes[0].second_part_symptom)
+                $("#date").text(new Date().Format("yyyy-MM-dd"))
+                $("#table_id").text(uid)
+                $("#doctor").text(data.disease_location_recipes[0].doctor_name)
 
-                    $("#name").text(data.patient.name)
-                    $("#sex").text(data.patient.sex)
-                    $("#born_date").text(data.patient.birthday)
-                    $("#marriage").text(data.patient.marriage)
-                    $("#country").text(data.patient.nation)
-                    $("#contact").text(data.patient.phone)
-                  } else {
-                    swal({title: "id 错误1", type: "error"}, function() {
-                        window.close();
-                    });
-                    return false;
-                  }
-                } else {
-                    swal({title: "id 错误", type: "error"}, function() {
-                        window.close();
-                    });
-                    return false;
-                }
+                $("#name").text(data.patient.name)
+                $("#sex").text(data.patient.sex)
+                $("#born_date").text(data.patient.birthday)
+                $("#marriage").text(data.patient.marriage)
+                $("#country").text(data.patient.nation)
+                $("#contact").text(data.patient.phone)
+            } else {
+                swal({title: "id 错误1", type: "error"}, function() {
+                    window.close();
+                });
+                return false;
+            }
+        } else {
+            swal({title: "id 错误", type: "error"}, function() {
+                window.close();
+            });
+            return false;
+        }
 
 
 
-          }
-          doAjax(window.baseUrl + "/registration/check_info", "get", {"number": uid}, cbFunction);
-        })
+    }
+    doAjax(window.baseUrl + "/registration/check_info", "get", {"number": uid}, cbFunction);
+})
 
 
 

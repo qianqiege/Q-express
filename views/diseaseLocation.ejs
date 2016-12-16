@@ -12,13 +12,17 @@
                         <div class="col-xs-6 col-lg-3 offset-lg-1" style="float: left; display: inline;">
                             <label for="">病例编号：</label><span id="recipe_number"> </span>
                         </div>
-                        <div class="col-xs-12 col-lg-6">
+                        <div class="col-xs-12 col-lg-5">
                             <div class="form-group " style=" margin-bottom: 0px;">
                                 <div class="input-search">
                                     <button type="submit" class="input-search-btn"><i class="icon wb-search" aria-hidden="true"></i></button>
-                                    <input type="text" class="form-control" style="padding-top: 2px;padding-bottom: 2px;" name="id_number" id="id_number" oninput="doSearch(this)" maxlength="18">
+                                    <input type="text" class="form-control" style="padding-top: 2px;padding-bottom: 2px;" name="id_number" id="id_number" maxlength="18">
                                 </div>
                             </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="btn btn-outline btn-success btn-sm" href="#" onclick="doSearch(document.querySelector('#id_number'))">开方</a>
+                            <a class="btn btn-outline btn-success btn-sm" rel="nofollow" data-method="delete" id="diseaseLocationSearch">查看记录</a>
                         </div>
                         <div class="col-md-12 col-xs-12">
                             <div class="tab-content">
@@ -157,7 +161,8 @@ var doSearch = function(dom) {
                 for (var i in data.patient) {
                     $("#" + i).text(data.patient[i] || "无");
                 };
-                $("#recipe_number").text(data.registration.number);
+                $("#recipe_number").val(data.registration.number);
+                $("#diseaseLocationSearch").attr("href", "/diseaseLocationSearch?id_number=" + val);
                 $("#today").text(todaydata);
                 temp_data = data;
                 getHospital();
