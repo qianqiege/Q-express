@@ -124,7 +124,7 @@ router.get('/page/jiankang', function(req, res, next) {
 });
 
 router.get('/page/spine', function(req, res, next) {
-    res.render('page_spine', {title: "龙氏脊柱方案"});
+    res.render('page_spine', {title: "龙氏脊筑方案"});
 });
 
 
