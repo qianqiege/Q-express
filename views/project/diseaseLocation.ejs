@@ -156,7 +156,8 @@ var doSearch = function(dom) {
         doAjax(window.baseUrl + "/registration/get_number", "get", {"id_number": val}, function(data, status) {
             searching = false;
             if (status && data) {
-                if (!data.registration) {
+                console.log(data);
+                if (!data.number) {
                     swal("没有 registration 记录", "", "error");
                     return false;
                 }
@@ -165,13 +166,13 @@ var doSearch = function(dom) {
                 for (var i in data.patient) {
                     $("#" + i).text(data.patient[i] || "无");
                 };
-                $("#recipe_number").text(data.registration.number);
+                $("#recipe_number").text(data.number);
                 $("#diseaseLocationSearch").attr("href", "/diseaseLocationSearch?id_number=" + val);
                 $("#today").text(todaydata);
                 temp_data = data;
                 getHospital();
             } else {
-                $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
+                $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果1</li>");
             }
         });
     } else {
@@ -181,7 +182,7 @@ var doSearch = function(dom) {
 var submitForm = function() {
     postObj = {
         "patient_id": temp_data.patient.id,
-        "recipe_number": temp_data.registration.number,
+        "recipe_number": temp_data.number,
         "physiology": $("#physiology").val(),
         "emotion": $("#emotion").val(),
         "nutrition": $("#nutrition").val(),
@@ -215,11 +216,11 @@ var submitForm = function() {
 var logSearch = function(dom) {
     var val1 = dom.value.toLocaleUpperCase();
     if (val1.length===18  && checkIdCard(val1) && !searching) {
-        
+
         };
         doAjax(window.baseUrl + "/registration/get_number", "get", {"id_number": val1}, function(data, status) {
             if (status && data) {
-                if (!data.registration) {
+                if (!data.number) {
                     swal("没有 registration 记录", "", "error");
                     return false;
                 }
