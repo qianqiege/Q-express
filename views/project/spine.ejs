@@ -188,7 +188,6 @@ var doSearch = function (dom) {
         };
         doAjax(window.baseUrl + "/registration/get_number","get",{"id_number":val},function (data, status) {
             searching = false;
-                console.log(data);
             if (status && data) {
                 if (!data.number) {
                     swal("没有 registration 记录", "", "error");
