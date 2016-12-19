@@ -160,8 +160,7 @@
           }
           var cbFunction = function(data,status){
                if (status) {
-                   var last = data.spine_recipes.length -1;
-
+                    var last = data.spine_recipes.length -1;
                     var check_spine = data.spine_recipes[last].detail;
                     var check_spine_arr =JSON.parse(check_spine);
                      for (var i in check_spine_arr) {
