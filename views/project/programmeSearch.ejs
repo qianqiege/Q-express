@@ -3,7 +3,7 @@
 <div class="page">
     <div class="page-header">
         <h1 class="page-title"><%= title %></h1>
-        <ol class="breadcrumb"> 
+        <ol class="breadcrumb">
         </ol>
     </div>
     <div class="page-content">
@@ -70,7 +70,7 @@ var createRoleDom = function (dom){
         <td>{__number__}</td>\n\
         <td>\n\
             <div>\n\
-                <a class="btn btn-outline btn-success btn-sm" href="http://192.168.1.228:3000/page/jiankang?id={__number__}"> 查看记录</a>\n\
+                <a class="btn btn-outline btn-success btn-sm" href="/page/jiankang?id={__number__}"> 查看记录</a>\n\
             </div>\n\
         </td>\n\
     </tr>'
@@ -94,10 +94,16 @@ var doSearch = function(dom) {
                 $("#all_contacts ul:first").html($(createUserDom(data)));
                 doAjax(window.baseUrl + "/registration/check_registration","get",{"id_number": dom.value},function(data, status){
                     if (status && data){
-                        for(var i = 0;i < data.registration.length;i++){
-                            var name = data.registration[i];
-                            $("#tbody").append($(createRoleDom(name)));
+                        var j = 1;
+                        for(var i = 0;i < data.length;i++){
+                            if (data[i].health_manage_recipes.length) {
+                                var name = data[i];
+                                name.id = j;
+                                $("#tbody").append($(createRoleDom(name)));
+                                j = j + 1;
+                            }
                         }
+
                     }
                 });
             } else {
@@ -108,6 +114,14 @@ var doSearch = function(dom) {
         $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
     }
 };
+
+$(function() {
+    var idNum = getvl("id_number");
+    if (checkIdCard(idNum)) {
+        $("#inputSearch").val(idNum).trigger("oninput");
+    }
+});
+
 
 </script>
 
