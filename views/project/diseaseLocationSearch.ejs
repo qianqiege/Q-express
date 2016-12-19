@@ -43,7 +43,6 @@
                     <table class="table" >
                         <thead>
                             <tr>
-                                <th>编号</th>
                                 <th>挂号时间</th>
                                 <th>挂号号码</th>
                                 <th>查看记录</th>
@@ -65,7 +64,6 @@ var searching = false;
 var createRoleDom = function (dom){
     var template2 = '\n\
     <tr>\n\
-        <td>{__id__}</td>\n\
         <td>{__time__}</td>\n\
         <td>{__number__}</td>\n\
         <td>\n\
@@ -74,9 +72,8 @@ var createRoleDom = function (dom){
             </div>\n\
         </td>\n\
     </tr>'
-    return template2.replace(/\{__id__\}/g, dom["id"])
-    .replace(/\{__time__\}/g, dom["created_at"].substr(0,10))
-    .replace(/\{__number__\}/g, dom["number"]);
+    return template2.replace(/\{__time__\}/g, dom["created_at"].substr(0,10))
+        .replace(/\{__number__\}/g, dom["number"]);
 };
 
 var doSearch = function(dom) {
@@ -92,11 +89,16 @@ var doSearch = function(dom) {
             searching = false;
             if (status && data) {
                 $("#all_contacts ul:first").html($(createUserDom(data)));
-                doAjax(window.baseUrl + "/registration/check_registration","get",{"id_number": dom.value},function(data, status){
+                doAjax(window.baseUrl + "/registration/check_registration","get",{"id_number": val},function(data, status){
                     if (status && data){
-                        for(var i = 0;i < data.registration.length;i++){
-                            var name = data.registration[i];
-                            $("#tbody").append($(createRoleDom(name)));
+                        for(var i = 0;i < data.length;i++){
+                            var name = data[i];
+                            if (data[i]["disease_location_recipes"].length){
+                                $("#tbody").append($(createRoleDom(name)));
+                            }
+                        }
+                        if (!$("#tbody").html().trim()) {
+                            $("#tbody").html("<li class='list-group-item'>暂无搜索结果</li>");
                         }
                     }
                 });
