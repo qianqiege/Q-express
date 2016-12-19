@@ -160,20 +160,20 @@
           }
           var cbFunction = function(data,status){
                if (status) {
-                  if (data.status == "有效")
-                  {
-                    var check_spine = data.spine_recipes[0].detail;
+                   var last = data.spine_recipes.length -1;
+
+                    var check_spine = data.spine_recipes[last].detail;
                     var check_spine_arr =JSON.parse(check_spine);
                      for (var i in check_spine_arr) {
-                         $("#"+ check_spine_arr[i]).prop("checked",true);
+                        $("#"+ check_spine_arr[i]).prop("checked",true);
                      }
                     $("input:checkbox").prop("disabled",true);
-                    $("#total").text(data.spine_recipes[0].total);
-                    $("#treatment_level").text(data.spine_recipes[0].treatment_level);
-                    $("#treatment_times").text(data.spine_recipes[0].treatment_times);
-                    $("#rate_sl").text(data.spine_recipes[0].physical_condition)
-                    $("#rate_qz").text(data.spine_recipes[0].diagnostic_advice)
-                    $("#docter_name").text(data.spine_recipes[0].doctor_name)
+                    $("#total").text(data.spine_recipes[last].total);
+                    $("#treatment_level").text(data.spine_recipes[last].treatment_level);
+                    $("#treatment_times").text(data.spine_recipes[last].treatment_times);
+                    $("#rate_sl").text(data.spine_recipes[last].physical_condition)
+                    $("#rate_qz").text(data.spine_recipes[last].diagnostic_advice)
+                    $("#docter_name").text(data.spine_recipes[last].doctor_name)
                     $("#date").text(new Date().Format("yyyy-MM-dd"))
                     $("#table_id").text(uid)
                     $("#name").text(data.patient.name)
@@ -182,12 +182,7 @@
                     $("#marriage").text(data.patient.marriage)
                     $("#country").text(data.patient.nation)
                     $("#contact").text(data.patient.phone)
-                  } else {
-                    swal({title: "id 错误", type: "error"}, function() {
-                        window.close();
-                    });
-                    return false;
-                  }
+
                 } else {
                     swal({title: "id 错误", type: "error"}, function() {
                         window.close();

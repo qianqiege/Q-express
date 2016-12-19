@@ -11,14 +11,16 @@
           <div class="row">
             <div class="col-xs-6 col-lg-3 offset-lg-1" style="float: left; display: inline;">
               <label for="">病历号：</label><span id = "recipe_number"></span>
-            </div><div class="col-xs-6 col-lg-2 offset-lg-2 text-xs-right" style="float: right;display: inline;">
-              <label for="">科室：</label><span>筑脊科</span>
+            </div>
+            <div class="col-xs-6 col-lg-2 offset-lg-2 text-xs-right" style="float: right;display: inline;">
+                <a class="btn btn-outline btn-success btn-sm" href="#" onclick="doSearch(document.querySelector('#id_number'))">开方</a>
+                <a class="btn btn-outline btn-success btn-sm" rel="nofollow" data-method="delete" id="spineSearch">查看记录</a>
             </div>
             <div class="col-xs-12 col-lg-4">
               <div class="form-group " style=" margin-bottom: 0px;">
                   <div class="input-search">
                     <button type="submit" class="input-search-btn"><i class="icon wb-search" aria-hidden="true"></i></button>
-                    <input type="text" class="form-control" name="" placeholder="" style="padding-top: 2px;padding-bottom: 2px;" id="id_number" oninput="doSearch(this);" maxlength="18">
+                    <input type="text" class="form-control" name="" placeholder="" style="padding-top: 2px;padding-bottom: 2px;" id="id_number" oninput="logSearch(this)" maxlength="18">
                   </div>
                 </div>
             </div>
@@ -308,6 +310,21 @@ var submitForm = function () {
         }
     );
     return 0;
+};
+var logSearch = function(dom) {
+    var val1 = dom.value.toLocaleUpperCase();
+    if (val1.length===18  && checkIdCard(val1) && !searching) {
+
+        };
+        doAjax(window.baseUrl + "/registration/get_number", "get", {"id_number": val1}, function(data, status) {
+            if (status && data) {
+                if (!data.number) {
+                    swal("没有 registration 记录", "", "error");
+                    return false;
+                }
+                $("#spineSearch").attr("href", "/spineSearch?id_number=" + val1);
+            }
+        });
 };
 </script>
 <%- include ../footer %>
