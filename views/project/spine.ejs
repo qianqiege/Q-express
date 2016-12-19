@@ -187,7 +187,7 @@ var doSearch = function (dom) {
         doAjax(window.baseUrl + "/registration/get_number","get",{"id_number":val},function (data, status) {
             searching = false;
             if (status && data) {
-                if (!data.registration) {
+                if (!data.number) {
                     swal("没有 registration 记录", "", "error");
                     return false;
                 }
@@ -200,7 +200,7 @@ var doSearch = function (dom) {
                     $("#"+ i).text(data.patient[i] || "无");
                 }
                 patient_id = data.patient.id;
-                $("#recipe_number").text(data.registration.number);
+                $("#recipe_number").text(data.number);
             } else {
                 $("#showProject").html("暂无搜索结果");
             }
