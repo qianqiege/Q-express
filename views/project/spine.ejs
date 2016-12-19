@@ -172,16 +172,6 @@
     </div>
 </div>
 <script>
-//页面初始化加载医院、健康管理师、日期
-$(function () {
-    doAjax(window.baseUrl + "/recipe/recipe_info", "get", {"category": "筑脊科"}, function(data, status) {
-        if (status && data) {
-            $("#hospital-title").text(data.hospital);
-            $("#doctor").text(data.doctor);
-            $("#issued_date").text(data.issued_date);
-        }
-    });
-})
 //搜索展示相关人员信息
 var patient_id;
 var template = $("#hideProject").html();
@@ -215,6 +205,13 @@ var doSearch = function (dom) {
                 $("#showProject").html("暂无搜索结果");
             }
 
+        });
+        doAjax(window.baseUrl + "/recipe/recipe_info", "get", {"category": "筑脊科"}, function(data, status) {
+            if (status && data) {
+                $("#hospital-title").text(data.hospital);
+                $("#doctor").text(data.doctor);
+                $("#issued_date").text(data.issued_date);
+            }
         });
         doAjax(window.baseUrl + "/spine/spine_level", "get", {}, function (data, status){
             if (status && data) {
