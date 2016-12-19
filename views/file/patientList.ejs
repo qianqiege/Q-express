@@ -3,7 +3,7 @@
 <div class="page">
     <div class="page-header">
         <h1 class="page-title"><%= title %></h1>
-        <ol class="breadcrumb"> 
+        <ol class="breadcrumb">
         </ol>
     </div>
     <div class="page-content">
@@ -45,10 +45,8 @@
 
 <script>
     var searching = false;
-
     var doSearch = function(dom) {
         if (dom.value.length === 18 && checkIdCard(dom.value) && !searching) {
-
             var createUserDom = function(userObj) {
                 var template = "\n\
                                         <li class='list-group-item'>\n\

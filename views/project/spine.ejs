@@ -188,6 +188,7 @@ var doSearch = function (dom) {
         };
         doAjax(window.baseUrl + "/registration/get_number","get",{"id_number":val},function (data, status) {
             searching = false;
+                console.log(data);
             if (status && data) {
                 if (!data.number) {
                     swal("没有 registration 记录", "", "error");
@@ -314,17 +315,17 @@ var submitForm = function () {
 var logSearch = function(dom) {
     var val1 = dom.value.toLocaleUpperCase();
     if (val1.length===18  && checkIdCard(val1) && !searching) {
-
-        };
         doAjax(window.baseUrl + "/registration/get_number", "get", {"id_number": val1}, function(data, status) {
             if (status && data) {
-                if (!data.number) {
+                if (data.status !== "有效") {
                     swal("没有 registration 记录", "", "error");
                     return false;
                 }
                 $("#spineSearch").attr("href", "/spineSearch?id_number=" + val1);
             }
         });
+        };
+
 };
 </script>
 <%- include ../footer %>
