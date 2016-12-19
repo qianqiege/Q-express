@@ -7,7 +7,7 @@
 <div class="page">
 	<div class="page-header">
       <h1 class="page-title"><%= title %></h1>
-      <ol class="breadcrumb"> 
+      <ol class="breadcrumb">
       </ol>
       <div class="page-header-actions">
         <a class="btn btn-primary btn-round waves-effect" href="#" onclick='$("#print-this").printArea()'>
@@ -105,18 +105,14 @@
           }
           var cbFunction = function(data,status){
                if (status) {
-
-                  if (data.status == "有效")
-                  {
-                    console.log(data);
-                    $("#rate_sl").text(data.health_manage_recipes[0].physiology) // 生理
-                    $("#rate_qz").text(data.health_manage_recipes[0].emotion) // 情志
-                    $("#rate_yy").text(data.health_manage_recipes[0].nutrition) // 营养
-                    $("#rate_shfs").text(data.health_manage_recipes[0].life_style)  // 生活方式
-                    $("#docter_name").text(data.health_manage_recipes[0].doctor_name)
-                    $("#issue_fa").text(data.health_manage_recipes[0].detail)
+                   var last = data.health_manage_recipes.length -1;
+                    $("#rate_sl").text(data.health_manage_recipes[last].physiology) // 生理
+                    $("#rate_qz").text(data.health_manage_recipes[last].emotion) // 情志
+                    $("#rate_yy").text(data.health_manage_recipes[last].nutrition) // 营养
+                    $("#rate_shfs").text(data.health_manage_recipes[last].life_style)  // 生活方式
+                    $("#docter_name").text(data.health_manage_recipes[last].doctor_name)
+                    $("#issue_fa").text(data.health_manage_recipes[last].detail)
                     $("#date").text(new Date().Format("yyyy-MM-dd"))
-                    
                     $("#table_id").text(uid)
                     $("#name").text(data.patient.name)
                     $("#sex").text(data.patient.sex)
@@ -124,12 +120,6 @@
                     $("#marriage").text(data.patient.marriage)
                     $("#country").text(data.patient.nation)
                     $("#contact").text(data.patient.phone)
-                  } else {
-                    swal({title: "id 错误", type: "error"}, function() {
-                        window.close();
-                    });
-                    return false;
-                  }
                 } else {
                     swal({title: "id 错误", type: "error"}, function() {
                         window.close();

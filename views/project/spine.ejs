@@ -11,14 +11,16 @@
           <div class="row">
             <div class="col-xs-6 col-lg-3 offset-lg-1" style="float: left; display: inline;">
               <label for="">病历号：</label><span id = "recipe_number"></span>
-            </div><div class="col-xs-6 col-lg-2 offset-lg-2 text-xs-right" style="float: right;display: inline;">
-              <label for="">科室：</label><span>筑脊科</span>
+            </div>
+            <div class="col-xs-6 col-lg-2 offset-lg-2 text-xs-right" style="float: right;display: inline;">
+                <a class="btn btn-outline btn-success btn-sm" href="#" onclick="doSearch(document.querySelector('#id_number'))">开方</a>
+                <a class="btn btn-outline btn-success btn-sm" rel="nofollow" data-method="delete" id="spineSearch">查看记录</a>
             </div>
             <div class="col-xs-12 col-lg-4">
               <div class="form-group " style=" margin-bottom: 0px;">
                   <div class="input-search">
                     <button type="submit" class="input-search-btn"><i class="icon wb-search" aria-hidden="true"></i></button>
-                    <input type="text" class="form-control" name="" placeholder="" style="padding-top: 2px;padding-bottom: 2px;" id="id_number" oninput="doSearch(this);" maxlength="18">
+                    <input type="text" class="form-control" name="" placeholder="" style="padding-top: 2px;padding-bottom: 2px;" id="id_number" oninput="logSearch(this)" maxlength="18">
                   </div>
                 </div>
             </div>
@@ -172,16 +174,6 @@
     </div>
 </div>
 <script>
-//页面初始化加载医院、健康管理师、日期
-$(function () {
-    doAjax(window.baseUrl + "/recipe/recipe_info", "get", {"category": "筑脊科"}, function(data, status) {
-        if (status && data) {
-            $("#hospital-title").text(data.hospital);
-            $("#doctor").text(data.doctor);
-            $("#issued_date").text(data.issued_date);
-        }
-    });
-})
 //搜索展示相关人员信息
 var patient_id;
 var template = $("#hideProject").html();
@@ -197,7 +189,7 @@ var doSearch = function (dom) {
         doAjax(window.baseUrl + "/registration/get_number","get",{"id_number":val},function (data, status) {
             searching = false;
             if (status && data) {
-                if (!data.registration) {
+                if (!data.number) {
                     swal("没有 registration 记录", "", "error");
                     return false;
                 }
@@ -210,11 +202,18 @@ var doSearch = function (dom) {
                     $("#"+ i).text(data.patient[i] || "无");
                 }
                 patient_id = data.patient.id;
-                $("#recipe_number").text(data.registration.number);
+                $("#recipe_number").text(data.number);
             } else {
                 $("#showProject").html("暂无搜索结果");
             }
 
+        });
+        doAjax(window.baseUrl + "/recipe/recipe_info", "get", {"category": "筑脊科"}, function(data, status) {
+            if (status && data) {
+                $("#hospital-title").text(data.hospital);
+                $("#doctor").text(data.doctor);
+                $("#issued_date").text(data.issued_date);
+            }
         });
         doAjax(window.baseUrl + "/spine/spine_level", "get", {}, function (data, status){
             if (status && data) {
@@ -311,6 +310,21 @@ var submitForm = function () {
         }
     );
     return 0;
+};
+var logSearch = function(dom) {
+    var val1 = dom.value.toLocaleUpperCase();
+    if (val1.length===18  && checkIdCard(val1) && !searching) {
+
+        };
+        doAjax(window.baseUrl + "/registration/get_number", "get", {"id_number": val1}, function(data, status) {
+            if (status && data) {
+                if (!data.number) {
+                    swal("没有 registration 记录", "", "error");
+                    return false;
+                }
+                $("#spineSearch").attr("href", "/spineSearch?id_number=" + val1);
+            }
+        });
 };
 </script>
 <%- include ../footer %>
