@@ -156,7 +156,6 @@ var doSearch = function(dom) {
         doAjax(window.baseUrl + "/registration/get_number", "get", {"id_number": val}, function(data, status) {
             searching = false;
             if (status && data) {
-                console.log(data);
                 if (!data.number) {
                     swal("没有 registration 记录", "", "error");
                     return false;
@@ -172,7 +171,7 @@ var doSearch = function(dom) {
                 temp_data = data;
                 getHospital();
             } else {
-                $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果1</li>");
+                $("#all_contacts ul:first").html("<li class='list-group-item'>没有挂号，请先去挂号！</li>");
             }
         });
     } else {
@@ -219,13 +218,12 @@ var logSearch = function(dom) {
 
         };
         doAjax(window.baseUrl + "/registration/get_number", "get", {"id_number": val1}, function(data, status) {
-            if (status && data) {
-                if (!data.number) {
-                    swal("没有 registration 记录", "", "error");
-                    return false;
-                }
-                $("#diseaseLocationSearch").attr("href", "/diseaseLocationSearch?id_number=" + val1);
+            if (!data) {
+                swal("没有挂号记录", "", "error");
+                return false;
             }
+            $("#diseaseLocationSearch").attr("href", "/diseaseLocationSearch?id_number=" + val1);
+
         });
 };
 </script>
