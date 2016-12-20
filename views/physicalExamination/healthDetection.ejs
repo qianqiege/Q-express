@@ -15,11 +15,12 @@
                             <!-- Example Nav Tabs -->
                             <div class="nav-tabs">
                                 <ul class="nav nav-tabs nav-tabs-line">
-                                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#blood_pressure" >血压监测</a></li>
-                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#blood_sugar" >血糖监测</a></li>
-                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#temperature" >体温监测</a></li>
-                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#weight" >体重监测</a></li>
-                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#heart_rate" >心率监测</a></li>
+                                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#blood_pressure">血压监测</a></li>
+                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#blood_sugar">血糖监测</a></li>
+                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#temperature">体温监测</a></li>
+                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#weight">体重监测</a></li>
+                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#heart_rate">心率监测</a></li>
+                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#TDS">TDS数字中医</a></li>
                                 </ul>
                             </div>
                             <div class="tab-content">
@@ -143,6 +144,41 @@
                                                 </tr>
                                             </thead>
                                             <tbody id="heart_rates">
+                                            </tbody>
+                                            <tfoot>
+
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- TDS数字中医页面 -->
+                                <div role="tabpanel" class="tab-pane" id="TDS">
+                                    <div id="data_table" class="col-xs-12 col-md-12" style="margin-top: 10px;">
+                                        <table class="table table-bordered" >
+                                            <thead>
+                                                <tr>
+                                                    <th>姓名</th>
+                                                    <th>性别</th>
+                                                    <th>年龄</th>
+                                                    <th>身高</th>
+                                                    <th>体重</th>
+                                                    <th>监测时间</th>
+                                                    <th>报告展示</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>  孙金秀 </td>
+                                                    <td>  </td>
+                                                    <td>  </td>
+                                                    <td>  </td>
+                                                    <td>  </td>
+                                                    <td>  </td>
+                                                    <td>
+                                                        <a class="btn btn-block btn-info waves-effect" href="http://www.hsnet.cn/report/report/ybyt/zm_report.aspx?para=010870695870858870">报告展示</a>
+                                                    </td>
+                                                </tr>
+
                                             </tbody>
                                             <tfoot>
 
@@ -289,7 +325,7 @@
         }
     };
 
-    var cb2Function = function(data,status){
+    var bPFunction = function(data,status){
         var max_blood_pressure = [];
         var min_blood_pressure = [];
         var blood_pressure_date = [];
@@ -312,7 +348,7 @@
             });
             return;
         }
-        doAjax(window.baseUrl + "/examination_check/blood_pressure", 'get', {'patient_id': uid,'page':1,'per_page':10}, cb2Function);
+        doAjax(window.baseUrl + "/examination_check/blood_pressure", 'get', {'patient_id': uid,'page':1,'per_page':10}, bPFunction);
     });
 </script>
 <%- include ../footer %>
