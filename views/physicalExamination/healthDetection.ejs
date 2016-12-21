@@ -196,6 +196,40 @@ $(function(){
         return "<tr><td>" + obj.join("</td><td>") + "</td></tr>";
     };
 
+    function createChart(obj,data){
+        var myChart = echarts.init(document.getElementById(obj));
+        var option = {
+            tooltip: {
+                trigger: 'axis',
+            },
+            xAxis: {
+                data: data.date
+            },
+            dataZoom: [
+                    {
+                        type: 'inside',
+                        xAxisIndex: [0],
+                    },
+                    {
+                        type: 'slider',
+                        show: true,
+                        xAxisIndex: [0],
+                    },
+            ],
+            yAxis: {},
+            series: []
+        };
+        option.series = data.series;
+
+        $(window).bind('resize', function() {
+            myChart.resize();
+        })
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            myChart.resize();
+        })
+        myChart.setOption(option);
+    }
+
     var cbFunction = function(data,status){
         var tabs = ['blood_glucoses', 'blood_pressures', 'temperatures', 'heart_rates', 'weights'];
         var columns = [];
@@ -339,7 +373,6 @@ $(function(){
         var max_blood_pressure = [];
         var min_blood_pressure = [];
         var blood_pressure_date = [];
-
         for (var k = 0; k < data.length; k++) {
             var tr = [data[k].datetime, data[k].max_blood_pressure, data[k].min_blood_pressure];
             max_blood_pressure.push(data[k]['max_blood_pressure']);
@@ -348,6 +381,22 @@ $(function(){
             tr.push('正常/正常');
             $('#' + "blood_pressures").append($(createTr(tr)));
         }
+        var chart_data = {
+            date: blood_pressure_date,
+            series: [
+                {
+                    name:'收缩压',
+                    type:'line',
+                    data:max_blood_pressure,
+                },
+                {
+                    name:'舒张压',
+                    type:'line',
+                    data:min_blood_pressure,
+                }]
+        };
+        createChart("chart_blood_pressures",chart_data)
+        console.log(chart_data)
     };
 
     var temperatureFunction = function(data,status){
