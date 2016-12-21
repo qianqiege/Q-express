@@ -91,7 +91,7 @@
                                     <td> {__name__} </td>\n\
                                     <td>\n\
                                         <div>\n\
-                                            <a class='btn btn-outline btn-success btn-sm' href='#'>编辑</a>\n\
+                                            <a class='btn btn-outline btn-success btn-sm' href='#{__id__}' onclick='editRole(this)' data-target='#exampleNiftyFadeScale' data-toggle='modal'>编辑</a>\n\
                                             <a data-confirm='确认删除?' class='btn btn-outline btn-success btn-sm' rel='nofollow' data-method='delete' href='#{__id__}' onclick='deleteRole(this)' >删除</a>\n\
                                         </div>\n\
                                     </td>\n\
@@ -138,17 +138,34 @@
     };
     var deleteRole = function (dom) {
         var id = dom.href.split("#")[1];
-        doAjax(window.baseUrl + "/roles/"+id , "delete", {"id": id}, function (data, status) {
-            if (!status){
-                swal("提交失败", JSON.parse(data.reponseText)["error"] || JSON.parse(data.reponseText)["error_message"]  , "error");
-            }else{
-                swal("提交成功", "", "success");
-                setTimeout(function() {
-                    location.href="/roles";
-                },1000);
-                return true;
+        swal({
+            title: "您确定吗?",
+            text: "您选择的角色将被删除!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "是的",
+            cancelButtonText: "取消",
+            closeOnConfirm: false
+        },
+        function(isConfirm){
+            if (isConfirm) {
+                doAjax(window.baseUrl + "/roles/"+id , "delete", {"id": id}, function (data, status) {
+                    if (!status){
+                        swal("提交失败", JSON.parse(data.reponseText)["error"] || JSON.parse(data.reponseText)["error_message"]  , "error");
+                    }else{
+                        swal("删除!", "已经删除", "success");
+                        setTimeout(function() {
+                            location.href="/roles";
+                        },1000);
+                        return true;
+                    }
+                });
             }
-        } )
+        });
+    };
+    var editRole = function () {
+
     };
 </script>
 
