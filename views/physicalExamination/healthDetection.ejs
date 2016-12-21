@@ -205,6 +205,9 @@ $(function(){
         });
     }
 
+    var todayData =new Date().Format("yyyy-MM-dd");
+    var startDate="2016-1-1";
+
     var createTr = function (obj) {
         return "<tr><td>" + obj.join("</td><td>") + "</td></tr>";
     };
@@ -407,29 +410,27 @@ $(function(){
         if ($(this).data("apiget")){
             return true;
         }
-
         if (where === "血压监测"){
             $(this).data("apiget",true)
-            doAjax(window.baseUrl + "/examination_check/blood_pressure", 'get', {'patient_id': uid,'page':1,'per_page':10}, bPFunction);
+            doAjax(window.baseUrl + "/examination_check/blood_pressure", 'get', {'patient_id': uid,'start_date': startDate,'end_date': todayData,'page':1,'per_page':10}, bPFunction);
             return true;
         } else if( where === "血糖监测") {
             $(this).data("apiget",true)
-            doAjax(window.baseUrl + "/examination_check/blood_glucose", 'get', {'patient_id': uid,'page':1,'per_page':10}, bSFunction);
+            doAjax(window.baseUrl + "/examination_check/blood_glucose", 'get', {'patient_id': uid,'start_date': startDate,'end_date': todayData,'page':1,'per_page':10}, bSFunction);
             return true;
         } else if( where === "体温监测") {
             $(this).data("apiget",true)
-            doAjax(window.baseUrl + "/examination_check/temperature", 'get', {'patient_id': uid,'page':1,'per_page':10}, temperatureFunction);
+            doAjax(window.baseUrl + "/examination_check/temperature", 'get', {'patient_id': uid,'start_date': startDate,'end_date': todayData,'page':1,'per_page':10}, temperatureFunction);
             return true;
         } else if( where === "体重监测") {
             $(this).data("apiget",true)
-            doAjax(window.baseUrl + "/examination_check/weight", 'get', {'patient_id': uid,'page':1,'per_page':10}, weightFunction);
+            doAjax(window.baseUrl + "/examination_check/weight", 'get', {'patient_id': uid,'start_date': startDate,'end_date': todayData,'page':1,'per_page':10}, weightFunction);
             return true;
         } else if( where === "心率监测") {
             $(this).data("apiget",true)
-            doAjax(window.baseUrl + "/examination_check/heart_rate", 'get', {'patient_id': uid,'page':1,'per_page':10}, heartRateFunction);
+            doAjax(window.baseUrl + "/examination_check/heart_rate", 'get', {'patient_id': uid,'start_date': startDate,'end_date': todayData,'page':1,'per_page':10}, heartRateFunction);
             return true;
         }
-
     })
         $(".nav-tabs .nav-link.active").click();
 })
