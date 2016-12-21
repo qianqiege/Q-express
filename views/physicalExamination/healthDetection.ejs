@@ -157,28 +157,12 @@
                                         <table class="table table-bordered" >
                                             <thead>
                                                 <tr>
-                                                    <th>姓名</th>
-                                                    <th>性别</th>
-                                                    <th>年龄</th>
-                                                    <th>身高</th>
-                                                    <th>体重</th>
-                                                    <th>监测时间</th>
-                                                    <th>报告展示</th>
+                                                    <th>编号</th>
+                                                    <th>检测时间</th>
+                                                    <th>查看记录</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>  孙金秀 </td>
-                                                    <td>  </td>
-                                                    <td>  </td>
-                                                    <td>  </td>
-                                                    <td>  </td>
-                                                    <td>  </td>
-                                                    <td>
-                                                        <a class="btn btn-block btn-info waves-effect" href="http://www.hsnet.cn/report/report/ybyt/zm_report.aspx?para=010870695870858870">报告展示</a>
-                                                    </td>
-                                                </tr>
-
+                                            <tbody  id="TDSdata">
                                             </tbody>
                                             <tfoot>
 
@@ -405,6 +389,23 @@ $(function(){
         }
     };
 
+    var createTDSDom = function (dom,id){
+        var template2 = '\n\
+        <tr>\n\
+            <td>{__id__}</td>\n\
+            <td>{__time__}</td>\n\
+            <td>\n\
+                <div>\n\
+                    <a class="btn btn-outline btn-success btn-sm" href="{__report_url__}"> 查看记录</a>\n\
+                </div>\n\
+            </td>\n\
+        </tr>'
+        return template2.replace(/\{__id__\}/g, id)
+        .replace(/\{__time__\}/g, dom["created_at"].substr(0,10))
+        .replace(/\{__report_url__\}/g, dom["report_url"]);
+    };
+
+
     $(".nav-tabs .nav-link").on('click',function(){
         where = $(this).text()
         if ($(this).data("apiget")){
@@ -429,6 +430,18 @@ $(function(){
         } else if( where === "心率监测") {
             $(this).data("apiget",true)
             doAjax(window.baseUrl + "/examination_check/heart_rate", 'get', {'patient_id': uid,'start_date': startDate,'end_date': todayData,'page':1,'per_page':10}, heartRateFunction);
+            return true;
+        } else if( where === "TDS数字中医") {
+            $(this).data("apiget",true)
+            doAjax(window.baseUrl + "/tds/check", 'get', {'patient_id': uid}, function(data, status){
+                if (status && data){
+                    for(var i = 0;i < data.length;i++){
+                        var name = data[i];
+                        var id = i+1;
+                        $("#TDSdata").append($(createTDSDom(name,id)));
+                    }
+                }
+            });
             return true;
         }
     })
