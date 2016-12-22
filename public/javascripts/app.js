@@ -369,6 +369,8 @@ $(function() {
                                        .replace(/\{__title__\}/, menuObj["name"])
                                        .replace(/\{__icon__\}/, " " + menuObj["icon"]);
         }
+
+        
         $("ul.site-menu").append($(baseTemplate));
     };
 
@@ -400,7 +402,7 @@ $(function() {
                     return true;
                 }
                 getMenu().then(function() {
-                    customPjax("a[href!='javascript:void(0)']", ".page");
+                    customPjax(".site-menu a[href!='javascript:void(0)']", ".page");
                 });
             } else {
                 gotoLogin();
