@@ -17,9 +17,9 @@
                                 <ul class="nav nav-tabs nav-tabs-line">
                                     <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#blood_pressure">血压监测</a></li>
                                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#blood_sugar">血糖监测</a></li>
-                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#temperature">体温监测</a></li>
-                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#weight">体重监测</a></li>
-                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#heart_rate">心率监测</a></li>
+                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#temperature" >体温监测</a></li>
+                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#weight" >体重监测</a></li>
+                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#heart_rate" >心率监测</a></li>
                                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#TDS">TDS数字中医</a></li>
                                 </ul>
                             </div>
@@ -157,28 +157,12 @@
                                         <table class="table table-bordered" >
                                             <thead>
                                                 <tr>
-                                                    <th>姓名</th>
-                                                    <th>性别</th>
-                                                    <th>年龄</th>
-                                                    <th>身高</th>
-                                                    <th>体重</th>
-                                                    <th>监测时间</th>
-                                                    <th>报告展示</th>
+                                                    <th>编号</th>
+                                                    <th>检测时间</th>
+                                                    <th>查看记录</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>  孙金秀 </td>
-                                                    <td>  </td>
-                                                    <td>  </td>
-                                                    <td>  </td>
-                                                    <td>  </td>
-                                                    <td>  </td>
-                                                    <td>
-                                                        <a class="btn btn-block btn-info waves-effect" href="http://www.hsnet.cn/report/report/ybyt/zm_report.aspx?para=010870695870858870">报告展示</a>
-                                                    </td>
-                                                </tr>
-
+                                            <tbody  id="TDSdata">
                                             </tbody>
                                             <tfoot>
 
@@ -197,9 +181,54 @@
     </div>
 </div>
 <script>
+$(function(){
+    var uid =  ~~getvl('id');
+    if (!uid) {
+        swal({title: 'id 错误', type: 'error'}, function() {
+            window.close();
+        });
+    }
+
+    var todayData =new Date().Format("yyyy-MM-dd");
+    var startDate="2016-1-1";
+
     var createTr = function (obj) {
         return "<tr><td>" + obj.join("</td><td>") + "</td></tr>";
     };
+
+    function createChart(obj,data){
+        var myChart = echarts.init(document.getElementById(obj));
+        var option = {
+            tooltip: {
+                trigger: 'axis',
+            },
+            xAxis: {
+                data: data.date
+            },
+            dataZoom: [
+                    {
+                        type: 'inside',
+                        xAxisIndex: [0],
+                    },
+                    {
+                        type: 'slider',
+                        show: true,
+                        xAxisIndex: [0],
+                    },
+            ],
+            yAxis: {},
+            series: []
+        };
+        option.series = data.series;
+
+        $(window).bind('resize', function() {
+            myChart.resize();
+        })
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            myChart.resize();
+        })
+        myChart.setOption(option);
+    }
 
     var cbFunction = function(data,status){
         var tabs = ['blood_glucoses', 'blood_pressures', 'temperatures', 'heart_rates', 'weights'];
@@ -324,15 +353,148 @@
             charts[j] = createChart(tabs[j], columns[j], unit[j]);
         }
     };
-    $(function(){
-        var uid =  ~~getvl('id');
-        if (!uid) {
-            swal({title: 'id 错误', type: 'error'}, function() {
-                window.close();
-            });
-            return;
+
+    var bSFunction = function(data,status){
+        var before_blood_glucose = [];
+        var after_blood_glucose = [];
+        var blood_glucose_date = [];
+
+        for (var k = 0; k < data.length; k++) {
+            var tr = [data[k].datetime, data[k].before_blood_glucose, data[k].after_blood_glucose];
+            before_blood_glucose.push(data[k]['before_blood_glucose']);
+            after_blood_glucose.push(data[k]['after_blood_glucose']);
+            blood_glucose_date.push(data[k]['datetime']);
+            tr.push('正常/正常');
+            $('#' + "blood_glucoses").append($(createTr(tr)));
         }
-        doAjax(window.baseUrl + "/examination_check", 'get', {'patient_id': uid}, cbFunction);
-    });
+    };
+
+    var bPFunction = function(data,status){
+        var max_blood_pressure = [];
+        var min_blood_pressure = [];
+        var blood_pressure_date = [];
+        for (var k = 0; k < data.length; k++) {
+            var tr = [data[k].datetime, data[k].max_blood_pressure, data[k].min_blood_pressure];
+            max_blood_pressure.push(data[k]['max_blood_pressure']);
+            min_blood_pressure.push(data[k]['min_blood_pressure']);
+            blood_pressure_date.push(data[k]['datetime']);
+            tr.push('正常/正常');
+            $('#' + "blood_pressures").append($(createTr(tr)));
+        }
+        var chart_data = {
+            date: blood_pressure_date,
+            series: [
+                {
+                    name:'收缩压',
+                    type:'line',
+                    data:max_blood_pressure,
+                },
+                {
+                    name:'舒张压',
+                    type:'line',
+                    data:min_blood_pressure,
+                }]
+        };
+        createChart("chart_blood_pressures",chart_data)
+        console.log(chart_data)
+    };
+
+    var temperatureFunction = function(data,status){
+        var temperatures_value = [];
+        var temperatures_date = [];
+
+        for (var k = 0; k < data.length; k++) {
+            var tr = [data[k].datetime, data[k].value];
+            temperatures_value.push(data[k]['value']);
+            temperatures_date.push(data[k]['datetime']);
+            tr.push('正常');
+            $('#' + "temperatures").append($(createTr(tr)));
+        }
+    };
+
+    var weightFunction = function(data,status){
+        var weights_value = [];
+        var weights_date = [];
+
+        for (var k = 0; k < data.length; k++) {
+            var tr = [data[k].datetime, data[k].value];
+            weights_value.push(data[k]['value']);
+            weights_date.push(data[k]['datetime']);
+            tr.push('正常');
+            $('#' + "weights").append($(createTr(tr)));
+        }
+    };
+
+    var heartRateFunction = function(data,status){
+        var heart_rates_value = [];
+        var heart_rates_date = [];
+
+        for (var k = 0; k < data.length; k++) {
+            var tr = [data[k].datetime, data[k].value];
+            heart_rates_value.push(data[k]['value']);
+            heart_rates_date.push(data[k]['datetime']);
+            tr.push('正常');
+            $('#' + "heart_rates").append($(createTr(tr)));
+        }
+    };
+
+    var createTDSDom = function (dom,id){
+        var template2 = '\n\
+        <tr>\n\
+            <td>{__id__}</td>\n\
+            <td>{__time__}</td>\n\
+            <td>\n\
+                <div>\n\
+                    <a class="btn btn-outline btn-success btn-sm" href="{__report_url__}"> 查看记录</a>\n\
+                </div>\n\
+            </td>\n\
+        </tr>'
+        return template2.replace(/\{__id__\}/g, id)
+        .replace(/\{__time__\}/g, dom["created_at"].substr(0,10))
+        .replace(/\{__report_url__\}/g, dom["report_url"]);
+    };
+
+
+    $(".nav-tabs .nav-link").on('click',function(){
+        where = $(this).text()
+        if ($(this).data("apiget")){
+            return true;
+        }
+        if (where === "血压监测"){
+            $(this).data("apiget",true)
+            doAjax(window.baseUrl + "/examination_check/blood_pressure", 'get', {'patient_id': uid,'start_date': startDate,'end_date': todayData,'page':1,'per_page':10}, bPFunction);
+            return true;
+        } else if( where === "血糖监测") {
+            $(this).data("apiget",true)
+            doAjax(window.baseUrl + "/examination_check/blood_glucose", 'get', {'patient_id': uid,'start_date': startDate,'end_date': todayData,'page':1,'per_page':10}, bSFunction);
+            return true;
+        } else if( where === "体温监测") {
+            $(this).data("apiget",true)
+            doAjax(window.baseUrl + "/examination_check/temperature", 'get', {'patient_id': uid,'start_date': startDate,'end_date': todayData,'page':1,'per_page':10}, temperatureFunction);
+            return true;
+        } else if( where === "体重监测") {
+            $(this).data("apiget",true)
+            doAjax(window.baseUrl + "/examination_check/weight", 'get', {'patient_id': uid,'start_date': startDate,'end_date': todayData,'page':1,'per_page':10}, weightFunction);
+            return true;
+        } else if( where === "心率监测") {
+            $(this).data("apiget",true)
+            doAjax(window.baseUrl + "/examination_check/heart_rate", 'get', {'patient_id': uid,'start_date': startDate,'end_date': todayData,'page':1,'per_page':10}, heartRateFunction);
+            return true;
+        } else if( where === "TDS数字中医") {
+            $(this).data("apiget",true)
+            doAjax(window.baseUrl + "/tds/check", 'get', {'patient_id': uid}, function(data, status){
+                if (status && data){
+                    for(var i = 0;i < data.length;i++){
+                        var name = data[i];
+                        var id = i+1;
+                        $("#TDSdata").append($(createTDSDom(name,id)));
+                    }
+                }
+            });
+            return true;
+        }
+    })
+        $(".nav-tabs .nav-link.active").click();
+})
 </script>
 <%- include ../footer %>
