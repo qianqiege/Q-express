@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('home/index', {title: '首页'});
+    res.render('home/index', {title: '首页', pjax: req.get('X-PJAX')});
 });
 
 router.get('/exceptionData', function(req, res, next) {
@@ -79,7 +79,7 @@ router.get('/programmeSearch', function(req, res, next) {
 });
 
 router.get('/registeredPost', function(req, res, next) {
-    res.render('registeredManagement/registeredPost', {title: "挂号"});
+    res.render('registeredManagement/registeredPost', {title: "挂号", pjax: req.get('X-PJAX')});
 });
 
 
@@ -108,7 +108,7 @@ router.get('/viewTDSSearch', function(req, res, next) {
 });
 
 router.get('/adminIndex', function(req, res, next) {
-    res.render('home/adminIndex', {title: "管理首页"});
+    res.render('home/adminIndex', {title: "管理首页", pjax: req.get('X-PJAX')});
 });
 
 router.get('/page/jibin', function(req, res, next) {

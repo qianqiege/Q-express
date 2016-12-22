@@ -1,8 +1,12 @@
-<%- include ../header %>
+<% if (typeof pjax === "undefined") { %>
+  <%- include ../header %>
 <div class="page">
+<% } else { %>
+<title><%= title %></title>
+<% } %>
     <div class="page-header">
         <h1 class="page-title"><%= title %></h1>
-        <ol class="breadcrumb"> 
+        <ol class="breadcrumb">
         </ol>
     </div>
     <div class="page-content">
@@ -49,7 +53,6 @@
             </div>
         </div>
     </div>
-</div>
 <script>
 var searching = false;
 var doSearch = function(dom) {
@@ -75,4 +78,7 @@ var doSearch = function(dom) {
     }
 };
 </script>
-<%- include ../footer %>
+<% if (typeof pjax === "undefined") { %>
+</div>
+  <%- include ../footer %>
+<% } %>

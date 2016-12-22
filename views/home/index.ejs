@@ -1,8 +1,12 @@
-<%- include ../header %>
+<% if (typeof pjax === "undefined") { %>
+  <%- include ../header %>
 <div class="page">
+<% } else { %>
+<title><%= title %></title>
+<% } %>
   <div class="page-header">
     <h1 class="page-title"><%= title %></h1>
-    <ol class="breadcrumb"> 
+    <ol class="breadcrumb">
     </ol>
   </div>
   <div class="page-content">
@@ -33,7 +37,7 @@
                 </tr>
         </table>
           <script>
-            var template = $("#iamtempalte :first").html() 
+            var template = $("#iamtempalte :first").html()
             $("#iamtempalte").remove()
             var cbFunction = function(data,status){
                 $("table tr:eq(1)").remove()
@@ -46,7 +50,7 @@
                     t_template = template.replace("NNAME",name).replace("NNAME",name).replace("RREASON",reason).replace("IID",id)
                     $("table tbody").append(t_template);
                 }
-                
+
             }
             doAjax(window.baseUrl + "/exception", "get", {}, cbFunction);
           </script>
@@ -55,5 +59,7 @@
       </div>
     </div>
   </div>
+<% if (typeof pjax === "undefined") { %>
 </div>
-<%- include ../footer %>
+  <%- include ../footer %>
+<% } %>

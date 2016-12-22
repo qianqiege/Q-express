@@ -13,10 +13,11 @@ window.baseUrl = "http://192.168.1.229:3000/api/v1"
 */
 var doAjax = function(ajaxUrl, ajaxType, ajaxData, callbackFunc) {
     ajaxData["_t"] = new Date().getTime();
+    var dataType = typeof arguments[5] !== "undefined" && typeof arguments[5]["dataType"] !== "undefined" ? arguments[5]["dataType"] : "json";
     var ajaxObj = {
         type: ajaxType,
         url: ajaxUrl,
-        dataType: 'json',
+        dataType: dataType,
         timeout: 5000,
         data: ajaxData,
         success: function(re) {
@@ -44,18 +45,67 @@ var doAjax = function(ajaxUrl, ajaxType, ajaxData, callbackFunc) {
             }
         }
     };
-    var authToken = false;
+    var authToken = false, pjax = false;
     if (typeof arguments[5] === "object") {
         if (typeof arguments[5]["access-authorization"] !== "undefined") {
             authToken = arguments[5]["access-authorization"];
             delete arguments[5]["access-authorization"];
         }
+        if (typeof arguments[5]["X-PJAX"] !== "undefined") {
+            pjax = arguments[5]["X-PJAX"];
+            delete arguments[5]["X-PJAX"];
+        }
         $.extend(ajaxObj, arguments[5]);
     }
     ajaxObj.beforeSend = function (XHR) {
         XHR.setRequestHeader('access-authorization', authToken || $.cookie('access_token') || "");
+        if (pjax) {
+            XHR.setRequestHeader('X-PJAX', pjax);
+        }
     };
     jQuery.ajax(ajaxObj);
+};
+
+/**
+* Ajax 封装 (Promise)
+*
+* @param ajaxUrl {String} 请求地址
+* @param ajaxType {String} 请求类型，例如 get, post
+* @param ajaxData {Object=} 携带的数据（可选）
+* @param ajaxExtendObject {Object=} Ajax 附加参数（可选）
+* @return Object
+* @author jshensh@126.com 2016-12-22
+*/
+var doAjaxPromise = function(ajaxUrl, ajaxType, ajaxData) {
+    var ajaxData = (typeof arguments[2] === "object") ? arguments[2] : {};
+    ajaxData["_t"] = new Date().getTime();
+    var dataType = typeof arguments[5] !== "undefined" && typeof arguments[5]["dataType"] !== "undefined" ? arguments[5]["dataType"] : "json";
+    var ajaxObj = {
+        type: ajaxType,
+        url: ajaxUrl,
+        dataType: dataType,
+        timeout: 5000,
+        data: ajaxData,
+    };
+    var authToken = false, pjax = false;
+    if (typeof arguments[5] === "object") {
+        if (typeof arguments[5]["access-authorization"] !== "undefined") {
+            authToken = arguments[5]["access-authorization"];
+            delete arguments[5]["access-authorization"];
+        }
+        if (typeof arguments[5]["X-PJAX"] !== "undefined") {
+            pjax = arguments[5]["X-PJAX"];
+            delete arguments[5]["X-PJAX"];
+        }
+        $.extend(ajaxObj, arguments[5]);
+    }
+    ajaxObj.beforeSend = function (XHR) {
+        XHR.setRequestHeader('access-authorization', authToken || $.cookie('access_token') || "");
+        if (pjax) {
+            XHR.setRequestHeader('X-PJAX', pjax);
+        }
+    };
+    return jQuery.ajax(ajaxObj);
 };
 
 /**
@@ -234,6 +284,61 @@ Date.prototype.Format = function(fmt) {
     return fmt;
 };
 
+/**
+* PushState && Ajax
+*
+* @param aSelector {String} a 标签选择器
+* @param divSelector {String} div 标签选择器
+* @return void
+* @author jshensh@126.com 2016-12-22
+*/
+var customPjax = function(aSelector, divSelector) {
+    $(aSelector).each(function() {
+        var uri = $(this).attr('href');
+        if (typeof uri === "undefined") {
+            return true;
+        }
+        if (uri.match(/^javascript:/) || uri.match(/\#/)) {
+            return true;
+        }
+        uri = uri.match(/^\//) ? uri : "/" + uri;
+        $(this).click(function(evt) {
+            if (evt && evt.preventDefault) {
+                evt.preventDefault();
+            } else {
+                window.event.returnValue = false;
+            }
+            doAjax(uri, "get", {}, function(data, status) {
+                if (status && data) {
+                    var newTitle = data.match(/<title>(.*?)<\/title>/)[1];
+                    data = data.replace(/<title>.*?<\/title>/, "");
+                    $(divSelector).html($(data));
+                    document.title = newTitle;
+                    if (history.pushState) {
+                        window.history.pushState('', newTitle, uri);
+                    }
+                }
+            }, {}, {"X-PJAX": "true", "dataType": "text"});
+            return false;
+        });
+    });
+
+    if (!customPjax.prototype.initialization) {
+        customPjax.prototype.initialization = true;
+        window.onpopstate = function(evt) {
+            var uri = location.pathname;
+            doAjax(uri, "get", {}, function(data, status) {
+                if (status && data) {
+                    var newTitle = data.match(/<title>(.*?)<\/title>/)[1];
+                    data = data.replace(/<title>.*?<\/title>/, "");
+                    $(divSelector).html($(data));
+                    document.title = newTitle;
+                }
+            }, {}, {"X-PJAX": "true", "dataType": "text"});
+        };
+    }
+}
+
 $(function() {
     /**
     * 创建菜单
@@ -264,7 +369,7 @@ $(function() {
                                        .replace(/\{__title__\}/, menuObj["name"])
                                        .replace(/\{__icon__\}/, " " + menuObj["icon"]);
         }
-        $("ul.site-menu").append(baseTemplate);
+        $("ul.site-menu").append($(baseTemplate));
     };
 
     /**
@@ -274,39 +379,33 @@ $(function() {
     * @author jshensh@126.com 2016-11-23
     */
     var getMenu = function() {
-        doAjax(window.baseUrl + "/menus", "get", {},
-            function(data, status) {
-                if (status) {
-                    if (data["data"]) {
-                        for (var i = 0; i < data["data"].length; i++) {
-                            createMenu(data["data"][i]);
-                        }
+        return doAjaxPromise(window.baseUrl + "/menus", "get")
+            .done(function(data) {
+                if (data["data"]) {
+                    for (var i = 0; i < data["data"].length; i++) {
+                        createMenu(data["data"][i]);
                     }
-                } else {
-                    gotoLogin();
                 }
-            }
-        );
+            }).fail(function() {
+                gotoLogin();
+            });
     };
 
     // 判断用户登录状态
-    doAjax(window.baseUrl + "/users/current_user", "get", {},
-        function(data, status) {
-            if (status) {
-                if (data["access_token"]) {
-                    if (location.href.indexOf("/login") > -1) {
-                        location.href = "/";
-                        return true;
-                    }
-                    getMenu();
-                } else {
-                    gotoLogin();
+    doAjaxPromise(window.baseUrl + "/users/current_user", "get")
+        .done(function(data) {
+            if (data["access_token"]) {
+                if (location.href.indexOf("/login") > -1) {
+                    location.href = "/";
+                    return true;
                 }
+                getMenu().then(function() {
+                    customPjax("a[href!='javascript:void(0)']", ".page");
+                });
             } else {
                 gotoLogin();
             }
-        }
-    );
+        }).fail(gotoLogin);
 
     // HeartBeat
     if (location.href.indexOf("/login") === -1) {
