@@ -42,13 +42,13 @@
                     </form>
                     <div class="row" >
                         <div class="col-sm-12" id = "menuAbilities">
-                            <h4 class="text-center">选择角色权限</h4>
+                            <h4 class="text-center" id = "titleAbilities">选择角色权限</h4>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default btn-pure" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary" onclick="abilitiesSubmit()">保存</button>
+                    <button type="button" class="btn btn-primary"  id="saveResult">保存</button>
                 </div>
             </div>
         </div>
@@ -109,32 +109,32 @@
                         .replace(/\{__value__}/g, obj["value"])
     };
     var abilityShow = function () {
+        $("#titleAbilities").nextAll().remove();
         doAjax(window.baseUrl + "/roles/abilities", "get", {}, function (data, status) {
             for (var i = 0; i < data.length; i++) {
                 var menuData = data[i].features[0]
                 $("#menuAbilities").append($(createDom(menuData)));
             }
-            // console.log(data);
-        })
-    };
-    var abilitiesSubmit = function () {
-        var name = $("#role_name").val();
-        var checkboxMenus = $("input[type='checkbox']:checked");
-        var arr = [];
-        for (var i = 0; i < checkboxMenus.length; i++){
-            arr.push(checkboxMenus[i].value)
-        }
-        doAjax(window.baseUrl + "/roles", "post", {"name":name, "checked_features":arr}, function (data, status) {
-            if (!status){
-                swal("提交失败", JSON.parse(data.reponseText)["error"] || JSON.parse(data.reponseText)["error_message"]  , "error");
-            }else{
-                swal("提交成功", "", "success");
-                setTimeout(function() {
-                    location.href="/roles";
-                },1000);
-                return true;
-            }
-        })
+            $("#saveResult").on('click',function () {
+                var name = $("#role_name").val();
+                var checkboxMenus = $("input[type='checkbox']:checked");
+                var arr = [];
+                for (var i = 0; i < checkboxMenus.length; i++){
+                    arr.push(checkboxMenus[i].value)
+                }
+                doAjax(window.baseUrl + "/roles", "post", {"name":name, "checked_features":arr}, function (data, status) {
+                    if (!status){
+                        swal("提交失败", JSON.parse(data.reponseText)["error"] || JSON.parse(data.reponseText)["error_message"]  , "error");
+                    }else{
+                        swal("提交成功", "", "success");
+                        setTimeout(function() {
+                            location.href="/roles";
+                        },1000);
+                        return true;
+                    }
+                })
+            })
+        });
     };
     var deleteRole = function (dom) {
         var id = dom.href.split("#")[1];
@@ -164,7 +164,41 @@
             }
         });
     };
-    var editRole = function () {
+    var editRole = function (dom) {
+        var id = dom.href.split("#")[1];
+        $("#titleAbilities").nextAll().remove();
+        doAjax(window.baseUrl + "/roles/abilities", "get", {}, function (data, status) {
+            for (var i = 0; i < data.length; i++) {
+                var menuData = data[i].features[0]
+                $("#menuAbilities").append($(createDom(menuData)));
+            }
+            doAjax(window.baseUrl + "/roles/"+id, "get", {"id": id}, function (data,status) {
+                $("#role_name").val(data.name);
+                $("#role_name").prop("disabled",true);
+                for (var i = 0; i < data.abilities.features.length; i++) {
+                    $("#"+data.abilities.features[i]).prop("checked",true);
+                }
+            });
+            $("#saveResult").on('click',function () {
+                var checkboxMenus = $("input[type='checkbox']:checked");
+                var arr = [];
+                for (var i = 0; i < checkboxMenus.length; i++){
+                    arr.push(checkboxMenus[i].value)
+                }
+                doAjax(window.baseUrl + "/roles/"+id, "put",JSON.stringify({"checked_features":arr}), function (data, status) {
+                    if (!status){
+                        swal("提交失败", JSON.parse(data.reponseText)["error"] || JSON.parse(data.reponseText)["error_message"]  , "error");
+                    }else{
+                        swal("提交成功", "", "success");
+                        setTimeout(function() {
+                            location.href="/roles";
+                        },1000);
+                        return true;
+                    }
+                }, {}, {contentType: 'application/json;charset=utf-8'})
+            });
+        });
+
 
     };
 </script>
