@@ -1,11 +1,13 @@
-<%- include ../header %>
-<div class="page">
+<% if (typeof pjax === "undefined") { %>
+    <%- include ../header %>
+<% } else { %>
+    <title><%= title %></title>
+<% } %>
     <div class="page-header">
         <h1 class="page-title"><%= title %></h1>
         <ol class="breadcrumb">
         </ol>
     </div>
-
     <div class="page-content">
         <div class="row">
             <div class="panel">
@@ -179,7 +181,7 @@
             </div>
         </div>
     </div>
-</div>
+
 <script>
 $(function(){
     var uid =  ~~getvl('id');
@@ -417,4 +419,6 @@ $(function(){
         $(".nav-tabs .nav-link.active").click();
 })
 </script>
-<%- include ../footer %>
+<% if (typeof pjax === "undefined") { %>
+    <%- include ../footer %>
+<% } %>
