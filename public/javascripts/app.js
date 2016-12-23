@@ -308,10 +308,14 @@ var customPjax = function(aSelector, divSelector) {
             } else {
                 window.event.returnValue = false;
             }
+            $(divSelector).fadeOut();
+            $(".pjaxLoader").fadeIn();
             doAjax(uri, "get", {}, function(data, status) {
                 if (status && data) {
                     var newTitle = data.match(/<title>(.*?)<\/title>/)[1];
                     data = data.replace(/<title>.*?<\/title>/, "");
+                    $(".pjaxLoader").fadeOut();
+                    $(divSelector).fadeIn();
                     $(divSelector).html($(data));
                     document.title = newTitle;
                     if (history.pushState) {
@@ -370,7 +374,7 @@ $(function() {
                                        .replace(/\{__icon__\}/, " " + menuObj["icon"]);
         }
 
-        
+
         $("ul.site-menu").append($(baseTemplate));
     };
 
@@ -402,7 +406,7 @@ $(function() {
                     return true;
                 }
                 getMenu().then(function() {
-                    customPjax(".site-menu a[href!='javascript:void(0)']", ".page");
+                    customPjax(".site-menu a[href!='javascript:void(0)']", "#page");
                 });
             } else {
                 gotoLogin();

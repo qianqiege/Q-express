@@ -1,6 +1,5 @@
 <% if (typeof pjax === "undefined") { %>
   <%- include ../header %>
-<div class="page">
 <% } else { %>
 <title><%= title %></title>
 <% } %>
@@ -79,6 +78,6 @@ var doSearch = function(dom) {
 };
 </script>
 <% if (typeof pjax === "undefined") { %>
-</div>
+
   <%- include ../footer %>
 <% } %>
