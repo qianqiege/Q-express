@@ -369,6 +369,21 @@ $(function(){
             tr.push('正常/正常');
             $('#' + "blood_glucoses").append($(createTr(tr)));
         }
+        var chart_data = {
+            date: blood_glucose_date,
+            series: [
+                {
+                    name:'餐前血糖',
+                    type:'line',
+                    data:before_blood_glucose,
+                },
+                {
+                    name:'餐后血糖',
+                    type:'line',
+                    data:after_blood_glucose,
+                }]
+        };
+        createChart("chart_blood_glucoses",chart_data);
     };
 
     var bPFunction = function(data,status){
@@ -398,7 +413,6 @@ $(function(){
                 }]
         };
         createChart("chart_blood_pressures",chart_data)
-        console.log(chart_data)
     };
 
     var temperatureFunction = function(data,status){
@@ -412,6 +426,16 @@ $(function(){
             tr.push('正常');
             $('#' + "temperatures").append($(createTr(tr)));
         }
+        var chart_data = {
+            date: temperatures_date,
+            series: [
+                {
+                    name:'体温',
+                    type:'line',
+                    data:temperatures_value,
+                }]
+        };
+        createChart("chart_temperatures",chart_data);
     };
 
     var weightFunction = function(data,status){
@@ -425,6 +449,16 @@ $(function(){
             tr.push('正常');
             $('#' + "weights").append($(createTr(tr)));
         }
+        var chart_data = {
+            date: weights_date,
+            series: [
+                {
+                    name:'体重',
+                    type:'line',
+                    data:weights_value,
+                }]
+        };
+        createChart("chart_weights",chart_data);
     };
 
     var heartRateFunction = function(data,status){
@@ -438,6 +472,16 @@ $(function(){
             tr.push('正常');
             $('#' + "heart_rates").append($(createTr(tr)));
         }
+        var chart_data = {
+            date: heart_rates_date,
+            series: [
+                {
+                    name:'体重',
+                    type:'line',
+                    data:heart_rates_value,
+                }]
+        };
+        createChart("chart_heart_rates",chart_data);
     };
 
     var createTDSDom = function (dom,id){
