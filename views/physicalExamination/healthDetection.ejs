@@ -232,130 +232,6 @@ $(function(){
         myChart.setOption(option);
     }
 
-    var cbFunction = function(data,status){
-        var tabs = ['blood_glucoses', 'blood_pressures', 'temperatures', 'heart_rates', 'weights'];
-        var columns = [];
-        var columns_blood_pressure_unit = ['收缩压','舒张压'];
-        var max_blood_pressure = [];
-        var min_blood_pressure = [];
-        var blood_pressure_date = [];
-        var columns_blood_pressure =[];
-
-        var columns_blood_glucose_unit = ['餐前血糖','餐后血糖'];
-        var before_blood_glucose = [];
-        var after_blood_glucose = [];
-        var blood_glucose_date = [];
-        var columns_blood_glucose =[];
-
-        var columns_temperatures_unit = ['体温'];
-        var temperatures_value = [];
-        var temperatures_date = [];
-        var columns_temperatures =[];
-
-        var columns_weights_unit = ['体重'];
-        var weights_value = [];
-        var weights_date = [];
-        var columns_weights =[];
-
-        var columns_heart_rates_unit = ['心率'];
-        var heart_rates_value = [];
-        var heart_rates_date = [];
-        var columns_heart_rates =[];
-
-        for (var k = 0; k < tabs.length; k++) {
-            for(var i = 0; i < data[tabs[k]].length; i++){
-                switch (tabs[k]) {
-                    case 'blood_glucoses':
-                        var tr = [data[tabs[k]][i]['datetime'], data[tabs[k]][i]['before_blood_glucose'], data[tabs[k]][i]['after_blood_glucose']];
-                        before_blood_glucose.push(data[tabs[k]][i]['before_blood_glucose']);
-                        after_blood_glucose.push(data[tabs[k]][i]['after_blood_glucose']);
-                        blood_glucose_date.push(data[tabs[k]][i]['datetime']);
-                        break;
-                    case 'blood_pressures':
-                        var tr = [data[tabs[k]][i]['datetime'], data[tabs[k]][i]['max_blood_pressure'], data[tabs[k]][i]['min_blood_pressure']];
-                        max_blood_pressure.push(data[tabs[k]][i]['max_blood_pressure']);
-                        min_blood_pressure.push(data[tabs[k]][i]['min_blood_pressure']);
-                        blood_pressure_date.push(data[tabs[k]][i]['datetime']);
-                        break;
-                    case 'temperatures':
-                        var tr = [data[tabs[k]][i]['datetime'], data[tabs[k]][i]['value']];
-                        temperatures_value.push(data[tabs[k]][i]['value']);
-                        temperatures_date.push(data[tabs[k]][i]['datetime']);
-                        break;
-                    case 'heart_rates':
-                        var tr = [data[tabs[k]][i]['datetime'], data[tabs[k]][i]['value']];
-                        heart_rates_value.push(data[tabs[k]][i]['value']);
-                        heart_rates_date.push(data[tabs[k]][i]['datetime']);
-                        break;
-                    case 'weights':
-                        var tr = [data[tabs[k]][i]['datetime'], data[tabs[k]][i]['value']];
-                        weights_value.push(data[tabs[k]][i]['value']);
-                        weights_date.push(data[tabs[k]][i]['datetime']);
-                        break;
-                }
-                tr.push('正常/正常');
-                $('#' + tabs[k]).append($(createTr(tr)));
-            }
-        }
-        columns_blood_pressure.push(columns_blood_pressure_unit,blood_pressure_date,min_blood_pressure,max_blood_pressure);
-        columns_blood_glucose.push(columns_blood_glucose_unit,blood_glucose_date,before_blood_glucose,after_blood_glucose);
-        columns_temperatures.push(columns_temperatures_unit,temperatures_date,temperatures_value);
-        columns_weights.push(columns_weights_unit,weights_date,weights_value);
-        columns_heart_rates.push(columns_heart_rates_unit,heart_rates_date,heart_rates_value);
-        columns.push(columns_blood_glucose,columns_blood_pressure,columns_temperatures,columns_heart_rates,columns_weights);
-        var unit = ["毫克/分升","毫米汞柱","°C","次/分钟","kg"], charts = [],
-            createChart = function(id, columns, unit) {
-                var name = columns[0]
-                columns.shift();
-                var date = columns[0]
-
-                columns.shift();
-                var myChart = echarts.init(document.getElementById('chart_' + id));
-                var option = {
-                    tooltip: {
-                        trigger: 'axis',
-                    },
-                    legend: {
-                        data: name
-                    },
-                    xAxis: {
-                        data: date
-                    },
-                    dataZoom: [
-                            {
-                                type: 'inside',
-                                xAxisIndex: [0],
-                            },
-                            {
-                                type: 'slider',
-                                show: true,
-                                xAxisIndex: [0],
-                            },
-                    ],
-                    yAxis: {},
-                    series: []
-                };
-                for ( i in columns )
-                {
-                    option.series.push({
-                        name: name[i],
-                        type: "line",
-                        data: columns[i]
-                    })
-                }
-                $(window).bind('resize', function() {
-                    myChart.resize();
-                })
-                $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-                    myChart.resize();
-                })
-                myChart.setOption(option);
-            };
-        for (var j = 0; j < tabs.length; j++) {
-            charts[j] = createChart(tabs[j], columns[j], unit[j]);
-        }
-    };
-
     var bSFunction = function(data,status){
         var before_blood_glucose = [];
         var after_blood_glucose = [];
@@ -366,7 +242,7 @@ $(function(){
             before_blood_glucose.push(data[k]['before_blood_glucose']);
             after_blood_glucose.push(data[k]['after_blood_glucose']);
             blood_glucose_date.push(data[k]['datetime']);
-            tr.push('正常/正常');
+            tr.push(data[k].status1 + '/' + data[k].status2);
             $('#' + "blood_glucoses").append($(createTr(tr)));
         }
         var chart_data = {
@@ -395,7 +271,7 @@ $(function(){
             max_blood_pressure.push(data[k]['max_blood_pressure']);
             min_blood_pressure.push(data[k]['min_blood_pressure']);
             blood_pressure_date.push(data[k]['datetime']);
-            tr.push('正常/正常');
+            tr.push(data[k].status1 + '/' + data[k].status2);
             $('#' + "blood_pressures").append($(createTr(tr)));
         }
         var chart_data = {
@@ -423,7 +299,7 @@ $(function(){
             var tr = [data[k].datetime, data[k].value];
             temperatures_value.push(data[k]['value']);
             temperatures_date.push(data[k]['datetime']);
-            tr.push('正常');
+            tr.push(data[k].status);
             $('#' + "temperatures").append($(createTr(tr)));
         }
         var chart_data = {
@@ -446,7 +322,7 @@ $(function(){
             var tr = [data[k].datetime, data[k].value];
             weights_value.push(data[k]['value']);
             weights_date.push(data[k]['datetime']);
-            tr.push('正常');
+            tr.push(data[k].status);
             $('#' + "weights").append($(createTr(tr)));
         }
         var chart_data = {
@@ -469,7 +345,7 @@ $(function(){
             var tr = [data[k].datetime, data[k].value];
             heart_rates_value.push(data[k]['value']);
             heart_rates_date.push(data[k]['datetime']);
-            tr.push('正常');
+            tr.push(data[k].status);
             $('#' + "heart_rates").append($(createTr(tr)));
         }
         var chart_data = {
