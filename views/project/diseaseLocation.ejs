@@ -1,5 +1,8 @@
-<%- include ../header %>
-<div class="page">
+<% if (typeof pjax === "undefined") { %>
+    <%- include ../header %>
+<% } else { %>
+    <title><%= title %></title>
+<% } %>
     <div class="page-header">
         <h1 class="page-title" style="text-align:center" id="hospital-title"> </h1>
     </div>
@@ -48,7 +51,7 @@
         </div>
         <!-- End Panel -->
     </div>
-</div>
+
 <div id="template" style="display:none">
     <!-- 基本信息 -->
     <br/>
@@ -227,4 +230,6 @@ var logSearch = function(dom) {
         });
 };
 </script>
-<%- include ../footer %>
+<% if (typeof pjax === "undefined") { %>
+    <%- include ../footer %>
+<% } %>

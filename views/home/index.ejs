@@ -1,65 +1,63 @@
 <% if (typeof pjax === "undefined") { %>
-  <%- include ../header %>
-<div class="page">
+    <%- include ../header %>
 <% } else { %>
 <title><%= title %></title>
 <% } %>
-  <div class="page-header">
-    <h1 class="page-title"><%= title %></h1>
-    <ol class="breadcrumb">
-    </ol>
-  </div>
-  <div class="page-content">
-    <div class="panel">
-      <div class="panel-body container-fluid">
-        <div class="row row-lg">
-          <div class="col-md-6 col-xs-12">
-            <h3>最新客户异常信息</h3>
-          <table class="table">
-            <thead>
-                <tr>
-                    <td>姓名</td>
-                    <td>异常状态</td>
-                    <td>操作</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td colspan="3"><i class="fa fa-refresh fa-spin fa-3x fa-fw"></i> 正在加载中</td>
-                </tr>
-            </tbody>
-          </table>
-        <table id="iamtempalte" style="display:none">
-                <tr>
-                    <td>NNAME</td>
-                    <td>RREASON</td>
-                    <td><a class="btn btn-primary btn-block card-link m-r-5" href="healthDetection?id=IID" role="button">处理异常</a></td>
-                </tr>
-        </table>
-          <script>
-            var template = $("#iamtempalte :first").html()
-            $("#iamtempalte").remove()
-            var cbFunction = function(data,status){
-                $("table tr:eq(1)").remove()
-                for ( var i in data)
-                {
-                    adata = data[data.length - i - 1];
-                    reason = adata.test_item+" ("+adata.status1+")"
-                    name = adata.patient.name
-                    id = adata.patient.id
-                    t_template = template.replace("NNAME",name).replace("NNAME",name).replace("RREASON",reason).replace("IID",id)
-                    $("table tbody").append(t_template);
-                }
-
-            }
-            doAjax(window.baseUrl + "/exception", "get", {}, cbFunction);
-          </script>
-        </div>
-        </div>
-      </div>
+    <div class="page-header">
+        <h1 class="page-title"><%= title %></h1>
+        <ol class="breadcrumb">
+        </ol>
     </div>
-  </div>
+    <div class="page-content">
+        <div class="panel">
+            <div class="panel-body container-fluid">
+                <div class="row row-lg">
+                    <div class="col-md-6 col-xs-12">
+                        <h3>最新客户异常信息</h3>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <td>姓名</td>
+                                    <td>异常状态</td>
+                                    <td>操作</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="3"><i class="fa fa-refresh fa-spin fa-3x fa-fw"></i> 正在加载中</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table id="iamtempalte" style="display:none">
+                            <tr>
+                                <td>NNAME</td>
+                                <td>RREASON</td>
+                                <td><a class="btn btn-primary btn-block card-link m-r-5" href="healthDetection?id=IID" role="button">处理异常</a></td>
+                            </tr>
+                        </table>
+                        <script>
+                        var template = $("#iamtempalte :first").html()
+                        $("#iamtempalte").remove()
+                        var cbFunction = function(data,status){
+                            $("table tr:eq(1)").remove()
+                            for ( var i in data)
+                            {
+                                adata = data[data.length - i - 1];
+                                reason = adata.test_item+" ("+adata.status1+")"
+                                name = adata.patient.name
+                                id = adata.patient.id
+                                t_template = template.replace("NNAME",name).replace("NNAME",name).replace("RREASON",reason).replace("IID",id)
+                                $("table tbody").append(t_template);
+                            }
+
+                        }
+                        doAjax(window.baseUrl + "/exception", "get", {}, cbFunction);
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 <% if (typeof pjax === "undefined") { %>
-</div>
-  <%- include ../footer %>
+    <%- include ../footer %>
 <% } %>

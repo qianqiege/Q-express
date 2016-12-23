@@ -1,5 +1,8 @@
-<%- include ../header %>
-<div class="page">
+<% if (typeof pjax === "undefined") { %>
+    <%- include ../header %>
+<% } else { %>
+    <title><%= title %></title>
+<% } %>
     <div class="page-header">
         <h1 class="page-title"><%= title %></h1>
         <ol class="breadcrumb">
@@ -66,101 +69,102 @@
         <!-- End Panel -->
 
     </div>
-</div>
+
 <script src='/javascripts/jquery.form.js'></script>
 <script>
-    var createUserDom = function(userObj){
-        var template = "\n\
-                                <li class='list-group-item'>\n\
-                                    <div class='media'>\n\
-                                        <div class='media-left'>\n\
-                                            <div class='avatar avatar-online'>\n\
-                                                <img src='{__avatar__}'alt='...'>\n\
-                                                <i class='avatar avatar-busy'></i>\n\
-                                            </div>\n\
-                                        </div>\n\
-                                        <div class='media-body'>\n\
-                                            <h4 class='media-heading'>\n\
-                                                {__name__}\n\
-                                            </h4>\n\
-                                            <p>\n\
-                                                <i class='icon icon-color wb-user' aria-hidden='true'></i>{__id__}\n\
-                                            </p>\n\
-                                        </div>\n\
-                                        <div class='media-right'>\n\
-                                            <a class='btn btn-outline btn-success btn-sm' data-target='#roleDoctorsList' data-toggle='modal' data-id={__id__} onclick='requestRole()'>添加权限</a>\n\
-                                        </div>\n\
-                                    </div>\n\
-                                </li>"
-        return template.replace(/\{__avatar__\}/g, userObj["avatar"] || "/images/1.jpg")
-                       .replace(/\{__name__\}/g, userObj["name"])
-                       .replace(/\{__id__\}/g, userObj["id"])
-                       .replace(/\{__idNumber__\}/g, userObj["idNumber"]);
-    };
-    var searching = false;
-    var doSearch = function(dom){
-        if(dom.value.length === 18 && checkIdCard(dom.value) && !searching){
-            searching = true;
-            doAjax(window.baseUrl + "/users/get_user", "get", {"id_number": dom.value}, function(data, status) {
-                searching = false;
-                if (status && data) {
-                    $("#all_contacts ul:first").html($(createUserDom(data)));
-                } else {
-                    $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
-                }
-            });
-        }else{
-            $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
-        }
-    };
-    //角色列表HTML模板
-    var createRoleDom = function (dom){
-        var template = "\n\
-                                <div class='col-sm-6'>\n\
-                                    <input type='checkbox' value='{__id__}' name='role_ids'>\n\
-                                    <label for=''>{__name__}</label> \n\
-                                </div>"
-        return template.replace(/\{__name__\}/g, dom["name"])
-                        .replace(/\{__id__\}/g, dom["id"]);
-    };
-    //角色列表获取
-    var requestRole = function(){
-        doAjax(window.baseUrl + "/roles","get",{"page":1,"per_page":10},function(data, status){
-            $("#roleList").children('div').remove();
-            if (status && data){
-                 for(var i = 0;i < data.data.length;i++){
-                     var name = data.data[i];
-                     $("#roleList").append($(createRoleDom(name)));
-                 }
-            }
-        });
-    };
-    var roleSubmit = function(){
-        console.log(userId);
-        console.log($("form").serialize());
-        doAjax(window.baseUrl + "/users/" + userId, 'put', JSON.stringify($('#roleDoctorsListForm').getValue()), function(data, status) {
-            if(data,status){
-                $("#roleDoctorsList").modal("hide");
-                swal("提交成功", "", "success");
-            }
-        }, {}, {contentType: 'application/json;charset=utf-8'})
-    };
-    var userId;
-    $(function() {
-        doAjax(window.baseUrl + "/users/all_users", 'get',{}, function(data, status) {
+var createUserDom = function(userObj){
+    var template = "\n\
+    <li class='list-group-item'>\n\
+    <div class='media'>\n\
+    <div class='media-left'>\n\
+    <div class='avatar avatar-online'>\n\
+    <img src='{__avatar__}'alt='...'>\n\
+    <i class='avatar avatar-busy'></i>\n\
+    </div>\n\
+    </div>\n\
+    <div class='media-body'>\n\
+    <h4 class='media-heading'>\n\
+    {__name__}\n\
+    </h4>\n\
+    <p>\n\
+    <i class='icon icon-color wb-user' aria-hidden='true'></i>{__id__}\n\
+    </p>\n\
+    </div>\n\
+    <div class='media-right'>\n\
+    <a class='btn btn-outline btn-success btn-sm' data-target='#roleDoctorsList' data-toggle='modal' data-id={__id__} onclick='requestRole()'>添加权限</a>\n\
+    </div>\n\
+    </div>\n\
+    </li>"
+    return template.replace(/\{__avatar__\}/g, userObj["avatar"] || "/images/1.jpg")
+    .replace(/\{__name__\}/g, userObj["name"])
+    .replace(/\{__id__\}/g, userObj["id"])
+    .replace(/\{__idNumber__\}/g, userObj["idNumber"]);
+};
+var searching = false;
+var doSearch = function(dom){
+    if(dom.value.length === 18 && checkIdCard(dom.value) && !searching){
+        searching = true;
+        doAjax(window.baseUrl + "/users/get_user", "get", {"id_number": dom.value}, function(data, status) {
+            searching = false;
             if (status && data) {
-                for(var i = 0;i < data.length;i++){
-                    $('#all_contacts ul').append($(createUserDom(data[i])));
-                }
+                $("#all_contacts ul:first").html($(createUserDom(data)));
             } else {
-                $('#all_contacts ul:first').html('暂无健康管理师');
-            };
+                $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
+            }
         });
-        $('#roleDoctorsList').on('show.bs.modal', function (e) {
-            userId = $(e.relatedTarget).data('id');
-            // console.log(userId);\n\
-        });
+    }else{
+        $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
+    }
+};
+//角色列表HTML模板
+var createRoleDom = function (dom){
+    var template = "\n\
+    <div class='col-sm-6'>\n\
+    <input type='checkbox' value='{__id__}' name='role_ids'>\n\
+    <label for=''>{__name__}</label> \n\
+    </div>"
+    return template.replace(/\{__name__\}/g, dom["name"])
+    .replace(/\{__id__\}/g, dom["id"]);
+};
+//角色列表获取
+var requestRole = function(){
+    doAjax(window.baseUrl + "/roles","get",{"page":1,"per_page":10},function(data, status){
+        $("#roleList").children('div').remove();
+        if (status && data){
+            for(var i = 0;i < data.data.length;i++){
+                var name = data.data[i];
+                $("#roleList").append($(createRoleDom(name)));
+            }
+        }
     });
+};
+var roleSubmit = function(){
+    console.log(userId);
+    console.log($("form").serialize());
+    doAjax(window.baseUrl + "/users/" + userId, 'put', JSON.stringify($('#roleDoctorsListForm').getValue()), function(data, status) {
+        if(data,status){
+            $("#roleDoctorsList").modal("hide");
+            swal("提交成功", "", "success");
+        }
+    }, {}, {contentType: 'application/json;charset=utf-8'})
+};
+var userId;
+$(function() {
+    doAjax(window.baseUrl + "/users/all_users", 'get',{}, function(data, status) {
+        if (status && data) {
+            for(var i = 0;i < data.length;i++){
+                $('#all_contacts ul').append($(createUserDom(data[i])));
+            }
+        } else {
+            $('#all_contacts ul:first').html('暂无健康管理师');
+        };
+    });
+    $('#roleDoctorsList').on('show.bs.modal', function (e) {
+        userId = $(e.relatedTarget).data('id');
+        // console.log(userId);\n\
+    });
+});
 </script>
-
-<%- include ../footer %>
+<% if (typeof pjax === "undefined") { %>
+    <%- include ../footer %>
+<% } %>
