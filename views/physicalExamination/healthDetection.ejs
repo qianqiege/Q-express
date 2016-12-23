@@ -240,7 +240,7 @@ $(function(){
             before_blood_glucose.push(data[k]['before_blood_glucose']);
             after_blood_glucose.push(data[k]['after_blood_glucose']);
             blood_glucose_date.push(data[k]['datetime']);
-            tr.push('正常/正常');
+            tr.push(data[k].status1 + '/' + data[k].status2);
             $('#' + "blood_glucoses").append($(createTr(tr)));
         }
         var chart_data = {
@@ -269,7 +269,7 @@ $(function(){
             max_blood_pressure.push(data[k]['max_blood_pressure']);
             min_blood_pressure.push(data[k]['min_blood_pressure']);
             blood_pressure_date.push(data[k]['datetime']);
-            tr.push('正常/正常');
+            tr.push(data[k].status1 + '/' + data[k].status2);
             $('#' + "blood_pressures").append($(createTr(tr)));
         }
         var chart_data = {
@@ -297,7 +297,7 @@ $(function(){
             var tr = [data[k].datetime, data[k].value];
             temperatures_value.push(data[k]['value']);
             temperatures_date.push(data[k]['datetime']);
-            tr.push('正常');
+            tr.push(data[k].status);
             $('#' + "temperatures").append($(createTr(tr)));
         }
         var chart_data = {
@@ -320,7 +320,7 @@ $(function(){
             var tr = [data[k].datetime, data[k].value];
             weights_value.push(data[k]['value']);
             weights_date.push(data[k]['datetime']);
-            tr.push('正常');
+            tr.push(data[k].status);
             $('#' + "weights").append($(createTr(tr)));
         }
         var chart_data = {
@@ -343,7 +343,7 @@ $(function(){
             var tr = [data[k].datetime, data[k].value];
             heart_rates_value.push(data[k]['value']);
             heart_rates_date.push(data[k]['datetime']);
-            tr.push('正常');
+            tr.push(data[k].status);
             $('#' + "heart_rates").append($(createTr(tr)));
         }
         var chart_data = {
