@@ -1,6 +1,8 @@
-<%- include ../header %>
-<!-- Page -->
-<div class="page">
+<% if (typeof pjax === "undefined") { %>
+    <%- include ../header %>
+<% } else { %>
+    <title><%= title %></title>
+<% } %>
     <div class="page-header">
         <h1 class="page-title"><%= title %></h1>
         <ol class="breadcrumb">
@@ -1753,17 +1755,15 @@
             <!-- 体格检查结束  -->
         </div>
     </div>
-
-
     <script src='/javascripts/jquery.form.js'></script>
     <script>
         //查体中问题3、4当选择无时不可选择其他选项
-       var docheckBox = function (dom) {
-          var name = $(dom)[0].name;
-          var selectValue = $("input[name="+name+"]:checked").customVal();
-          if ($.inArray("无",selectValue) > -1  && selectValue.length > 1) {
-              $("input[name="+name+"]:checked").customVal(["无"]);
-          }
+        var docheckBox = function (dom) {
+            var name = $(dom)[0].name;
+            var selectValue = $("input[name="+name+"]:checked").customVal();
+            if ($.inArray("无",selectValue) > -1  && selectValue.length > 1) {
+                $("input[name="+name+"]:checked").customVal(["无"]);
+            }
         };
         //疾病史当选择无时不可选择其他选项
         var doSelect = function (dom) {
@@ -1796,7 +1796,7 @@
                 for (var i = 2; i < v_len;i++) {
                     var j_len = $("input[name='"+na+i+"']").length;
                     for (var j = 0; j < j_len;j++){
-                     $("input[name='"+na+i+"']")[j].disabled = false;
+                        $("input[name='"+na+i+"']")[j].disabled = false;
                     }
                 }
             }
@@ -1833,21 +1833,21 @@
         };
         var submitForm = function(formDom) {
             var obj = $('#recordForm').getValue(),
-                postObj = {
-                    "health_status": {},
-                    "family_history": {},
-                    "drink_history": {},
-                    "smoke_history": {},
-                    "eating_habit": {},
-                    "exercise_habit": {},
-                    "sleep_habit": {},
-                    "emotional_state": {},
-                    "environment_state": {},
-                    "professional_state": {},
-                    "excretion": {},
-                    "check_body": {},
-                    "physical_examination": {}
-                };
+            postObj = {
+                "health_status": {},
+                "family_history": {},
+                "drink_history": {},
+                "smoke_history": {},
+                "eating_habit": {},
+                "exercise_habit": {},
+                "sleep_habit": {},
+                "emotional_state": {},
+                "environment_state": {},
+                "professional_state": {},
+                "excretion": {},
+                "check_body": {},
+                "physical_examination": {}
+            };
             for (var i in obj) {
                 var isChild = i.split("-");
                 if (isChild.length > 1) {
@@ -1892,5 +1892,6 @@
             };
         };
     </script>
-
+<% if (typeof pjax === "undefined") { %>
     <%- include ../footer %>
+<% } %>
