@@ -302,7 +302,7 @@ var customPjax = function(aSelector, divSelector) {
             return true;
         }
         uri = uri.match(/^\//) ? uri : "/" + uri;
-        $(this).click(function(evt) {
+        $(this).on("click tap touchend", function(evt) {
             if (evt && evt.preventDefault) {
                 evt.preventDefault();
             } else {
@@ -358,10 +358,14 @@ $(function() {
     */
     var createMenu = function(menuObj) {
         if (menuObj["children"].length) {
-            var baseTemplate = '<li class="site-menu-item has-sub"><a href="javascript:void(0)"><i class="site-menu-icon{__icon__}" aria-hidden="true"></i><span class="site-menu-title">{__title__}</span><span class="site-menu-arrow"></a></span><ul class="site-menu-sub">{__subMenus__}</ul></li>',
+            var baseTemplate = '<li class="site-menu-item has-sub{__open__}"><a href="javascript:void(0)"><i class="site-menu-icon{__icon__}" aria-hidden="true"></i><span class="site-menu-title">{__title__}</span><span class="site-menu-arrow"></a></span><ul class="site-menu-sub">{__subMenus__}</ul></li>',
                 subMenuTemplate = '<li class="site-menu-item{__active__}"><a class="animsition-link" href="{__href__}"><span class="site-menu-title">{__title__}</span></a></li>'
-                subMenus=[];
+                subMenus=[],
+                opened = false;
             for (var i = 0; i < menuObj["children"].length; i++) {
+                if (location.pathname === menuObj["children"][i]["url"]) {
+                    opened = true;
+                }
                 subMenus.push(
                     subMenuTemplate.replace(/\{__href__\}/, menuObj["children"][i]["url"])
                                    .replace(/\{__title__\}/, " " + menuObj["children"][i]["name"])
@@ -370,6 +374,7 @@ $(function() {
             }
             baseTemplate = baseTemplate.replace(/\{__title__\}/, menuObj["name"])
                                        .replace(/\{__subMenus__\}/, subMenus.join(""))
+                                       .replace(/\{__open__\}/, opened ? " open" : "")
                                        .replace(/\{__icon__\}/, " " + menuObj["icon"]);
         } else {
             var baseTemplate = '<li class="site-menu-item{__active__}"><a class="animsition-link" href="{__href__}"><i class="site-menu-icon{__icon__}" aria-hidden="true"></i><span class="site-menu-title">{__title__}</span></a></li>';
@@ -411,6 +416,11 @@ $(function() {
                     return true;
                 }
                 getMenu().then(function() {
+                    $(".site-menu a[href!='javascript:void(0)']").on("click tap touchend", function() {
+                        var thisLi = $(this).parent(), parentLi = thisLi.parent().parent().hasClass("has-sub") || thisLi.parent().parent();
+                        $(".site-menu-item").removeClass("active");
+                        thisLi.addClass("active");
+                    });
                     customPjax(".site-menu a[href!='javascript:void(0)']", "#page");
                 });
             } else {
