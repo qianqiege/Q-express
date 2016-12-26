@@ -15,11 +15,7 @@
                         <div class="col-xs-6 col-lg-3 offset-lg-1" style="float: left; display: inline;">
                             <label for="">病历号：</label><span id = "recipe_number"></span>
                         </div>
-                        <div class="col-xs-6 col-lg-2 offset-lg-2 text-xs-right" style="float: right;display: inline;">
-                            <a class="btn btn-outline btn-success btn-sm" href="#" onclick="doSearch(document.querySelector('#id_number'))">开方</a>
-                            <a class="btn btn-outline btn-success btn-sm" rel="nofollow" data-method="delete" id="spineSearch">查看记录</a>
-                        </div>
-                        <div class="col-xs-12 col-lg-4">
+                        <div class="col-xs-12 col-lg-5">
                             <div class="form-group " style=" margin-bottom: 0px;">
                                 <div class="input-search">
                                     <button type="submit" class="input-search-btn"><i class="icon wb-search" aria-hidden="true"></i></button>
@@ -27,7 +23,10 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="modal-footer">
+                            <a class="btn btn-outline btn-success btn-sm" href="#" onclick="doSearch(document.querySelector('#id_number'))">开方</a>
+                            <a class="btn btn-outline btn-success btn-sm" rel="nofollow" data-method="delete" id="spineSearch">查看记录</a>
+                        </div>
                     </div>
 
                     <br/>
@@ -106,7 +105,7 @@
         </div>
         <div class="row">
             <div class="form-group col-md-10 offset-lg-1  col-xs-12 ">
-                <label> <input type="checkbox"  onchange="caculate()" id ="blood" name = "blood" onclick="bloodSelect(this)" onchange="caculate()" value="10"/> 放血排毒<span></span></label>
+                <label> <input type="checkbox"  onchange="caculate()" id ="blood" name = "blood" onclick="bloodSelect(this)" onchange="caculate()" value="10"/> 放血排毒: <span id = "bloodLetting"></span></label>
                 <input type="number" class="form-control" id="bloodTimes" value="1" min='1' onblur = "if(value == ''){value = '1'}" onchange="caculate()" disabled/>
             </div>
         </div>
@@ -214,6 +213,12 @@ var doSearch = function (dom) {
                 $("#issued_date").text(data.issued_date);
             }
         });
+        doAjax(window.baseUrl + "/spine/bloodletting", "get",{}, function (data, status) {
+            if (status && data) {
+                $("#bloodLetting").html(data.price+"元");
+                $("#blood").val(data.price);
+            }
+        });
         doAjax(window.baseUrl + "/spine/spine_level", "get", {}, function (data, status){
             if (status && data) {
                 for (var i in data) {
@@ -285,6 +290,12 @@ var caculate = function () {
 //提交数据
 var submitForm = function () {
     var arr = [];
+    var  blood_letting_times;
+    if ($("#blood").prop("checked")) {
+        blood_letting_times = $("#bloodTimes").val();
+    } else {
+        blood_letting_times = 0;
+    }
     $("input[type=checkbox]:checked").each(function(){arr.push($(this)[0].id)});
     var postObj = {
         "treatment_times": $("#cureTimes").val(),
@@ -294,7 +305,8 @@ var submitForm = function () {
         "total": $("#total").text(),
         "single_amount":$("#single").text(),
         "detail": arr,
-        "patient_id" : patient_id
+        "patient_id" : patient_id,
+        "blood_letting_times": blood_letting_times
     };
     doAjax(
         window.baseUrl + "/recipe/create_spine_recipe",
