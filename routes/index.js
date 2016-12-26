@@ -123,7 +123,9 @@ router.get('/page/spine', function(req, res, next) {
     res.render('project/page_spine', {title: "龙氏脊筑方案", pjax: req.get('X-PJAX')});
 });
 
-
+router.get('/page/diabetes-evaluation', function(req, res, next) {
+    res.render('plugin/diabetes', {title: "糖尿病风险评估"});
+});
 
 
 

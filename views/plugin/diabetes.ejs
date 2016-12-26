@@ -1,0 +1,270 @@
+<%- include ../header %>
+<link rel="stylesheet" href="/stylesheets/gauge.css">
+<script src="/javascripts/gauge.min.js"></script>
+<div class="page">
+    <div class="page-header">
+        <h1 class="page-title"><%= title %></h1>
+        <ol class="breadcrumb"> 
+        </ol>
+    </div>
+    <div class="page-content container">
+        <div class="row">
+
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="report row" style="display:none">
+
+                        <div class="col-xs-12 col-md-4">
+                            <div class="donut donut-lg" data-plugin="donut" data-value="1280" data-max-value="2000">
+                                <div class="donut-label"></div>
+                                <canvas id="total_socre" width="300" height="220"></canvas>
+                            </div>                          
+                        </div>
+                        <div class="col-md-8 col-xs-12">
+                            <h2>评估结果</h2>
+                            <h4></h4>
+                            <h2>建议</h2>
+                            <h4></h4>
+                        </div>
+                    </div>
+                    <div class="thestep">
+                    <div class="steps row">
+                        <div class="step col-xs-12 col-lg-4 current">
+                        <span class="step-number"><div class="loader vertical-align-middle loader-circle"></div></span>
+                        <div class="step-desc">
+                            <span class="step-title">分析数据</span>
+                            <p>使用您最近的数据来分析</p>
+                        </div>
+                        </div>
+                        <div class="step col-xs-12 col-lg-4">
+                        <span class="step-number">2</span>
+                        <div class="step-desc">
+                            <span class="step-title">评分</span>
+                            <p>使用先进的人工智能进行评分</p>
+                        </div>
+                        </div>
+                        <div class="step col-xs-12 col-lg-4">
+                        <span class="step-number">3</span>
+                        <div class="step-desc">
+                            <span class="step-title">生成报告</span>
+                            <p>获取您的风险评估报告</p>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="log">
+                        <div class="alert dark alert-icon alert-success alert-dismissible" role="alert"><i class="icon md-check" aria-hidden="true"></i> <span>已经准备好开始评估.</span></div>
+                    </div>
+                    <div class="log-template" style="display: none">
+                        <div id="theid" class="alert dark alert-icon alert-success alert-dismissible" role="alert" style="display: none"><i class="icon md-check" aria-hidden="true" ></i> <span>TTTT</span></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+template = $(".log-template").html()
+$(".log-template").remove()
+console.log(getvl('id'))
+
+var pid
+
+step = 1
+time = 1
+var total
+function finish(){
+    console.log("We done")
+    var opts = {
+        lines: 8,
+        angle: 0.15,
+        lineWidth: 0.08,
+        limitMax: 'true',
+        strokeColor: '#EEEEEE',
+    };
+    var target = document.querySelector('#total_socre'); // your canvas element
+    
+    if (total >= 25 ){
+        opts.colorStart = "#FF0000"
+        opts.colorStop = "#FF0000"
+        $(".donut-label").html(total+" 分<br/><span style='color:red'>高风险</span>")
+        $(".report h4:first").html("您此次评分结果为"+total+"分")
+        $(".report h4:last").html("<span style='color:red'>您属于糖尿病高危人群，请尽早就诊，进行口服葡萄糖耐量试验检查。</span>")
+    } else {
+        opts.colorStart = "#3f51b5"
+        opts.colorStop = "#3f51b5"
+        $(".donut-label").html(total+" 分<br/><span>低风险</span>")
+        $(".report h4:first").html("您此次评分结果为"+total+"分")
+        $(".report h4:last").html("<span>您目前得糖尿病的风险不高，还请继续保持健康的生活方式，祝您健康。</span>")
+    }
+    var gauge = new Donut(target).setOptions(opts); 
+    gauge.maxValue = 33;
+    gauge.set(total);
+    $(".report").slideDown()
+}
+
+function calc_timeout(){
+    time = time + 1
+    return time * 1000
+}
+
+function closestep(){
+    $(".steps .step:eq("+(step - 1)+")").addClass("done").removeClass("current").find(".step-number").html('<i class="icon fa-check fa-2x" aria-hidden="true" style="top: 7px;"></i>')
+    if (step != 3){
+        $(".steps .step:eq("+(step)+")").addClass("current").find(".step-number").html('<div class="loader vertical-align-middle loader-circle"></div>')
+    } else {
+        finish()
+    }
+    step = step + 1
+}
+
+function uuid() {
+    return 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+        return v.toString(16);
+    });
+}
+
+function addnotice(contents){
+    a = template
+    var id = uuid()
+    console.log(id)
+    a = template.replace("theid",id).replace("TTTT",contents)
+    $(".log").prepend($(a))
+    $("#"+id).slideDown()
+    return id
+}
+
+
+
+jQuery(document).ready(function() {
+var pid =  ~~getvl('id');
+        if (!pid) {
+            swal({title: 'id 错误', type: 'error'}, function() {
+                window.close();
+            });
+            return false;
+        }
+setTimeout(function() {doAjax(window.baseUrl + "/patient_record/check", "get", {"id": pid}, function(data, status) {
+    if (status == 0){
+        swal("获取数据时发生错误", "", "error");
+        return false;
+    }
+    console.log(data)
+    addnotice("个人资料已分析完成")
+    addnotice("得分规则使用 : 中国2型糖尿病防治指南2013版")
+    var sexScore =  (data.sex.indexOf("男")!=-1) ? 2 : 0
+    var hwScore
+    var age_point
+    var hisSocre = 0;
+    var pressureScore = 0;
+    setTimeout(function(){
+        $("#"+addnotice("由性别诱发糖尿病的风险增加风险评分 : "+sexScore+" 分")).removeClass("alert-success").addClass("alert-warning").find("i").removeClass("md-check").addClass("fa-exclamation-triangle")
+    },calc_timeout())
+
+    age = new Date().getFullYear() - new Date(data.birthday).getFullYear()
+    if ( age < 24){
+        age_point = 0
+    } else if ( age < 34){
+        age_point = 4
+    } else if ( age < 39){
+        age_point = 8
+    } else if ( age < 44){
+        age_point = 11
+    } else if ( age < 49){
+        age_point = 12
+    } else if ( age < 54){
+        age_point = 13
+    } else if ( age < 59){
+        age_point = 15
+    } else if ( age < 64){
+        age_point = 16
+    } else if ( age < 74){
+        age_point = 18
+    }
+    setTimeout(function(){
+        $("#"+addnotice("由年龄诱发糖尿病的风险增加风险评分 : "+age_point+" 分")).removeClass("alert-success").addClass("alert-warning").find("i").removeClass("md-check").addClass("fa-exclamation-triangle")
+    },calc_timeout())
+    
+    a = ~~(~~(data.physical_examination.weight) / 100 )
+    b = ~~(data.physical_examination.height)
+    c = 1.0 * a / (a * b)
+    if(c<22) {
+		hwScore=0;
+	} if(c <24) {
+		hwScore = 1;
+	} else if(c < 30) {
+		hwScore = 3;
+	 } else {
+		hwScore = 5;
+     }
+    setTimeout(function(){
+        $("#"+addnotice("由身高和体重计算出的诱发糖尿病的风险增加风险评分 : "+hwScore+" 分")).removeClass("alert-success").addClass("alert-warning").find("i").removeClass("md-check").addClass("fa-exclamation-triangle")
+    },calc_timeout())
+
+    girdle = ~~(data.physical_examination.waistline)
+    var girdleScore = 0;
+    if (data.sex.indexOf("男")!=-1){
+        girdle+=5;
+    }
+	if(girdle<75) {
+        girdleScore = 0;
+    } else if(girdle<80) {
+        girdleScore = 3;
+    } else if(girdle<85) {
+        girdleScore = 5;
+    } else if(girdle<90) {
+        girdleScore = 7;
+    } else if(girdle<95) {
+        girdleScore = 8;
+    } else {
+        girdleScore=10;
+    }
+    setTimeout(function(){
+        $("#"+addnotice("由腰围诱发糖尿病的风险增加风险评分 : "+girdleScore+" 分")).removeClass("alert-success").addClass("alert-warning").find("i").removeClass("md-check").addClass("fa-exclamation-triangle")
+    },calc_timeout())			
+
+    for (var i in data.family_history) {
+        if (data.family_history[i].indexOf("糖尿病") > -1){
+            hisSocre = 6;
+        }    
+    }
+
+    pressur = ~~(data.physical_examination.max_pressure)
+	if(pressur<110) {
+        pressureScore = 0;
+    } else if(pres<120) {
+        pressureScore = 1;
+    } else if(pres<130) {
+        pressureScore = 3;
+    } else if(pres<140) {
+        pressureScore = 6;
+    } else if(pres<150) {
+        pressureScore = 7;
+    } else if(pres<160) {
+        pressureScore = 8;
+    } else {
+        pressureScore = 10;	
+    }
+    setTimeout(function(){
+        $("#"+addnotice("由血压诱发糖尿病的风险增加风险评分 : "+pressureScore+" 分")).removeClass("alert-success").addClass("alert-warning").find("i").removeClass("md-check").addClass("fa-exclamation-triangle")
+    },calc_timeout())	
+					
+
+    setTimeout(function(){
+        $("#"+addnotice("由家族史诱发糖尿病的风险增加风险评分 : "+hisSocre+" 分")).removeClass("alert-success").addClass("alert-warning").find("i").removeClass("md-check").addClass("fa-exclamation-triangle")
+    },calc_timeout())	
+    closestep();
+    total = hisSocre + pressureScore + girdleScore + hwScore + age_point + sexScore
+    setTimeout(closestep,calc_timeout())
+    setTimeout(closestep,calc_timeout())
+})
+},500)})
+</script>
+
+
+<%- include ../footer %>
