@@ -127,6 +127,11 @@ router.get('/page/diabetes-evaluation', function(req, res, next) {
     res.render('plugin/diabetes', {title: "糖尿病风险评估"});
 });
 
+router.get('/page/hypertension-evaluation', function(req, res, next) {
+    res.render('plugin/hypertension', {title: "高血压风险评估"});
+});
+
+
 
 
 module.exports = router;
