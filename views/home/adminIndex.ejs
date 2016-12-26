@@ -1,37 +1,41 @@
-<%- include ../header %>
-<div class="page">
-  <div class="page-header">
-    <h1 class="page-title"><%= title %></h1>
-    <ol class="breadcrumb"> 
-    </ol>
-  </div>
-  <div class="page-content">
-      <div class="panel">
-          <div class="panel-heading">
-            <h3 class="panel-title">登陆日志</h3>
-          </div>
-          <div class="panel-body container-fluid">
-            <table class="table table-bordered" >
-                <thead>
-                  <tr>
-                    <th>上次登陆日期</th>
-                    <th>登陆IP地址</th>
-                    <th>登陆次数</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td> 2016-10-25 </td>
-                    <td> 192.168.1.180 </td>
-                    <td>  2</td>
-                  </tr>
-                </tbody>
-                <tfoot>
+<% if (typeof pjax === "undefined") { %>
+    <%- include ../header %>
+<% } else { %>
+    <title><%= title %></title>
+<% } %>
+    <div class="page-header">
+        <h1 class="page-title"><%= title %></h1>
+        <ol class="breadcrumb">
+        </ol>
+    </div>
+    <div class="page-content">
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">登陆日志</h3>
+            </div>
+            <div class="panel-body container-fluid">
+                <table class="table table-bordered" >
+                    <thead>
+                        <tr>
+                            <th>上次登陆日期</th>
+                            <th>登陆IP地址</th>
+                            <th>登陆次数</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td> 2016-10-25 </td>
+                            <td> 192.168.1.180 </td>
+                            <td>  2</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
 
-                </tfoot>
-              </table>
-          </div>
-      </div>
-  </div>
-</div>
-<%- include ../footer %>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+<% if (typeof pjax === "undefined") { %>
+    <%- include ../footer %>
+<% } %>
