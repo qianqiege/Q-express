@@ -12,56 +12,55 @@
         <!-- Panel -->
         <div class="panel">
             <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <form class="page-search-form" role="search">
-                            <div class="input-search input-search-dark">
-                                <i class="input-search-icon wb-search" aria-hidden="true"></i>
-                                <input type="text" class="form-control" id="inputSearch" name="search" placeholder="" oninput="doSearch(this);" maxlength="18">
-                                <button type="button" class="input-search-close icon wb-close" aria-label="Close"></button>
-                            </div>
-                        </form>
-                    </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <form class="page-search-form" role="search">
+                        <div class="input-search input-search-dark">
+                            <i class="input-search-icon wb-search" aria-hidden="true"></i>
+                            <input type="text" class="form-control" id="inputSearch" name="search" placeholder="" oninput="doSearch(this);" maxlength="18">
+                            <button type="button" class="input-search-close icon wb-close" aria-label="Close"></button>
+                        </div>
+                    </form>
                 </div>
-                <div class="nav-tabs-horizontal nav-tabs-animate" data-plugin="tabs">
-                    <ul class="nav nav-tabs nav-tabs-line" role="tablist">
-                        <li class="nav-item" role="presentation"><a class="active nav-link" data-toggle="tab" href="#all_contacts"
-                            aria-controls="all_contacts" role="tab">健康管理师列表</a></li>
-                        </ul>
-                        <div class="tab-content">
-                            <div class="tab-pane animation-fade active" id="all_contacts" role="tabpanel">
-                                <ul class="list-group">
-                                </ul>
-                            </div>
-                            <div class="modal fade modal-fade-in-scale-up" id="roleDoctorsList" aria-hidden="true"
-                            aria-labelledby="exampleModalTitle" role="dialog" tabindex="-1">
-                            <form onsubmit="return false;" id="roleDoctorsListForm">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">×</span>
-                                            </button>
-                                            <h4 class="modal-title">添加用户权限</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="row">
-                                                <div class="col-sm-12">
-                                                    <h4 class="text-center">用户名:</h4>
-                                                </div>
+            </div>
+            <div class="nav-tabs-horizontal nav-tabs-animate" data-plugin="tabs">
+                <ul class="nav nav-tabs nav-tabs-line" role="tablist">
+                    <li class="nav-item" role="presentation"><a class="active nav-link" data-toggle="tab" href="#all_contacts"
+                        aria-controls="all_contacts" role="tab">健康管理师列表</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane animation-fade active" id="all_contacts" role="tabpanel">
+                            <ul class="list-group">
+                            </ul>
+                        </div>
+                        <div class="modal fade modal-fade-in-scale-up" id="roleDoctorsList" aria-hidden="true"
+                        aria-labelledby="exampleModalTitle" role="dialog" tabindex="-1">
+                        <form onsubmit="return false;" id="roleDoctorsListForm">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                        <h4 class="modal-title">添加用户权限</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <h4 class="text-center">用户名:</h4>
                                             </div>
-                                            <div class="row" id="roleList">
+                                        </div>
+                                        <div class="row" id="roleList">
 
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default btn-pure" data-dismiss="modal">取消</button>
-                                            <button type="submit" class="btn btn-primary" onclick="roleSubmit();" >保存</button>
                                         </div>
                                     </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default btn-pure" data-dismiss="modal">取消</button>
+                                        <button type="submit" class="btn btn-primary" onclick="roleSubmit();" >保存</button>
+                                    </div>
                                 </div>
-                            </form>
-                        </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -72,98 +71,101 @@
 
 <script src='/javascripts/jquery.form.js'></script>
 <script>
-var createUserDom = function(userObj){
-    var template = "\n\
-    <li class='list-group-item'>\n\
-    <div class='media'>\n\
-    <div class='media-left'>\n\
-    <div class='avatar avatar-online'>\n\
-    <img src='{__avatar__}'alt='...'>\n\
-    <i class='avatar avatar-busy'></i>\n\
-    </div>\n\
-    </div>\n\
-    <div class='media-body'>\n\
-    <h4 class='media-heading'>\n\
-    {__name__}\n\
-    </h4>\n\
-    <p>\n\
-    <i class='icon icon-color wb-user' aria-hidden='true'></i>{__id__}\n\
-    </p>\n\
-    </div>\n\
-    <div class='media-right'>\n\
-    <a class='btn btn-outline btn-success btn-sm' data-target='#roleDoctorsList' data-toggle='modal' data-id={__id__} onclick='requestRole()'>添加权限</a>\n\
-    </div>\n\
-    </div>\n\
-    </li>"
-    return template.replace(/\{__avatar__\}/g, userObj["avatar"] || "/images/1.jpg")
-    .replace(/\{__name__\}/g, userObj["name"])
-    .replace(/\{__id__\}/g, userObj["id"])
-    .replace(/\{__idNumber__\}/g, userObj["idNumber"]);
-};
-var searching = false;
-var doSearch = function(dom){
-    if(dom.value.length === 18 && checkIdCard(dom.value) && !searching){
-        searching = true;
-        doAjax(window.baseUrl + "/users/get_user", "get", {"id_number": dom.value}, function(data, status) {
-            searching = false;
+    var createUserDom = function(userObj){
+        var template = "\n\
+                                <li class='list-group-item'>\n\
+                                    <div class='media'>\n\
+                                        <div class='media-left'>\n\
+                                            <div class='avatar avatar-online'>\n\
+                                                <img src='{__avatar__}'alt='...'>\n\
+                                                <i class='avatar avatar-busy'></i>\n\
+                                            </div>\n\
+                                        </div>\n\
+                                        <div class='media-body'>\n\
+                                            <h4 class='media-heading'>\n\
+                                                {__name__}\n\
+                                            </h4>\n\
+                                            <p>\n\
+                                                <i class='icon icon-color wb-user' aria-hidden='true'></i>{__id__}\n\
+                                            </p>\n\
+                                        </div>\n\
+                                        <div class='media-right'>\n\
+                                            <a class='btn btn-outline btn-success btn-sm' data-target='#roleDoctorsList' data-toggle='modal' data-id={__id__} >添加权限</a>\n\
+                                        </div>\n\
+                                    </div>\n\
+                                </li>"
+        return template.replace(/\{__avatar__\}/g, userObj["avatar"] || "/images/1.jpg")
+                       .replace(/\{__name__\}/g, userObj["name"])
+                       .replace(/\{__id__\}/g, userObj["id"])
+                       .replace(/\{__idNumber__\}/g, userObj["idNumber"]);
+    };
+    var searching = false;
+    var doSearch = function(dom){
+        if(dom.value.length === 18 && checkIdCard(dom.value) && !searching){
+            searching = true;
+            doAjax(window.baseUrl + "/users/get_user", "get", {"id_number": dom.value}, function(data, status) {
+                searching = false;
+                if (status && data) {
+                    $("#all_contacts ul:first").html($(createUserDom(data)));
+                } else {
+                    $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
+                }
+            });
+        }else{
+            $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
+        }
+    };
+    //角色列表HTML模板
+    var createRoleDom = function (dom){
+        var template = "\n\
+                                <div class='col-sm-6'>\n\
+                                    <input type='checkbox' value='{__id__}' name='role_ids' id = '{__id__}'>\n\
+                                    <label for=''>{__name__}</label> \n\
+                                </div>"
+        return template.replace(/\{__name__\}/g, dom["name"])
+                        .replace(/\{__id__\}/g, dom["id"]);
+    };
+    var roleSubmit = function(){
+        doAjax(window.baseUrl + "/users/" + userId, 'put', JSON.stringify($('#roleDoctorsListForm').getValue()), function(data, status) {
+            if(data,status){
+                $("#roleDoctorsList").modal("hide");
+                swal("提交成功", "", "success");
+            }
+        }, {}, {contentType: 'application/json;charset=utf-8'})
+    };
+    var userId;
+    $(function() {
+        doAjax(window.baseUrl + "/users/all_users", 'get',{}, function(data, status) {
             if (status && data) {
-                $("#all_contacts ul:first").html($(createUserDom(data)));
+                for(var i = 0;i < data.length;i++){
+                    $('#all_contacts ul').append($(createUserDom(data[i])));
+                }
             } else {
-                $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
-            }
+                $('#all_contacts ul:first').html('暂无健康管理师');
+            };
         });
-    }else{
-        $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
-    }
-};
-//角色列表HTML模板
-var createRoleDom = function (dom){
-    var template = "\n\
-    <div class='col-sm-6'>\n\
-    <input type='checkbox' value='{__id__}' name='role_ids'>\n\
-    <label for=''>{__name__}</label> \n\
-    </div>"
-    return template.replace(/\{__name__\}/g, dom["name"])
-    .replace(/\{__id__\}/g, dom["id"]);
-};
-//角色列表获取
-var requestRole = function(){
-    doAjax(window.baseUrl + "/roles","get",{"page":1,"per_page":10},function(data, status){
-        $("#roleList").children('div').remove();
-        if (status && data){
-            for(var i = 0;i < data.data.length;i++){
-                var name = data.data[i];
-                $("#roleList").append($(createRoleDom(name)));
-            }
-        }
+        $('#roleDoctorsList').on('show.bs.modal', function (e) {
+            userId = $(e.relatedTarget).data('id');
+            (function requestRole(){
+                doAjax(window.baseUrl + "/roles","get",{"page":1,"per_page":10},function(data, status){
+                    $("#roleList").children('div').remove();
+                    if (status && data){
+                        for(var i = 0;i < data.data.length;i++){
+                            var name = data.data[i];
+                            $("#roleList").append($(createRoleDom(name)));
+                        }
+                    }
+                });
+                doAjax(window.baseUrl + "/users/get_user_by_id", "get", {"id": userId},function (data, status) {
+                    if (status && data) {
+                        for (var i = 0; i < data.role_ids.length; i++) {
+                            $("#"+data.role_ids[i]).prop("checked",true);
+                        }
+                    }
+                })
+            }())
+        });
     });
-};
-var roleSubmit = function(){
-    console.log(userId);
-    console.log($("form").serialize());
-    doAjax(window.baseUrl + "/users/" + userId, 'put', JSON.stringify($('#roleDoctorsListForm').getValue()), function(data, status) {
-        if(data,status){
-            $("#roleDoctorsList").modal("hide");
-            swal("提交成功", "", "success");
-        }
-    }, {}, {contentType: 'application/json;charset=utf-8'})
-};
-var userId;
-$(function() {
-    doAjax(window.baseUrl + "/users/all_users", 'get',{}, function(data, status) {
-        if (status && data) {
-            for(var i = 0;i < data.length;i++){
-                $('#all_contacts ul').append($(createUserDom(data[i])));
-            }
-        } else {
-            $('#all_contacts ul:first').html('暂无健康管理师');
-        };
-    });
-    $('#roleDoctorsList').on('show.bs.modal', function (e) {
-        userId = $(e.relatedTarget).data('id');
-        // console.log(userId);\n\
-    });
-});
 </script>
 <% if (typeof pjax === "undefined") { %>
     <%- include ../footer %>
