@@ -18,7 +18,7 @@
                         <div class="input-search input-search-dark">
                             <i class="input-search-icon wb-search" aria-hidden="true"></i>
                             <input type="text" class="form-control" id="inputSearch" name="search" placeholder="" oninput="doSearch(this);" maxlength="18">
-                            <button type="button" class="input-search-close icon wb-close" aria-label="Close"></button>
+                            <button type="button" class="input-search-close icon wb-close" aria-label="Close" onclick="$('#inputSearch').val('');doSearch($('#inputSearch')[0])"></button>
                         </div>
                     </form>
                 </div>
@@ -103,7 +103,7 @@
     var doSearch = function(dom){
         if(dom.value.length === 18 && checkIdCard(dom.value) && !searching){
             searching = true;
-            doAjax(window.baseUrl + "/users/get_user", "get", {"id_number": dom.value}, function(data, status) {
+            doAjax(window.baseUrl + "/users/get_user_by_id_number", "get", {"id_number": dom.value}, function(data, status) {
                 searching = false;
                 if (status && data) {
                     $("#all_contacts ul:first").html($(createUserDom(data)));
