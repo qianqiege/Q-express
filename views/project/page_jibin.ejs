@@ -1,10 +1,14 @@
-<%- include ../header %>
+<% if (typeof pjax === "undefined") { %>
+    <%- include ../header %>
+<% } else { %>
+    <title><%= title %></title>
+<% } %>
 <style>
 #rate p {
     margin-bottom: 0.1rem;
 }
 </style>
-<div class="page">
+
     <div class="page-header">
         <h1 class="page-title"><%= title %></h1>
         <ol class="breadcrumb">
@@ -110,8 +114,6 @@
         </div>
     </div>
 
-</div>
-</div>
 <script>
 $(function() {
     var uid = getvl('id');
@@ -164,9 +166,8 @@ $(function() {
     }
     doAjax(window.baseUrl + "/registration/check_info", "get", {"number": uid}, cbFunction);
 })
-
-
-
 </script>
 <script src="/javascripts/jquery.PrintArea.js"></script>
-<%- include ../footer %>
+<% if (typeof pjax === "undefined") { %>
+    <%- include ../footer %>
+<% } %>

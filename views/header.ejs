@@ -22,20 +22,22 @@
     <link rel="stylesheet" href="/stylesheets/slidePanel.css">
     <link rel="stylesheet" href="/stylesheets/flag-icon.css">
     <link rel="stylesheet" href="/stylesheets/jsgrid.css">
+    <link rel="stylesheet" href="/stylesheets/pjaxLoading.css">
     <link rel="stylesheet" href="/stylesheets/c3.min.css">
+    <link rel="stylesheet" href="/stylesheets/mricode.pagination.css">
     <!-- Fonts -->
 	  <link rel="stylesheet" href="/stylesheets/material-design.min.css">
     <link rel="stylesheet" href="/stylesheets/sweetalert.min.css">
     <link rel="stylesheet" href="/stylesheets/web-icons.min.css">
     <link rel="stylesheet" href="/stylesheets/font-awesome/font-awesome.css">
+    <script src="/javascripts/jquery.js"></script>
+    <script src="/javascripts/jquery.cookie.min.js"></script>
+    <script src="/javascripts/app.js"></script>
+    <script src="/javascripts/babel-external-helpers.js"></script>
     <script src="/javascripts/breakpoints.js"></script>
     <script>
     Breakpoints();
     </script>
-    <script src="/javascripts/babel-external-helpers.js"></script>
-    <script src="/javascripts/jquery.js"></script>
-    <script src="/javascripts/jquery.cookie.min.js"></script>
-    <script src="/javascripts/app.js"></script>
     <script src="/javascripts/tether.js"></script>
     <script src="/javascripts/bootstrap.js"></script>
   </head>
@@ -137,3 +139,15 @@
         </div>
       </div>
     </div>
+
+    <div class="page">
+        <div class="pjaxLoader" style="display: none;">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+
+        <div id="page">
