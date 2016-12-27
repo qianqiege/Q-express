@@ -100,7 +100,7 @@
           });
 
           e.stopPropagation();
-        }).on('click.site.menu ', '.site-menu-item', function (e) {
+        }).on('click.site.menu', '.site-menu-item', function (e) {
           var $item = $(this);
 
           if ($item.is('.has-sub') && $(e.target).closest('.site-menu-item').is(this)) {
