@@ -33,16 +33,16 @@ function finish(){
         opts.colorStop = "#FF0000"
         $(".donut-label").html(total+" 分<br/><span style='color:red'>高风险</span>")
         $(".report h4:first").html("您此次评分结果为"+total+"分")
-        $(".report h4:last").html("<span style='color:red'>您属于糖尿病高危人群，请尽早就诊，进行口服葡萄糖耐量试验检查。</span>")
+        $(".report h4:last").html("<span style='color:red'>您属于高血压高危人群，请尽早就诊，进行检查。</span>")
     } else {
         opts.colorStart = "#3f51b5"
         opts.colorStop = "#3f51b5"
         $(".donut-label").html(total+" 分<br/><span>低风险</span>")
         $(".report h4:first").html("您此次评分结果为"+total+"分")
-        $(".report h4:last").html("<span>您目前得糖尿病的风险不高，还请继续保持健康的生活方式，祝您健康。</span>")
+        $(".report h4:last").html("<span>您目前得高血压的风险不高，还请继续保持健康的生活方式，祝您健康。</span>")
     }
     var gauge = new Donut(target).setOptions(opts); 
-    gauge.maxValue = 33;
+    gauge.maxValue = 44;
     gauge.set(total);
     $(".report").slideDown()
 }
@@ -106,7 +106,7 @@ var pid =  ~~getvl('id');
 
             pressur = ~~(data.physical_examination.max_pressure)
             if(pressur < 110) {
-                pressureScore = -4;
+                pressureScore = 0;
             } else if(pressur <= 114) {
                 pressureScore = 0;
             } else if(pressur <= 119) {
@@ -149,9 +149,9 @@ var pid =  ~~getvl('id');
 
 
             var age_pressur_calc = {
-                29:["-8","-3","0","3","6" ],
-                39:["-5","0","2","5","7" ],
-                49:["-1","3","5","6","8" ],
+                29:["0","0","0","3","6" ],
+                39:["0","0","2","5","7" ],
+                49:["0","3","5","6","8" ],
                 59:["3","5","7","8","9" ],
                 69:["6","8","9","10","10" ],
                 79:["10","11","11","11","11" ],
@@ -182,7 +182,7 @@ var pid =  ~~getvl('id');
             },calc_timeout())
 
             if (data.smoke_history.item_1 != "从不吸"){
-                smokeScore = 1
+                smokeScore = 5
             } else {
                 smokeScore = 0
             }
@@ -192,10 +192,10 @@ var pid =  ~~getvl('id');
 
             
             if (data.family_history.father != "高血压"){
-                familySocre = 1
+                familySocre = 5
             }
             if (data.family_history.mother != "高血压"){
-                familySocre = familySocre + 1
+                familySocre = familySocre + 5
             }
 
             setTimeout(function(){
@@ -203,7 +203,7 @@ var pid =  ~~getvl('id');
             },calc_timeout())
 
             closestep();
-            total = smokeScore + familySocre + agepressureScore + sexScore + 
+            total = ~~(smokeScore) + ~~(familySocre) + ~~(agepressureScore) + ~~(sexScore) + ~~(weightScore) + ~~(pressureScore)
             setTimeout(closestep,calc_timeout())
             setTimeout(closestep,calc_timeout())
             
