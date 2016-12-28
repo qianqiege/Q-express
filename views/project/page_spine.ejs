@@ -23,126 +23,111 @@
         </div>
     </div>
     <div class="page-content">
-        <div class="page-content">
-            <div class="panel">
-                <div class="panel-body">
-                    <div id="print-this">
-                        <div id="head">
-                            <img id="table-logo" src="/images/logo-blue.png"/>
-                            <h4 class="vertical-align-bottom pull-xs-right">编号: <span id="table_id"></span> </h4>
-                            <script>
-                            setTimeout(function(){ $("#table-logo").next().css("margin-top",$("#table-logo").height() - $("#table-logo").next().height()+"px")},100)
-                            </script>
-                            <hr/>
-                        </div>
-                        <h2 class="text-xs-center">御邦医通龙氏脊筑方案</h2>
-                        <div>
-                            <div id="base_info">
-                                <h4>
-                                    <i class="icon wb-user" aria-hidden="true"></i> 基本信息
-                                </h4>
-                                <table class="table">
+        <div class="panel">
+            <div class="panel-body">
+            <div id="print-this">
+                <div id="head">
+                    <img id="table-logo" src="/images/logo-blue.png"/>
+                    <h4 class="vertical-align-bottom pull-xs-right">编号: <span id="table_id"></span> </h4>
+                    <script>
+                     setTimeout(function(){ $("#table-logo").next().css("margin-top",$("#table-logo").height() - $("#table-logo").next().height()+"px")},100)
+                    </script>
+                    <hr/>
+                </div>
+                <h2 class="text-xs-center">御邦医通龙氏脊筑方案</h2>
+                <div>
+                  <div id="base_info">
+                      <h4>
+                        <i class="icon wb-user" aria-hidden="true"></i> 基本信息
+                      </h4>
+                      <table class="table">
+                          <tr>
+                            <td>姓名 : <span id="name"></span></td>
+                            <td>性别 : <span id="sex"></span></td>
+                            <td>出生年月 : <span id="born_date"></span></td>
+                          </tr>
+                          <tr>
+                            <td>婚姻状况 : <span id="marriage"></span></td>
+                            <td>民族 : <span id="country"></span></td>
+                            <td>联系方式 : <span id="contact"></span></td>
+                          </tr>
+                      </table>
+                  </div>
+                  <div id="rate">
+                      <h4>
+                        <i class="icon wb-book" aria-hidden="true"></i> 健康管理师诊断
+                      </h4>
+                      <div class="row" style="font-size:16px; padding-bottom: 5px;">
+                            <div class="col-md-12">
+                                <div>身体状况描述 :
+                                  <p style="text-indent:25px" id="rate_sl"></p>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div>诊断意见 :
+                                  <p style="text-indent:25px" id="rate_qz"> </p>
+                                </div>
+                            </div>
+                      </div>
+                  </div>
+                  <hr/>
+                  <div id="issue">
+                        <h4>龙氏脊筑方案  : </h4>
+                        <div class="row">
+                            <div class="form-group col-md-10 offset-lg-1  col-xs-12 ">
+                                <table class="table table-bordered">
                                     <tr>
-                                        <td>姓名 : <span id="name"></span></td>
-                                        <td>性别 : <span id="sex"></span></td>
-                                        <td>出生年月 : <span id="born_date"></span></td>
+                                        <th>筑脊师级别/脊柱干预步骤 </th>
+                                        <th>单次</th>
+                                        <th>首次疗程</th>
+                                        <th>养护（第二次起）</th>
                                     </tr>
                                     <tr>
-                                        <td>婚姻状况 : <span id="marriage"></span></td>
-                                        <td>民族 : <span id="country"></span></td>
-                                        <td>联系方式 : <span id="contact"></span></td>
+                                        <td rowspan="6">
+                                            <p>等级:&nbsp;<span id = "treatment_level"></span></p>
+                                            <p>龙氏脊筑次数:&nbsp;<span id = "treatment_times"></span></p>
+                                            <p>放血排毒次数:&nbsp;<span id = "blood_times"></span></p>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td> <label> <input type="checkbox" value="1" onchange="caculate()" id ="单次_neck" name = "spine"/> 颈椎：<span></span></label></td>
+                                        <td> <label> <input type="checkbox" value="1" onchange="caculate()" id ="首次疗程_neck" name = "spine"/> 颈椎：<span></span></label></td>
+                                        <td> <label> <input type="checkbox" value="1" onchange="caculate()" id ="养护（第二次起）_neck" name = "spine"/> 颈椎：<span></span></label></td>
+                                    </tr>
+                                    <tr>
+                                        <td> <label> <input type="checkbox" value="1" onchange="caculate()" id ="单次_thoracic" name = "spine"/> 胸椎：<span></span></label></td>
+                                        <td> <label> <input type="checkbox" value="1" onchange="caculate()" id ="首次疗程_thoracic" name = "spine"/> 胸椎：<span></span></label></td>
+                                        <td> <label> <input type="checkbox" value="1" onchange="caculate()" id ="养护（第二次起）_thoracic" name = "spine" /> 胸椎：<span></span></label></td>
+                                    </tr>
+                                    <tr>
+                                        <td> <label> <input type="checkbox" value="1" onchange="caculate()"  id ="单次_lumbar" name = "spine"/> 腰椎：<span></span></label> </td>
+                                        <td> <label> <input type="checkbox" value="1" onchange="caculate()"  id ="首次疗程_lumbar" name = "spine"/> 腰椎：<span></span></label></td>
+                                        <td> <label> <input type="checkbox" value="1" onchange="caculate()"  id ="养护（第二次起）_lumbar" name = "spine"/> 腰椎：<span></span></label></td>
+                                    </tr>
+                                    <tr>
+                                        <td> <label> <input type="checkbox" value="1" onchange="caculate()" id="单次_pelvis" name = "spine"/> 骨盆：<span></span></label></td>
+                                        <td> <label> <input type="checkbox" value="1" onchange="caculate()" id="首次疗程_pelvis" name = "spine"/> 骨盆：<span></span></label></td>
+                                        <td> <label> <input type="checkbox" value="1" onchange="caculate()" id="养护（第二次起）_pelvis" name = "spine"/> 骨盆：<span></span></label> </td>
+                                    </tr>
+                                    <tr>
+                                        <td> <label> <input type="checkbox" value="1" onchange="caculate()" id="单次_whole_ridge" name = "spine"/> 全脊：<span></span></label> </td>
+                                        <td> <label> <input type="checkbox" value="1" onchange="caculate()" id="首次疗程_whole_ridge" name = "spine"/> 全脊：<span></span></label>  </td>
+                                        <td> <label> <input type="checkbox" value="1" onchange="caculate()" id="养护（第二次起）_whole_ridge" name = "spine"/> 全脊：<span></span></label>  </td>
                                     </tr>
                                 </table>
                             </div>
-                            <div id="rate">
-                                <h4>
-                                    <i class="icon wb-book" aria-hidden="true"></i> 健康管理师诊断
-                                </h4>
-                                <div class="row" style="font-size:16px; padding-bottom: 5px;">
-                                    <div class="col-md-12">
-                                        <div>身体状况描述 :
-                                            <p style="text-indent:25px" id="rate_sl"></p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div>诊断意见 :
-                                            <p style="text-indent:25px" id="rate_qz"> </p>
-                                        </div>
-                                    </div>
-                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 offset-lg-10  col-xs-12">
+                                    <p>总价：<span id = "total"></span></p>
                             </div>
-                            <hr/>
-                            <div id="issue">
-                                <h4>龙氏脊筑方案  : </h4>
-                                <div class="row">
-                                    <div class="form-group col-md-10 offset-lg-1  col-xs-12 ">
-                                        <table class="table table-bordered">
-                                            <tr>
-                                                <th>筑脊师级别/脊柱干预步骤 </th>
-                                                <th>松</th>
-                                                <th>正</th>
-                                                <th>理</th>
-                                                <th>首次调理总价</th>
-                                                <th>养护（第二次起）</th>
-                                            </tr>
-                                            <tr>
-                                                <td rowspan="6">
-                                                    <p>等级:&nbsp;<span id = "treatment_level"></span></p>
-                                                    <p>次数:&nbsp;<span id = "treatment_times"></span></p>
-                                                </td>
-
-                                            </tr>
-                                            <tr>
-                                                <td> <label> <input type="checkbox" value="1" onchange="caculate()" id ="松_neck" name = "pine" onclick = "autoJust(this)" /> 颈椎：<span></span></label></td>
-                                                <td> <label> <input type="checkbox" value="1" onchange="caculate()" id ="正_neck" name = "just" /> 颈椎：<span></span></label></td>
-                                                <td> <label> <input type="checkbox" value="1" onchange="caculate()" id ="理_neck" name = "logic" /> 颈椎：<span></span></label></td>
-                                                <td> <label> <input type="checkbox" value="1" onchange="caculate()" id ="首次调理总价_neck" name = "first" /> 颈椎：<span></span></label></td>
-                                                <td> <label> <input type="checkbox" value="1" onchange="caculate()" id ="养护（第二次起）_neck" name="second" /> 颈椎：<span></span></label></td>
-                                            </tr>
-                                            <tr>
-                                                <td> <label> <input type="checkbox" value="1" onchange="caculate()" id ="松_thoracic" name = "pine"  onclick = "autoJust(this)"/> 胸椎：<span></span></label></td>
-                                                <td> <label> <input type="checkbox" value="1" onchange="caculate()" id ="正_thoracic" name = "just" /> 胸椎：<span></span></label></td>
-                                                <td> <label> <input type="checkbox" value="1" onchange="caculate()" id ="理_thoracic" name = "logic" /> 胸椎：<span></span></label></td>
-                                                <td> <label> <input type="checkbox" value="1" onchange="caculate()" id ="首次调理总价_thoracic" name = "first" /> 胸椎：<span></span></label></td>
-                                                <td> <label> <input type="checkbox" value="1" onchange="caculate()" id ="养护（第二次起）_thoracic" name="second"  /> 胸椎：<span></label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td> <label> <input type="checkbox" value="1" onchange="caculate()"  id ="松_lumbar" name = "pine" onclick = "autoJust(this)" /> 腰椎：<span></span></label> </td>
-                                                    <td> <label> <input type="checkbox" value="1" onchange="caculate()"  id ="正_lumbar" name = "just" /> 腰椎：<span></span></label></td>
-                                                    <td> <label> <input type="checkbox" value="1" onchange="caculate()"  id ="理_lumbar" name = "logic" /> 腰椎：<span></span></label></td>
-                                                    <td> <label> <input type="checkbox" value="1" onchange="caculate()"  id ="首次调理总价_lumbar" name = "first" /> 腰椎：<span></span></label></td>
-                                                    <td> <label> <input type="checkbox" value="1" onchange="caculate()"  id ="养护（第二次起）_lumbar" name="second" /> 腰椎：<span></span></label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td> <label> <input type="checkbox" value="1" onchange="caculate()" id="松_pelvis" name = "pine" onclick = "autoJust(this)" /> 骨盆：<span></span></label></td>
-                                                    <td> <label> <input type="checkbox" value="1" onchange="caculate()" id="正_pelvis" name = "just" /> 骨盆：<span></span></label></td>
-                                                    <td> <label> <input type="checkbox" value="1" onchange="caculate()" id="理_pelvis" name = "logic" /> 骨盆：<span></span></label> </td>
-                                                    <td> <label> <input type="checkbox" value="1" onchange="caculate()" id="首次调理总价_pelvis" name = "first" /> 骨盆：<span></span></label> </td>
-                                                    <td> <label> <input type="checkbox" value="1" onchange="caculate()" id="养护（第二次起）_pelvis" name="second" /> 骨盆：<span></span></label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td> <label> <input type="checkbox" value="1" onchange="caculate()" id="松_whole_ridge" onclick = "autoJust(this)"  /> 全脊：<span></span></label> </td>
-                                                    <td> <label> <input type="checkbox" value="1" onchange="caculate()" id="正_whole_ridge" /> 全脊：<span></span></label>  </td>
-                                                    <td> <label> <input type="checkbox" value="1" onchange="caculate()" id="理_whole_ridge" /> 全脊：<span></span></label>  </td>
-                                                    <td> <label> <input type="checkbox" value="1" onchange="caculate()" id="首次调理总价_whole_ridge" /> 全脊：<span></span></label>  </td>
-                                                    <td> <label> <input type="checkbox" value="1" onchange="caculate()" id="养护（第二次起）_whole_ridge" /> 全脊：<span></span> </label>  </td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-2 offset-md-10  col-xs-12">
-                                            <p>总价：<span id = "total"></span></p>
-                                        </div>
-
-                                    </div>
-                                    <p style="text-indent:25px" id="issue_fa"></p>
-                                </div>
-                                <hr/>
-                                <div>
-                                    <h4  class="pull-xs-left">健管专家 : <span id="docter_name"></span></h4>
-                                    <h4  class="pull-xs-right">日期 : <span id="date"></span></h4>
-                                </div>
+                        </div>
+                         <hr/>
+                        <div class="row">
+                            <div>
+                                <h4  class="pull-xs-left">健管专家 : <span id="docter_name"></span></h4>
+                                <h4  class="pull-xs-right">日期 : <span id="date"></span></h4>
                             </div>
                         </div>
                     </div>
@@ -173,6 +158,7 @@ $(function() {
             $("#rate_sl").text(data.spine_recipes[last].physical_condition)
             $("#rate_qz").text(data.spine_recipes[last].diagnostic_advice)
             $("#docter_name").text(data.spine_recipes[last].doctor_name)
+            $("#blood_times").text(data.spine_recipes[last].blood_letting_times)
             $("#date").text(new Date().Format("yyyy-MM-dd"))
             $("#table_id").text(uid)
             $("#name").text(data.patient.name)

@@ -1,6 +1,9 @@
 
-<%- include ../header %>
-<div class="page">
+<% if (typeof pjax === "undefined") { %>
+    <%- include ../header %>
+<% } else { %>
+    <title><%= title %></title>
+<% } %>
     <div class="page-header">
         <h1 class="page-title"><%= title %></h1>
         <ol class="breadcrumb">
@@ -124,4 +127,6 @@ $(function() {
 
 </script>
 
-<%- include ../footer %>
+<% if (typeof pjax === "undefined") { %>
+    <%- include ../footer %>
+<% } %>
