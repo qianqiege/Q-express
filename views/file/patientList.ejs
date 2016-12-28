@@ -24,7 +24,6 @@
                     </div>
                     <div class="col-md-3 offset-md-3 col-sm-3 offset-sm-9">
                         <a href="/newRecord" class="btn btn-block btn-info waves-effect">添加新客户</a>
-                        <!-- <button type="button" class="btn btn-round btn-outline btn-default btn-lg"><i class="icon wb-plus" aria-hidden="true"></i>添加</button> -->
                     </div>
                 </div>
                 <div class="nav-tabs-horizontal nav-tabs-animate" data-plugin="tabs">
@@ -36,6 +35,11 @@
                             <div class="tab-pane animation-fade active" id="all_contacts" role="tabpanel">
                                 <ul class="list-group"><li class='list-group-item'>暂无搜索结果</li></ul>
                             </div>
+                            <div class="tab-pane animation-fade active" id="contacts_tree" role="tabpanel">
+                                <ul class="timeline timeline-simple">
+
+                                </ul>
+                            </div>
                         </div>
                     </ul>
                 </div>
@@ -45,34 +49,78 @@
     </div>
 <script>
     var searching = false;
+    var createTimeLineRight = function(dom) {
+        var timeline_right ="\n\
+            <li id='IAID' class='timeline-item'>\n\
+                <div class='timeline-dot' data-placement='right' data-toggle='tooltip' data-trigger='hover' data-original-title='{__datatime__}'></div>\n\
+                <div class='timeline-content'>\n\
+                    <ul class='list-group list-group-dividered list-group-full'>\n\
+                        <li class='list-group-item active'><h4>{__number__}</h4></li>\n\
+                        <li class='list-group-item list-group-item-dark' style='display:none'><a href='/page/jibin?id={__id__}'>查看疾病谱定位报告</a></li>\n\
+                        <li class='list-group-item list-group-item-dark' style='display:none'><a href='/page/spine?id={__id__}'>查看龙氏脊筑方案报告</a></li>\n\
+                        <li class='list-group-item list-group-item-dark' style='display:none'><a href='/page/jiankang?id={__id__}'>查看健康管理方案报告</a></li>\n\
+                    </ul>\n\
+                </div>\n\
+            </li>";
+            id = uuid();
+            timeline_right = timeline_right.replace("IAID",id)
+                        .replace(/\{__number__\}/g, dom["number"])
+            return [id,timeline_right];
+        };
+    var createTimeLineLeft = function(dom) {
+        var timeline_left ="\n\
+            <li id='IAID' class='timeline-item timeline-reverse'>\n\
+                <div class='timeline-dot bg-green-500' data-placement='left' data-toggle='tooltip' data-trigger='hover' data-original-title='{__datatime__}'></div>\n\
+                <div class='timeline-content'>\n\
+                    <ul class='list-group list-group-gap'>\n\
+                        <li class='list-group-item active'><h4>{__number__}</h4></li>\n\
+                        <li class='list-group-item list-group-item-dark' style='display:none'><a href='/page/jibin?id={__id__}'>查看疾病谱定位报告</a></li>\n\
+                        <li class='list-group-item list-group-item-dark' style='display:none'><a href='/page/spine?id={__id__}'>查看龙氏脊筑方案报告</a></li>\n\
+                        <li class='list-group-item list-group-item-dark' style='display:none'><a href='/page/jiankang?id={__id__}'>查看健康管理方案报告</a></li>\n\
+                    </ul>\n\
+                </div>\n\
+            </li>"
+            id = uuid();
+            timeline_left = timeline_left.replace("IAID",id)
+                        .replace(/\{__number__\}/g, dom["number"])
+            return [id,timeline_left];
+        };
+
+        function uuid() {
+            return 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+                return v.toString(16);
+            });
+        }
     var doSearch = function(dom) {
-        if (dom.value.length === 18 && checkIdCard(dom.value) && !searching) {
+        var val = dom.value.toLocaleUpperCase();
+        if (val.length === 18 && checkIdCard(val) && !searching) {
             var createUserDom = function(userObj) {
                 var template = "\n\
-                                        <li class='list-group-item'>\n\
-                                            <div class='media'>\n\
-                                                <div class='media-left'>\n\
-                                                    <div class='avatar avatar-online'>\n\
-                                                        <img src='{__avatar__}' alt='...'>\n\
-                                                        <i class='avatar avatar-busy'></i>\n\
-                                                    </div>\n\
-                                                </div>\n\
-                                                <div class='media-body'>\n\
-                                                    <h4 class='media-heading'>\n\
-                                                        {__name__}\n\
-                                                    </h4>\n\
-                                                    <p>\n\
-                                                        <i class='icon icon-color wb-user' aria-hidden='true'></i>{__id__}\n\
-                                                    </p>\n\
-                                                </div>\n\
-                                                <div class='media-right'>\n\
-                                                    <a class='btn btn-outline btn-success btn-sm' target='_blank' href='/fileQuery?id={__id__}'>档案查看 / 修改</a>\n\
-                                                </div>\n\
-                                                <div class='media-right'>\n\
-                                                    <a class='btn btn-outline btn-success btn-sm'  href='/healthDetection?id={__id__}'>健康检测查看</a>\n\
-                                                </div>\n\
-                                            </div>\n\
-                                        </li>"
+                    <li class='list-group-item'>\n\
+                        <div class='media'>\n\
+                            <div class='media-left'>\n\
+                                <div class='avatar avatar-online'>\n\
+                                    <img src='{__avatar__}' alt='...'>\n\
+                                    <i class='avatar avatar-busy'></i>\n\
+                                </div>\n\
+                            </div>\n\
+                            <div class='media-body'>\n\
+                                <h4 class='media-heading'>\n\
+                                    {__name__}\n\
+                                </h4>\n\
+                                <p>\n\
+                                    <i class='icon icon-color wb-user' aria-hidden='true'></i>{__id__}\n\
+                                </p>\n\
+                            </div>\n\
+                            <div class='media-right'>\n\
+                                <a class='btn btn-outline btn-success btn-sm' target='_blank' href='/fileQuery?id={__id__}'>档案查看 / 修改</a>\n\
+                            </div>\n\
+                            <div class='media-right'>\n\
+                                <a class='btn btn-outline btn-success btn-sm'  href='/healthDetection?id={__id__}'>健康检测查看</a>\n\
+                            </div>\n\
+                        </div>\n\
+                    </li>"
                 return template.replace(/\{__avatar__\}/g, userObj["avatar"] || "/images/1.jpg")
                                .replace(/\{__name__\}/g, userObj["name"])
                                .replace(/\{__id__\}/g, userObj["id"])
@@ -80,10 +128,43 @@
             };
 
             searching = true;
-            doAjax(window.baseUrl + "/patient/get_by_id_number", "get", {"id_number": dom.value}, function(data, status) {
+            doAjax(window.baseUrl + "/patient/get_by_id_number", "get", {"id_number": val}, function(data, status) {
                 searching = false;
                 if (status && data) {
                     $("#all_contacts ul:first").html($(createUserDom(data)));
+                    doAjax(window.baseUrl + "/registration/check_registration","get",{"id_number": val},function(data, status){
+                        if (status && data){
+                            $("#contacts_tree .timeline").html('<li class="timeline-period">健康管理历程</li>');
+                            for(var i = 0;i < data.length;i++){
+                                var name = data[i];
+                                console.log(name);
+                                if (i%2){
+                                    temp_data = createTimeLineRight(name);
+                                    $("#contacts_tree .timeline").append(temp_data[1]);
+                                    if (data[i]["disease_location_recipes"].length){
+                                        $("#"+temp_data[0]+" ul li:eq(1)").show()
+                                    } else if (data[i]["health_manage_recipes"].length){
+                                        $("#"+temp_data[0]+" ul li:eq(2)").show()
+                                    } else if (data[i]["spine_recipes"].length){
+                                        $("#"+temp_data[0]+" ul li:eq(3)").show()
+                                    }
+                                } else {
+                                    temp_data = createTimeLineLeft(name);
+                                    $("#contacts_tree .timeline").append(temp_data[1]);
+                                    if (data[i]["disease_location_recipes"].length){
+                                        $("#"+temp_data[0]+" ul li:eq(1)").show()
+                                    } else if (data[i]["health_manage_recipes"].length){
+                                        $("#"+temp_data[0]+" ul li:eq(2)").show()
+                                    } else if (data[i]["spine_recipes"].length){
+                                        $("#"+temp_data[0]+" ul li:eq(3)").show()
+                                    }
+                                }
+                            }
+                            if (!$("#contacts_tree").html().trim()) {
+                                $("#contacts_tree").html("<li class='list-group-item'>暂无搜索结果</li>");
+                            }
+                        }
+                    });
                 } else {
                     $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
                 }
