@@ -46,9 +46,9 @@
                         $("#iamtempalte").remove()
                         var cbFunction = function(data,status){
                             $("table tr:eq(1)").remove();
-                            for ( var i in data) {
-                                adata = data[data.length - i - 1];
-                                name = adata.patient.name
+                            for ( var i in data.data) {
+                                adata = data.data[i];
+                                name = adata["patient"]["name"]
                                 reason = adata.test_item
                                 if (adata.value2){
                                     signvalue = adata.value1+"/"+adata.value2
@@ -71,7 +71,7 @@
                                 $("table tbody").append(t_template);
                             }
                         }
-                        doAjax(window.baseUrl + "/exception", "get", {}, cbFunction);
+                        doAjax(window.baseUrl + "/exception", "get", {'page':1,'per_page':10}, cbFunction);
                         </script>
                     </div>
                 </div>
