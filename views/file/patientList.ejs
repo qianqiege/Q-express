@@ -51,38 +51,40 @@
     var searching = false;
     var createTimeLineRight = function(dom) {
         var timeline_right ="\n\
-            <li id='IAID' class='timeline-item'>\n\
+            <li id='{__id__}' class='timeline-item'>\n\
                 <div class='timeline-dot' data-placement='right' data-toggle='tooltip' data-trigger='hover' data-original-title='{__datatime__}'></div>\n\
                 <div class='timeline-content'>\n\
                     <ul class='list-group list-group-dividered list-group-full'>\n\
                         <li class='list-group-item active'><h4>{__number__}</h4></li>\n\
-                        <li class='list-group-item list-group-item-dark' style='display:none'><a href='/page/jibin?id={__id__}'>查看疾病谱定位报告</a></li>\n\
-                        <li class='list-group-item list-group-item-dark' style='display:none'><a href='/page/spine?id={__id__}'>查看龙氏脊筑方案报告</a></li>\n\
-                        <li class='list-group-item list-group-item-dark' style='display:none'><a href='/page/jiankang?id={__id__}'>查看健康管理方案报告</a></li>\n\
+                        <li class='list-group-item list-group-item-dark' style='display:none'><a href='/page/jibin?id={__number__}'>查看疾病谱定位报告</a></li>\n\
+                        <li class='list-group-item list-group-item-dark' style='display:none'><a href='/page/spine?id={__number__}'>查看龙氏脊筑方案报告</a></li>\n\
+                        <li class='list-group-item list-group-item-dark' style='display:none'><a href='/page/jiankang?id={__number__}'>查看健康管理方案报告</a></li>\n\
                     </ul>\n\
                 </div>\n\
             </li>";
             id = uuid();
-            timeline_right = timeline_right.replace("IAID",id)
+            timeline_right = timeline_right.replace(/\{__id__\}/g, id)
                         .replace(/\{__number__\}/g, dom["number"])
+                        .replace(/\{__datatime__\}/g, dom["created_at"])
             return [id,timeline_right];
         };
     var createTimeLineLeft = function(dom) {
         var timeline_left ="\n\
-            <li id='IAID' class='timeline-item timeline-reverse'>\n\
+            <li id='{__id__}' class='timeline-item timeline-reverse'>\n\
                 <div class='timeline-dot bg-green-500' data-placement='left' data-toggle='tooltip' data-trigger='hover' data-original-title='{__datatime__}'></div>\n\
                 <div class='timeline-content'>\n\
                     <ul class='list-group list-group-gap'>\n\
                         <li class='list-group-item active'><h4>{__number__}</h4></li>\n\
-                        <li class='list-group-item list-group-item-dark' style='display:none'><a href='/page/jibin?id={__id__}'>查看疾病谱定位报告</a></li>\n\
-                        <li class='list-group-item list-group-item-dark' style='display:none'><a href='/page/spine?id={__id__}'>查看龙氏脊筑方案报告</a></li>\n\
-                        <li class='list-group-item list-group-item-dark' style='display:none'><a href='/page/jiankang?id={__id__}'>查看健康管理方案报告</a></li>\n\
+                        <li class='list-group-item list-group-item-dark' style='display:none'><a href='/page/jibin?id={__number__}'>查看疾病谱定位报告</a></li>\n\
+                        <li class='list-group-item list-group-item-dark' style='display:none'><a href='/page/spine?id={__number__}'>查看龙氏脊筑方案报告</a></li>\n\
+                        <li class='list-group-item list-group-item-dark' style='display:none'><a href='/page/jiankang?id={__number__}'>查看健康管理方案报告</a></li>\n\
                     </ul>\n\
                 </div>\n\
             </li>"
             id = uuid();
-            timeline_left = timeline_left.replace("IAID",id)
+            timeline_left = timeline_left.replace(/\{__id__\}/g, id)
                         .replace(/\{__number__\}/g, dom["number"])
+                        .replace(/\{__datatime__\}/g, dom["created_at"])
             return [id,timeline_left];
         };
 
@@ -143,9 +145,11 @@
                                     $("#contacts_tree .timeline").append(temp_data[1]);
                                     if (data[i]["disease_location_recipes"].length){
                                         $("#"+temp_data[0]+" ul li:eq(1)").show()
-                                    } else if (data[i]["health_manage_recipes"].length){
+                                    }
+                                    if (data[i]["health_manage_recipes"].length){
                                         $("#"+temp_data[0]+" ul li:eq(2)").show()
-                                    } else if (data[i]["spine_recipes"].length){
+                                    }
+                                    if (data[i]["spine_recipes"].length){
                                         $("#"+temp_data[0]+" ul li:eq(3)").show()
                                     }
                                 } else {
@@ -153,13 +157,16 @@
                                     $("#contacts_tree .timeline").append(temp_data[1]);
                                     if (data[i]["disease_location_recipes"].length){
                                         $("#"+temp_data[0]+" ul li:eq(1)").show()
-                                    } else if (data[i]["health_manage_recipes"].length){
+                                    }
+                                    if (data[i]["health_manage_recipes"].length){
                                         $("#"+temp_data[0]+" ul li:eq(2)").show()
-                                    } else if (data[i]["spine_recipes"].length){
+                                    }
+                                    if (data[i]["spine_recipes"].length){
                                         $("#"+temp_data[0]+" ul li:eq(3)").show()
                                     }
                                 }
                             }
+                            $('[data-toggle="tooltip"]').tooltip()
                             if (!$("#contacts_tree").html().trim()) {
                                 $("#contacts_tree").html("<li class='list-group-item'>暂无搜索结果</li>");
                             }
@@ -173,6 +180,9 @@
             $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
         }
     };
+    $(function() {
+        $("#inputSearch").val("");
+    });
 </script>
 <% if (typeof pjax === "undefined") { %>
     <%- include ../footer %>
