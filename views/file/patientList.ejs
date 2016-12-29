@@ -139,7 +139,6 @@
                             $("#contacts_tree .timeline").html('<li class="timeline-period">健康管理历程</li>');
                             for(var i = 0;i < data.length;i++){
                                 var name = data[i];
-                                console.log(name);
                                 if (i%2){
                                     temp_data = createTimeLineRight(name);
                                     $("#contacts_tree .timeline").append(temp_data[1]);

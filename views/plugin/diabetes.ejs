@@ -1,69 +1,5 @@
 <%- include ../header %>
-<link rel="stylesheet" href="/stylesheets/gauge.css">
-<script src="/javascripts/gauge.min.js"></script>
-<div class="page">
-    <div class="page-header">
-        <h1 class="page-title"><%= title %></h1>
-        <ol class="breadcrumb"> 
-        </ol>
-    </div>
-    <div class="page-content container">
-        <div class="row">
-
-            <div class="panel">
-                <div class="panel-body">
-                    <div class="report row" style="display:none">
-
-                        <div class="col-xs-12 col-md-4">
-                            <div class="donut donut-lg" data-plugin="donut" data-value="1280" data-max-value="2000">
-                                <div class="donut-label"></div>
-                                <canvas id="total_socre" width="300" height="220"></canvas>
-                            </div>                          
-                        </div>
-                        <div class="col-md-8 col-xs-12">
-                            <h2>评估结果</h2>
-                            <h4></h4>
-                            <h2>建议</h2>
-                            <h4></h4>
-                        </div>
-                    </div>
-                    <div class="thestep">
-                    <div class="steps row">
-                        <div class="step col-xs-12 col-lg-4 current">
-                        <span class="step-number"><div class="loader vertical-align-middle loader-circle"></div></span>
-                        <div class="step-desc">
-                            <span class="step-title">分析数据</span>
-                            <p>使用您最近的数据来分析</p>
-                        </div>
-                        </div>
-                        <div class="step col-xs-12 col-lg-4">
-                        <span class="step-number">2</span>
-                        <div class="step-desc">
-                            <span class="step-title">评分</span>
-                            <p>使用先进的人工智能进行评分</p>
-                        </div>
-                        </div>
-                        <div class="step col-xs-12 col-lg-4">
-                        <span class="step-number">3</span>
-                        <div class="step-desc">
-                            <span class="step-title">生成报告</span>
-                            <p>获取您的风险评估报告</p>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="log">
-                        <div class="alert dark alert-icon alert-success alert-dismissible" role="alert"><i class="icon md-check" aria-hidden="true"></i> <span>已经准备好开始评估.</span></div>
-                    </div>
-                    <div class="log-template" style="display: none">
-                        <div id="theid" class="alert dark alert-icon alert-success alert-dismissible" role="alert" style="display: none"><i class="icon md-check" aria-hidden="true" ></i> <span>TTTT</span></div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
+<%- include  evaluation-template %>
 
 
 <script>
@@ -109,7 +45,7 @@ function finish(){
 
 function calc_timeout(){
     time = time + 1
-    return time * 1000
+    return time * 500
 }
 
 function closestep(){
@@ -237,15 +173,15 @@ setTimeout(function() {doAjax(window.baseUrl + "/patient_record/check", "get", {
     pressur = ~~(data.physical_examination.max_pressure)
 	if(pressur<110) {
         pressureScore = 0;
-    } else if(pres<120) {
+    } else if(pressur<120) {
         pressureScore = 1;
-    } else if(pres<130) {
+    } else if(pressur<130) {
         pressureScore = 3;
-    } else if(pres<140) {
+    } else if(pressur<140) {
         pressureScore = 6;
-    } else if(pres<150) {
+    } else if(pressur<150) {
         pressureScore = 7;
-    } else if(pres<160) {
+    } else if(pressur<160) {
         pressureScore = 8;
     } else {
         pressureScore = 10;	
