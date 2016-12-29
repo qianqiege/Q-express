@@ -12,7 +12,7 @@
         <div class="panel">
             <div class="panel-body container-fluid">
                 <div class="row row-lg">
-                    <div class="col-md-12 col-xs-12">
+                    <div class="col-md-12 col-xs-12" id="exceptionData">
                         <h3>最新异常信息</h3>
                         <table class="table">
                             <thead>
@@ -41,43 +41,66 @@
                                 <td><a class="btn btn-primary btn-block card-link m-r-5" href="#" role="button">处理异常</a></td>
                             </tr>
                         </table>
-                        <script>
-                        var template = $("#iamtempalte :first").html()
-                        $("#iamtempalte").remove()
-                        var cbFunction = function(data,status){
-                            $("table tr:eq(1)").remove();
-                            for ( var i in data) {
-                                adata = data[data.length - i - 1];
-                                name = adata.patient.name
-                                reason = adata.test_item
-                                if (adata.value2){
-                                    signvalue = adata.value1+"/"+adata.value2
-                                } else {
-                                    signvalue = adata.value1
-                                }
-                                if (adata.status2) {
-                                    status = adata.status1+"/"+adata.status2
-                                } else {
-                                    status = adata.status1
-                                }
-                                time = adata.created_at.substr(0,10);
-                                id = adata.patient.id
-                                t_template = template.replace("NNAME",name)
-                                .replace("RREASON",reason)
-                                .replace("SIGNVALUE",signvalue)
-                                .replace("STATUS",status)
-                                .replace("TIME",time)
-                                .replace("IID",id)
-                                $("table tbody").append(t_template);
-                            }
-                        }
-                        doAjax(window.baseUrl + "/exception", "get", {}, cbFunction);
-                        </script>
+                        <div style="text-align: right;" class="paginationDiv" id="paginationDiv"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+    var template = $("#iamtempalte :first").html()
+    $("#iamtempalte").remove();
+    var cbFunction = function(data,status){
+        $("table tbody").html('')
+        $("table tr:eq(1)").remove();
+
+        for ( var i in data.data) {
+            adata = data.data[i];
+            name = adata["patient"]["name"]
+            reason = adata.test_item
+            if (adata.value2){
+                signvalue = adata.value1+"/"+adata.value2
+            } else {
+                signvalue = adata.value1
+            }
+            if (adata.status2) {
+                status = adata.status1+"/"+adata.status2
+            } else {
+                status = adata.status1
+            }
+            time = adata.created_at.substr(0,10);
+            id = adata.patient.id
+            t_template = template.replace("NNAME",name)
+            .replace("RREASON",reason)
+            .replace("SIGNVALUE",signvalue)
+            .replace("STATUS",status)
+            .replace("TIME",time)
+            .replace("IID",id)
+            $("table tbody").append(t_template);
+        }
+    }
+    var paginationDiv = $("#paginationDiv");
+           paginationDiv.pagination({
+               pageSize: 10,
+               loadFirstPage: true,
+               remote: {
+                   url: window.baseUrl + "/exception",
+                   beforeSend: function (XHR) {
+                       XHR.setRequestHeader('access-authorization', $.cookie('access_token'));
+                   },
+                   success: cbFunction,
+                   params: {},
+                   pageParams: function(data) {
+                       return {
+                           'page': data.pageIndex + 1,
+                           'per_page': data.pageSize
+                       };
+                   },
+                   totalName: 'meta.total'
+               }
+           });
+    //doAjax(window.baseUrl + "/exception", "get", {'page':1,'per_page':10}, cbFunction);
+    </script>
 <% if (typeof pjax === "undefined") { %>
     <%- include ../footer %>
 <% } %>

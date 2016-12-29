@@ -138,7 +138,7 @@ $(function() {
                 $("#issue_em").text(data.disease_location_recipes[0].emergency_symptom)
                 $("#issue_co").text(data.disease_location_recipes[0].part_symptom)
                 $("#issue_se").text(data.disease_location_recipes[0].second_part_symptom)
-                $("#date").text(new Date().Format("yyyy-MM-dd"))
+                $("#date").text(new Date(data.created_at).Format("yyyy-MM-dd"))
                 $("#table_id").text(uid)
                 $("#doctor").text(data.disease_location_recipes[0].doctor_name)
 
