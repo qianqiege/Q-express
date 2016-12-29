@@ -181,6 +181,10 @@ $(function(){
         return "<tr><td>" + obj.join("</td><td>") + "</td></tr>";
     };
 
+    var createErrTr = function (obj) {
+        return "<tr><td style='color:red'>" + obj.join("</td><td style='color:red'>") + "</td></tr>";
+    };
+
     function createChart(obj,data){
         var myChart = echarts.init(document.getElementById(obj));
         var option = {
@@ -246,19 +250,34 @@ $(function(){
     };
 
     var bPFunction = function(data,status) {
-        console.log(data["meta"]);
         var max_blood_pressure = [];
         var min_blood_pressure = [];
         var blood_pressure_date = [];
         var data = data["data"];
-        $("#blood_pressures").html("");
+        $("#blood_pressure table tbody").html("");
         for (var k = 0; k < data.length; k++) {
             var tr = [data[k].datetime, data[k].max_blood_pressure, data[k].min_blood_pressure];
             max_blood_pressure.push(data[k]['max_blood_pressure']);
             min_blood_pressure.push(data[k]['min_blood_pressure']);
             blood_pressure_date.push(data[k]['datetime']);
             tr.push(data[k].status1 + '/' + data[k].status2);
-            $("#blood_pressures").append($(createTr(tr)));
+            if ((data[k].status1 === '正常') && (data[k].status1 === '正常')) {
+                $("#blood_pressures").append($(createTr(tr)));
+            } else {
+                $("#blood_pressures").append($(createErrTr(tr)));
+            }
+        }
+    };
+    var bPEchartFunction = function(data,status) {
+        var max_blood_pressure = [];
+        var min_blood_pressure = [];
+        var blood_pressure_date = [];
+        var data = data["data"];
+        for (var k = 0; k < data.length; k++) {
+            var tr = [data[data.length - 1 - k].datetime, data[data.length - 1 - k].max_blood_pressure, data[data.length - 1 - k].min_blood_pressure];
+            max_blood_pressure.push(data[data.length - 1 - k]['max_blood_pressure']);
+            min_blood_pressure.push(data[data.length - 1 - k]['min_blood_pressure']);
+            blood_pressure_date.push(data[data.length - 1 - k]['datetime']);
         }
         var chart_data = {
             date: blood_pressure_date,
@@ -358,8 +377,8 @@ $(function(){
             </td>\n\
         </tr>'
         return template2.replace(/\{__id__\}/g, id)
-        .replace(/\{__time__\}/g, dom["created_at"].substr(0,10))
-        .replace(/\{__report_url__\}/g, dom["report_url"]);
+            .replace(/\{__time__\}/g, dom["created_at"].substr(0,10))
+            .replace(/\{__report_url__\}/g, dom["report_url"]);
     };
 
 
@@ -370,6 +389,7 @@ $(function(){
         }
         if (where === "血压监测"){
             $(this).data("apiget",true)
+            doAjax(window.baseUrl + "/examination_check/blood_pressure", 'get', {'patient_id': uid,'start_date': startDate,'end_date': todayData,'page':0,'per_page':0}, bPEchartFunction);
             var paginationDiv = $("#blood_pressures").parent().parent().find(".paginationDiv")
             paginationDiv.pagination({
                 pageSize: 10,
