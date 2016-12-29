@@ -176,11 +176,13 @@ $.fn.customVal = function() {
         if (!arguments.length) {
             return this.val();
         } else {
-            try {
-                var tmp = JSON.parse(arguments[0]);
-                arguments[0] = tmp;
-            } catch(e) {
-                arguments[0] = [arguments[0]];
+            if (typeof arguments[0] === "string") {
+                try {
+                    var tmp = JSON.parse(arguments[0]);
+                    arguments[0] = tmp;
+                } catch(e) {
+                    arguments[0] = [arguments[0]];
+                }
             }
             if (typeof arguments[0] !== "object") {
                 return this;
@@ -218,11 +220,13 @@ $.fn.customVal = function() {
                     });
                     return result;
                 } else {
-                    try {
-                        var tmp = JSON.parse(arguments[0]);
-                        arguments[0] = tmp;
-                    } catch(e) {
-                        arguments[0] = [arguments[0]];
+                    if (typeof arguments[0] === "string") {
+                        try {
+                            var tmp = JSON.parse(arguments[0]);
+                            arguments[0] = tmp;
+                        } catch(e) {
+                            arguments[0] = [arguments[0]];
+                        }
                     }
                     if (typeof arguments[0] !== "object") {
                         return this;
