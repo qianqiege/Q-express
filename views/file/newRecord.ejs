@@ -1769,7 +1769,7 @@
         var doSelect = function (dom) {
             var vali = $(dom).customVal();
             if ($.inArray("无",vali) > -1 && vali.length > 1) {
-                $(dom).customVal(["无"]);
+                $(dom).customVal("无");
             }
         };
         //饮酒、吸烟当选择从不时其他无关问题禁用
