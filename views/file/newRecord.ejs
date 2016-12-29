@@ -1592,9 +1592,9 @@
 
                                     </div>
                                     <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
-                                        <label class="form-control-label" for="baric_index">体重指数</label>
+                                        <label class="form-control-label" for="baric_index">体重指数 (BMI)</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="baric_index" name="physical_examination-baric_index">
+                                            <input type="text" disabled="disabled" class="form-control" id="baric_index" name="physical_examination-baric_index">
                                             <span class="input-group-addon">（18.5-23.9）</span>
                                         </div>
                                     </div>
@@ -1614,25 +1614,25 @@
                                         </div>
                                     </div>
                                     <div class="form-group form-material col-xs-12 col-md-5">
-                                        <label class="form-control-label" for="waist_to_hipratio">腰臀比</label>
+                                        <label class="form-control-label" for="waist_to_hipratio">腰臀比(WHR)</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="waist_to_hipratio" name="physical_examination-waist_to_hipratio">
+                                            <input type="text" disabled="disabled" class="form-control" id="waist_to_hipratio" name="physical_examination-waist_to_hipratio">
                                             <span class="input-group-addon">（男 &lt;0.9, 女&lt;0.85）</span>
                                         </div>
 
                                     </div>
                                     <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
-                                        <label class="form-control-label" for="min_pressure">舒张压</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" id="min_pressure" name="physical_examination-min_BloodPressure">
-                                            <span class="input-group-addon">（60-90）mmHg</span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-material col-xs-12 col-md-5">
                                         <label class="form-control-label" for="max_pressure">收缩压</label>
                                         <div class="input-group">
                                             <input type="text" class="form-control" id="max_pressure" name="physical_examination-max_BloodPressure">
                                             <span class="input-group-addon">（90-140）mmHg</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-material col-xs-12 col-md-5">
+                                        <label class="form-control-label" for="min_pressure">舒张压</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="min_pressure" name="physical_examination-min_BloodPressure">
+                                            <span class="input-group-addon">（60-90）mmHg</span>
                                         </div>
                                     </div>
                                     <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
@@ -1757,6 +1757,29 @@
     </div>
     <script src='/javascripts/jquery.form.js'></script>
     <script>
+
+
+        function calc_bmi() {
+            if ($("#height").val() != "" && $("#weight").val() != ""){
+                var calc = $("#weight").val() / (($("#height").val() / 100) * ($("#height").val() / 100) );
+                $("#baric_index").val(calc.toFixed(1))
+            } else {
+                $("#baric_index").val(0)
+            }
+        }
+
+        function calc_whr() {
+            if ($("#hipline").val() != "" && $("#waistline").val() != ""){
+                var calc = ($("#hipline").val() * $("#waistline").val()) / 100 ;
+                $("#waist_to_hipratio").val(calc.toFixed(1))
+            } else {
+                $("#waist_to_hipratio").val(0)
+            }
+        }
+
+        $("#height,#weight").on("change",calc_bmi)
+        $("#hipline,#waistline").on("change",calc_whr)
+
         //查体中问题3、4当选择无时不可选择其他选项
         var docheckBox = function (dom) {
             var name = $(dom)[0].name;
