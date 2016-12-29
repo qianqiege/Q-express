@@ -305,6 +305,7 @@ var customPjax = function(aSelector, divSelector) {
         if (uri.match(/^javascript:/) || uri.match(/\#/)) {
             return true;
         }
+        var pjaxEndEvent = $.Event('customPjax:end');
         uri = uri.match(/^\//) ? uri : "/" + uri;
         $(this).on("click tap touchend", function(evt) {
             if (evt && evt.preventDefault) {
@@ -325,6 +326,7 @@ var customPjax = function(aSelector, divSelector) {
                                     if (history.pushState) {
                                         window.history.pushState('', newTitle, uri);
                                     }
+                                    $(document).trigger(pjaxEndEvent);
                                 });
                             // });
                         }
@@ -426,6 +428,11 @@ $(function() {
                         thisLi.addClass("active");
                     });
                     customPjax(".site-menu a[href!='javascript:void(0)']", "#page");
+                    $(document).on('customPjax:end', function() {
+                        $("select[data-plugin='select2']").each(function() {
+                            $(this).select2();
+                        });
+                    });
                 });
             } else {
                 gotoLogin();
