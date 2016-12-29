@@ -144,9 +144,9 @@ $("#showProject").remove();
 var jsGridFrom = function(products) {
     var products = [{
         name: "",
-        id: 0
+        id: 0,
+        code : ''
     }].concat(products || []);
-
     var productSelect = function(config) {
         jsGrid.Field.call(this, config);
     };
@@ -166,6 +166,10 @@ var jsGridFrom = function(products) {
                     .data("id", this["items"][i][this["idField"]]));
             }
             return this._insertSelect = selectDom.change(function() {
+                var linkNumber = $(this).parent().parent().find("input[linkage='" + self["linkageFieldNumber"] + "']");
+                var productId  = $(this).find("option:selected").data("id");
+                linkNumber.val(productId ?  products[productId].code : "" )
+
                 var linkageDom = $(this).parent().parent().find("input[linkage='" + self["linkageField"] + "']");
                 doAjax(window.baseUrl + "/product/product_usage_list", "get", {"product_id": $(this).find("option:selected").data("id")}, function(data, status) {
                     if (status && data) {
@@ -201,11 +205,30 @@ var jsGridFrom = function(products) {
 
     jsGrid.fields.product = productSelect;
 
+    //产品编号输入框
+    var productNumberInput = function (config) {
+        jsGrid.Field.call(this, config);
+    };
+    productNumberInput.prototype = new jsGrid.Field({
+        align: "left",
+        itemTemplate: function(value) {
+            return value;
+        },
+        insertTemplate: function(value) {
+            return this._insertPicker = $("<input>").addClass("form-control input-sm").attr("linkage", "productNumber");
+        },
+        insertValue: function() {
+            return this._insertPicker.val();
+        }
+    });
+
+    jsGrid.fields.productNumber = productNumberInput;
+
+
     // 用法输入框
     var productUsageInput = function(config) {
         jsGrid.Field.call(this, config);
     };
-
     productUsageInput.prototype = new jsGrid.Field({
         align: "left",
         itemTemplate: function(value) {
@@ -299,6 +322,11 @@ var jsGridFrom = function(products) {
             textField: "name",
             idField: "id",
             linkageField: "productUsage",
+            linkageFieldNumber: "productNumber",
+            validate: "required"
+        }, {
+            name: "产品编号",
+            type: "productNumber",
             validate: "required"
         }, {
             name: "用法",
