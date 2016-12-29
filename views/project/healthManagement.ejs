@@ -215,7 +215,7 @@ var jsGridFrom = function(products) {
             return value;
         },
         insertTemplate: function(value) {
-            return this._insertPicker = $("<input>").addClass("form-control input-sm").attr("linkage", "productNumber");
+            return this._insertPicker = $("<input>").addClass("form-control input-sm").attr("linkage", "productNumber").prop("disabled",true);
         },
         insertValue: function() {
             return this._insertPicker.val();
