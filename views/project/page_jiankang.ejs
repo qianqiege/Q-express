@@ -112,7 +112,7 @@ $(function() {
             $("#rate_shfs").text(data.health_manage_recipes[last].life_style)  // 生活方式
             $("#docter_name").text(data.health_manage_recipes[last].doctor_name)
             $("#issue_fa").text(data.health_manage_recipes[last].detail)
-            $("#date").text(new Date().Format("yyyy-MM-dd"))
+            $("#date").text(new Date(data.created_at).Format("yyyy-MM-dd"))
             $("#table_id").text(uid)
             $("#name").text(data.patient.name)
             $("#sex").text(data.patient.sex)
