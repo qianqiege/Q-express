@@ -413,7 +413,7 @@
                                         <div class="radio-custom radio-primary radio-inline">
                                             <input type="radio" id="drink_history1_radio4" name="drink_history-item_1" value="曾喝已戒" data-hastext="true" data-bindtext="dry_out_years" onchange="doLimit(this);">
                                             <label for="drink_history1_radio4">曾喝已戒</label>
-                                            <input type="text" name="drink_history-dry_out_years" id="dry_out_years" value="" style="border: none; text-align: center; border-bottom: 1px solid black;" disabled="true" onchange="if(this.value < 0 || this.value > 100 || isNaN(this.value)){swal('请填写正确时间');this.value = '' }">
+                                            <input type="text" name="drink_history-dry_out_years" id="dry_out_years" value="" style="border: none; text-align: center; border-bottom: 1px solid black;" disabled="true" onchange="timeTest(this)">
                                             <span>年</span>
                                         </div>
                                     </div>
@@ -514,7 +514,7 @@
                                         <div class="radio-custom radio-primary radio-inline">
                                             <input type="radio" id="smoke_history1_radio3" name="smoke_history-item_1" value="已经戒烟" data-bindtext="quit_smoking_years" data-hastext="true" onchange="doLimit(this);">
                                             <label for="smoke_history1_radio3">已经戒烟</label>
-                                            <input type="text" name="smoke_history-quit_smoking_years" id="quit_smoking_years" value="" style="border: none; text-align: center; border-bottom: 1px solid black;" disabled="true" onchange="numberTest(this)">
+                                            <input type="text" name="smoke_history-quit_smoking_years" id="quit_smoking_years" value="" style="border: none; text-align: center; border-bottom: 1px solid black;" disabled="true" onchange="timeTest(this)">
                                             <span>年</span>
                                         </div>
                                     </div>
@@ -1757,6 +1757,28 @@
     </div>
     <script src='/javascripts/jquery.form.js'></script>
     <script>
+
+        function calc_bmi() {
+            if ($("#height").val() != "" && $("#weight").val() != ""){
+               var calc = $("#weight").val() / (($("#height").val() / 100) * ($("#height").val() / 100) );
+              $("#baric_index").val(calc.toFixed(1))
+            } else {
+                $("#baric_index").val(0)
+            }
+        }
+        function calc_whr() {
+            if ($("#hipline").val() != "" && $("#waistline").val() != ""){
+               var calc = ($("#hipline").val() * $("#waistline").val()) / 100 ;
+              $("#waist_to_hipratio").val(calc.toFixed(1))
+            } else {
+                $("#waist_to_hipratio").val(0)
+           }
+        }
+
+       $("#height,#weight").on("change",calc_bmi)
+
+       $("#hipline,#waistline").on("change",calc_whr)
+
         //查体中问题3、4当选择无时不可选择其他选项
         var docheckBox = function (dom) {
             var name = $(dom)[0].name;
@@ -1891,10 +1913,15 @@
                 }
             };
         };
+        //输入吸烟饮酒等时间限制
+        var timeTest = function (dom) {
+            if(!/^\d*(\.\d{1,2})?$/.test(dom.value) || dom.value < 0 || dom.value > 99 || dom.value == 0){swal('请填写正确时间');dom.value=''}
+        }
         //填入必须为数值类型
         var numberTest = function (dom) {
-            if(!/^\d*(\.\d{1,2})?$/.test(dom.value) || dom.value < 0 || dom.value > 99 || dom.value == 0){swal('请填写正确时间');dom.value=''}
+            if(!/^\d*(\.\d{1,2})?$/.test(dom.value) || dom.value < 0 || dom.value > 10000 || dom.value == 0){swal('请填写正确数字');dom.value=''}
         };
+
     </script>
 <% if (typeof pjax === "undefined") { %>
     <%- include ../footer %>
