@@ -145,7 +145,7 @@
                                 $("input").val("");
                             });
                         } else {
-                            swal("提交失败", "", "error");
+                            swal(JSON.parse(data.reponseText).error || "提交失败", "", "error");
                         }
                     }
                 );

@@ -76,7 +76,7 @@
 <script>
     var searching = false;
     var numberTest = function (dom) {
-        if(!/^\d*(\.\d{1,2})?$/.test(dom.value) || dom.value < 0 || dom.value > 10000 || dom.value == 0){swal('请填写正确数字');dom.value=''}
+        if(!/^\d*(\.\d{1,2})?$/.test(dom.value) || dom.value < 0 || dom.value > 100 || dom.value == 0){swal('请填写正确数字');dom.value=''}
     };
     var doSearch = function(dom) {
         var val = dom.value.toLocaleUpperCase();
@@ -133,7 +133,7 @@
                                 $("input").val("");
                             });
                         } else {
-                            swal("提交失败", "", "error");
+                            swal(JSON.parse(data.reponseText).error || "提交失败", "", "error");
                         }
                     }
                 );

@@ -167,7 +167,7 @@
                                     $("input").val("");
                                 });
                             } else {
-                                swal("提交失败", "", "error");
+                                swal(JSON.parse(data.reponseText).error || "提交失败", "", "error");
                             }
                         }
                     );
@@ -181,7 +181,6 @@
             $("#theshowblock").css("left",(p1_min +3.5)+"%")
             $("#theshowblock").width((p_max - p_min - 2)+"%")
         },500)
-        console.log(p_min)
 
     };
 </script>
