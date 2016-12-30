@@ -59,7 +59,7 @@
                             <div class="form-group form-material">
                                 <label class="form-control-label" for="id_number_c1">体温</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="id_number_c1" name="temperature">
+                                    <input type="text" class="form-control" id="id_number_c1" name="temperature" onchange="numberTest(this)">
                                     <span class="input-group-addon">度(°C)</span>
                                 </div>
                             </div>
@@ -75,7 +75,9 @@
 
 <script>
     var searching = false;
-
+    var numberTest = function (dom) {
+        if(!/^\d*(\.\d{1,2})?$/.test(dom.value) || dom.value < 0 || dom.value > 100 || dom.value == 0){swal('请填写正确数字');dom.value=''}
+    };
     var doSearch = function(dom) {
         var val = dom.value.toLocaleUpperCase();
         if (val.length === 18 && checkIdCard(val) && !searching) {
@@ -131,7 +133,7 @@
                                 $("input").val("");
                             });
                         } else {
-                            swal("提交失败", "", "error");
+                            swal(JSON.parse(data.reponseText).error || "提交失败", "", "error");
                         }
                     }
                 );

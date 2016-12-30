@@ -398,7 +398,7 @@ var doSearch = function(dom) {
                 temp_data = data;
                 gethospital();
             } else {
-                $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
+                $("#all_contacts ul:first").html("<li class='list-group-item'>没有挂号，请先去挂号！</li>");
             }
         });
     } else {
@@ -424,10 +424,9 @@ var submitForm = function() {
                     title: data.info || "提交成功",
                     type: "success"
                 },
-                function() {
-                    $("input:radio[id^='sex']").prop("checked", false);
-                    $("input").val("");
-                });
+                setTimeout(function() {
+                    location.href="/healthManagement";
+                },1000));
             } else {
                 swal("提交失败", "", "error");
             }

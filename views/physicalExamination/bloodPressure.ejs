@@ -60,7 +60,7 @@
                             <div class="form-group form-material">
                                 <label class="form-control-label" for="min_BloodPressure">舒张压</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="min_BloodPressure" name="min_BloodPressure">
+                                    <input type="text" class="form-control" id="min_BloodPressure" name="min_BloodPressure" onchange="numberTest(this)">
                                     <span class="input-group-addon">毫米汞柱</span>
                                 </div>
                             </div>
@@ -69,7 +69,7 @@
                             <div class="form-group form-material">
                                 <label class="form-control-label" for="max_BloodPressure">收缩压</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="max_BloodPressure" name="max_BloodPressure">
+                                    <input type="text" class="form-control" id="max_BloodPressure" name="max_BloodPressure" onchange="numberTest(this)">
                                     <span class="input-group-addon">毫米汞柱</span>
                                 </div>
                             </div>
@@ -87,6 +87,9 @@
 
 <script>
     var searching = false;
+    var numberTest = function (dom) {
+        if(!/^\d*(\.\d{1,2})?$/.test(dom.value) || dom.value < 0 || dom.value > 10000 || dom.value == 0){swal('请填写正确数字');dom.value=''}
+    };
 
     var doSearch = function(dom) {
         var val = dom.value.toLocaleUpperCase();
@@ -164,7 +167,7 @@
                                     $("input").val("");
                                 });
                             } else {
-                                swal("提交失败", "", "error");
+                                swal(JSON.parse(data.reponseText).error || "提交失败", "", "error");
                             }
                         }
                     );
@@ -178,7 +181,6 @@
             $("#theshowblock").css("left",(p1_min +3.5)+"%")
             $("#theshowblock").width((p_max - p_min - 2)+"%")
         },500)
-        console.log(p_min)
 
     };
 </script>
