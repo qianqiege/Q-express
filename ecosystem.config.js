@@ -18,7 +18,6 @@ module.exports = {
    */
   deploy : {
     production : {
-	  key : "thekey",
       user : "qolm",
       host : "120.25.81.41",
       ref  : "origin/master",
