@@ -12,14 +12,11 @@
             <div class="panel-body container-fluid">
                 <form class="form-horizontal">
                     <div class="row">
-                        <div class="col-xs-6 col-lg-3 offset-lg-1" style="float: left; display: inline;">
-                            <label for="">病历号：</label><span id = "recipe_number"></span>
-                        </div>
-                        <div class="col-xs-12 col-lg-5">
+                        <div class="col-xs-12 col-lg-6 offset-lg-1">
                             <div class="form-group " style=" margin-bottom: 0px;">
                                 <div class="input-search">
                                     <button type="submit" class="input-search-btn"><i class="icon wb-search" aria-hidden="true"></i></button>
-                                    <input type="text" class="form-control" name="" placeholder="" style="padding-top: 2px;padding-bottom: 2px;" id="id_number" oninput="logSearch(this)" maxlength="18">
+                                    <input type="text" class="form-control"placeholder="请在此输入身份证号码"  style="padding-top: 2px;padding-bottom: 2px;" id="id_number" oninput="logSearch(this)" maxlength="18">
                                 </div>
                             </div>
                         </div>
@@ -39,7 +36,7 @@
                             健康管理师：<span id ="doctor"></span>
                         </p>
                         <p class="col-md-4 col-xs-12 offset-lg-2 ">
-                            单次金额：<span id = "single"></span>
+                            病例编号：<span id="recipe_number"> </span>
                         </p>
                     </div>
                     <div class="row">
@@ -343,6 +340,9 @@ var logSearch = function(dom) {
     };
 
 };
+$(function() {
+    $("#id_number").val("");
+});
 </script>
 <% if (typeof pjax === "undefined") { %>
     <%- include ../footer %>
