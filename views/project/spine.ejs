@@ -202,7 +202,7 @@ var doSearch = function (dom) {
                 patient_id = data.patient.id;
                 $("#recipe_number").text(data.number);
             } else {
-                $("#showProject").html("没有挂号，请先去挂号");
+                $("#showProject").html("暂无搜索结果");
             }
 
         });
@@ -318,9 +318,13 @@ var submitForm = function () {
                     title: data.info || "提交成功",
                     type: "success"
                 },
-                setTimeout(function() {
-                    location.href="/spine";
-                },1000));
+                function() {
+                    $("input:checkbox").prop("checked", false);
+                    $("input").val("");
+                    $("textarea").val("");
+                    $("#single").text(0);
+                    $("#total").text(0);
+                });
             } else {
                 swal("提交失败", "", "error");
             }
