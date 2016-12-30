@@ -455,4 +455,11 @@ $(function() {
             );
         }, 60000);
     }
+
+
+    $(document).on('customPjax:end', function() {
+        g_breadcumb();
+        $(".input-search-close").prev().val('').trigger("input");
+    });
+    $(".input-search-close").prev().val('').trigger("input");
 });
