@@ -30,7 +30,7 @@
                                 <div role="tabpanel" class="tab-pane active" id="blood_pressure">
                                     <div style="margin-top: 10px;">
                                         <h3>数据图表</h3>
-                                        <div id="chart_blood_pressures" style="width: 100%;height:400px;"></div>
+                                        <div id="chart_blood_pressure_tab" style="width: 100%;height:400px;"></div>
                                     </div>
 
                                     <div style="margin-top: 10px;">
@@ -44,7 +44,7 @@
                                                     <th>是否异常</th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="blood_pressures">
+                                            <tbody id="blood_pressure_tab">
                                             </tbody>
                                         </table>
                                         <div style="text-align: right;" class="paginationDiv"></div>
@@ -71,6 +71,7 @@
                                             <tbody id="blood_glucoses">
                                             </tbody>
                                         </table>
+                                        <div style="text-align: right;" class="paginationDiv"></div>
                                     </div>
                                 </div>
                                 <!-- 体温检测页面 -->
@@ -93,6 +94,7 @@
                                             <tbody id="temperatures">
                                             </tbody>
                                         </table>
+                                        <div style="text-align: right;" class="paginationDiv"></div>
                                     </div>
                                 </div>
                                 <!-- 体重检测页面 -->
@@ -115,6 +117,7 @@
                                             <tbody id="weights">
                                             </tbody>
                                         </table>
+                                        <div style="text-align: right;" class="paginationDiv"></div>
                                     </div>
                                 </div>
                                 <!-- 心率检测页面 -->
@@ -137,6 +140,7 @@
                                             <tbody id="heart_rates">
                                             </tbody>
                                         </table>
+                                        <div style="text-align: right;" class="paginationDiv"></div>
                                     </div>
                                 </div>
                                 <!-- TDS数字中医页面 -->
@@ -181,6 +185,10 @@ $(function(){
         return "<tr><td>" + obj.join("</td><td>") + "</td></tr>";
     };
 
+    var createErrTr = function (obj) {
+        return "<tr><td style='color:red'>" + obj.join("</td><td style='color:red'>") + "</td></tr>";
+    };
+
     function createChart(obj,data){
         var myChart = echarts.init(document.getElementById(obj));
         var option = {
@@ -219,15 +227,35 @@ $(function(){
         var before_blood_glucose = [];
         var after_blood_glucose = [];
         var blood_glucose_date = [];
-
+        var data = data["data"];
+        $("#blood_sugar table tbody").html("");
         for (var k = 0; k < data.length; k++) {
             var tr = [data[k].datetime, data[k].before_blood_glucose, data[k].after_blood_glucose];
             before_blood_glucose.push(data[k]['before_blood_glucose']);
             after_blood_glucose.push(data[k]['after_blood_glucose']);
             blood_glucose_date.push(data[k]['datetime']);
             tr.push(data[k].status1 + '/' + data[k].status2);
-            $('#' + "blood_glucoses").append($(createTr(tr)));
+            if ((data[k].status1 === '正常') && (data[k].status1 === '正常')) {
+                $("#blood_glucoses").append($(createTr(tr)));
+            } else {
+                $("#blood_glucoses").append($(createErrTr(tr)));
+            }
         }
+    };
+
+    var bSEchartFunction = function(data,status){
+        console.log(data);
+        var before_blood_glucose = [];
+        var after_blood_glucose = [];
+        var blood_glucose_date = [];
+        var data = data["data"];
+        for (var k = 0; k < data.length; k++) {
+            var tr = [data[data.length - 1 - k].datetime, data[data.length - 1 - k].before_blood_glucose, data[data.length - 1 - k].after_blood_glucose];
+            before_blood_glucose.push(data[data.length - 1 - k]['before_blood_glucose']);
+            after_blood_glucose.push(data[data.length - 1 - k]['after_blood_glucose']);
+            blood_glucose_date.push(data[data.length - 1 - k]['datetime']);
+        }
+        console.log(before_blood_glucose);
         var chart_data = {
             date: blood_glucose_date,
             series: [
@@ -246,19 +274,34 @@ $(function(){
     };
 
     var bPFunction = function(data,status) {
-        console.log(data["meta"]);
         var max_blood_pressure = [];
         var min_blood_pressure = [];
         var blood_pressure_date = [];
         var data = data["data"];
-        $("#blood_pressures").html("");
+        $("#blood_pressure table tbody").html("");
         for (var k = 0; k < data.length; k++) {
             var tr = [data[k].datetime, data[k].max_blood_pressure, data[k].min_blood_pressure];
             max_blood_pressure.push(data[k]['max_blood_pressure']);
             min_blood_pressure.push(data[k]['min_blood_pressure']);
             blood_pressure_date.push(data[k]['datetime']);
             tr.push(data[k].status1 + '/' + data[k].status2);
-            $("#blood_pressures").append($(createTr(tr)));
+            if ((data[k].status1 === '正常') && (data[k].status1 === '正常')) {
+                $("#blood_pressure_tab").append($(createTr(tr)));
+            } else {
+                $("#blood_pressure_tab").append($(createErrTr(tr)));
+            }
+        }
+    };
+    var bPEchartFunction = function(data,status) {
+        var max_blood_pressure = [];
+        var min_blood_pressure = [];
+        var blood_pressure_date = [];
+        var data = data["data"];
+        for (var k = 0; k < data.length; k++) {
+            var tr = [data[data.length - 1 - k].datetime, data[data.length - 1 - k].max_blood_pressure, data[data.length - 1 - k].min_blood_pressure];
+            max_blood_pressure.push(data[data.length - 1 - k]['max_blood_pressure']);
+            min_blood_pressure.push(data[data.length - 1 - k]['min_blood_pressure']);
+            blood_pressure_date.push(data[data.length - 1 - k]['datetime']);
         }
         var chart_data = {
             date: blood_pressure_date,
@@ -274,19 +317,35 @@ $(function(){
                     data:min_blood_pressure,
                 }]
         };
-        createChart("chart_blood_pressures",chart_data)
+        createChart("chart_blood_pressure_tab",chart_data)
     };
 
     var temperatureFunction = function(data,status){
         var temperatures_value = [];
         var temperatures_date = [];
-
+        var data = data["data"];
+        $("#temperature table tbody").html("");
         for (var k = 0; k < data.length; k++) {
             var tr = [data[k].datetime, data[k].value];
             temperatures_value.push(data[k]['value']);
             temperatures_date.push(data[k]['datetime']);
             tr.push(data[k].status);
-            $('#' + "temperatures").append($(createTr(tr)));
+            if (data[k].status === '正常') {
+                $("#temperatures").append($(createTr(tr)));
+            } else {
+                $("#temperatures").append($(createErrTr(tr)));
+            }
+        }
+    };
+
+    var temperatureEchartFunction = function(data,status){
+        var temperatures_value = [];
+        var temperatures_date = [];
+        var data = data["data"];
+        for (var k = 0; k < data.length; k++) {
+            var tr = [data[k].datetime, data[k].value];
+            temperatures_value.push(data[k]['value']);
+            temperatures_date.push(data[k]['datetime']);
         }
         var chart_data = {
             date: temperatures_date,
@@ -303,13 +362,24 @@ $(function(){
     var weightFunction = function(data,status){
         var weights_value = [];
         var weights_date = [];
-
+        var data = data["data"];
+        $("#weight table tbody").html("");
         for (var k = 0; k < data.length; k++) {
             var tr = [data[k].datetime, data[k].value];
             weights_value.push(data[k]['value']);
             weights_date.push(data[k]['datetime']);
             tr.push(data[k].status);
             $('#' + "weights").append($(createTr(tr)));
+        }
+    };
+    var weightEchartFunction = function(data,status){
+        var weights_value = [];
+        var weights_date = [];
+        var data = data["data"];
+        for (var k = 0; k < data.length; k++) {
+            var tr = [data[k].datetime, data[k].value];
+            weights_value.push(data[k]['value']);
+            weights_date.push(data[k]['datetime']);
         }
         var chart_data = {
             date: weights_date,
@@ -326,13 +396,25 @@ $(function(){
     var heartRateFunction = function(data,status){
         var heart_rates_value = [];
         var heart_rates_date = [];
-
+        var data = data["data"];
+        $("#heart_rate table tbody").html("");
         for (var k = 0; k < data.length; k++) {
             var tr = [data[k].datetime, data[k].value];
             heart_rates_value.push(data[k]['value']);
             heart_rates_date.push(data[k]['datetime']);
             tr.push(data[k].status);
             $('#' + "heart_rates").append($(createTr(tr)));
+        }
+    };
+
+    var heartRateEchartFunction = function(data,status){
+        var heart_rates_value = [];
+        var heart_rates_date = [];
+        var data = data["data"];
+        for (var k = 0; k < data.length; k++) {
+            var tr = [data[k].datetime, data[k].value];
+            heart_rates_value.push(data[k]['value']);
+            heart_rates_date.push(data[k]['datetime']);
         }
         var chart_data = {
             date: heart_rates_date,
@@ -358,8 +440,8 @@ $(function(){
             </td>\n\
         </tr>'
         return template2.replace(/\{__id__\}/g, id)
-        .replace(/\{__time__\}/g, dom["created_at"].substr(0,10))
-        .replace(/\{__report_url__\}/g, dom["report_url"]);
+            .replace(/\{__time__\}/g, dom["created_at"].substr(0,10))
+            .replace(/\{__report_url__\}/g, dom["report_url"]);
     };
 
 
@@ -370,7 +452,8 @@ $(function(){
         }
         if (where === "血压监测"){
             $(this).data("apiget",true)
-            var paginationDiv = $("#blood_pressures").parent().parent().find(".paginationDiv")
+            doAjax(window.baseUrl + "/examination_check/blood_pressure", 'get', {'patient_id': uid,'start_date': startDate,'end_date': todayData,'page':0,'per_page':0}, bPEchartFunction);
+            var paginationDiv = $("#blood_pressure").find(".paginationDiv")
             paginationDiv.pagination({
                 pageSize: 10,
                 loadFirstPage: true,
@@ -393,19 +476,99 @@ $(function(){
             return true;
         } else if( where === "血糖监测") {
             $(this).data("apiget",true)
-            doAjax(window.baseUrl + "/examination_check/blood_glucose", 'get', {'patient_id': uid,'start_date': startDate,'end_date': todayData,'page':1,'per_page':10}, bSFunction);
+            doAjax(window.baseUrl + "/examination_check/blood_glucose", 'get', {'patient_id': uid,'start_date': startDate,'end_date': todayData,'page':0,'per_page':0}, bSEchartFunction);
+            var paginationDiv = $("#blood_sugar").find(".paginationDiv")
+            paginationDiv.pagination({
+                pageSize: 10,
+                loadFirstPage: true,
+                remote: {
+                    url: window.baseUrl + "/examination_check/blood_glucose",
+                    beforeSend: function (XHR) {
+                        XHR.setRequestHeader('access-authorization', $.cookie('access_token'));
+                    },
+                    success: bSFunction,
+                    params: {'patient_id': uid, 'start_date': startDate, 'end_date': todayData},
+                    pageParams: function(data) {
+                        return {
+                            'page': data.pageIndex + 1,
+                            'per_page': data.pageSize
+                        };
+                    },
+                    totalName: 'meta.total'
+                }
+            });
             return true;
         } else if( where === "体温监测") {
             $(this).data("apiget",true)
-            doAjax(window.baseUrl + "/examination_check/temperature", 'get', {'patient_id': uid,'start_date': startDate,'end_date': todayData,'page':1,'per_page':10}, temperatureFunction);
+            doAjax(window.baseUrl + "/examination_check/temperature", 'get', {'patient_id': uid,'start_date': startDate,'end_date': todayData,'page':0,'per_page':0}, temperatureEchartFunction);
+            var paginationDiv = $("#temperature").find(".paginationDiv")
+            paginationDiv.pagination({
+                pageSize: 10,
+                loadFirstPage: true,
+                remote: {
+                    url: window.baseUrl + "/examination_check/temperature",
+                    beforeSend: function (XHR) {
+                        XHR.setRequestHeader('access-authorization', $.cookie('access_token'));
+                    },
+                    success: temperatureFunction,
+                    params: {'patient_id': uid, 'start_date': startDate, 'end_date': todayData},
+                    pageParams: function(data) {
+                        return {
+                            'page': data.pageIndex + 1,
+                            'per_page': data.pageSize
+                        };
+                    },
+                    totalName: 'meta.total'
+                }
+            });
             return true;
         } else if( where === "体重监测") {
             $(this).data("apiget",true)
-            doAjax(window.baseUrl + "/examination_check/weight", 'get', {'patient_id': uid,'start_date': startDate,'end_date': todayData,'page':1,'per_page':10}, weightFunction);
+            doAjax(window.baseUrl + "/examination_check/weight", 'get', {'patient_id': uid,'start_date': startDate,'end_date': todayData,'page':0,'per_page':0}, weightEchartFunction);
+            var paginationDiv = $("#weight").find(".paginationDiv")
+            paginationDiv.pagination({
+                pageSize: 10,
+                loadFirstPage: true,
+                remote: {
+                    url: window.baseUrl + "/examination_check/weight",
+                    beforeSend: function (XHR) {
+                        XHR.setRequestHeader('access-authorization', $.cookie('access_token'));
+                    },
+                    success: weightFunction,
+                    params: {'patient_id': uid, 'start_date': startDate, 'end_date': todayData},
+                    pageParams: function(data) {
+                        return {
+                            'page': data.pageIndex + 1,
+                            'per_page': data.pageSize
+                        };
+                    },
+                    totalName: 'meta.total'
+                }
+            });
             return true;
         } else if( where === "心率监测") {
             $(this).data("apiget",true)
-            doAjax(window.baseUrl + "/examination_check/heart_rate", 'get', {'patient_id': uid,'start_date': startDate,'end_date': todayData,'page':1,'per_page':10}, heartRateFunction);
+            doAjax(window.baseUrl + "/examination_check/heart_rate", 'get', {'patient_id': uid,'start_date': startDate,'end_date': todayData,'page':0,'per_page':0}, heartRateEchartFunction);
+            var paginationDiv = $("#heart_rate").find(".paginationDiv")
+            paginationDiv.pagination({
+                pageSize: 10,
+                loadFirstPage: true,
+                remote: {
+                    url: window.baseUrl + "/examination_check/heart_rate",
+                    beforeSend: function (XHR) {
+                        XHR.setRequestHeader('access-authorization', $.cookie('access_token'));
+                    },
+                    success: heartRateFunction,
+                    params: {'patient_id': uid, 'start_date': startDate, 'end_date': todayData},
+                    pageParams: function(data) {
+                        return {
+                            'page': data.pageIndex + 1,
+                            'per_page': data.pageSize
+                        };
+                    },
+                    totalName: 'meta.total'
+                }
+            });
             return true;
         } else if( where === "TDS数字中医") {
             $(this).data("apiget",true)
