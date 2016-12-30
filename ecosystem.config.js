@@ -9,9 +9,10 @@ module.exports = {
     {
       name      : "API",
       script    : "bin/www",
-    },env_production : {
-        NODE_ENV: "production"
-	}
+	  env_production : {
+		NODE_ENV: "production"
+	  }
+    },
 
   ],
 
