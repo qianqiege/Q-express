@@ -85,7 +85,7 @@
                             <div class="row">
                                 <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
                                     <label class="form-control-label" for="tel">联系方式</label>
-                                    <input type="number" class="form-control" id="tel" name="phone" maxlength="11">
+                                    <input type="text" class="form-control" id="tel" name="phone" maxlength="11" onchange = "if(! /^d+$/.test(this.value)){swal('手机号码只能包含数字');this.value='';}">
                                 </div>
                                 <div class="form-group form-material col-xs-12 col-md-5">
                                     <label class="form-control-label" for="occupation">职业</label>
@@ -413,7 +413,7 @@
                                         <div class="radio-custom radio-primary radio-inline">
                                             <input type="radio" id="drink_history1_radio4" name="drink_history-item_1" value="曾喝已戒" data-hastext="true" data-bindtext="dry_out_years" onchange="doLimit(this);">
                                             <label for="drink_history1_radio4">曾喝已戒</label>
-                                            <input type="text" name="drink_history-dry_out_years" id="dry_out_years" value="" style="border: none; text-align: center; border-bottom: 1px solid black;" disabled="true">
+                                            <input type="text" name="drink_history-dry_out_years" id="dry_out_years" value="" style="border: none; text-align: center; border-bottom: 1px solid black;" disabled="true" onchange="timeTest(this)">
                                             <span>年</span>
                                         </div>
                                     </div>
@@ -514,7 +514,7 @@
                                         <div class="radio-custom radio-primary radio-inline">
                                             <input type="radio" id="smoke_history1_radio3" name="smoke_history-item_1" value="已经戒烟" data-bindtext="quit_smoking_years" data-hastext="true" onchange="doLimit(this);">
                                             <label for="smoke_history1_radio3">已经戒烟</label>
-                                            <input type="text" name="smoke_history-quit_smoking_years" id="quit_smoking_years" value="" style="border: none; text-align: center; border-bottom: 1px solid black;" disabled="true">
+                                            <input type="text" name="smoke_history-quit_smoking_years" id="quit_smoking_years" value="" style="border: none; text-align: center; border-bottom: 1px solid black;" disabled="true" onchange="timeTest(this)">
                                             <span>年</span>
                                         </div>
                                     </div>
@@ -1400,7 +1400,7 @@
                                         <div class="radio-custom radio-primary radio-inline">
                                             <input type="radio" id="excretion_habit1_radio5" name="excretion-item_1" value="夜尿" data-bindtext="nocturnal_enuresis_times" data-hastext="true">
                                             <label for="excretion_habit1_radio5">夜尿</label>
-                                            <input type="text" name="excretion-nocturnal_enuresis_times" id="nocturnal_enuresis_times"  value="" style="border: none; text-align: center; border-bottom: 1px solid black;" disabled="true">
+                                            <input type="text" name="excretion-nocturnal_enuresis_times" id="nocturnal_enuresis_times"  value="" style="border: none; text-align: center; border-bottom: 1px solid black;" disabled="true" onchange="numberTest(this)">
                                             <span>次</span>
                                         </div>
                                     </div>
@@ -1416,7 +1416,7 @@
                                         <div class="radio-custom radio-primary radio-inline">
                                             <input type="radio" id="excretion_habit2_radio2" name="excretion-item_2" value="便秘" data-bindtext="constipation_times" data-hastext="true">
                                             <label for="excretion_habit2_radio2">便秘</label>
-                                            <input type="text" name="excretion-constipation_times" id="constipation_times"  value="" style="border: none; text-align: center; border-bottom: 1px solid black;" disabled="true">
+                                            <input type="text" name="excretion-constipation_times" id="constipation_times"  value="" style="border: none; text-align: center; border-bottom: 1px solid black;" disabled="true" onchange="numberTest(this)">
                                             <span>天/次</span>
                                         </div>
                                         <div class="radio-custom radio-primary radio-inline">
@@ -1579,29 +1579,29 @@
                                     <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
                                         <label class="form-control-label" for="height">身高</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="height" name="physical_examination-height">
+                                            <input type="text" class="form-control" id="height" name="physical_examination-height" onchange="numberTest(this)" />
                                             <span class="input-group-addon">cm</span>
                                         </div>
                                     </div>
                                     <div class="form-group form-material col-xs-12 col-md-5">
                                         <label class="form-control-label" for="weight">体重</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="weight" name="physical_examination-weight">
+                                            <input type="text" class="form-control" id="weight" name="physical_examination-weight" onchange="numberTest(this)" />
                                             <span class="input-group-addon">kg</span>
                                         </div>
 
                                     </div>
                                     <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
-                                        <label class="form-control-label" for="baric_index">体重指数 (BMI)</label>
+                                        <label class="form-control-label" for="baric_index">体重指数</label>
                                         <div class="input-group">
-                                            <input type="text" disabled="disabled" class="form-control" id="baric_index" name="physical_examination-baric_index">
+                                            <input type="text" class="form-control" id="baric_index" name="physical_examination-baric_index">
                                             <span class="input-group-addon">（18.5-23.9）</span>
                                         </div>
                                     </div>
                                     <div class="form-group form-material col-xs-12 col-md-5">
                                         <label class="form-control-label" for="hipline">臀围</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="hipline" name="physical_examination-hipline">
+                                            <input type="text" class="form-control" id="hipline" name="physical_examination-hipline" onchange="numberTest(this)"/>
                                             <span class="input-group-addon">cm</span>
                                         </div>
 
@@ -1609,50 +1609,50 @@
                                     <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
                                         <label class="form-control-label" for="waistline">腰围</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="waistline" name="physical_examination-waistline">
+                                            <input type="text" class="form-control" id="waistline" name="physical_examination-waistline" onchange="numberTest(this)" />
                                             <span class="input-group-addon">（男&lt;85,女&lt; 80）cm</span>
                                         </div>
                                     </div>
                                     <div class="form-group form-material col-xs-12 col-md-5">
-                                        <label class="form-control-label" for="waist_to_hipratio">腰臀比(WHR)</label>
+                                        <label class="form-control-label" for="waist_to_hipratio">腰臀比</label>
                                         <div class="input-group">
-                                            <input type="text" disabled="disabled" class="form-control" id="waist_to_hipratio" name="physical_examination-waist_to_hipratio">
+                                            <input type="text" class="form-control" id="waist_to_hipratio" name="physical_examination-waist_to_hipratio">
                                             <span class="input-group-addon">（男 &lt;0.9, 女&lt;0.85）</span>
                                         </div>
 
                                     </div>
                                     <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
-                                        <label class="form-control-label" for="max_pressure">收缩压</label>
+                                        <label class="form-control-label" for="min_pressure">舒张压</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="max_pressure" name="physical_examination-max_BloodPressure">
-                                            <span class="input-group-addon">（90-140）mmHg</span>
+                                            <input type="text" class="form-control" id="min_pressure" name="physical_examination-min_BloodPressure" onchange="numberTest(this)" />
+                                            <span class="input-group-addon">（60-90）mmHg</span>
                                         </div>
                                     </div>
                                     <div class="form-group form-material col-xs-12 col-md-5">
-                                        <label class="form-control-label" for="min_pressure">舒张压</label>
+                                        <label class="form-control-label" for="max_pressure">收缩压</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="min_pressure" name="physical_examination-min_BloodPressure">
-                                            <span class="input-group-addon">（60-90）mmHg</span>
+                                            <input type="text" class="form-control" id="max_pressure" name="physical_examination-max_BloodPressure" onchange="numberTest(this)" />
+                                            <span class="input-group-addon">（90-140）mmHg</span>
                                         </div>
                                     </div>
                                     <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
                                         <label class="form-control-label" for="total_cholesterol">总胆固醇</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="total_cholesterol" name="physical_examination-total_cholesterol">
+                                            <input type="text" class="form-control" id="total_cholesterol" name="physical_examination-total_cholesterol" onchange="numberTest(this)" />
                                             <span class="input-group-addon">（2.84-5.68）mmol/L</span>
                                         </div>
                                     </div>
                                     <div class="form-group form-material col-xs-12 col-md-5">
                                         <label class="form-control-label" for="triglyceride">甘油三酯</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="triglyceride" name="physical_examination-triglyceride">
+                                            <input type="text" class="form-control" id="triglyceride" name="physical_examination-triglyceride" onchange="numberTest(this)" />
                                             <span class="input-group-addon">（0.56-1.7）mmol/L </span>
                                         </div>
                                     </div>
                                     <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
                                         <label class="form-control-label" for="high_density_lipoprotein">高密度脂蛋白</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="high_density_lipoprotein" name="physical_examination-high_density_lipoprotein">
+                                            <input type="text" class="form-control" id="high_density_lipoprotein" name="physical_examination-high_density_lipoprotein" onchange="numberTest(this)" />
                                             <span class="input-group-addon">（1.14-2.0）mmol/L</span>
                                         </div>
 
@@ -1660,7 +1660,7 @@
                                     <div class="form-group form-material col-xs-12 col-md-5">
                                         <label class="form-control-label" for="low_density_lipoprotein">低密度脂蛋白</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="low_density_lipoprotein" name="physical_examination-low_density_lipoprotein">
+                                            <input type="text" class="form-control" id="low_density_lipoprotein" name="physical_examination-low_density_lipoprotein" onchange="numberTest(this)" />
                                             <span class="input-group-addon">（0-3.1）mmol/L </span>
                                         </div>
 
@@ -1668,7 +1668,7 @@
                                     <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
                                         <label class="form-control-label" for="b_BloodGlucose">空腹血糖</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="b_BloodGlucose" name="physical_examination-b_BloodGlucose">
+                                            <input type="text" class="form-control" id="b_BloodGlucose" name="physical_examination-b_BloodGlucose" onchange="numberTest(this)" />
                                             <span class="input-group-addon">（3.9-6.1）mmol/L</span>
                                         </div>
 
@@ -1676,7 +1676,7 @@
                                     <div class="form-group form-material col-xs-12 col-md-5">
                                         <label class="form-control-label" for="glycosylated_hemoglobin">糖化血红蛋白</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="glycosylated_hemoglobin" name="physical_examination-glycosylated_hemoglobin">
+                                            <input type="text" class="form-control" id="glycosylated_hemoglobin" name="physical_examination-glycosylated_hemoglobin" onchange="numberTest(this)" />
                                             <span class="input-group-addon">（3.8-6）mmol/L</span>
                                         </div>
 
@@ -1684,7 +1684,7 @@
                                     <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
                                         <label class="form-control-label" for="homocysteine">同型半胱氨酸</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="homocysteine" name="physical_examination-homocysteine">
+                                            <input type="text" class="form-control" id="homocysteine" name="physical_examination-homocysteine" onchange="numberTest(this)"/>
                                             <span class="input-group-addon">（0-10）umol/L</span>
                                         </div>
 
@@ -1692,7 +1692,7 @@
                                     <div class="form-group form-material col-xs-12 col-md-5">
                                         <label class="form-control-label" for="glutamic_oxaloacetic_transaminase">谷草转氨酶</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="glutamic_oxaloacetic_transaminase" name="physical_examination-glutamic_oxaloacetic_transaminase">
+                                            <input type="text" class="form-control" id="glutamic_oxaloacetic_transaminase" name="physical_examination-glutamic_oxaloacetic_transaminase" onchange="numberTest(this)" />
                                             <span class="input-group-addon">（5-40）u/L</span>
                                         </div>
 
@@ -1700,7 +1700,7 @@
                                     <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
                                         <label class="form-control-label" for="glutamic_pyruvic_transaminase">谷丙转氨酶</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="glutamic_pyruvic_transaminase" name="physical_examination-glutamic_pyruvic_transaminase">
+                                            <input type="text" class="form-control" id="glutamic_pyruvic_transaminase" name="physical_examination-glutamic_pyruvic_transaminase" onchange="numberTest(this)" />
                                             <span class="input-group-addon">（0-55）u/L</span>
                                         </div>
 
@@ -1708,7 +1708,7 @@
                                     <div class="form-group form-material col-xs-12 col-md-5">
                                         <label class="form-control-label" for="creatinine">肌酐</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="creatinine" name="physical_examination-creatinine">
+                                            <input type="text" class="form-control" id="creatinine" name="physical_examination-creatinine" onchange="numberTest(this)" />
                                             <span class="input-group-addon">（53-136）umol/L</span>
                                         </div>
 
@@ -1716,7 +1716,7 @@
                                     <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
                                         <label class="form-control-label" for="usea_nitrogen">尿素氮</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="usea_nitrogen" name="physical_examination-usea_nitrogen">
+                                            <input type="text" class="form-control" id="usea_nitrogen" name="physical_examination-usea_nitrogen" onchange="numberTest(this)" />
                                             <span class="input-group-addon">（2.3-7.2）mmol/L</span>
                                         </div>
 
@@ -1724,7 +1724,7 @@
                                     <div class="form-group form-material col-xs-12 col-md-5">
                                         <label class="form-control-label" for="blood_uric_acid">血尿酸</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="blood_uric_acid" name="physical_examination-blood_uric_acid">
+                                            <input type="text" class="form-control" id="blood_uric_acid" name="physical_examination-blood_uric_acid" onchange="numberTest(this)" />
                                             <span class="input-group-addon">（150-420）umol/L</span>
                                         </div>
 
@@ -1758,27 +1758,26 @@
     <script src='/javascripts/jquery.form.js'></script>
     <script>
 
-
         function calc_bmi() {
             if ($("#height").val() != "" && $("#weight").val() != ""){
-                var calc = $("#weight").val() / (($("#height").val() / 100) * ($("#height").val() / 100) );
-                $("#baric_index").val(calc.toFixed(1))
+               var calc = $("#weight").val() / (($("#height").val() / 100) * ($("#height").val() / 100) );
+              $("#baric_index").val(calc.toFixed(1))
             } else {
                 $("#baric_index").val(0)
             }
         }
-
         function calc_whr() {
             if ($("#hipline").val() != "" && $("#waistline").val() != ""){
-                var calc = ($("#hipline").val() * $("#waistline").val()) / 100 ;
-                $("#waist_to_hipratio").val(calc.toFixed(1))
+               var calc = ($("#hipline").val() * $("#waistline").val()) / 100 ;
+              $("#waist_to_hipratio").val(calc.toFixed(1))
             } else {
                 $("#waist_to_hipratio").val(0)
-            }
+           }
         }
 
-        $("#height,#weight").on("change",calc_bmi)
-        $("#hipline,#waistline").on("change",calc_whr)
+       $("#height,#weight").on("change",calc_bmi)
+
+       $("#hipline,#waistline").on("change",calc_whr)
 
         //查体中问题3、4当选择无时不可选择其他选项
         var docheckBox = function (dom) {
@@ -1914,6 +1913,15 @@
                 }
             };
         };
+        //输入吸烟饮酒等时间限制
+        var timeTest = function (dom) {
+            if(!/^\d*(\.\d{1,2})?$/.test(dom.value) || dom.value < 0 || dom.value > 99 || dom.value == 0){swal('请填写正确时间');dom.value=''}
+        }
+        //填入必须为数值类型
+        var numberTest = function (dom) {
+            if(!/^\d*(\.\d{1,2})?$/.test(dom.value) || dom.value < 0 || dom.value > 10000 || dom.value == 0){swal('请填写正确数字');dom.value=''}
+        };
+
     </script>
 <% if (typeof pjax === "undefined") { %>
     <%- include ../footer %>
