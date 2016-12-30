@@ -1,4 +1,3 @@
-
 <% if (typeof pjax === "undefined") { %>
     <%- include ../header %>
 <% } else { %>
@@ -17,7 +16,7 @@
         <div class="panel">
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-xs-12 col-lg-6 offset-lg-1">
                         <form class="page-search-form" role="search" onsubmit="return false;">
                             <div class="input-search input-search-dark">
                                 <i class="input-search-icon wb-search" aria-hidden="true"></i>
@@ -124,9 +123,7 @@ $(function() {
         $("#inputSearch").val(idNum).trigger("oninput");
     }
 });
-
 </script>
-
 <% if (typeof pjax === "undefined") { %>
     <%- include ../footer %>
 <% } %>
