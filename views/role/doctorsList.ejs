@@ -101,18 +101,24 @@
     };
     var searching = false;
     var doSearch = function(dom){
-        if(dom.value.length === 18 && checkIdCard(dom.value) && !searching){
-            searching = true;
-            doAjax(window.baseUrl + "/users/get_user_by_id_number", "get", {"id_number": dom.value}, function(data, status) {
-                searching = false;
-                if (status && data) {
-                    $("#all_contacts ul:first").html($(createUserDom(data)));
-                } else {
+        if (!searching) {
+            if (dom.value) {
+                if(dom.value.length === 18 && checkIdCard(dom.value)){
+                    searching = true;
+                    doAjax(window.baseUrl + "/users/get_user_by_id_number", "get", {"id_number": dom.value}, function(data, status) {
+                        searching = false;
+                        if (status && data) {
+                            $("#all_contacts ul:first").html($(createUserDom(data)));
+                        } else {
+                            $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
+                        }
+                    });
+                }else{
                     $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
                 }
-            });
-        }else{
-            $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
+            } else {
+                console.log("empty");
+            }
         }
     };
     //角色列表HTML模板
@@ -136,9 +142,10 @@
     var userId;
     $(function() {
         doAjax(window.baseUrl + "/users/all_users", 'get',{}, function(data, status) {
+            console.log(data)
             if (status && data) {
                 for(var i = 0;i < data.length;i++){
-                    $('#all_contacts ul').append($(createUserDom(data[i])));
+                    $('#all_contacts ul:first').append($(createUserDom(data[i])));
                 }
             } else {
                 $('#all_contacts ul:first').html('暂无健康管理师');
