@@ -1614,7 +1614,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group form-material col-xs-12 col-md-5">
-                                        <label class="form-control-label" for="waist_to_hipratio">腰臀比</label>
+                                        <label class="form-control-label" for="waist_to_hipratio">腰臀比 (WHR)</label>
                                         <div class="input-group">
                                             <input type="text" class="form-control" id="waist_to_hipratio" name="physical_examination-waist_to_hipratio">
                                             <span class="input-group-addon">（男 &lt;0.9, 女&lt;0.85）</span>
@@ -1768,8 +1768,8 @@
         }
         function calc_whr() {
             if ($("#hipline").val() != "" && $("#waistline").val() != ""){
-               var calc = ($("#hipline").val() * $("#waistline").val()) / 100 ;
-              $("#waist_to_hipratio").val(calc.toFixed(1))
+               var calc = $("#waistline").val() / $("#hipline").val();
+              $("#waist_to_hipratio").val(calc.toFixed(2))
             } else {
                 $("#waist_to_hipratio").val(0)
            }
