@@ -9,7 +9,11 @@ module.exports = {
     {
       name      : "API",
       script    : "bin/www",
+	  env_production : {
+		NODE_ENV: "production"
+	  }
     },
+
   ],
 
   /**
@@ -18,12 +22,12 @@ module.exports = {
    */
   deploy : {
     production : {
-	  key : "thekey",
       user : "qolm",
       host : "120.25.81.41",
       ref  : "origin/master",
       repo : "git@git.oschina.net:ybyt/QOLM-V.git",
       path : "/home/qolm/QOLM-nodejs",
+	  "pre-setup" : "npm install pm2 -g",
       "post-deploy" : "npm install && pm2 startOrRestart ecosystem.json --env production"
     },
   }
