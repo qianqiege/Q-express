@@ -39,7 +39,7 @@
                             <div class="row">
                                 <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
                                     <label class="form-control-label" for="idCard">身份证号</label>
-                                    <input type="text" class="form-control" id="idCard" name="id_number" oninput="showBirthSex(this);" maxlength="18">
+                                    <input type="text" class="form-control" id="idCard" name="id_number" oninput="showBirthSex(this);" maxlength="18" onchange="testId(this)">
                                 </div>
                                 <div class="form-group form-material col-xs-12 col-md-5">
                                     <label class="form-control-label" for="sex">性别</label>
@@ -1877,6 +1877,11 @@
                 } else {
                     postObj[isChild[0]] = obj[i];
                 }
+            }
+            var id =  $("#idCard").val();
+            if (id.length !== 18) {
+                swal("请填写正确的18位身份证号码");
+                return  false;
             }
             doAjax(
                 window.baseUrl + "/patient_record/create",
