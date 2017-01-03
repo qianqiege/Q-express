@@ -10,7 +10,7 @@
     </div>
     <div class="page-content">
         <!-- Panel -->
-        <div class="panel">
+        <div class="panel" id = "doctorList">
             <div class="panel-body">
             <div class="row">
                 <div class="col-md-6">
@@ -64,6 +64,7 @@
                     </div>
                 </div>
             </div>
+            <div style="text-align: right;" class="paginationDiv"></div>
         </div>
         <!-- End Panel -->
 
@@ -141,15 +142,34 @@
     };
     var userId;
     $(function() {
-        doAjax(window.baseUrl + "/users/all_users", 'get',{}, function(data, status) {
-            console.log(data)
-            if (status && data) {
-                for(var i = 0;i < data.length;i++){
-                    $('#all_contacts ul:first').append($(createUserDom(data[i])));
+        var doctorListFunction = function(data) {
+            $('#all_contacts ul').html("");
+            if (data) {
+                for(var i = 0;i < data.data.length;i++){
+                    $('#all_contacts ul:first').append($(createUserDom(data.data[i])));
                 }
             } else {
                 $('#all_contacts ul:first').html('暂无健康管理师');
             };
+        };
+        var paginationDiv = $("#doctorList").find(".paginationDiv")
+        paginationDiv.pagination({
+            pageSize: 10,
+            loadFirstPage: true,
+            remote: {
+                url: window.baseUrl + "/users/all_users",
+                beforeSend: function (XHR) {
+                    XHR.setRequestHeader('access-authorization', $.cookie('access_token'));
+                },
+                success: doctorListFunction,
+                pageParams: function(data) {
+                    return {
+                        'page': data.pageIndex + 1,
+                        'per_page': data.pageSize
+                    };
+                },
+                totalName: 'meta.total'
+            }
         });
         $('#roleDoctorsList').on('show.bs.modal', function (e) {
             userId = $(e.relatedTarget).data('id');
