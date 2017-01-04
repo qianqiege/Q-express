@@ -10,23 +10,15 @@
 </style>
     <div class="page-header">
         <h1 class="page-title"><%= title %></h1>
-        <ol class="breadcrumb">
-        </ol>
-        <div class="page-header-actions">
-            <a class="btn btn-primary btn-round waves-effect" href="#" onclick='$("#print-this").printArea()'>
-                <i class="icon wb-print" aria-hidden="true"></i>
-                <span class="hidden-sm-down">打印该页面</span>
-            </a>
-        </div>
     </div>
     <div class="page-content">
-        <div class="page-content">
-            <div class="panel">
+        <div class="page-content mainarea">
+            <div class="panel needidAABBCCDD">
                 <div class="panel-body">
                     <div id="print-this">
                         <div id="head">
                             <img id="table-logo" src="/images/logo-blue.png"/>
-                            <h4 class="vertical-align-bottom pull-xs-right">编号: <span id="table_id"></span> </h4>
+                            <h4 class="vertical-align-bottom pull-xs-right">编号: <span class="table_id"></span> </h4>
                             <script>
                             setTimeout(function(){ $("#table-logo").next().css("margin-top",$("#table-logo").height() - $("#table-logo").next().height()+"px")},100)
                             </script>
@@ -40,14 +32,14 @@
                                 </h4>
                                 <table class="table">
                                     <tr>
-                                        <td>姓名 : <span id="name"></span></td>
-                                        <td>性别 : <span id="sex"></span></td>
-                                        <td>出生年月 : <span id="born_date"></span></td>
+                                        <td>姓名 : <span class="name"></span></td>
+                                        <td>性别 : <span class="sex"></span></td>
+                                        <td>出生年月 : <span class="born_date"></span></td>
                                     </tr>
                                     <tr>
-                                        <td>婚姻状况 : <span id="marriage"></span></td>
-                                        <td>民族 : <span id="country"></span></td>
-                                        <td>联系方式 : <span id="contact"></span></td>
+                                        <td>婚姻状况 : <span class="marriage"></span></td>
+                                        <td>民族 : <span class="country"></span></td>
+                                        <td>联系方式 : <span class="contact"></span></td>
                                     </tr>
                                 </table>
                             </div>
@@ -58,22 +50,22 @@
                                 <div class="row" style="font-size:16px; padding-bottom: 5px;">
                                     <div class="col-md-12">
                                         <div>生理方面 :
-                                            <p style="text-indent:25px" id="rate_sl"></p>
+                                            <p style="text-indent:25px" class="rate_sl"></p>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div>情志方面 :
-                                            <p style="text-indent:25px" id="rate_qz"> </p>
+                                            <p style="text-indent:25px" class="rate_qz"> </p>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div>营养方面 :
-                                            <p style="text-indent:25px" id="rate_yy"></p>
+                                            <p style="text-indent:25px" class="rate_yy"></p>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div>生活方式方面 :
-                                            <p style="text-indent:25px" id="rate_shfs"> </p>
+                                            <p style="text-indent:25px" class="rate_shfs"> </p>
                                         </div>
                                     </div>
                                 </div>
@@ -81,15 +73,21 @@
                             <hr/>
                             <div id="issue">
                                 <h4>深度临床营养强化干预方案  : </h4>
-                                <p style="text-indent:25px" id="issue_fa"></p>
+                                <p style="text-indent:25px" class="issue_fa"></p>
                             </div>
                             <hr/>
                             <div>
-                                <h4  class="pull-xs-left">健管专家 : <span id="docter_name"></span></h4>
-                                <h4  class="pull-xs-right">日期 : <span id="date"></span></h4>
+                                <h4  class="text-xs-left col-xs-6">健管专家 : <span class="docter_name"></span></h4>
+                                <h4  class="text-xs-right col-xs-6">日期 : <span class="date"></span></h4>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="panel-footer">
+                    <a class="btn btn-primary btn-round waves-effect pull-xs-right" href="javascript:void(0)" onclick='$(".needidAABBCCDD #print-this").printArea()'>
+                        <i class="icon wb-print" aria-hidden="true"></i>
+                        <span class="hidden-sm-down">打印该方案</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -103,23 +101,42 @@ $(function() {
         });
         return;
     }
+    var template = $('.mainarea').html();
+    $('.mainarea').html('')
+    function uuid() {
+        return 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+            return v.toString(16);
+        });
+    }
+
+    function createpanel(){
+        var id = uuid();
+        var html = template.replace(/needidAABBCCDD/g,id)
+        $(".mainarea").append(html)
+        return id;
+    }
+
+
     var cbFunction = function(data,status){
         if (status) {
-            var last = data.health_manage_recipes.length -1;
-            $("#rate_sl").text(data.health_manage_recipes[last].physiology) // 生理
-            $("#rate_qz").text(data.health_manage_recipes[last].emotion) // 情志
-            $("#rate_yy").text(data.health_manage_recipes[last].nutrition) // 营养
-            $("#rate_shfs").text(data.health_manage_recipes[last].life_style)  // 生活方式
-            $("#docter_name").text(data.health_manage_recipes[last].doctor_name)
-            $("#issue_fa").text(data.health_manage_recipes[last].detail)
-            $("#date").text(new Date(data.created_at).Format("yyyy-MM-dd"))
-            $("#table_id").text(uid)
-            $("#name").text(data.patient.name)
-            $("#sex").text(data.patient.sex)
-            $("#born_date").text(data.patient.birthday)
-            $("#marriage").text(data.patient.marriage)
-            $("#country").text(data.patient.nation)
-            $("#contact").text(data.patient.phone)
+            for (var i in data.health_manage_recipes){
+                var id = createpanel();
+                $("."+id+" .rate_sl").text(data.health_manage_recipes[i].physiology) // 生理
+                $("."+id+" .rate_qz").text(data.health_manage_recipes[i].emotion) // 情志
+                $("."+id+" .rate_yy").text(data.health_manage_recipes[i].nutrition) // 营养
+                $("."+id+" .rate_shfs").text(data.health_manage_recipes[i].life_style)  // 生活方式
+                $("."+id+" .docter_name").text(data.health_manage_recipes[i].doctor_name)
+                $("."+id+" .issue_fa").text(data.health_manage_recipes[i].detail)
+                $("."+id+" .date").text(new Date(data.created_at).Format("yyyy-MM-dd"))
+                $("."+id+" .table_id").text(uid)
+                $("."+id+" .name").text(data.patient.name)
+                $("."+id+" .sex").text(data.patient.sex)
+                $("."+id+" .born_date").text(data.patient.birthday)
+                $("."+id+" .marriage").text(data.patient.marriage)
+                $("."+id+" .country").text(data.patient.nation)
+                $("."+id+" .contact").text(data.patient.phone)
+            }
         } else {
             swal({title: "id 错误", type: "error"}, function() {
                 window.close();

@@ -10,25 +10,14 @@
 </style>
     <div class="page-header">
         <h1 class="page-title"><%= title %></h1>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Forms</a></li>
-            <li class="breadcrumb-item active">Wizard</li>
-        </ol>
-        <div class="page-header-actions">
-            <a class="btn btn-primary btn-round waves-effect" href="#" onclick='$("#print-this").printArea()'>
-                <i class="icon wb-print" aria-hidden="true"></i>
-                <span class="hidden-sm-down">打印该页面</span>
-            </a>
-        </div>
     </div>
-    <div class="page-content">
-        <div class="panel">
+    <div class="page-content mainarea">
+        <div class="panel needidAABBCCDD">
             <div class="panel-body">
             <div id="print-this">
                 <div id="head">
                     <img id="table-logo" src="/images/logo-blue.png"/>
-                    <h4 class="vertical-align-bottom pull-xs-right">编号: <span id="table_id"></span> </h4>
+                    <h4 class="vertical-align-bottom pull-xs-right">编号: <span class="table_id"></span> </h4>
                     <script>
                      setTimeout(function(){ $("#table-logo").next().css("margin-top",$("#table-logo").height() - $("#table-logo").next().height()+"px")},100)
                     </script>
@@ -42,14 +31,14 @@
                       </h4>
                       <table class="table">
                           <tr>
-                            <td>姓名 : <span id="name"></span></td>
-                            <td>性别 : <span id="sex"></span></td>
-                            <td>出生年月 : <span id="born_date"></span></td>
+                            <td>姓名 : <span class="name"></span></td>
+                            <td>性别 : <span class="sex"></span></td>
+                            <td>出生年月 : <span class="born_date"></span></td>
                           </tr>
                           <tr>
-                            <td>婚姻状况 : <span id="marriage"></span></td>
-                            <td>民族 : <span id="country"></span></td>
-                            <td>联系方式 : <span id="contact"></span></td>
+                            <td>婚姻状况 : <span class="marriage"></span></td>
+                            <td>民族 : <span class="country"></span></td>
+                            <td>联系方式 : <span class="contact"></span></td>
                           </tr>
                       </table>
                   </div>
@@ -60,12 +49,12 @@
                       <div class="row" style="font-size:16px; padding-bottom: 5px;">
                             <div class="col-md-12">
                                 <div>身体状况描述 :
-                                  <p style="text-indent:25px" id="rate_sl"></p>
+                                  <p style="text-indent:25px" class="rate_sl"></p>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div>诊断意见 :
-                                  <p style="text-indent:25px" id="rate_qz"> </p>
+                                  <p style="text-indent:25px" class="rate_qz"> </p>
                                 </div>
                             </div>
                       </div>
@@ -84,9 +73,9 @@
                                     </tr>
                                     <tr>
                                         <td rowspan="6">
-                                            <p>等级:&nbsp;<span id = "treatment_level"></span></p>
-                                            <p>龙氏脊筑次数:&nbsp;<span id = "treatment_times"></span></p>
-                                            <p>放血排毒次数:&nbsp;<span id = "blood_times"></span></p>
+                                            <p>等级:&nbsp;<span class = "treatment_level"></span></p>
+                                            <p>龙氏脊筑次数:&nbsp;<span class = "treatment_times"></span></p>
+                                            <p>放血排毒次数:&nbsp;<span class = "blood_times"></span></p>
                                         </td>
 
                                     </tr>
@@ -120,17 +109,25 @@
                         </div>
                         <div class="row">
                             <div class="col-md-2 offset-lg-10  col-xs-12">
-                                    <p>总价：<span id = "total"></span></p>
+                                    <p>总价：<span class = "total"></span></p>
                             </div>
                         </div>
                          <hr/>
                         <div class="row">
                             <div>
-                                <h4  class="pull-xs-left">健管专家 : <span id="docter_name"></span></h4>
-                                <h4  class="pull-xs-right">日期 : <span id="date"></span></h4>
+                                <h4  class="text-xs-left col-xs-6">健管专家 : <span class="docter_name"></span></h4>
+                                <h4  class="text-xs-right col-xs-6">日期 : <span class="date"></span></h4>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            </div>
+                <div class="panel-footer">
+                    <a class="btn btn-primary btn-round waves-effect pull-xs-right" href="javascript:void(0)" onclick='$(".needidAABBCCDD #print-this").printArea()'>
+                        <i class="icon wb-print" aria-hidden="true"></i>
+                        <span class="hidden-sm-down">打印该方案</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -143,30 +140,56 @@ $(function() {
         });
         return;
     }
+
+    var template = $('.mainarea').html();
+    $('.mainarea').html('')
+    function uuid() {
+        return 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+            return v.toString(16);
+        });
+    }
+
+    function createpanel(){
+        var id = uuid();
+        var html = template.replace(/needidAABBCCDD/g,id)
+        console.log($(html))
+        $(".mainarea").append($(html))
+        return id;
+    }
+
     var cbFunction = function(data,status){
         if (status) {
-            var last = data.spine_recipes.length -1;
-            var check_spine = data.spine_recipes[last].detail;
-            var check_spine_arr =JSON.parse(check_spine);
-            for (var i in check_spine_arr) {
-                $("#"+ check_spine_arr[i]).prop("checked",true);
+            for (var i1 in data.spine_recipes){
+                var id = createpanel();
+                console.log(id)
+                var check_spine = data.spine_recipes[i1].detail;
+                var check_spine_arr =JSON.parse(check_spine);
+                for (var i in check_spine_arr) {
+                    $("."+id+" #"+ check_spine_arr[i]).prop("checked",true);
+                }
+                console.log(check_spine_arr)
+                console.log($("."+id+" input:checkbox"), $("."+id+" #total"))
+                $("."+id+" input:checkbox").prop("disabled",true);
+                $("."+id+" .total").text(data.spine_recipes[i1].total);
+                $("."+id+" .treatment_level").text(data.spine_recipes[i1].treatment_level);
+                $("."+id+" .treatment_times").text(data.spine_recipes[i1].treatment_times);
+                $("."+id+" .rate_sl").text(data.spine_recipes[i1].physical_condition)
+                $("."+id+" .rate_qz").text(data.spine_recipes[i1].diagnostic_advice)
+                $("."+id+" .docter_name").text(data.spine_recipes[i1].doctor_name)
+                $("."+id+" .blood_times").text(data.spine_recipes[i1].blood_letting_times)
+                $("."+id+" .date").text(new Date().Format("yyyy-MM-dd"))
+                $("."+id+" .table_id").text(uid)
+                $("."+id+" .name").text(data.patient.name)
+                $("."+id+" .sex").text(data.patient.sex)
+                $("."+id+" .born_date").text(data.patient.birthday)
+                $("."+id+" .marriage").text(data.patient.marriage)
+                $("."+id+" .country").text(data.patient.nation)
+                $("."+id+" .contact").text(data.patient.phone)
             }
-            $("input:checkbox").prop("disabled",true);
-            $("#total").text(data.spine_recipes[last].total);
-            $("#treatment_level").text(data.spine_recipes[last].treatment_level);
-            $("#treatment_times").text(data.spine_recipes[last].treatment_times);
-            $("#rate_sl").text(data.spine_recipes[last].physical_condition)
-            $("#rate_qz").text(data.spine_recipes[last].diagnostic_advice)
-            $("#docter_name").text(data.spine_recipes[last].doctor_name)
-            $("#blood_times").text(data.spine_recipes[last].blood_letting_times)
-            $("#date").text(new Date().Format("yyyy-MM-dd"))
-            $("#table_id").text(uid)
-            $("#name").text(data.patient.name)
-            $("#sex").text(data.patient.sex)
-            $("#born_date").text(data.patient.birthday)
-            $("#marriage").text(data.patient.marriage)
-            $("#country").text(data.patient.nation)
-            $("#contact").text(data.patient.phone)
+            
+           
+
 
         } else {
             swal({title: "id 错误", type: "error"}, function() {
