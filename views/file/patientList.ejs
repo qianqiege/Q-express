@@ -59,7 +59,6 @@
                         <li class='list-group-item list-group-item-dark' style='display:none'><a href='/page/jibin?id={__number__}'>查看疾病谱定位报告</a></li>\n\
                         <li class='list-group-item list-group-item-dark' style='display:none'><a href='/page/spine?id={__number__}'>查看龙氏脊筑方案报告</a></li>\n\
                         <li class='list-group-item list-group-item-dark' style='display:none'><a href='/page/jiankang?id={__number__}'>查看健康管理方案报告</a></li>\n\
-                        <li class='list-group-item'><a href='javascript:void(0)'>&nbsp;</a></li>\n\
                     </ul>\n\
                 </div>\n\
             </li>";
@@ -79,7 +78,6 @@
                         <li class='list-group-item list-group-item-dark' style='display:none'><a href='/page/jibin?id={__number__}'>查看疾病谱定位报告</a></li>\n\
                         <li class='list-group-item list-group-item-dark' style='display:none'><a href='/page/spine?id={__number__}'>查看龙氏脊筑方案报告</a></li>\n\
                         <li class='list-group-item list-group-item-dark' style='display:none'><a href='/page/jiankang?id={__number__}'>查看健康管理方案报告</a></li>\n\
-                        <li class='list-group-item'><a href='javascript:void(0)'>&nbsp;</a></li>\n\
                     </ul>\n\
                 </div>\n\
             </li>"
@@ -158,6 +156,7 @@
                                             $("#"+temp_data[0]+" ul").append("<li class='list-group-item list-group-item-dark'><a href='"+data[i]["tds_tables"][x].report_url+"'>"+data[i]["tds_tables"][x].created_at.substr(0,10)+' '+data[i]["tds_tables"][x].created_at.substr(11,5)+" TDS数字中医报告</a></li>")
                                         }
                                     }
+                                    $("#"+temp_data[0]+" ul").append("<li class='list-group-item' style='border-top-color: rgba(255, 255, 255, 0);border-bottom-color: rgba(255, 255, 255, 0);'><a href='javascript:void(0)'>&nbsp;</a></li>")
                                 } else {
                                     temp_data = createTimeLineLeft(name);
                                     $("#contacts_tree .timeline").append(temp_data[1]);
@@ -175,6 +174,7 @@
                                             $("#"+temp_data[0]+" ul").append("<li class='list-group-item list-group-item-dark'><a href='"+data[i]["tds_tables"][x].report_url+"'>"+data[i]["tds_tables"][x].created_at.substr(0,10)+' '+data[i]["tds_tables"][x].created_at.substr(11,5)+" TDS数字中医报告</a></li>")
                                         }
                                     }
+                                    $("#"+temp_data[0]+" ul").append("<li class='list-group-item' style='border-top-color: rgba(255, 255, 255, 0);border-bottom-color: rgba(255, 255, 255, 0);'><a href='javascript:void(0)'>&nbsp;</a></li>")
                                 }
                             }
                             $('[data-toggle="tooltip"]').tooltip();
