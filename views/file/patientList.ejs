@@ -129,7 +129,6 @@
                                .replace(/\{__id__\}/g, userObj["id"])
                                .replace(/\{__idNumber__\}/g, userObj["idNumber"]);
             };
-
             searching = true;
             doAjax(window.baseUrl + "/patient/get_by_id_number", "get", {"id_number": val}, function(data, status) {
                 searching = false;
@@ -153,7 +152,6 @@
                                         $("#"+temp_data[0]+" ul li:eq(2)").show()
                                     }
                                     if (data[i]["tds_tables"].length){
-
                                         for(var x = 0;x < data[i]["tds_tables"].length;x++){
                                             $("#"+temp_data[0]+" ul").append("<li class='list-group-item list-group-item-dark'><a href='"+data[i]["tds_tables"][x].report_url+"'>"+data[i]["tds_tables"][x].created_at.substr(0,16)+" TDS数字中医报告</a></li>")
                                         }
@@ -171,9 +169,7 @@
                                         $("#"+temp_data[0]+" ul li:eq(2)").show()
                                     }
                                     if (data[i]["tds_tables"].length){
-
                                         for(var x = 0;x < data[i]["tds_tables"].length;x++){
-                                            console.log(data[i]["tds_tables"][x])
                                             $("#"+temp_data[0]+" ul").append("<li class='list-group-item list-group-item-dark'><a href='"+data[i]["tds_tables"][x].report_url+"'>"+data[i]["tds_tables"][x].created_at.substr(0,16)+" TDS数字中医报告</a></li>")
                                         }
                                     }
