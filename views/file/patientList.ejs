@@ -84,6 +84,7 @@
             id = uuid();
             timeline_left = timeline_left.replace(/\{__id__\}/g, id)
                         .replace(/\{__number__\}/g, dom["number"])
+                        .replace(/\{__report_url__\}/g, dom["number"])
                         .replace(/\{__datatime__\}/g, dom["created_at"].substr(0,10))
             return [id,timeline_left];
         };
@@ -128,7 +129,6 @@
                                .replace(/\{__id__\}/g, userObj["id"])
                                .replace(/\{__idNumber__\}/g, userObj["idNumber"]);
             };
-
             searching = true;
             doAjax(window.baseUrl + "/patient/get_by_id_number", "get", {"id_number": val}, function(data, status) {
                 searching = false;
@@ -136,7 +136,7 @@
                     $("#all_contacts ul:first").html($(createUserDom(data)));
                     doAjax(window.baseUrl + "/registration/check_registration","get",{"id_number": val},function(data, status){
                         if (status && data){
-                            $("#contacts_tree .timeline").html('<li class="timeline-period">健康管理历程</li>');
+                            $("#contacts_tree .timeline").html('<li class="timeline-period">健康管理动态</li>');
                             for(var i = 0;i < data.length;i++){
                                 var name = data[i];
                                 if (i%2){
@@ -146,10 +146,15 @@
                                         $("#"+temp_data[0]+" ul li:eq(1)").show()
                                     }
                                     if (data[i]["health_manage_recipes"].length){
-                                        $("#"+temp_data[0]+" ul li:eq(2)").show()
+                                        $("#"+temp_data[0]+" ul li:eq(3)").show()
                                     }
                                     if (data[i]["spine_recipes"].length){
-                                        $("#"+temp_data[0]+" ul li:eq(3)").show()
+                                        $("#"+temp_data[0]+" ul li:eq(2)").show()
+                                    }
+                                    if (data[i]["tds_tables"].length){
+                                        for(var x = 0;x < data[i]["tds_tables"].length;x++){
+                                            $("#"+temp_data[0]+" ul").append("<li class='list-group-item list-group-item-dark'><a href='"+data[i]["tds_tables"][x].report_url+"'>"+data[i]["tds_tables"][x].created_at.substr(0,10)+' '+data[i]["tds_tables"][x].created_at.substr(11,5)+" TDS数字中医报告</a></li>")
+                                        }
                                     }
                                 } else {
                                     temp_data = createTimeLineLeft(name);
@@ -158,14 +163,20 @@
                                         $("#"+temp_data[0]+" ul li:eq(1)").show()
                                     }
                                     if (data[i]["health_manage_recipes"].length){
-                                        $("#"+temp_data[0]+" ul li:eq(2)").show()
+                                        $("#"+temp_data[0]+" ul li:eq(3)").show()
                                     }
                                     if (data[i]["spine_recipes"].length){
-                                        $("#"+temp_data[0]+" ul li:eq(3)").show()
+                                        $("#"+temp_data[0]+" ul li:eq(2)").show()
+                                    }
+                                    if (data[i]["tds_tables"].length){
+                                        for(var x = 0;x < data[i]["tds_tables"].length;x++){
+                                            $("#"+temp_data[0]+" ul").append("<li class='list-group-item list-group-item-dark'><a href='"+data[i]["tds_tables"][x].report_url+"'>"+data[i]["tds_tables"][x].created_at.substr(0,10)+' '+data[i]["tds_tables"][x].created_at.substr(11,5)+" TDS数字中医报告</a></li>")
+                                        }
                                     }
                                 }
                             }
-                            $('[data-toggle="tooltip"]').tooltip()
+                            $('[data-toggle="tooltip"]').tooltip();
+                            $("#contacts_tree .timeline").append("<li class='timeline-period'>首次建档于 " +data[data.length-1]['created_at'].substr(0,16)+"</li>");
                             if (!$("#contacts_tree").html().trim()) {
                                 $("#contacts_tree").html("<li class='list-group-item'>暂无搜索结果</li>");
                             }
