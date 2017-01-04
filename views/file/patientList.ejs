@@ -153,7 +153,7 @@
                                     }
                                     if (data[i]["tds_tables"].length){
                                         for(var x = 0;x < data[i]["tds_tables"].length;x++){
-                                            $("#"+temp_data[0]+" ul").append("<li class='list-group-item list-group-item-dark'><a href='"+data[i]["tds_tables"][x].report_url+"'>"+data[i]["tds_tables"][x].created_at.substr(0,16)+" TDS数字中医报告</a></li>")
+                                            $("#"+temp_data[0]+" ul").append("<li class='list-group-item list-group-item-dark'><a href='"+data[i]["tds_tables"][x].report_url+"'>"+data[i]["tds_tables"][x].created_at.substr(0,10)+' '+data[i]["tds_tables"][x].created_at.substr(11,5)+" TDS数字中医报告</a></li>")
                                         }
                                     }
                                 } else {
@@ -170,7 +170,7 @@
                                     }
                                     if (data[i]["tds_tables"].length){
                                         for(var x = 0;x < data[i]["tds_tables"].length;x++){
-                                            $("#"+temp_data[0]+" ul").append("<li class='list-group-item list-group-item-dark'><a href='"+data[i]["tds_tables"][x].report_url+"'>"+data[i]["tds_tables"][x].created_at.substr(0,16)+" TDS数字中医报告</a></li>")
+                                            $("#"+temp_data[0]+" ul").append("<li class='list-group-item list-group-item-dark'><a href='"+data[i]["tds_tables"][x].report_url+"'>"+data[i]["tds_tables"][x].created_at.substr(0,10)+' '+data[i]["tds_tables"][x].created_at.substr(11,5)+" TDS数字中医报告</a></li>")
                                         }
                                     }
                                 }
