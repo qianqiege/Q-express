@@ -57,7 +57,7 @@
     </div>
 </div>
 
-<div class="panel-body">
+<div class="panel-body" id = "roleListFunction">
     <table class="table" >
         <thead>
             <tr>
@@ -72,14 +72,35 @@
 
         </tfoot>
     </table>
+    <div style="text-align: right;" class="paginationDiv"></div>
 
 </div>
 
 <script>
     $(function () {
-        doAjax(window.baseUrl + "/roles", "get", {"page":1,"per_page":10} , function (data, status) {
+        var roleListFunction = function (data) {
+            $("#roleList").html("")
             for (var i = 0; i < data.data.length; i++) {
                 $("#roleList").append($(tableDom(data.data[i])));
+            }
+        };
+        var paginationDiv = $("#roleListFunction").find(".paginationDiv")
+        paginationDiv.pagination({
+            pageSize: 10,
+            loadFirstPage: true,
+            remote: {
+                url: window.baseUrl + "/roles",
+                beforeSend: function (XHR) {
+                    XHR.setRequestHeader('access-authorization', $.cookie('access_token'));
+                },
+                success: roleListFunction,
+                pageParams: function(data) {
+                    return {
+                        'page': data.pageIndex + 1,
+                        'per_page': data.pageSize
+                    };
+                },
+                totalName: 'meta.total'
             }
         });
     })
