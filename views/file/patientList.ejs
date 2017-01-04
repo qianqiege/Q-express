@@ -175,7 +175,8 @@
                                     }
                                 }
                             }
-                            $('[data-toggle="tooltip"]').tooltip()
+                            $('[data-toggle="tooltip"]').tooltip();
+                            $("#contacts_tree .timeline").append("<li class='timeline-period'>首次建档于 " +data[data.length-1]['created_at'].substr(0,16)+"</li>");
                             if (!$("#contacts_tree").html().trim()) {
                                 $("#contacts_tree").html("<li class='list-group-item'>暂无搜索结果</li>");
                             }
