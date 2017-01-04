@@ -136,7 +136,7 @@
                     $("#all_contacts ul:first").html($(createUserDom(data)));
                     doAjax(window.baseUrl + "/registration/check_registration","get",{"id_number": val},function(data, status){
                         if (status && data){
-                            $("#contacts_tree .timeline").html('<li class="timeline-period">健康管理历程</li>');
+                            $("#contacts_tree .timeline").html('<li class="timeline-period">健康管理动态</li>');
                             for(var i = 0;i < data.length;i++){
                                 var name = data[i];
                                 if (i%2){
