@@ -11,23 +11,15 @@
 
     <div class="page-header">
         <h1 class="page-title"><%= title %></h1>
-        <ol class="breadcrumb">
-        </ol>
-        <div class="page-header-actions">
-            <a class="btn btn-primary btn-round waves-effect" href="#" onclick='$("#print-this").printArea()'>
-                <i class="icon wb-print" aria-hidden="true"></i>
-                <span class="hidden-sm-down">打印该页面</span>
-            </a>
-        </div>
     </div>
     <div class="page-content">
-        <div class="page-content">
-            <div class="panel">
+        <div class="page-content mainarea">
+            <div class="panel needidAABBCCDD">
                 <div class="panel-body">
                     <div id="print-this">
                         <div id="head">
                             <img id="table-logo" src="/images/logo-blue.png"/>
-                            <h4 class="vertical-align-bottom pull-xs-right">编号: <span id="table_id"></span> </h4>
+                            <h4 class="vertical-align-bottom pull-xs-right">编号: <span class="table_id"></span> </h4>
                             <script>
                             setTimeout(function(){ $("#table-logo").next().css("margin-top",$("#table-logo").height() - $("#table-logo").next().height()+"px")},100)
                             </script>
@@ -41,14 +33,14 @@
                                 </h4>
                                 <table class="table">
                                     <tr>
-                                        <td>姓名 : <span id="name"></span></td>
-                                        <td>性别 : <span id="sex"></span></td>
-                                        <td>出生年月 : <span id="born_date"></span></td>
+                                        <td>姓名 : <span class="name"></span></td>
+                                        <td>性别 : <span class="sex"></span></td>
+                                        <td>出生年月 : <span class="born_date"></span></td>
                                     </tr>
                                     <tr>
-                                        <td>婚姻状况 : <span id="marriage"></span></td>
-                                        <td>民族 : <span id="country"></span></td>
-                                        <td>联系方式 : <span id="contact"></span></td>
+                                        <td>婚姻状况 : <span class="marriage"></span></td>
+                                        <td>民族 : <span class="country"></span></td>
+                                        <td>联系方式 : <span class="contact"></span></td>
                                     </tr>
                                 </table>
                             </div>
@@ -59,22 +51,22 @@
                                 <div class="row" style="font-size:16px; padding-bottom: 5px;">
                                     <div class="col-md-12">
                                         <div>生理方面 :
-                                            <p style="text-indent:25px" id="rate_sl"></p>
+                                            <p style="text-indent:25px" class="rate_sl"></p>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div>情志方面 :
-                                            <p style="text-indent:25px" id="rate_qz"></p>
+                                            <p style="text-indent:25px" class="rate_qz"></p>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div>营养方面 :
-                                            <p style="text-indent:25px" id="rate_yy"></p>
+                                            <p style="text-indent:25px" class="rate_yy"></p>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div>生活方式方面 :
-                                            <p style="text-indent:25px" id="rate_shfs"></p>
+                                            <p style="text-indent:25px" class="rate_shfs"></p>
                                         </div>
                                     </div>
                                 </div>
@@ -82,33 +74,39 @@
                             <hr/>
                             <div id="issue" style="font-size:16px; padding-bottom: 5px;">
                                 <div>主症 :
-                                    <p style="text-indent:25px" id="issue_main">
+                                    <p style="text-indent:25px" class="issue_main">
 
                                     </p>
                                 </div>
                                 <div>急症 :
-                                    <p style="text-indent:25px" id="issue_em">
+                                    <p style="text-indent:25px" class="issue_em">
 
                                     </p>
                                 </div>
                                 <div>兼症 :
-                                    <p style="text-indent:25px" id="issue_co">
+                                    <p style="text-indent:25px" class="issue_co">
 
                                     </p>
                                 </div>
                                 <div>次兼症 :
-                                    <p style="text-indent:25px" id="issue_se">
+                                    <p style="text-indent:25px" class="issue_se">
 
                                     </p>
                                 </div>
                             </div>
                             <hr/>
                             <div>
-                                <h4  class="pull-xs-left">评估专家 : <span id="doctor"></span></h4>
-                                <h4  class="pull-xs-right">评估日期 : <span id="date"></span></h4>
+                                <h4  class="text-xs-left col-xs-6">评估专家 : <span class="doctor"></span></h4>
+                                <h4  class="text-xs-right col-xs-6">评估日期 : <span class="date"></span></h4>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="panel-footer">
+                    <a class="btn btn-primary btn-round waves-effect pull-xs-right" href="javascript:void(0)" onclick='$(".needidAABBCCDD #print-this").printArea()'>
+                        <i class="icon wb-print" aria-hidden="true"></i>
+                        <span class="hidden-sm-down">打印该方案</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -123,31 +121,57 @@ $(function() {
         });
         return;
     }
+    var template = $('.mainarea').html();
+    $('.mainarea').html('')
+    function uuid() {
+        return 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+            return v.toString(16);
+        });
+    }
+
+    function createpanel(){
+        var id = uuid();
+        var html = template.replace(/needidAABBCCDD/g,id)
+        $(".mainarea").append(html)
+        return id;
+    }
+
+                    function updatedata(id,data,i){
+                        setTimeout(function(){
+                            console.log(id)
+                            console.log("."+id+" #rate_sl")
+                            $("."+id+" .rate_sl").text(data.disease_location_recipes[i].physiology) // 生理
+                            $("."+id+" .rate_qz").text(data.disease_location_recipes[i].emotion) // 情志
+                            $("."+id+" .rate_yy").text(data.disease_location_recipes[i].nutrition) // 营养
+                            $("."+id+" .rate_shfs").text(data.disease_location_recipes[i].life_style)  // 生活方式
+                            $("."+id+" .docter_name").text(data.disease_location_recipes[i].doctor_name)
+                            $("."+id+" .issue_fa").text(data.disease_location_recipes[i].detail)
+                            $("."+id+" .issue_main").text(data.disease_location_recipes[i].main_symptom)
+                            $("."+id+" .issue_em").text(data.disease_location_recipes[i].emergency_symptom)
+                            $("."+id+" .issue_co").text(data.disease_location_recipes[i].part_symptom)
+                            $("."+id+" .issue_se").text(data.disease_location_recipes[i].second_part_symptom)
+                            $("."+id+" .date").text(new Date(data.created_at).Format("yyyy-MM-dd"))
+                            $("."+id+" .table_id").text(uid)
+                            $("."+id+" .doctor").text(data.disease_location_recipes[i].doctor_name)
+
+                            $("."+id+" .name").text(data.patient.name)
+                            $("."+id+" .sex").text(data.patient.sex)
+                            $("."+id+" .born_date").text(data.patient.birthday)
+                            $("."+id+" .marriage").text(data.patient.marriage)
+                            $("."+id+" .country").text(data.patient.nation)
+                            $("."+id+" .contact").text(data.patient.phone)
+                        },400)
+                    }
+    
     var cbFunction = function(data,status){
         if (status) {
             if (data.patient.name)
             {
-                console.log(data);
-                $("#rate_sl").text(data.disease_location_recipes[0].physiology) // 生理
-                $("#rate_qz").text(data.disease_location_recipes[0].emotion) // 情志
-                $("#rate_yy").text(data.disease_location_recipes[0].nutrition) // 营养
-                $("#rate_shfs").text(data.disease_location_recipes[0].life_style)  // 生活方式
-                $("#docter_name").text(data.disease_location_recipes[0].doctor_name)
-                $("#issue_fa").text(data.disease_location_recipes[0].detail)
-                $("#issue_main").text(data.disease_location_recipes[0].main_symptom)
-                $("#issue_em").text(data.disease_location_recipes[0].emergency_symptom)
-                $("#issue_co").text(data.disease_location_recipes[0].part_symptom)
-                $("#issue_se").text(data.disease_location_recipes[0].second_part_symptom)
-                $("#date").text(new Date(data.created_at).Format("yyyy-MM-dd"))
-                $("#table_id").text(uid)
-                $("#doctor").text(data.disease_location_recipes[0].doctor_name)
-
-                $("#name").text(data.patient.name)
-                $("#sex").text(data.patient.sex)
-                $("#born_date").text(data.patient.birthday)
-                $("#marriage").text(data.patient.marriage)
-                $("#country").text(data.patient.nation)
-                $("#contact").text(data.patient.phone)
+                for (var i in data.disease_location_recipes){
+                    var id = createpanel();
+                    updatedata(id,data,i)
+                }
             } else {
                 swal({title: "id 错误1", type: "error"}, function() {
                     window.close();
