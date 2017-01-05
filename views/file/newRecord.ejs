@@ -1759,38 +1759,38 @@
     <script>
 
         function calc_bmi() {
-            if ($("#height").val() != "" && $("#weight").val() != ""){
-               var calc = $("#weight").val() / (($("#height").val() / 100) * ($("#height").val() / 100) );
-              $("#baric_index").val(calc.toFixed(1))
+            if ($("#height").val() !== "" && $("#weight").val() !== ""){
+                var calc = $("#weight").val() / (($("#height").val() / 100) * ($("#height").val() / 100) );
+                $("#baric_index").val(calc.toFixed(1));
             } else {
-                $("#baric_index").val(0)
+                $("#baric_index").val(0);
             }
         }
         function calc_whr() {
-            if ($("#hipline").val() != "" && $("#waistline").val() != ""){
-               var calc = $("#waistline").val() / $("#hipline").val();
-              $("#waist_to_hipratio").val(calc.toFixed(2))
+            if ($("#hipline").val() !== "" && $("#waistline").val() !== ""){
+                var calc = $("#waistline").val() / $("#hipline").val();
+                $("#waist_to_hipratio").val(calc.toFixed(2));
             } else {
-                $("#waist_to_hipratio").val(0)
+                $("#waist_to_hipratio").val(0);
            }
         }
 
-       $("#height,#weight").on("change",calc_bmi)
+        $("#height,#weight").on("change", calc_bmi);
 
-       $("#hipline,#waistline").on("change",calc_whr)
+        $("#hipline,#waistline").on("change", calc_whr);
 
         //查体中问题3、4当选择无时不可选择其他选项
         var docheckBox = function (dom) {
             var name = $(dom)[0].name;
-            var selectValue = $("input[name="+name+"]:checked").customVal();
-            if ($.inArray("无",selectValue) > -1  && selectValue.length > 1) {
-                $("input[name="+name+"]:checked").customVal(["无"]);
+            var selectValue = $("input[name=" + name + "]:checked").customVal();
+            if ($.inArray("无", selectValue) > -1  && selectValue.length > 1) {
+                $("input[name=" + name + "]:checked").customVal(["无"]);
             }
         };
         //疾病史当选择无时不可选择其他选项
         var doSelect = function (dom) {
             var vali = $(dom).customVal();
-            if ($.inArray("无",vali) > -1 && vali.length > 1) {
+            if ($.inArray("无", vali) > -1 && vali.length > 1) {
                 $(dom).customVal("无");
             }
         };
@@ -1799,26 +1799,26 @@
             var name = dom.name;
             var patt = new RegExp("从不");
             var na = name.split("1")[0];
-            if (name ==="drink_history-item_1") {
+            if (name === "drink_history-item_1") {
                 var v_len =5;
-            }else if (name ==="smoke_history-item_1") {
+            } else if (name === "smoke_history-item_1") {
                 var v_len =4;
-            }else {
+            } else {
                 var v_len = 4;
             }
-            if (patt.test($("input[name='"+name+"']:checked").val())) {
-                for (var i = 2; i < v_len;i++) {
-                    var j_len = $("input[name='"+na+i+"']").length;
+            if (patt.test($("input[name='" + name + "']:checked").val())) {
+                for (var i = 2; i < v_len; i++) {
+                    var j_len = $("input[name='" + na + i + "']").length;
                     for (var j = 0; j < j_len;j++){
-                        $("input[name='"+na+i+"']")[j].disabled = true;
-                        $("input[name='"+na+i+"']")[j].checked = false;
+                        $("input[name='" + na + i + "']")[j].disabled = true;
+                        $("input[name='" + na + i + "']")[j].checked = false;
                     }
                 }
             }else{
-                for (var i = 2; i < v_len;i++) {
-                    var j_len = $("input[name='"+na+i+"']").length;
-                    for (var j = 0; j < j_len;j++){
-                        $("input[name='"+na+i+"']")[j].disabled = false;
+                for (var i = 2; i < v_len; i++) {
+                    var j_len = $("input[name='" + na + i + "']").length;
+                    for (var j = 0; j < j_len; j++){
+                        $("input[name='" + na + i + "']")[j].disabled = false;
                     }
                 }
             }
@@ -1838,7 +1838,7 @@
             if (jQuery(dom).data("hastext")) {
                 jQuery("#" + jQuery(dom).data("bindtext")).removeAttr("disabled").focus();
             } else {
-                jQuery("#" + jQuery(dom).data("bindtext")).attr("disabled","disabled").val("");
+                jQuery("#" + jQuery(dom).data("bindtext")).attr("disabled", "disabled").val("");
             }
         };
 
@@ -1848,8 +1848,8 @@
             } else {
                 swal("提交成功", "正在进入客户列表", "success");
                 setTimeout(function() {
-                    location.href="/patientList";
-                },1000);
+                    location.href = "/patientList";
+                }, 1000);
                 return true;
             }
         };
@@ -1898,18 +1898,18 @@
             if (checkIdCard(val)) {
                 var bas = val.match(/^\d{6}(\d{4})(\d{2})(\d{2})\d{2}(\d)(\d|X)$/);
                 $("#born").val(bas[1] + "-" + bas[2] + "-" + bas[3]);
-                $("#sex" + (~~bas[4]%2)).prop("checked",true);
+                $("#sex" + (~~bas[4]%2)).prop("checked", true);
             } else {
                 $("#born").val("");
-                $("input:radio[id^='sex']").prop("checked",false);
+                $("input:radio[id^='sex']").prop("checked", false);
             }
         };
         var getUserInfoCallback = function(data, status) {
             if (data && status) {
                 for (var i in data) {
-                    if (typeof data[i]==="string") {
+                    if (typeof data[i] === "string") {
                         $("*[name='" + i + "']").customVal(data[i]);
-                    } else if (typeof data[i]==="object") {
+                    } else if (typeof data[i] === "object") {
                         for (var k in data[i]) {
                             var domId = i + "-" + k;
                             $("*[name='" + domId + "']").customVal(data[i][k]);
@@ -1920,11 +1920,17 @@
         };
         //输入吸烟饮酒等时间限制
         var timeTest = function (dom) {
-            if(!/^\d*(\.\d{1,2})?$/.test(dom.value) || dom.value < 0 || dom.value > 99 || dom.value == 0){swal('请填写正确时间');dom.value=''}
+            if (!/^\d*(\.\d{1,2})?$/.test(dom.value) || dom.value < 0 || dom.value > 99 || dom.value === 0) {
+                swal('请填写正确时间');
+                dom.value = '';
+            }
         }
         //填入必须为数值类型
         var numberTest = function (dom) {
-            if(!/^\d*(\.\d{1,2})?$/.test(dom.value) || dom.value < 0 || dom.value > 10000 || dom.value == 0){swal('请填写正确数字');dom.value=''}
+            if (!/^\d*(\.\d{1,2})?$/.test(dom.value) || dom.value < 0 || dom.value > 10000 || dom.value === 0) {
+                swal('请填写正确数字');
+                dom.value = '';
+            }
         };
 
     </script>
