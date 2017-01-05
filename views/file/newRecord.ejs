@@ -1783,14 +1783,14 @@
         var docheckBox = function (dom) {
             var name = $(dom)[0].name;
             var selectValue = $("input[name=" + name + "]:checked").customVal();
-            if ($.inArray("无",selectValue) > -1  && selectValue.length > 1) {
+            if ($.inArray("无", selectValue) > -1  && selectValue.length > 1) {
                 $("input[name=" + name + "]:checked").customVal(["无"]);
             }
         };
         //疾病史当选择无时不可选择其他选项
         var doSelect = function (dom) {
             var vali = $(dom).customVal();
-            if ($.inArray("无",vali) > -1 && vali.length > 1) {
+            if ($.inArray("无", vali) > -1 && vali.length > 1) {
                 $(dom).customVal("无");
             }
         };
@@ -1838,7 +1838,7 @@
             if (jQuery(dom).data("hastext")) {
                 jQuery("#" + jQuery(dom).data("bindtext")).removeAttr("disabled").focus();
             } else {
-                jQuery("#" + jQuery(dom).data("bindtext")).attr("disabled","disabled").val("");
+                jQuery("#" + jQuery(dom).data("bindtext")).attr("disabled", "disabled").val("");
             }
         };
 
@@ -1848,8 +1848,8 @@
             } else {
                 swal("提交成功", "正在进入客户列表", "success");
                 setTimeout(function() {
-                    location.href="/patientList";
-                },1000);
+                    location.href = "/patientList";
+                }, 1000);
                 return true;
             }
         };
@@ -1898,10 +1898,10 @@
             if (checkIdCard(val)) {
                 var bas = val.match(/^\d{6}(\d{4})(\d{2})(\d{2})\d{2}(\d)(\d|X)$/);
                 $("#born").val(bas[1] + "-" + bas[2] + "-" + bas[3]);
-                $("#sex" + (~~bas[4]%2)).prop("checked",true);
+                $("#sex" + (~~bas[4]%2)).prop("checked", true);
             } else {
                 $("#born").val("");
-                $("input:radio[id^='sex']").prop("checked",false);
+                $("input:radio[id^='sex']").prop("checked", false);
             }
         };
         var getUserInfoCallback = function(data, status) {
