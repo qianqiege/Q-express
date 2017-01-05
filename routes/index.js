@@ -79,7 +79,7 @@ router.get('/programmeSearch', function(req, res, next) {
 });
 
 router.get('/registeredPost', function(req, res, next) {
-    res.render('registeredManagement/registeredPost', {title: "挂号", pjax: req.get('X-PJAX')});
+    res.render('registeredManagement/registeredPost', {title: "健康管理记录号", pjax: req.get('X-PJAX')});
 });
 
 
