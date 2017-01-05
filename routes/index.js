@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('home/index', {title: '首页', pjax: req.get('X-PJAX')});
+    res.render('home/index', {title: '健康管理师首页', pjax: req.get('X-PJAX')});
 });
 
 router.get('/exceptionData', function(req, res, next) {
@@ -55,7 +55,7 @@ router.get('/doctorsList', function(req, res, next) {
 });
 
 router.get('/roles', function(req, res, next) {
-    res.render('role/roles', {title: "角色管理", pjax: req.get('X-PJAX')});
+    res.render('role/roles', {title: "角色配置", pjax: req.get('X-PJAX')});
 });
 
 router.get('/add_friends', function(req, res, next) {
@@ -88,7 +88,7 @@ router.get('/healthManagement', function(req, res, next) {
 });
 
 router.get('/spine', function(req, res, next) {
-    res.render('project/spine', {title: "档案查询", pjax: req.get('X-PJAX')});
+    res.render('project/spine', {title: "脊柱模块", pjax: req.get('X-PJAX')});
 });
 
 router.get('/spineSearch', function(req, res, next) {
