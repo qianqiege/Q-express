@@ -225,7 +225,7 @@ var doSearch = function (dom) {
             } else {
                 $("#optionGroup").append("暂无等级");
             }
-        })
+        });
     } else {
         $("#showProject").html("暂无搜索结果");
     }
@@ -236,16 +236,13 @@ var changeGrade = function () {
     var treatment_level = $("#treatment_level").val();
     doAjax(window.baseUrl + "/spine/spine_level_charge", "get" , {"spine_level_id":treatment_level}, function (data, status) {
         $("input[name = spine]").each (function () {
-            $(this).attr("checked" , false);
-            $(this).attr("disabled" , false);
+            $(this).prop("checked" , false);
+            $(this).prop("disabled" , false);
         })
         for (var i in data) {
             for (j in data[i]){
                 $("#"+data[i]["treatment_technique"]+"_"+j).val(data[i][j]);
                 $("#"+data[i]["treatment_technique"]+"_"+j).next("span").text(data[i][j])
-                // if (data[i][j] == 0) {
-                //     $("#"+data[i]["treatment_technique"]+"_"+j).attr("disabled","disabled");
-                // }
             }
         }
         caculate();
@@ -264,14 +261,14 @@ var bloodSelect = function (dom) {
 //计算开票价钱
 var caculate = function () {
     var sum = 0;
-    if ($("#blood")[0].checked) {
+    if ($("#blood").prop("checked")) {
         $("input[name = spine]:checked").each(function () {
             sum = sum+~~this.value;
         })
         var times = $("#cureTimes").val();
         sum = sum*times;
-        var blood = $("#blood")[0].value;
-        var bloodTimes = $("#bloodTimes")[0].value;
+        var blood = $("#blood").prop("value");
+        var bloodTimes = $("#bloodTimes").prop("value");
         sum = sum + blood*bloodTimes;
     } else {
         $("input[name = spine]:checked").each(function () {
@@ -333,10 +330,9 @@ var logSearch = function(dom) {
                 swal("没有挂号记录,请先挂号", "", "error");
                 return false;
             }
-            $("#spineSearch").attr("href", "/spineSearch?id_number=" + val1);
+            $("#spineSearch").prop("href", "/spineSearch?id_number=" + val1);
         });
     };
-
 };
 $(function() {
     $("#id_number").val("");
