@@ -198,33 +198,34 @@ var doSearch = function (dom) {
                     }
                     patient_id = data.patient.id;
                     $("#recipe_number").text(data.number);
+
+                    doAjax(window.baseUrl + "/recipe/recipe_info", "get", {"category": "筑脊科"}, function(data, status) {
+                        if (status && data) {
+                            $("#hospital-title").text(data.hospital);
+                            $("#doctor").text(data.doctor);
+                            $("#issued_date").text(data.issued_date);
+                        }
+                    });
+                    doAjax(window.baseUrl + "/spine/bloodletting", "get",{}, function (data, status) {
+                        if (status && data) {
+                            $("#bloodLetting").html(data.price+"元");
+                            $("#blood").val(data.price);
+                        }
+                    });
+                    doAjax(window.baseUrl + "/spine/spine_level", "get", {}, function (data, status){
+                        if (status && data) {
+                            for (var i in data) {
+                                $("#optionGroup").append("<option value=" + data[i].id + ">" + data[i].treatment_level + "</option>");
+                            }
+                            $("#treatment_level").trigger("change");
+                        } else {
+                            $("#optionGroup").append("暂无等级");
+                        }
+                    });
                 } else {
                     $("#showProject").html('<div class="alert alert-info" role="alert">没有挂号，请先去挂号</div>');
                 }
 
-            });
-            doAjax(window.baseUrl + "/recipe/recipe_info", "get", {"category": "筑脊科"}, function(data, status) {
-                if (status && data) {
-                    $("#hospital-title").text(data.hospital);
-                    $("#doctor").text(data.doctor);
-                    $("#issued_date").text(data.issued_date);
-                }
-            });
-            doAjax(window.baseUrl + "/spine/bloodletting", "get",{}, function (data, status) {
-                if (status && data) {
-                    $("#bloodLetting").html(data.price+"元");
-                    $("#blood").val(data.price);
-                }
-            });
-            doAjax(window.baseUrl + "/spine/spine_level", "get", {}, function (data, status){
-                if (status && data) {
-                    for (var i in data) {
-                        $("#optionGroup").append("<option value=" + data[i].id +">"+data[i].treatment_level+"</option>");
-                    }
-                    $("#treatment_level").trigger("change");
-                } else {
-                    $("#optionGroup").append("暂无等级");
-                }
             });
         } else {
             $("#showProject").html('<div class="alert alert-danger" role="alert">身份证验证未通过</div>');
