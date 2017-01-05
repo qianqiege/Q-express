@@ -26,7 +26,6 @@
                         </div>
                     </div>
 
-                    <br />
                     <div class="" id="showProject">
 
                     </div>
@@ -176,86 +175,87 @@ $("#hideProject").remove();
 var searching = false;
 var doSearch = function (dom) {
     var val = dom.value.toLocaleUpperCase();
-    if (val.length === 18 && checkIdCard(val) && !searching) {
-        var createUserDom = function (userObj) {
-            t_template = template
-            return t_template;
-        };
-        doAjax(window.baseUrl + "/registration/get_number","get",{"id_number":val},function (data, status) {
-            searching = false;
-            if (status && data) {
-                if (!data.number) {
-                    swal("没有 registration 记录", "", "error");
-                    return false;
+    if (!searching) {
+        if (val.length === 18 && checkIdCard(val)) {
+            var createUserDom = function (userObj) {
+                t_template = template
+                return t_template;
+            };
+            doAjax(window.baseUrl + "/registration/get_number", "get", {"id_number": val}, function (data, status) {
+                searching = false;
+                if (status && data) {
+                    if (!data.number) {
+                        swal("没有 registration 记录", "", "error");
+                        return false;
+                    }
+                    $("#showProject").html($(createUserDom(data)));
+                    $("#health_survey4_1").select2();
+                    $("#health_survey4_2").select2();
+                    $("#health_survey4_3").select2();
+                    $("#treatment_level").select2();
+                    for (var i in data.patient) {
+                        $("#"+ i).text(data.patient[i] || "无");
+                    }
+                    patient_id = data.patient.id;
+                    $("#recipe_number").text(data.number);
+                } else {
+                    $("#showProject").html('<div class="alert alert-info" role="alert">没有挂号，请先去挂号</div>');
                 }
-                $("#showProject").html($(createUserDom(data)));
-                $("#health_survey4_1").select2();
-                $("#health_survey4_2").select2();
-                $("#health_survey4_3").select2();
-                $("#treatment_level").select2();
-                for (var i in data.patient) {
-                    $("#"+ i).text(data.patient[i] || "无");
-                }
-                patient_id = data.patient.id;
-                $("#recipe_number").text(data.number);
-            } else {
-                $("#showProject").html("没有挂号，请先去挂号");
-            }
 
-        });
-        doAjax(window.baseUrl + "/recipe/recipe_info", "get", {"category": "筑脊科"}, function(data, status) {
-            if (status && data) {
-                $("#hospital-title").text(data.hospital);
-                $("#doctor").text(data.doctor);
-                $("#issued_date").text(data.issued_date);
-            }
-        });
-        doAjax(window.baseUrl + "/spine/bloodletting", "get",{}, function (data, status) {
-            if (status && data) {
-                $("#bloodLetting").html(data.price+"元");
-                $("#blood").val(data.price);
-            }
-        });
-        doAjax(window.baseUrl + "/spine/spine_level", "get", {}, function (data, status){
-            if (status && data) {
-                for (var i in data) {
-                    $("#optionGroup").append("<option value=" + data[i].id +">"+data[i].treatment_level+"</option>");
+            });
+            doAjax(window.baseUrl + "/recipe/recipe_info", "get", {"category": "筑脊科"}, function(data, status) {
+                if (status && data) {
+                    $("#hospital-title").text(data.hospital);
+                    $("#doctor").text(data.doctor);
+                    $("#issued_date").text(data.issued_date);
                 }
-                $("#treatment_level").trigger("change");
-            } else {
-                $("#optionGroup").append("暂无等级");
-            }
-        });
-    } else {
-        $("#showProject").html("暂无搜索结果");
+            });
+            doAjax(window.baseUrl + "/spine/bloodletting", "get",{}, function (data, status) {
+                if (status && data) {
+                    $("#bloodLetting").html(data.price+"元");
+                    $("#blood").val(data.price);
+                }
+            });
+            doAjax(window.baseUrl + "/spine/spine_level", "get", {}, function (data, status){
+                if (status && data) {
+                    for (var i in data) {
+                        $("#optionGroup").append("<option value=" + data[i].id +">"+data[i].treatment_level+"</option>");
+                    }
+                    $("#treatment_level").trigger("change");
+                } else {
+                    $("#optionGroup").append("暂无等级");
+                }
+            });
+        } else {
+            $("#showProject").html('<div class="alert alert-danger" role="alert">身份证验证未通过</div>');
+        }
     }
 
 };
 //改变筑脊等级相应改变价钱与禁用相关项
 var changeGrade = function () {
     var treatment_level = $("#treatment_level").val();
-    doAjax(window.baseUrl + "/spine/spine_level_charge", "get" , {"spine_level_id":treatment_level}, function (data, status) {
-        $("input[name = spine]").each (function () {
+    doAjax(window.baseUrl + "/spine/spine_level_charge", "get" , {"spine_level_id": treatment_level}, function (data, status) {
+        $("input[name = spine]").each(function () {
             $(this).prop("checked" , false);
             $(this).prop("disabled" , false);
-        })
+        });
         for (var i in data) {
             for (j in data[i]){
-                $("#"+data[i]["treatment_technique"]+"_"+j).val(data[i][j]);
-                $("#"+data[i]["treatment_technique"]+"_"+j).next("span").text(data[i][j])
+                $("#"+data[i]["treatment_technique"] + "_" + j).val(data[i][j]);
+                $("#"+data[i]["treatment_technique"] + "_" + j).next("span").text(data[i][j]);
             }
         }
         caculate();
-    })
-
+    });
 };
 
 //选择放血排毒
 var bloodSelect = function (dom) {
     if (dom.checked) {
-        $("#bloodTimes").prop("disabled",false);
+        $("#bloodTimes").prop("disabled", false);
     } else {
-        $("#bloodTimes").prop("disabled",true);
+        $("#bloodTimes").prop("disabled", true);
     }
 };
 //计算开票价钱
@@ -272,10 +272,10 @@ var caculate = function () {
         sum = sum + blood*bloodTimes;
     } else {
         $("input[name = spine]:checked").each(function () {
-            sum = sum+~~this.value;
+            sum = sum + ~~this.value;
         })
         var times = $("#cureTimes").val();
-        sum = sum*times;
+        sum = sum * times;
     }
     $("#total").text(sum);
     $("#single").text(sum);
@@ -314,7 +314,7 @@ var submitForm = function () {
                 },
                 setTimeout(function() {
                     location.href="/spine";
-                },1000));
+                }, 1000));
             } else {
                 swal("提交失败", "", "error");
             }
