@@ -367,42 +367,44 @@ var gethospital = function() {
 };
 var doSearch = function(dom) {
     var val = dom.value.toLocaleUpperCase();
-    if (val.length===18  && checkIdCard(val) && !searching) {
-        var createUserDom = function(userObj) {
-            t_template = template;
-            return t_template;
-        };
-        searching = true;
-        doAjax(window.baseUrl + "/registration/get_number", "get", {"id_number": val}, function(data, status) {
-            searching = false;
-            if (status && data) {
-                if (!data.number) {
-                    swal("没有 registration 记录", "", "error");
-                    return false;
-                }
-                var todaydata = new Date().Format("yyyy-MM-dd");
-                $("#all_contacts ul:first").html($(createUserDom(data)));
-                $("#health_survey4_1").select2();
-                getProgrammeAndProduct();
-                $("#health_survey4_2").select2();
-                doAjax(window.baseUrl + "/product/product_list", "get", {}, function(data, status) {
-                    if (data && status) {
-                        jsGridFrom(data);
+    if (!searching) {
+        if (val.length === 18  && checkIdCard(val)) {
+            var createUserDom = function(userObj) {
+                t_template = template;
+                return t_template;
+            };
+            searching = true;
+            doAjax(window.baseUrl + "/registration/get_number", "get", {"id_number": val}, function(data, status) {
+                searching = false;
+                if (status && data) {
+                    if (!data.number) {
+                        swal("没有 registration 记录", "", "error");
+                        return false;
                     }
-                });
-                for (var i in data.patient) {
-                    $("#" + i).text(data.patient[i] || "无");
-                };
-                $("#recipe_number").text(data.number);
-                $("#today").text(todaydata);
-                temp_data = data;
-                gethospital();
-            } else {
-                $("#all_contacts ul:first").html("<li class='list-group-item'>没有挂号，请先去挂号！</li>");
-            }
-        });
-    } else {
-        $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
+                    var todaydata = new Date().Format("yyyy-MM-dd");
+                    $("#all_contacts ul:first").html($(createUserDom(data)));
+                    $("#health_survey4_1").select2();
+                    getProgrammeAndProduct();
+                    $("#health_survey4_2").select2();
+                    doAjax(window.baseUrl + "/product/product_list", "get", {}, function(data, status) {
+                        if (data && status) {
+                            jsGridFrom(data);
+                        }
+                    });
+                    for (var i in data.patient) {
+                        $("#" + i).text(data.patient[i] || "无");
+                    };
+                    $("#recipe_number").text(data.number);
+                    $("#today").text(todaydata);
+                    temp_data = data;
+                    gethospital();
+                } else {
+                    $("#all_contacts ul:first").html("<li class='list-group-item'><div class='alert alert-info' role='alert'>没有挂号，请先去挂号！</div></li>");
+                }
+            });
+        } else {
+            $("#all_contacts ul:first").html("<li class='list-group-item'><div class='alert alert-danger' role='alert'>身份证验证未通过</div></li>");
+        }
     }
 };
 var submitForm = function() {
@@ -425,7 +427,7 @@ var submitForm = function() {
                     type: "success"
                 },
                 setTimeout(function() {
-                    location.href="/healthManagement";
+                    location.href = "/healthManagement";
                 },1000));
             } else {
                 swal("提交失败", "", "error");
@@ -444,7 +446,7 @@ var logSearch = function(dom) {
             }
             $("#healthManagementSearch").attr("href", "/programmeSearch?id_number=" + val1);
         });
-    s};
+    };
 };
 </script>
 <% if (typeof pjax === "undefined") { %>
