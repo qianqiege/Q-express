@@ -284,7 +284,7 @@ $(function(){
             max_blood_pressure.push(data[k]['max_blood_pressure']);
             min_blood_pressure.push(data[k]['min_blood_pressure']);
             blood_pressure_date.push(data[k]['datetime']);
-            tr.push(data[k].status1 + '/' + data[k].status2);
+            tr.push(data[k].status2 + '/' + data[k].status1);
             if ((data[k].status1 === '正常') && (data[k].status1 === '正常')) {
                 $("#blood_pressure_tab").append($(createTr(tr)));
             } else {
