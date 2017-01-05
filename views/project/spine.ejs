@@ -1,4 +1,4 @@
-<% if (typeof pjax==="undefined") { %>
+<% if (typeof pjax === "undefined") { %>
     <%- include ../header %>
 <% } else { %>
     <title><%=title %></title>
@@ -103,13 +103,13 @@
         <div class="row">
             <div class="form-group col-md-10 offset-lg-1 col-xs-12">
                 <label> <input type="checkbox" onchange="caculate()" id="blood" name="blood" onclick="bloodSelect(this)" onchange="caculate()" value="10" /> 放血排毒: <span id="bloodLetting"></span></label>
-                <input type="number" class="form-control" id="bloodTimes" value="1" min='1' onblur="if(value==''){value='1'}" onchange="caculate()" disabled />
+                <input type="number" class="form-control" id="bloodTimes" value="1" min='1' onblur="if(value === ''){value = '1'}" onchange="caculate()" disabled />
             </div>
         </div>
         <div class="row">
           <div class="form-group col-xs-12 col-md-10 offset-lg-1">
             <label for="">治疗次数</label>
-            <input type="number" class="form-control" id="cureTimes" value="1" min='1' onblur="if(value==''){value='1'}" onchange="caculate()" />
+            <input type="number" class="form-control" id="cureTimes" value="1" min='1' onblur="if(value === ''){value = '1'}" onchange="caculate()" />
           </div>
         </div>
 
@@ -176,7 +176,7 @@ $("#hideProject").remove();
 var searching = false;
 var doSearch = function (dom) {
     var val = dom.value.toLocaleUpperCase();
-    if (val.length===18 && checkIdCard(val) && !searching) {
+    if (val.length === 18 && checkIdCard(val) && !searching) {
         var createUserDom = function (userObj) {
             t_template = template
             return t_template;
@@ -324,7 +324,7 @@ var submitForm = function () {
 };
 var logSearch = function(dom) {
     var val1 = dom.value.toLocaleUpperCase();
-    if (val1.length===18  && checkIdCard(val1) && !searching) {
+    if (val1.length === 18  && checkIdCard(val1) && !searching) {
         doAjax(window.baseUrl + "/registration/get_number", "get", {"id_number": val1}, function(data, status) {
             if (!data) {
                 swal("没有挂号记录,请先挂号", "", "error");
@@ -338,6 +338,6 @@ $(function() {
     $("#id_number").val("");
 });
 </script>
-<% if (typeof pjax==="undefined") { %>
+<% if (typeof pjax === "undefined") { %>
     <%- include ../footer %>
 <% } %>
