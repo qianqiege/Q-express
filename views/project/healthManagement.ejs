@@ -438,15 +438,13 @@ var logSearch = function(dom) {
     var val1 = dom.value.toLocaleUpperCase();
     if (val1.length===18  && checkIdCard(val1) && !searching) {
         doAjax(window.baseUrl + "/registration/get_number", "get", {"id_number": val1}, function(data, status) {
-            if (status && data) {
-                if (!data.number) {
-                    swal("没有 registration 记录", "", "error");
-                    return false;
-                }
-                $("#healthManagementSearch").attr("href", "/programmeSearch?id_number=" + val1);
+            if (!data) {
+                swal("没有挂号记录,请先挂号", "", "error");
+                return false;
             }
+            $("#healthManagementSearch").attr("href", "/programmeSearch?id_number=" + val1);
         });
-        };
+    s};
 };
 </script>
 <% if (typeof pjax === "undefined") { %>
