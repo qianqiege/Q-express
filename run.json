@@ -1,0 +1,15 @@
+{
+  apps : [{
+    name        : "QOLM-public",
+    script      : "./bin/www",
+    watch       : true,
+    env: {
+	  "bindaddress": "127.0.0.1",
+      "PORT": "3000",
+    },
+    env_production : {
+	   "bindaddress": "127.0.0.1",
+       "PORT": "3000"
+    }
+  }]
+}
