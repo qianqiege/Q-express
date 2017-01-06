@@ -235,7 +235,7 @@ $(function(){
             after_blood_glucose.push(data[k]['after_blood_glucose']);
             blood_glucose_date.push(data[k]['datetime']);
             tr.push(data[k].status1 + '/' + data[k].status2);
-            if ((data[k].status1 === '正常') && (data[k].status1 === '正常')) {
+            if ((data[k].status1 === '正常') && (data[k].status2 === '正常')) {
                 $("#blood_glucoses").append($(createTr(tr)));
             } else {
                 $("#blood_glucoses").append($(createErrTr(tr)));
@@ -285,7 +285,7 @@ $(function(){
             min_blood_pressure.push(data[k]['min_blood_pressure']);
             blood_pressure_date.push(data[k]['datetime']);
             tr.push(data[k].status2 + '/' + data[k].status1);
-            if ((data[k].status1 === '正常') && (data[k].status1 === '正常')) {
+            if ((data[k].status1 === '正常') && (data[k].status2 === '正常')) {
                 $("#blood_pressure_tab").append($(createTr(tr)));
             } else {
                 $("#blood_pressure_tab").append($(createErrTr(tr)));
@@ -343,9 +343,9 @@ $(function(){
         var temperatures_date = [];
         var data = data["data"];
         for (var k = 0; k < data.length; k++) {
-            var tr = [data[k].datetime, data[k].value];
-            temperatures_value.push(data[k]['value']);
-            temperatures_date.push(data[k]['datetime']);
+            var tr = [data[data.length - 1 - k].datetime, data[data.length - 1 - k].value];
+            temperatures_value.push(data[data.length - 1 - k]['value']);
+            temperatures_date.push(data[data.length - 1 - k]['datetime']);
         }
         var chart_data = {
             date: temperatures_date,
@@ -369,7 +369,11 @@ $(function(){
             weights_value.push(data[k]['value']);
             weights_date.push(data[k]['datetime']);
             tr.push(data[k].status);
-            $('#' + "weights").append($(createTr(tr)));
+            if (data[k].status === '正常') {
+                $("#weights").append($(createTr(tr)));
+            } else {
+                $("#weights").append($(createErrTr(tr)));
+            }
         }
     };
     var weightEchartFunction = function(data,status){
@@ -377,9 +381,9 @@ $(function(){
         var weights_date = [];
         var data = data["data"];
         for (var k = 0; k < data.length; k++) {
-            var tr = [data[k].datetime, data[k].value];
-            weights_value.push(data[k]['value']);
-            weights_date.push(data[k]['datetime']);
+            var tr = [data[data.length - 1 - k].datetime, data[data.length - 1 - k].value];
+            weights_value.push(data[data.length - 1 - k]['value']);
+            weights_date.push(data[data.length - 1 - k]['datetime']);
         }
         var chart_data = {
             date: weights_date,
@@ -403,7 +407,11 @@ $(function(){
             heart_rates_value.push(data[k]['value']);
             heart_rates_date.push(data[k]['datetime']);
             tr.push(data[k].status);
-            $('#' + "heart_rates").append($(createTr(tr)));
+            if (data[k].status === '正常') {
+                $("#heart_rates").append($(createTr(tr)));
+            } else {
+                $("#heart_rates").append($(createErrTr(tr)));
+            }
         }
     };
 
@@ -412,9 +420,9 @@ $(function(){
         var heart_rates_date = [];
         var data = data["data"];
         for (var k = 0; k < data.length; k++) {
-            var tr = [data[k].datetime, data[k].value];
-            heart_rates_value.push(data[k]['value']);
-            heart_rates_date.push(data[k]['datetime']);
+            var tr = [data[data.length - 1 - k].datetime, data[data.length - 1 - k].value];
+            heart_rates_value.push(data[data.length - 1 - k]['value']);
+            heart_rates_date.push(data[data.length - 1 - k]['datetime']);
         }
         var chart_data = {
             date: heart_rates_date,
