@@ -317,15 +317,15 @@ var customPjax = function(aSelector, divSelector) {
                 // $(".pjaxLoader").fadeIn(function() {
                     doAjax(uri, "get", {}, function(data, status) {
                         if (status && data) {
+                            if (history.pushState) {
+                                window.history.pushState('', newTitle, uri);
+                            }
                             var newTitle = data.match(/<title>(.*?)<\/title>/)[1];
                             data = data.replace(/<title>.*?<\/title>/, "");
                             // $(".pjaxLoader").fadeOut(function() {
                                 $(divSelector).html($(data));
                                 $(divSelector).fadeIn(function() {
                                     document.title = newTitle;
-                                    if (history.pushState) {
-                                        window.history.pushState('', newTitle, uri);
-                                    }
                                     $(document).trigger(pjaxEndEvent);
                                 });
                             // });
