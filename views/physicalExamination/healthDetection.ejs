@@ -369,7 +369,11 @@ $(function(){
             weights_value.push(data[k]['value']);
             weights_date.push(data[k]['datetime']);
             tr.push(data[k].status);
-            $('#' + "weights").append($(createTr(tr)));
+            if (data[k].status === '正常') {
+                $("#weights").append($(createTr(tr)));
+            } else {
+                $("#weights").append($(createErrTr(tr)));
+            }
         }
     };
     var weightEchartFunction = function(data,status){
@@ -403,7 +407,11 @@ $(function(){
             heart_rates_value.push(data[k]['value']);
             heart_rates_date.push(data[k]['datetime']);
             tr.push(data[k].status);
-            $('#' + "heart_rates").append($(createTr(tr)));
+            if (data[k].status === '正常') {
+                $("#heart_rates").append($(createTr(tr)));
+            } else {
+                $("#heart_rates").append($(createErrTr(tr)));
+            }
         }
     };
 
