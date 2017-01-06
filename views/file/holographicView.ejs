@@ -1,0 +1,138 @@
+<% if (typeof pjax === "undefined") { %>
+    <%- include ../header %>
+<% } else { %>
+    <title><%= title %></title>
+<% } %>
+
+    <div class="page-header">
+        <h1 class="page-title"><%= title %></h1>
+        <ol class="breadcrumb">
+        </ol>
+    </div>
+    <div class="page-content">
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">患者全息视图</h3>
+            </div>
+            <div class="panel-body container-fluid">
+                <div class="row row-lg">
+                    <div class="col-xl-3 col-xs-12">
+                        <div class="card  bg-blue-grey-200">
+                            <div class="card-block">
+                                <h4 class="card-title">皓月泽</h4>
+                                <p class="card-text">联系方式:&nbsp;<span>18304723843</span></p>
+                                <p class="card-text">健康管理师:&nbsp;<span>大将</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-9 col-xs-12">
+                    <!-- Example Tabs -->
+                        <div class="example-wrap">
+                            <div class="nav-tabs-horizontal" data-plugin="tabs">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item" role="presentation"><a class="nav-link active" data-toggle="tab" href="#exampleTabsOne"
+                                    aria-controls="exampleTabsOne" role="tab">任务</a></li>
+                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#exampleTabsTwo"
+                                    aria-controls="exampleTabsTwo" role="tab">电子健康档案</a></li>
+                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#exampleTabsThree"
+                                    aria-controls="exampleTabsThree" role="tab">电子医疗档案</a></li>
+                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#exampleTabsFour"
+                                    aria-controls="exampleTabsFour" role="tab">健康评估</a></li>
+                                </ul>
+                                <div class="tab-content p-t-20">
+                                    <div class="tab-pane active" id="exampleTabsOne" role="tabpanel">
+                                        <div class="example-wrap m-lg-0">
+                                            <div class="nav-tabs-horizontal" data-plugin="tabs">
+                                                <ul class="nav nav-tabs nav-tabs-solid" role="tablist">
+                                                    <li class="nav-item" role="presentation"><a class="nav-link active" data-toggle="tab" href="#exampleTabsLineOne"
+                                                    aria-controls="exampleTabsLineOne" role="tab">待处理异常</a></li>
+                                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#exampleTabsLineTwo"
+                                                    aria-controls="exampleTabsLineTwo" role="tab">已处理异常</a></li>
+                                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#exampleTabsLineThree"
+                                                    aria-controls="exampleTabsLineThree" role="tab">随访安排</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="exampleTabsTwo" role="tabpanel">
+                                        <div class="example-wrap m-lg-0">
+                                            <div class="nav-tabs-horizontal" data-plugin="tabs">
+                                                <ul class="nav nav-tabs nav-tabs-solid" role="tablist">
+                                                    <li class="nav-item" role="presentation"><a class="nav-link active" data-toggle="tab" href="#baseInformation"
+                                                    aria-controls="exampleTabsLineOne" role="tab">基础信息</a></li>
+                                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#exampleTabsLineTwo"
+                                                    aria-controls="exampleTabsLineTwo" role="tab">血压检测</a></li>
+                                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#exampleTabsLineThree"
+                                                    aria-controls="exampleTabsLineThree" role="tab">血糖检测</a></li>
+                                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#exampleTabsLineFour"
+                                                    aria-controls="exampleTabsLineFour" role="tab">体温检测</a></li>
+                                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#exampleTabsLineFour"
+                                                    aria-controls="exampleTabsLineFour" role="tab">心率</a></li>
+                                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#exampleTabsLineFour"
+                                                    aria-controls="exampleTabsLineFour" role="tab">TDS数字中医</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="exampleTabsThree" role="tabpanel">
+                                        <div class="example-wrap m-lg-0">
+                                            <div class="nav-tabs-horizontal" data-plugin="tabs">
+                                                <ul class="nav nav-tabs nav-tabs-solid" role="tablist">
+                                                    <li class="nav-item" role="presentation"><a class="nav-link active" data-toggle="tab" href="#exampleTabsLineOne"
+                                                    aria-controls="exampleTabsLineOne" role="tab">Home</a></li>
+                                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#exampleTabsLineTwo"
+                                                    aria-controls="exampleTabsLineTwo" role="tab">Components</a></li>
+                                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#exampleTabsLineThree"
+                                                    aria-controls="exampleTabsLineThree" role="tab">Css</a></li>
+                                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#exampleTabsLineFour"
+                                                    aria-controls="exampleTabsLineFour" role="tab">Javascript</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="exampleTabsFour" role="tabpanel">
+                                        <div class="example-wrap m-lg-0">
+                                            <div class="nav-tabs-horizontal" data-plugin="tabs">
+                                                <ul class="nav nav-tabs nav-tabs-solid" role="tablist">
+                                                    <li class="nav-item" role="presentation"><a class="nav-link active" data-toggle="tab" href="#exampleTabsLineOne"
+                                                    aria-controls="exampleTabsLineOne" role="tab">Home</a></li>
+                                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#exampleTabsLineTwo"
+                                                    aria-controls="exampleTabsLineTwo" role="tab">Components</a></li>
+                                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#exampleTabsLineThree"
+                                                    aria-controls="exampleTabsLineThree" role="tab">Css</a></li>
+                                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#exampleTabsLineFour"
+                                                    aria-controls="exampleTabsLineFour" role="tab">Javascript</a></li>
+                                                </ul>
+                                          </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-12 col-xs-12">
+                        <div class="tab-content p-t-20">
+                            <div class="tab-pane active" id="exampleTabsLineOne" role="tabpanel">
+                            s
+                            </div>
+                            <div class="tab-pane" id="exampleTabsLineTwo" role="tabpanel">
+                              Sole
+                            </div>
+                            <div class="tab-pane" id="exampleTabsLineThree" role="tabpanel">
+                              Maestitiam
+                            </div>
+                            <div class="tab-pane" id="exampleTabsLineFour" role="tabpanel">
+                              Adiit
+                            </div>
+                            <div class="tab-pane" id="baseInformation" role="tabpanel">
+                                <iframe id="iframe1" src="http://www.baidu.com"></iframe>
+                            </div>
+                        </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<% if (typeof pjax === "undefined") { %>
+    <%- include ../footer %>
+<% } %>
