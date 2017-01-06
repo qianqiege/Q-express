@@ -97,9 +97,9 @@
                                 <table class="table table1">
                                     <thead>
                                         <tr>
-                                            <td>姓名</td>
-                                            <td>异常状态</td>
-                                            <td>操作</td>
+                                            <th>姓名</th>
+                                            <th>异常状态</th>
+                                            <th>操作</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -113,9 +113,9 @@
                                 <table class="table table2">
                                     <thead>
                                         <tr>
-                                            <td>姓名</td>
-                                            <td>异常状态</td>
-                                            <td>操作</td>
+                                            <th>姓名</th>
+                                            <th>异常状态</th>
+                                            <th>操作</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -130,7 +130,7 @@
                             <tr>
                                 <td>NNAME</td>
                                 <td>RREASON</td>
-                                <td><a class="btn btn-primary btn-block card-link m-r-5" href="healthDetection?id=IID" role="button">处理异常</a></td>
+                                <td><a class="btn btn-primary btn-block card-link m-r-5" href="healthDetection?id=IID" role="button" style="text-decoration: none;">处理异常</a></td>
                             </tr>
                         </table>
                             <div class="paginationDiv" id="paginationDiv" style="float: right;"></div>
@@ -149,21 +149,23 @@
         $(".table1 tbody").html('');
         $(".table2 tbody").html('');
         var count = 0;
-        for ( var i in data.data) {
+        for (var i in data.data) {
             count++;
             adata = data.data[i];
-            name = adata["patient"]["name"]
-            reason = adata.test_item
-            id = adata.patient.id
+            name = adata["patient"]["name"];
+            reason = adata.test_item;
+            id = adata.patient.id;
             t_template = template.replace("NNAME",name)
-            .replace("RREASON",reason)
-            .replace("IID",id)
+                                .replace("RREASON",reason)
+                                .replace("IID",id);
             if (count > 5){
                 $(".table2 tbody").append(t_template);
             } else {
                 $(".table1 tbody").append(t_template);
             }
         };
+        customPjax(".table1 .card-link", "#page");
+        customPjax(".table2 .card-link", "#page");
     };
     var paginationDiv = $("#paginationDiv");
     paginationDiv.pagination({
