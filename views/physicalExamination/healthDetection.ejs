@@ -343,9 +343,9 @@ $(function(){
         var temperatures_date = [];
         var data = data["data"];
         for (var k = 0; k < data.length; k++) {
-            var tr = [data[k].datetime, data[k].value];
-            temperatures_value.push(data[k]['value']);
-            temperatures_date.push(data[k]['datetime']);
+            var tr = [data[data.length - 1 - k].datetime, data[data.length - 1 - k].value];
+            temperatures_value.push(data[data.length - 1 - k]['value']);
+            temperatures_date.push(data[data.length - 1 - k]['datetime']);
         }
         var chart_data = {
             date: temperatures_date,
@@ -377,9 +377,9 @@ $(function(){
         var weights_date = [];
         var data = data["data"];
         for (var k = 0; k < data.length; k++) {
-            var tr = [data[k].datetime, data[k].value];
-            weights_value.push(data[k]['value']);
-            weights_date.push(data[k]['datetime']);
+            var tr = [data[data.length - 1 - k].datetime, data[data.length - 1 - k].value];
+            weights_value.push(data[data.length - 1 - k]['value']);
+            weights_date.push(data[data.length - 1 - k]['datetime']);
         }
         var chart_data = {
             date: weights_date,
@@ -412,9 +412,9 @@ $(function(){
         var heart_rates_date = [];
         var data = data["data"];
         for (var k = 0; k < data.length; k++) {
-            var tr = [data[k].datetime, data[k].value];
-            heart_rates_value.push(data[k]['value']);
-            heart_rates_date.push(data[k]['datetime']);
+            var tr = [data[data.length - 1 - k].datetime, data[data.length - 1 - k].value];
+            heart_rates_value.push(data[data.length - 1 - k]['value']);
+            heart_rates_date.push(data[data.length - 1 - k]['datetime']);
         }
         var chart_data = {
             date: heart_rates_date,
