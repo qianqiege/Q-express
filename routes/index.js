@@ -45,6 +45,9 @@ router.get('/infoEntry', function(req, res, next) {
 router.get('/newRecord', function(req, res, next) {
     res.render('file/newRecord', {title: "建立健康档案", pjax: req.get('X-PJAX')});
 });
+router.get('/holographicView', function(req, res, next) {
+    res.render('file/holographicView', {title: "全息视图", pjax: req.get('X-PJAX')});
+});
 
 router.get('/patientList', function(req, res, next) {
     res.render('file/patientList', {title: "客户列表", pjax: req.get('X-PJAX')});
