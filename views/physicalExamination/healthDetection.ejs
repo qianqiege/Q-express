@@ -235,7 +235,7 @@ $(function(){
             after_blood_glucose.push(data[k]['after_blood_glucose']);
             blood_glucose_date.push(data[k]['datetime']);
             tr.push(data[k].status1 + '/' + data[k].status2);
-            if ((data[k].status1 === '正常') && (data[k].status1 === '正常')) {
+            if ((data[k].status1 === '正常') && (data[k].status2 === '正常')) {
                 $("#blood_glucoses").append($(createTr(tr)));
             } else {
                 $("#blood_glucoses").append($(createErrTr(tr)));
@@ -285,7 +285,7 @@ $(function(){
             min_blood_pressure.push(data[k]['min_blood_pressure']);
             blood_pressure_date.push(data[k]['datetime']);
             tr.push(data[k].status2 + '/' + data[k].status1);
-            if ((data[k].status1 === '正常') && (data[k].status1 === '正常')) {
+            if ((data[k].status1 === '正常') && (data[k].status2 === '正常')) {
                 $("#blood_pressure_tab").append($(createTr(tr)));
             } else {
                 $("#blood_pressure_tab").append($(createErrTr(tr)));
