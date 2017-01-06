@@ -149,20 +149,22 @@
         $(".table1 tbody").html('');
         $(".table2 tbody").html('');
         var count = 0;
-        for ( var i in data.data) {
+        for (var i in data.data) {
             count++;
             adata = data.data[i];
-            name = adata["patient"]["name"]
-            reason = adata.test_item
-            id = adata.patient.id
+            name = adata["patient"]["name"];
+            reason = adata.test_item;
+            id = adata.patient.id;
             t_template = template.replace("NNAME",name)
-            .replace("RREASON",reason)
-            .replace("IID",id)
+                                .replace("RREASON",reason)
+                                .replace("IID",id);
             if (count > 5){
                 $(".table2 tbody").append(t_template);
             } else {
                 $(".table1 tbody").append(t_template);
             }
+            customPjax(".table1 .card-link", "#page");
+            customPjax(".table2 .card-link", "#page");
         };
     };
     var paginationDiv = $("#paginationDiv");
