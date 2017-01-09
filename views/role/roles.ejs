@@ -85,7 +85,10 @@
                 $("#roleList").append($(tableDom(data.data[i])));
             }
         };
-        var paginationDiv = $("#roleListFunction").find(".paginationDiv")
+        var paginationDiv = $("#roleListFunction").find(".paginationDiv");
+        if (paginationDiv.pagination()) {
+            paginationDiv.pagination('destroy');
+        }
         paginationDiv.pagination({
             pageSize: 10,
             loadFirstPage: true,
@@ -219,8 +222,6 @@
                 }, {}, {contentType: 'application/json;charset=utf-8'})
             });
         });
-
-
     };
 </script>
 <% if (typeof pjax === "undefined") { %>
