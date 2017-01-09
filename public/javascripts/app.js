@@ -295,7 +295,14 @@ Date.prototype.Format = function(fmt) {
 * @author jshensh@126.com 2017-01-09
 */
 var setMenu = function(pathname) {
-    var thisLi = $(".site-menu a[href='" + pathname + "']").parent(), parentLi = thisLi.parent().parent().hasClass("has-sub") && thisLi.parent().parent();
+    if (typeof pathname === "string") {
+        var thisLi = $(".site-menu a[href='" + pathname + "']").parent();
+    } else if (typeof pathname === "object") {
+        var thisLi = $(pathname).parent();
+    } else {
+        return false;
+    }
+    var parentLi = thisLi.parent().parent().hasClass("has-sub") && thisLi.parent().parent();
     if (!thisLi.length) {
         return false;
     }
@@ -338,7 +345,9 @@ var customPjax = function(aSelector, divSelector) {
                         if (status && data) {
                             if (history.pushState) {
                                 window.history.pushState('', newTitle, uri);
-                                setMenu(location.pathname);
+                                if (!arguments[2]) {
+                                    setMenu(location.pathname);
+                                }
                             }
                             var newTitle = data.match(/<title>(.*?)<\/title>/)[1];
                             data = data.replace(/<title>.*?<\/title>/, "");
@@ -442,7 +451,10 @@ $(function() {
                     return true;
                 }
                 getMenu().then(function() {
-                    customPjax(".site-menu a[href!='javascript:void(0)']", "#page");
+                    $(".site-menu a[href!='javascript:void(0)']").on("click tap touchend", function() {
+                        setMenu(this);
+                    });
+                    customPjax(".site-menu a[href!='javascript:void(0)']", "#page", true);
                     $(document).on('customPjax:end', function() {
                         $("select[data-plugin='select2']").each(function() {
                             $(this).select2();
