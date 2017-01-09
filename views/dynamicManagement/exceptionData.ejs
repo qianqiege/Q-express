@@ -84,7 +84,7 @@
                pageSize: 10,
                loadFirstPage: true,
                remote: {
-                   url: window.baseUrl + "/exception",
+                   url: window.baseUrl + "/exception/data",
                    beforeSend: function (XHR) {
                        XHR.setRequestHeader('access-authorization', $.cookie('access_token'));
                    },
