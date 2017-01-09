@@ -333,9 +333,10 @@ var customPjax = function(aSelector, divSelector) {
             $(divSelector).html($(data));
             if (!$(divSelector).filter("script").length) {
                 responseDom.filter('script').each(function(){
+                    console.log(this);
                     if (this.src) {
                         var script = document.createElement('script'), i, attrName, attrValue, attrs = this.attributes;
-                        for(i = 0; i < attrs.length; i++) {
+                        for (i = 0; i < attrs.length; i++) {
                             attrName = attrs[i].name;
                             attrValue = attrs[i].value;
                             script[attrName] = attrValue;

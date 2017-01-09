@@ -167,6 +167,9 @@
         customPjax(".table2 .card-link", "#page");
     };
     var paginationDiv = $("#paginationDiv");
+    if (paginationDiv.pagination()) {
+        paginationDiv.pagination('destroy');
+    }
     paginationDiv.pagination({
         pageSize: 10,
         loadFirstPage: true,
