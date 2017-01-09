@@ -38,7 +38,7 @@
                                 <td style="color:red">SIGNVALUE</td>
                                 <td style="color:red">STATUS</td>
                                 <td>TIME</td>
-                                <td><a class="btn btn-primary btn-block card-link m-r-5" href="#" role="button">处理异常</a></td>
+                                <td><a class="btn btn-primary btn-block card-link m-r-5" href="#" role="button" style="text-decoration: none;">处理异常</a></td>
                             </tr>
                         </table>
                         <div style="text-align: right;" class="paginationDiv" id="paginationDiv"></div>
@@ -71,34 +71,37 @@
             time = adata.created_at.substr(0,10);
             id = adata.patient.id
             t_template = template.replace("NNAME",name)
-            .replace("RREASON",reason)
-            .replace("SIGNVALUE",signvalue)
-            .replace("STATUS",status)
-            .replace("TIME",time)
-            .replace("IID",id)
+                                .replace("RREASON",reason)
+                                .replace("SIGNVALUE",signvalue)
+                                .replace("STATUS",status)
+                                .replace("TIME",time)
+                                .replace("IID",id)
             $("table tbody").append(t_template);
         }
     }
     var paginationDiv = $("#paginationDiv");
-           paginationDiv.pagination({
-               pageSize: 10,
-               loadFirstPage: true,
-               remote: {
-                   url: window.baseUrl + "/exception/data",
-                   beforeSend: function (XHR) {
-                       XHR.setRequestHeader('access-authorization', $.cookie('access_token'));
-                   },
-                   success: cbFunction,
-                   params: {},
-                   pageParams: function(data) {
-                       return {
-                           'page': data.pageIndex + 1,
-                           'per_page': data.pageSize
-                       };
-                   },
-                   totalName: 'meta.total'
-               }
-           });
+    if (paginationDiv.pagination()) {
+        paginationDiv.pagination('destroy');
+    }
+    paginationDiv.pagination({
+        pageSize: 10,
+        loadFirstPage: true,
+        remote: {
+            url: window.baseUrl + "/exception/data",
+            beforeSend: function (XHR) {
+                XHR.setRequestHeader('access-authorization', $.cookie('access_token'));
+            },
+            success: cbFunction,
+            params: {},
+            pageParams: function(data) {
+                return {
+                    'page': data.pageIndex + 1,
+                    'per_page': data.pageSize
+                };
+            },
+            totalName: 'meta.total'
+        }
+    });
     //doAjax(window.baseUrl + "/exception", "get", {'page':1,'per_page':10}, cbFunction);
     </script>
 <% if (typeof pjax === "undefined") { %>
