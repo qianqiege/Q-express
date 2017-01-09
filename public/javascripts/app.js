@@ -323,6 +323,36 @@ var setMenu = function(pathname) {
 * @author jshensh@126.com 2016-12-22
 */
 var customPjax = function(aSelector, divSelector) {
+    var pjaxEndEvent = $.Event('customPjax:end');
+
+    var renderToDom = function(divSelector, data, newTitle) {
+        data = data.replace(/<title>.*?<\/title>/, "");
+        // $(".pjaxLoader").fadeOut(function() {
+            var responseDom = $(data);
+            $(divSelector).html($(data));
+            if (!$(divSelector).filter("script").length) {
+                responseDom.filter('script').each(function(){
+                    if (this.src) {
+                        var script = document.createElement('script'), i, attrName, attrValue, attrs = this.attributes;
+                        for(i = 0; i < attrs.length; i++) {
+                            attrName = attrs[i].name;
+                            attrValue = attrs[i].value;
+                            script[attrName] = attrValue;
+                        }
+                        $(divSelector)[0].appendChild(script);
+                    } else {
+                        $.globalEval(this.text || this.textContent || this.innerHTML || '');
+                    }
+                }).promise().done(function() {
+                    $(divSelector).fadeIn(function() {
+                        document.title = newTitle;
+                        $(document).trigger(pjaxEndEvent);
+                    });
+                });
+            }
+        // });
+    };
+
     $(aSelector).each(function() {
         var uri = $(this).attr('href');
         if (typeof uri === "undefined") {
@@ -331,7 +361,6 @@ var customPjax = function(aSelector, divSelector) {
         if (uri.match(/^javascript:/) || uri.match(/\#/)) {
             return true;
         }
-        var pjaxEndEvent = $.Event('customPjax:end');
         uri = uri.match(/^\//) ? uri : "/" + uri;
         $(this).on("click tap touchend", function(evt) {
             if (evt && evt.preventDefault) {
@@ -343,21 +372,14 @@ var customPjax = function(aSelector, divSelector) {
                 // $(".pjaxLoader").fadeIn(function() {
                     doAjax(uri, "get", {}, function(data, status) {
                         if (status && data) {
+                            var newTitle = data.match(/<title>(.*?)<\/title>/)[1];
                             if (history.pushState) {
                                 window.history.pushState('', newTitle, uri);
                                 if (!arguments[2]) {
                                     setMenu(location.pathname);
                                 }
                             }
-                            var newTitle = data.match(/<title>(.*?)<\/title>/)[1];
-                            data = data.replace(/<title>.*?<\/title>/, "");
-                            // $(".pjaxLoader").fadeOut(function() {
-                                $(divSelector).html($(data));
-                                $(divSelector).fadeIn(function() {
-                                    document.title = newTitle;
-                                    $(document).trigger(pjaxEndEvent);
-                                });
-                            // });
+                            renderToDom(divSelector, data, newTitle);
                         }
                     }, {}, {"X-PJAX": "true", "dataType": "text"});
                 // });
@@ -370,15 +392,15 @@ var customPjax = function(aSelector, divSelector) {
     if (!customPjax.prototype.initialization) {
         customPjax.prototype.initialization = true;
         window.onpopstate = function(evt) {
-            var uri = location.pathname;
-            doAjax(uri, "get", {}, function(data, status) {
-                if (status && data) {
-                    var newTitle = data.match(/<title>(.*?)<\/title>/)[1];
-                    data = data.replace(/<title>.*?<\/title>/, "");
-                    $(divSelector).html($(data));
-                    document.title = newTitle;
-                }
-            }, {}, {"X-PJAX": "true", "dataType": "text"});
+            $(divSelector).fadeOut(function() {
+                var uri = location.pathname;
+                doAjax(uri, "get", {}, function(data, status) {
+                    if (status && data) {
+                        var newTitle = data.match(/<title>(.*?)<\/title>/)[1];
+                        renderToDom(divSelector, data, newTitle);
+                    }
+                }, {}, {"X-PJAX": "true", "dataType": "text"});
+            });
         };
     }
 }
