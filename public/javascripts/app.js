@@ -255,7 +255,8 @@ $.fn.customVal = function() {
 */
 var gotoLogin = function() {
     if (location.href.indexOf("/login") === -1) {
-        location.href = "/login";
+        var replaceReg = new RegExp("^" + location.origin);
+        location.href = "/login?from=" + (encodeURIComponent(location.href.replace(replaceReg, "")));
         return true;
     }
 };
@@ -289,6 +290,32 @@ Date.prototype.Format = function(fmt) {
 };
 
 /**
+* 设置菜单选中项
+*
+* @return void
+* @author jshensh@126.com 2017-01-09
+*/
+var setMenu = function(pathname) {
+    if (typeof pathname === "string") {
+        var thisLi = $(".site-menu a[href='" + pathname + "']").parent();
+    } else if (typeof pathname === "object") {
+        var thisLi = $(pathname).parent();
+    } else {
+        return false;
+    }
+    var parentLi = thisLi.parent().parent().hasClass("has-sub") && thisLi.parent().parent();
+    if (!thisLi.length) {
+        return false;
+    }
+    $(".site-menu .open").removeClass("open");
+    if (parentLi) {
+        parentLi.addClass("open");
+    }
+    $(".site-menu-item").removeClass("active");
+    thisLi.addClass("active");
+};
+
+/**
 * PushState && Ajax
 *
 * @param aSelector {String} a 标签选择器
@@ -297,6 +324,39 @@ Date.prototype.Format = function(fmt) {
 * @author jshensh@126.com 2016-12-22
 */
 var customPjax = function(aSelector, divSelector) {
+    var pjaxEndEvent = $.Event('customPjax:end');
+
+    var renderToDom = function(divSelector, data, newTitle) {
+        data = data.replace(/<title>.*?<\/title>/, "");
+        // $(".pjaxLoader").fadeOut(function() {
+            var responseDom = $(data);
+            $(divSelector).html($(data));
+            if (!$(divSelector).filter("script").length) {
+                responseDom.filter('script').each(function() {
+                    if (this.src) {
+                        var script = document.createElement('script'), i, attrName, attrValue, attrs = this.attributes;
+                        for (i = 0; i < attrs.length; i++) {
+                            attrName = attrs[i].name;
+                            attrValue = attrs[i].value;
+                            script[attrName] = attrValue;
+                        }
+                        $(divSelector)[0].appendChild(script);
+                    } else {
+                        $.globalEval(this.text || this.textContent || this.innerHTML || '');
+                    }
+                }).promise().done(function() {
+                    $(divSelector).fadeIn(function() {
+                        document.title = newTitle;
+                        $(document).trigger(pjaxEndEvent);
+                        $(divSelector).find("a[data-plugin='customPjax']").each(function() {
+                            customPjax(this, $(this).data("custom-pjax-render-to") || "#pjax");
+                        });
+                    });
+                });
+            }
+        // });
+    };
+
     $(aSelector).each(function() {
         var uri = $(this).attr('href');
         if (typeof uri === "undefined") {
@@ -305,7 +365,6 @@ var customPjax = function(aSelector, divSelector) {
         if (uri.match(/^javascript:/) || uri.match(/\#/)) {
             return true;
         }
-        var pjaxEndEvent = $.Event('customPjax:end');
         uri = uri.match(/^\//) ? uri : "/" + uri;
         $(this).on("click tap touchend", function(evt) {
             if (evt && evt.preventDefault) {
@@ -317,18 +376,14 @@ var customPjax = function(aSelector, divSelector) {
                 // $(".pjaxLoader").fadeIn(function() {
                     doAjax(uri, "get", {}, function(data, status) {
                         if (status && data) {
+                            var newTitle = data.match(/<title>(.*?)<\/title>/)[1];
                             if (history.pushState) {
                                 window.history.pushState('', newTitle, uri);
+                                if (!arguments[2]) {
+                                    setMenu(location.pathname);
+                                }
                             }
-                            var newTitle = data.match(/<title>(.*?)<\/title>/)[1];
-                            data = data.replace(/<title>.*?<\/title>/, "");
-                            // $(".pjaxLoader").fadeOut(function() {
-                                $(divSelector).html($(data));
-                                $(divSelector).fadeIn(function() {
-                                    document.title = newTitle;
-                                    $(document).trigger(pjaxEndEvent);
-                                });
-                            // });
+                            renderToDom(divSelector, data, newTitle);
                         }
                     }, {}, {"X-PJAX": "true", "dataType": "text"});
                 // });
@@ -341,15 +396,15 @@ var customPjax = function(aSelector, divSelector) {
     if (!customPjax.prototype.initialization) {
         customPjax.prototype.initialization = true;
         window.onpopstate = function(evt) {
-            var uri = location.pathname;
-            doAjax(uri, "get", {}, function(data, status) {
-                if (status && data) {
-                    var newTitle = data.match(/<title>(.*?)<\/title>/)[1];
-                    data = data.replace(/<title>.*?<\/title>/, "");
-                    $(divSelector).html($(data));
-                    document.title = newTitle;
-                }
-            }, {}, {"X-PJAX": "true", "dataType": "text"});
+            $(divSelector).fadeOut(function() {
+                var uri = location.pathname;
+                doAjax(uri, "get", {}, function(data, status) {
+                    if (status && data) {
+                        var newTitle = data.match(/<title>(.*?)<\/title>/)[1];
+                        renderToDom(divSelector, data, newTitle);
+                    }
+                }, {}, {"X-PJAX": "true", "dataType": "text"});
+            });
         };
     }
 }
@@ -423,11 +478,9 @@ $(function() {
                 }
                 getMenu().then(function() {
                     $(".site-menu a[href!='javascript:void(0)']").on("click tap touchend", function() {
-                        var thisLi = $(this).parent(), parentLi = thisLi.parent().parent().hasClass("has-sub") || thisLi.parent().parent();
-                        $(".site-menu-item").removeClass("active");
-                        thisLi.addClass("active");
+                        setMenu(this);
                     });
-                    customPjax(".site-menu a[href!='javascript:void(0)']", "#page");
+                    customPjax(".site-menu a[href!='javascript:void(0)']", "#page", true);
                     $(document).on('customPjax:end', function() {
                         $("select[data-plugin='select2']").each(function() {
                             $(this).select2();
@@ -462,4 +515,8 @@ $(function() {
         $(".input-search-close").prev().val('').trigger("input");
     });
     $(".input-search-close").prev().val('').trigger("input");
+
+    $("a[data-plugin='customPjax']").each(function() {
+        customPjax(this, $(this).data("custom-pjax-render-to") || "#pjax");
+    });
 });

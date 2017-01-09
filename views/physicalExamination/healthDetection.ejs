@@ -452,7 +452,6 @@ $(function(){
             .replace(/\{__report_url__\}/g, dom["report_url"]);
     };
 
-
     $(".nav-tabs .nav-link").on('click',function(){
         where = $(this).text()
         if ($(this).data("apiget")){
@@ -461,7 +460,10 @@ $(function(){
         if (where === "血压监测"){
             $(this).data("apiget",true)
             doAjax(window.baseUrl + "/examination_check/blood_pressure", 'get', {'patient_id': uid,'start_date': startDate,'end_date': todayData,'page':0,'per_page':0}, bPEchartFunction);
-            var paginationDiv = $("#blood_pressure").find(".paginationDiv")
+            var paginationDiv = $("#blood_pressure").find(".paginationDiv");
+            if (paginationDiv.pagination()) {
+                paginationDiv.pagination('destroy');
+            }
             paginationDiv.pagination({
                 pageSize: 10,
                 loadFirstPage: true,
@@ -482,10 +484,13 @@ $(function(){
                 }
             });
             return true;
-        } else if( where === "血糖监测") {
+        } else if (where === "血糖监测") {
             $(this).data("apiget",true)
             doAjax(window.baseUrl + "/examination_check/blood_glucose", 'get', {'patient_id': uid,'start_date': startDate,'end_date': todayData,'page':0,'per_page':0}, bSEchartFunction);
-            var paginationDiv = $("#blood_sugar").find(".paginationDiv")
+            var paginationDiv = $("#blood_sugar").find(".paginationDiv");
+            if (paginationDiv.pagination()) {
+                paginationDiv.pagination('destroy');
+            }
             paginationDiv.pagination({
                 pageSize: 10,
                 loadFirstPage: true,
@@ -506,10 +511,13 @@ $(function(){
                 }
             });
             return true;
-        } else if( where === "体温监测") {
+        } else if (where === "体温监测") {
             $(this).data("apiget",true)
             doAjax(window.baseUrl + "/examination_check/temperature", 'get', {'patient_id': uid,'start_date': startDate,'end_date': todayData,'page':0,'per_page':0}, temperatureEchartFunction);
-            var paginationDiv = $("#temperature").find(".paginationDiv")
+            var paginationDiv = $("#temperature").find(".paginationDiv");
+            if (paginationDiv.pagination()) {
+                paginationDiv.pagination('destroy');
+            }
             paginationDiv.pagination({
                 pageSize: 10,
                 loadFirstPage: true,
@@ -530,10 +538,13 @@ $(function(){
                 }
             });
             return true;
-        } else if( where === "体重监测") {
+        } else if (where === "体重监测") {
             $(this).data("apiget",true)
             doAjax(window.baseUrl + "/examination_check/weight", 'get', {'patient_id': uid,'start_date': startDate,'end_date': todayData,'page':0,'per_page':0}, weightEchartFunction);
-            var paginationDiv = $("#weight").find(".paginationDiv")
+            var paginationDiv = $("#weight").find(".paginationDiv");
+            if (paginationDiv.pagination()) {
+                paginationDiv.pagination('destroy');
+            }
             paginationDiv.pagination({
                 pageSize: 10,
                 loadFirstPage: true,
@@ -554,10 +565,13 @@ $(function(){
                 }
             });
             return true;
-        } else if( where === "心率监测") {
-            $(this).data("apiget",true)
+        } else if (where === "心率监测") {
+            $(this).data("apiget", true);
             doAjax(window.baseUrl + "/examination_check/heart_rate", 'get', {'patient_id': uid,'start_date': startDate,'end_date': todayData,'page':0,'per_page':0}, heartRateEchartFunction);
-            var paginationDiv = $("#heart_rate").find(".paginationDiv")
+            var paginationDiv = $("#heart_rate").find(".paginationDiv");
+            if (paginationDiv.pagination()) {
+                paginationDiv.pagination('destroy');
+            }
             paginationDiv.pagination({
                 pageSize: 10,
                 loadFirstPage: true,
@@ -578,7 +592,7 @@ $(function(){
                 }
             });
             return true;
-        } else if( where === "TDS数字中医") {
+        } else if (where === "TDS数字中医") {
             $(this).data("apiget",true)
             doAjax(window.baseUrl + "/tds/check", 'get', {'patient_id': uid}, function(data, status){
                 if (status && data){
@@ -591,9 +605,9 @@ $(function(){
             });
             return true;
         }
-    })
-        $(".nav-tabs .nav-link.active").click();
-})
+    });
+    $(".nav-tabs .nav-link.active").click();
+});
 </script>
 <% if (typeof pjax === "undefined") { %>
     <%- include ../footer %>
