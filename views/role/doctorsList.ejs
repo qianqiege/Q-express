@@ -64,7 +64,7 @@
                     </div>
                 </div>
             </div>
-            <div style="text-align: right;" class="paginationDiv" id = "paginationDiv"></div>
+            <div style="text-align: right;" class="paginationDiv" id="paginationDiv"></div>
         </div>
         <!-- End Panel -->
 
@@ -154,7 +154,10 @@
                 $('#all_contacts ul:first').html('暂无健康管理师');
             };
         };
-        var paginationDiv = $("#doctorList").find(".paginationDiv")
+        var paginationDiv = $("#doctorList").find(".paginationDiv");
+        if (paginationDiv.pagination()) {
+            paginationDiv.pagination('destroy');
+        }
         paginationDiv.pagination({
             pageSize: 10,
             loadFirstPage: true,
