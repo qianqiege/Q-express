@@ -125,14 +125,7 @@
                                 </table>
                             </div>
                         </div>
-                        <table id="iamtempalte" style="display: none;">
-                            <tr>
-                                <td>NNAME</td>
-                                <td>RREASON</td>
-                                <td><a class="btn btn-primary btn-block card-link m-r-5" href="healthDetection?id=IID" role="button" style="text-decoration: none;">处理异常</a></td>
-                            </tr>
-                        </table>
-                            <div class="paginationDiv" id="paginationDiv" style="float: right;"></div>
+                        <div class="paginationDiv" id="paginationDiv" style="float: right;"></div>
                     </div>
                 </div>
             </div>
@@ -140,8 +133,11 @@
         </div>
     </div>
 <script>
-    var template = $("#iamtempalte :first").html()
-    $("#iamtempalte").remove()
+    var template = '<tr>\
+        <td>NNAME</td>\
+        <td>RREASON</td>\
+        <td><a class="btn btn-primary btn-block card-link m-r-5" href="healthDetection?id=IID" role="button" style="text-decoration: none;">处理异常</a></td>\
+    </tr>';
     var cbFunction = function(data, status){
         $(".table1 tr:eq(1)").remove();
         $(".table2 tr:eq(1)").remove();
@@ -154,9 +150,9 @@
             name = adata["patient"]["name"];
             reason = adata.test_item;
             id = adata.patient.id;
-            t_template = template.replace("NNAME",name)
-                                .replace("RREASON",reason)
-                                .replace("IID",id);
+            t_template = template.replace("NNAME", name)
+                                .replace("RREASON", reason)
+                                .replace("IID", id);
             if (count > 5){
                 $(".table2 tbody").append(t_template);
             } else {
