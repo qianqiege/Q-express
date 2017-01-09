@@ -52,7 +52,7 @@
             <!-- End Panel -->
         </div>
     </div>
-    <div class="" id="hideProject" style="display:none;">
+    <div class="hideProject" style="display: none;">
         <div class="row">
             <div class="form-group col-lg-11 offset-lg-1 col-xs-12">
                 <h4>
@@ -170,8 +170,8 @@
 <script>
 //搜索展示相关人员信息
 var patient_id;
-var template = $("#hideProject").html();
-$("#hideProject").remove();
+var template = $(".hideProject").html();
+$(".hideProject").remove();
 var searching = false;
 var doSearch = function (dom) {
     var val = dom.value.toLocaleUpperCase();
