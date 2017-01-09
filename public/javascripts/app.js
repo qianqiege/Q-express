@@ -347,6 +347,9 @@ var customPjax = function(aSelector, divSelector) {
                     $(divSelector).fadeIn(function() {
                         document.title = newTitle;
                         $(document).trigger(pjaxEndEvent);
+                        $(divSelector).find("a[data-plugin='customPjax']").each(function() {
+                            customPjax(this, $(this).data("custom-pjax-render-to") || "#pjax");
+                        });
                     });
                 });
             }
@@ -511,4 +514,8 @@ $(function() {
         $(".input-search-close").prev().val('').trigger("input");
     });
     $(".input-search-close").prev().val('').trigger("input");
+
+    $("a[data-plugin='customPjax']").each(function() {
+        customPjax(this, $(this).data("custom-pjax-render-to") || "#pjax");
+    });
 });
