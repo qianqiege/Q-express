@@ -138,31 +138,31 @@
                                         <div class="form-group row">
                                             <label class="col-xs-12 col-md-1 offset-md-1 form-control-label">1、性别: </label>
                                             <div class="col-md-4 col-xs-12 ">
-                                                <div class="radio-custom radio-default radio-inline">
+                                                <div class="radio-custom radio-primary radio-inline">
                                                     <input type="radio" id="sex0" name="sex" value="女" disabled="disabled">
                                                     <label for="sex0">女</label>
                                                 </div>
-                                                <div class="radio-custom radio-default radio-inline">
+                                                <div class="radio-custom radio-primary radio-inline">
                                                     <input type="radio" id="sex1" name="sex" value="男" disabled="disabled">
                                                     <label for="sex1">男</label>
                                                 </div>
                                             </div>
                                             <label class="col-xs-12 col-md-1  form-control-label">2、婚姻状况: </label>
                                             <div class="col-md-5 col-xs-12">
-                                                <div class="radio-custom radio-default radio-inline">
-                                                    <input type="radio" id="marriage1" name="marriage" value="已婚">
+                                                <div class="radio-custom radio-primary radio-inline">
+                                                    <input type="radio" id="marriage1" name="marriage" value="已婚" disabled>
                                                     <label for="marriage1">已婚</label>
                                                 </div>
-                                                <div class="radio-custom radio-default radio-inline">
-                                                    <input type="radio" id="marriage2" name="marriage" value="未婚">
+                                                <div class="radio-custom radio-primary radio-inline">
+                                                    <input type="radio" id="marriage2" name="marriage" value="未婚" disabled>
                                                     <label for="marriage2">未婚</label>
                                                 </div>
-                                                <div class="radio-custom radio-default radio-inline">
-                                                    <input type="radio" id="marriage3" name="marriage" value="离异">
+                                                <div class="radio-custom radio-primary radio-inline">
+                                                    <input type="radio" id="marriage3" name="marriage" value="离异" disabled>
                                                     <label for="marriage3">离异</label>
                                                 </div>
-                                                <div class="radio-custom radio-default radio-inline">
-                                                    <input type="radio" id="marriage4" name="marriage" value="丧偶">
+                                                <div class="radio-custom radio-primary radio-inline">
+                                                    <input type="radio" id="marriage4" name="marriage" value="丧偶" disabled>
                                                     <label for="marriage4">丧偶</label>
                                                 </div>
                                             </div>
@@ -170,7 +170,7 @@
                                         <div class="form-group row">
                                             <label class="col-xs-12 col-md-1 offset-md-1 form-control-label">3、身份证号: </label>
                                             <div class="col-md-3 col-xs-12 ">
-                                                <input type="text" class="form-control"style="border-width:0 0 2 0" id="idCard" name="id_number" oninput="showBirthSex(this);" maxlength="18" onchange="testId(this)">
+                                                <input type="text" class="form-control" style="border-width:0 0 2 0" id="idCard" name="id_number" oninput="showBirthSex(this);" maxlength="18" onchange="testId(this)" disabled>
                                             </div>
                                             <label class="col-xs-12 col-md-1 offset-md-1 form-control-label">4、出生日期: </label>
                                             <div class="col-md-4 col-xs-12">
@@ -181,18 +181,18 @@
                                         <div class="form-group row">
                                             <label class="col-xs-12 col-md-1 offset-md-1 form-control-label">5、民族: </label>
                                             <div class="col-md-3 col-xs-12 ">
-                                                <input type="text" class="form-control"id="nation" name="nation">
+                                                <input type="text" class="form-control"id="nation" name="nation" disabled>
                                             </div>
                                             <label class="col-xs-12 col-md-1 offset-md-1 form-control-label">6、职业: </label>
                                             <div class="col-md-4 col-xs-12">
-                                                <input type="text" class="form-control" id="occupation" name="occupation">
+                                                <input type="text" class="form-control" id="occupation" name="occupation" disabled>
                                             </div>
 
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-xs-12 col-md-1 offset-md-1 form-control-label">7、通讯地址: </label>
                                             <div class="col-md-9 col-xs-12">
-                                                <input type="text" class="form-control" id="address" name="address">
+                                                <input type="text" class="form-control" id="address" name="address" disabled>
                                             </div>
                                         </div>
                                         <h4 style="text-align:center">查体</h4>
@@ -1674,6 +1674,28 @@
         //     }, {}, {"X-PJAX": "true", "dataType": "text"});
         //
         // })
+        $("#baseInformationBtn").on('click',function(){
+            $("input").prop("disabled",true);
+            var uid = ~~getvl('id');
+            var getUserInfoCallback = function(data, status) {
+                console.log(data)
+                if (data && status) {
+                    for (var i in data) {
+                        if (typeof data[i] === "string") {
+                            $("*[name='" + i + "']").customVal(data[i]);
+                        } else if (typeof data[i] === "object") {
+                            for (var k in data[i]) {
+                                var domId = i + "-" + k;
+                                $("*[name='" + domId + "']").customVal(data[i][k]);
+                            }
+                        }
+                    }
+                };
+            };
+            if (uid) {
+                doAjax(window.baseUrl + "/patient_record/check", 'get', {'id': uid}, getUserInfoCallback);
+            }
+        });
 
     </script>
 <% if (typeof pjax === "undefined") { %>
