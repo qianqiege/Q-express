@@ -116,9 +116,9 @@ var doAjaxPromise = function(ajaxUrl, ajaxType, ajaxData) {
 * @author jshensh@126.com 2016-11-25
 */
 var getvl = function(name) {
-   var reg = new RegExp("(^|\\?|&)"+ name +"=([^&]*)(\\s|&|$)", "i");
-   if (reg.test(location.href)) return unescape(RegExp.$2.replace(/\+/g, " "));
-   return "";
+    var reg = new RegExp("(^|\\?|&)"+ name +"=([^&]*)(\\s|&|$)", "i");
+    if (reg.test(location.href)) return unescape(RegExp.$2.replace(/\+/g, " "));
+    return "";
 };
 
 /**

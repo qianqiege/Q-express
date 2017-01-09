@@ -126,6 +126,11 @@
                 $(document).ready(function() {
                     Site.run();
                 });
+                var getvl = function(name) {
+                    var reg = new RegExp("(^|\\?|&)"+ name +"=([^&]*)(\\s|&|$)", "i");
+                    if (reg.test(location.href)) return unescape(RegExp.$2.replace(/\+/g, " "));
+                    return "";
+                };
                 var cb = function(data,status) {
                     if (status) {
                         if (data["access_token"]) {
@@ -162,7 +167,7 @@
                             confirmButtonClass: "hidden-xxl-down",
                         });
                         setTimeout(function() {
-                            location.href = "/";
+                            location.href = getvl("from") || "/";
                         }, 1000);
                     } else {
                         swal("未知错误", "", "error");
@@ -188,9 +193,9 @@
                 };
                 $("input").keydown(function(event){
                     if (event.id == 13) {
-                      login_submit();
+                        login_submit();
                     }
-                })
+                });
                 $("#loginButton").click(login_submit);
                 $("#selectHospital").parent().hide();
             })(document, window, jQuery);
