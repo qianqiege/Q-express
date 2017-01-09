@@ -289,6 +289,25 @@ Date.prototype.Format = function(fmt) {
 };
 
 /**
+* 设置菜单选中项
+*
+* @return void
+* @author jshensh@126.com 2017-01-09
+*/
+var setMenu = function(pathname) {
+    var thisLi = $(".site-menu a[href='" + pathname + "']").parent(), parentLi = thisLi.parent().parent().hasClass("has-sub") && thisLi.parent().parent();
+    if (!thisLi.length) {
+        return false;
+    }
+    $(".site-menu .open").removeClass("open");
+    if (parentLi) {
+        parentLi.addClass("open");
+    }
+    $(".site-menu-item").removeClass("active");
+    thisLi.addClass("active");
+};
+
+/**
 * PushState && Ajax
 *
 * @param aSelector {String} a 标签选择器
@@ -319,6 +338,7 @@ var customPjax = function(aSelector, divSelector) {
                         if (status && data) {
                             if (history.pushState) {
                                 window.history.pushState('', newTitle, uri);
+                                setMenu(location.pathname);
                             }
                             var newTitle = data.match(/<title>(.*?)<\/title>/)[1];
                             data = data.replace(/<title>.*?<\/title>/, "");
@@ -422,11 +442,6 @@ $(function() {
                     return true;
                 }
                 getMenu().then(function() {
-                    $(".site-menu a[href!='javascript:void(0)']").on("click tap touchend", function() {
-                        var thisLi = $(this).parent(), parentLi = thisLi.parent().parent().hasClass("has-sub") || thisLi.parent().parent();
-                        $(".site-menu-item").removeClass("active");
-                        thisLi.addClass("active");
-                    });
                     customPjax(".site-menu a[href!='javascript:void(0)']", "#page");
                     $(document).on('customPjax:end', function() {
                         $("select[data-plugin='select2']").each(function() {
