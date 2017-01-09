@@ -44,7 +44,7 @@
             <td style="color: red;">SIGNVALUE</td>\
             <td style="color: red;">STATUS</td>\
             <td>TIME</td>\
-            <td><a class="btn btn-primary btn-block card-link m-r-5" href="#" role="button" style="text-decoration: none;">处理异常</a></td>\
+            <td><a class="btn btn-primary btn-block card-link m-r-5" href="healthDetection?id=IID" role="button" style="text-decoration: none;">处理异常</a></td>\
         </tr>';
         var cbFunction = function(data,status){
             $("table tbody").html('');
@@ -66,14 +66,15 @@
                 }
                 time = adata.created_at.substr(0, 10);
                 id = adata.patient.id;
-                t_template = template.replace("NNAME",name)
-                                    .replace("RREASON",reason)
-                                    .replace("SIGNVALUE",signvalue)
-                                    .replace("STATUS",status)
-                                    .replace("TIME",time)
-                                    .replace("IID",id);
+                t_template = template.replace("NNAME", name)
+                                    .replace("RREASON", reason)
+                                    .replace("SIGNVALUE", signvalue)
+                                    .replace("STATUS", status)
+                                    .replace("TIME", time)
+                                    .replace("IID", id);
                 $("table tbody").append(t_template);
             }
+            customPjax("#exceptionData .table a[href]", "#page");
         }
         var paginationDiv = $("#paginationDiv");
         if (paginationDiv.pagination()) {

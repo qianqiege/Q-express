@@ -150,9 +150,9 @@
             name = adata["patient"]["name"];
             reason = adata.test_item;
             id = adata.patient.id;
-            t_template = template.replace("NNAME",name)
-                                .replace("RREASON",reason)
-                                .replace("IID",id);
+            t_template = template.replace("NNAME", name)
+                                .replace("RREASON", reason)
+                                .replace("IID", id);
             if (count > 5){
                 $(".table2 tbody").append(t_template);
             } else {
