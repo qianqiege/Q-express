@@ -130,6 +130,7 @@
                         .replace(/\{__value__}/g, obj["value"])
     };
     var abilityShow = function () {
+        $("#role_name").prop("value","").prop("disabled",false);
         $("#titleAbilities").nextAll().remove();
         doAjax(window.baseUrl + "/roles/abilities", "get", {}, function (data, status) {
             for (var i = 0; i < data.length; i++) {

@@ -64,7 +64,7 @@
                     </div>
                 </div>
             </div>
-            <div style="text-align: right;" class="paginationDiv"></div>
+            <div style="text-align: right;" class="paginationDiv" id = "paginationDiv"></div>
         </div>
         <!-- End Panel -->
 
@@ -110,8 +110,10 @@
                         searching = false;
                         if (status && data) {
                             $("#all_contacts ul:first").html($(createUserDom(data)));
+                            $("#paginationDiv").hide();
                         } else {
                             $("#all_contacts ul:first").html("<li class='list-group-item'>暂无搜索结果</li>");
+                            $("#paginationDiv").hide();
                         }
                     });
                 }else{
