@@ -255,7 +255,8 @@ $.fn.customVal = function() {
 */
 var gotoLogin = function() {
     if (location.href.indexOf("/login") === -1) {
-        location.href = "/login";
+        var replaceReg = new RegExp("^" + location.origin);
+        location.href = "/login?from=" + (encodeURIComponent(location.href.replace(replaceReg, "")));
         return true;
     }
 };
