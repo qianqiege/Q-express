@@ -17,12 +17,12 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <td>姓名</td>
-                                    <td>检测项目</td>
-                                    <td>体征值</td>
-                                    <td>异常状态</td>
-                                    <td>检测时间</td>
-                                    <td>操作</td>
+                                    <th>姓名</th>
+                                    <th>检测项目</th>
+                                    <th>体征值</th>
+                                    <th>异常状态</th>
+                                    <th>检测时间</th>
+                                    <th>操作</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -41,37 +41,37 @@
         var template = '<tr>\
             <td>NNAME</td>\
             <td>RREASON</td>\
-            <td style="color:red">SIGNVALUE</td>\
-            <td style="color:red">STATUS</td>\
+            <td style="color: red;">SIGNVALUE</td>\
+            <td style="color: red;">STATUS</td>\
             <td>TIME</td>\
             <td><a class="btn btn-primary btn-block card-link m-r-5" href="#" role="button" style="text-decoration: none;">处理异常</a></td>\
         </tr>';
         var cbFunction = function(data,status){
-            $("table tbody").html('')
+            $("table tbody").html('');
             $("table tr:eq(1)").remove();
 
             for (var i in data.data) {
                 adata = data.data[i];
                 name = adata["patient"]["name"];
                 reason = adata.test_item;
-                if (adata.value2){
-                    signvalue = adata.value1+"/"+adata.value2
+                if (adata.value2) {
+                    signvalue = adata.value1 + "/" + adata.value2;
                 } else {
-                    signvalue = adata.value1
+                    signvalue = adata.value1;
                 }
                 if (adata.status2) {
-                    status = adata.status1+"/"+adata.status2
+                    status = adata.status1 + "/" + adata.status2;
                 } else {
-                    status = adata.status1
+                    status = adata.status1;
                 }
-                time = adata.created_at.substr(0,10);
-                id = adata.patient.id
+                time = adata.created_at.substr(0, 10);
+                id = adata.patient.id;
                 t_template = template.replace("NNAME",name)
                                     .replace("RREASON",reason)
                                     .replace("SIGNVALUE",signvalue)
                                     .replace("STATUS",status)
                                     .replace("TIME",time)
-                                    .replace("IID",id)
+                                    .replace("IID",id);
                 $("table tbody").append(t_template);
             }
         }
