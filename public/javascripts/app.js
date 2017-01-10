@@ -330,7 +330,7 @@ var customPjax = function(aSelector, divSelector) {
         data = data.replace(/<title>.*?<\/title>/, "");
         // $(".pjaxLoader").fadeOut(function() {
             var responseDom = $(data);
-            $(divSelector).html($(data));
+            $(divSelector).html(responseDom);
             if (!$(divSelector).find("script").length) {
                 console.log($(divSelector).find("script"));
                 responseDom.find('script').each(function() {
