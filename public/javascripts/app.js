@@ -331,8 +331,9 @@ var customPjax = function(aSelector, divSelector) {
         // $(".pjaxLoader").fadeOut(function() {
             var responseDom = $(data);
             $(divSelector).html($(data));
-            if (!$(divSelector).filter("script").length) {
-                responseDom.filter('script').each(function() {
+            if (!$(divSelector).find("script").length) {
+                console.log($(divSelector).find("script"));
+                responseDom.find('script').each(function() {
                     if (this.src) {
                         var script = document.createElement('script'), i, attrName, attrValue, attrs = this.attributes;
                         for (i = 0; i < attrs.length; i++) {
@@ -351,6 +352,14 @@ var customPjax = function(aSelector, divSelector) {
                         $(divSelector).find("a[data-plugin='customPjax']").each(function() {
                             customPjax(this, $(this).data("custom-pjax-render-to") || "#pjax");
                         });
+                    });
+                });
+            } else {
+                $(divSelector).fadeIn(function() {
+                    document.title = newTitle;
+                    $(document).trigger(pjaxEndEvent);
+                    $(divSelector).find("a[data-plugin='customPjax']").each(function() {
+                        customPjax(this, $(this).data("custom-pjax-render-to") || "#pjax");
                     });
                 });
             }
