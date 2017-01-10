@@ -45,6 +45,7 @@
                                             <div class="nav-tabs-horizontal" data-plugin="tabs">
                                                 <ul class="nav nav-tabs nav-tabs-solid" role="tablist">
                                                     <li class="nav-item" role="presentation"><a class="nav-link active" data-toggle="tab" href="#exceptionHandling"
+                                                    id = "exceptionHandlingBtn"
                                                     aria-controls="exception Handling" role="tab">待处理异常</a></li>
                                                     <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#exampleTabsLineTwo"
                                                     aria-controls="exampleTabsLineTwo" role="tab">已处理异常</a></li>
@@ -320,29 +321,29 @@
                                         <div class="form-group row">
                                             <label class="col-xs-12 col-md-1 offset-md-1 form-control-label">1、父亲病史: </label>
                                             <div class="col-md-3 col-xs-12 ">
-                                                <input type="text" class="form-control" id="family_history_father" name="family_history_father">
+                                                <input type="text" class="form-control" id="family_history_father" name="family_history-father">
                                             </div>
                                             <label class="col-xs-12 col-md-1 offset-md-2 form-control-label">2、母亲病史: </label>
                                             <div class="col-md-3 col-xs-12">
-                                                <input type="text" class="form-control" disabled="disabled" name="family_history_mother" id="family_history_mother">
+                                                <input type="text" class="form-control" disabled="disabled" name="family_history-mother" id="family_history_mother">
                                             </div>
 
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-xs-12 col-md-1 offset-md-1 form-control-label">3、兄弟病史: </label>
                                             <div class="col-md-3 col-xs-12 ">
-                                                <input type="text" class="form-control" id="family_history_brother" name="family_history_brother">
+                                                <input type="text" class="form-control" id="family_history_brother" name="family_history-brother">
                                             </div>
                                             <label class="col-xs-12 col-md-1 offset-md-2 form-control-label">4、子女病史: </label>
                                             <div class="col-md-3 col-xs-12">
-                                                <input type="text" class="form-control" disabled="disabled" name="family_history_child" id="family_history_child">
+                                                <input type="text" class="form-control" disabled="disabled" name="family_history-child" id="family_history_child">
                                             </div>
 
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-xs-12 col-md-1 offset-md-1 form-control-label">5、本人病史: </label>
                                             <div class="col-md-9 col-xs-12 ">
-                                                <input type="text" class="form-control" id="health_condition1" name="health_condition1">
+                                                <input type="text" class="form-control" id="health_condition1" name="health_status-item_a">
                                             </div>
                                         </div>
                                         <h4 >本人健康情况</h4>
@@ -643,7 +644,7 @@
 
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-xs-12 col-md-1 offset-md-1 form-control-label">17、尿素氮: </label>
+                                            <label class="col-xs-12 col-md-1 offset-md-1 form-control-label">19、尿素氮: </label>
                                             <div class="col-md-3 col-xs-12 ">
                                                 <div class="input-group">
                                                     <input type="text" class="form-control" id="glutamic_pyruvic_transaminase" name="physical_examination-glutamic_pyruvic_transaminase" />
@@ -1610,34 +1611,25 @@
                                 </div>
                             </div>
                             <div class="tab-pane" id="exceptionHandling" role="tabpanel">
-                                <div class="col-xl-7 col-xs-12">
+                                <div class="col-xl-7 col-xs-12" id="exceptionPagination">
                                     <h4> <i class="icon wb-bell" aria-hidden="true"></i>待处理异常</h4>
-                                    <!-- <div class="col-xl-4 col-xs-12">
-                                        <select id="pager" class="form-control">
-                                            <option>1</option>
-                                            <option selected>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                            <option>6</option>
-                                            <option>7</option>
-                                        </select>
-                                    </div> -->
                                     <table class="table table1">
                                         <thead>
                                             <tr>
+                                                <td>选择</td>
                                                 <td>时间</td>
                                                 <td>居家健康项目</td>
                                                 <td>检测数据</td>
                                                 <td>异常情况</td>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id = "exceptionTable">
                                             <tr>
                                                 <td colspan="4"><i class="fa fa-refresh fa-spin fa-3x fa-fw"></i> 正在加载中</td>
                                             </tr>
                                         </tbody>
                                     </table>
+                                    <div style="text-align: right;" class="paginationDiv"></div>
 
                                 </div>
                                 <div class="col-xl-4 offset-xl-1 col-xs-12">
@@ -1657,45 +1649,107 @@
         </div>
     </div>
     <script type="text/javascript">
-        // var uid = ~~getvl('id');
-        // doAjax(window.baseUrl + "/patient_record/check", 'get', {'id': uid}, function (data, status) {
-        //     if (data && status) {
-        //         $("#name").html(data.name);
-        //         $("#phone").html(data.phone);
-        //     } else {
-        //         $("#name").html("");
-        //         $("#phone").html("");
-        //     }
-        //
-        // })
+        var uid = ~~getvl('id');
+        doAjax(window.baseUrl + "/patient_record/check", 'get', {'id': uid}, function (data, status) {
+            if (data && status) {
+                $("#name").html(data.name);
+                $("#phone").html(data.phone);
+            } else {
+                $("#name").html("");
+                $("#phone").html("");
+            }
+
+        });
         // $("#baseInformationBtn").click(function () {
         //     doAjax("fileQuery","get",{},function (data, status) {
         //         $("#baseInformation").html(data.toString());
         //     }, {}, {"X-PJAX": "true", "dataType": "text"});
-        //
         // })
-        $("#baseInformationBtn").on('click',function(){
+        var template = "\n\
+                            <tr>\n\
+                                <td>\n\
+                                    <div class='checkbox-default'>\n\
+                                        <input type='checkbox'/>\n\
+                                    </div>\n\
+                                </td>\n\
+                                <td>time</td>\n\
+                                <td>test_item</td>\n\
+                                <td>value</td>\n\
+                                <td>status</td>\n\
+        </tr>";
+        var exceptionData = function (data, status) {
+            if(data.data.length !== 0){
+                $("table tbody").html('');
+                for (var i=0; i < data.data.length; i++) {
+                    var time = data.data[i].updated_at;
+                    var test_item = data.data[i].test_item;
+                    if (data.data[i].value1 && data.data[i].value2){
+                        var value = data.data[i].value1 + '/' + data.data[i].value2;
+                        var status = data.data[i].status1 + '/' +  data.data[i].status2;
+
+                    } else {
+                        var value = data.data[i].value1 || data.data[i].value2;
+                        var status = data.data[i].status1 || data.data[i].status2;
+                    }
+                    var t_template =  template.replace(/time/g,time)
+                        .replace(/test_item/g,test_item)
+                        .replace(/value/g,value)
+                        .replace(/status/g,status);
+                    $("#exceptionTable").append(t_template);
+                }
+            }else {
+                $("table tbody").html('');
+                $("#exceptionTable").append("<tr><td colspan='5'>暂无异常数据</td><tr>");
+            }
+        }
+        $(".nav-tabs .nav-link").on('click',function(){
             $("input").prop("disabled",true);
-            var uid = ~~getvl('id');
-            var getUserInfoCallback = function(data, status) {
-                console.log(data)
-                if (data && status) {
-                    for (var i in data) {
-                        if (typeof data[i] === "string") {
-                            $("*[name='" + i + "']").customVal(data[i]);
-                        } else if (typeof data[i] === "object") {
-                            for (var k in data[i]) {
-                                var domId = i + "-" + k;
-                                $("*[name='" + domId + "']").customVal(data[i][k]);
+            where = $(this).text();
+            if (where === "基础信息") {
+                var getUserInfoCallback = function(data, status) {
+                    if (data && status) {
+                        for (var i in data) {
+                            if (typeof data[i] === "string") {
+                                $("*[name='" + i + "']").customVal(data[i]);
+                            } else if (typeof data[i] === "object") {
+                                for (var k in data[i]) {
+                                    var domId = i + "-" + k;
+                                    $("*[name='" + domId + "']").customVal(data[i][k]);
+                                }
                             }
                         }
-                    }
+                    };
                 };
-            };
-            if (uid) {
-                doAjax(window.baseUrl + "/patient_record/check", 'get', {'id': uid}, getUserInfoCallback);
+                if (uid) {
+                    doAjax(window.baseUrl + "/patient_record/check", 'get', {'id': uid}, getUserInfoCallback);
+                }
+            } else if (where === "待处理异常"){
+                var paginationDiv = $("#exceptionPagination").find(".paginationDiv");
+                if (paginationDiv.pagination()) {
+                    paginationDiv.pagination('destroy');
+                }
+                paginationDiv.pagination({
+                    pageSize: 10,
+                    loadFirstPage: true,
+                    remote: {
+                        url: window.baseUrl + "/exception/by_id",
+                        beforeSend: function (XHR) {
+                            XHR.setRequestHeader('access-authorization', $.cookie('access_token'));
+                        },
+                        success: exceptionData,
+                        params: {'id':uid},
+                        pageParams: function(data) {
+                            return {
+                                'page': data.pageIndex + 1,
+                                'per_page': data.pageSize
+                            };
+                        },
+                        totalName: 'meta.total'
+                    }
+                });
             }
         });
+
 
     </script>
 <% if (typeof pjax === "undefined") { %>
