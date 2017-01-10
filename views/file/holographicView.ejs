@@ -44,13 +44,13 @@
                                         <div class="example-wrap m-lg-0">
                                             <div class="nav-tabs-horizontal" data-plugin="tabs">
                                                 <ul class="nav nav-tabs nav-tabs-solid" role="tablist">
-                                                    <li class="nav-item" role="presentation"><a class="nav-link active" data-toggle="tab" href="#exceptionHandling"
-                                                    id = "exceptionHandlingBtn"
+                                                    <li class="nav-item" role="presentation" ><a class="nav-link active" data-toggle="tab"
+                                                    id = "exceptionHandlingBtn" href="#exceptionHandling"
                                                     aria-controls="exception Handling" role="tab">待处理异常</a></li>
                                                     <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#exampleTabsLineTwo"
                                                     aria-controls="exampleTabsLineTwo" role="tab">已处理异常</a></li>
-                                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#exampleTabsLineThree"
-                                                    aria-controls="exampleTabsLineThree" role="tab">随访安排</a></li>
+                                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#followUpArrangement"
+                                                    aria-controls="followUpArrangement" role="tab">随访安排</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -61,16 +61,18 @@
                                                 <ul class="nav nav-tabs nav-tabs-solid" role="tablist">
                                                     <li class="nav-item" role="presentation"><a class="nav-link active" data-toggle="tab" href="#baseInformation"
                                                     aria-controls="exampleTabsLineOne" role="tab"  id = "baseInformationBtn">基础信息</a></li>
-                                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#exampleTabsLineTwo"
-                                                    aria-controls="exampleTabsLineTwo" role="tab">血压检测</a></li>
-                                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#exampleTabsLineThree"
-                                                    aria-controls="exampleTabsLineThree" role="tab">血糖检测</a></li>
-                                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#exampleTabsLineFour"
-                                                    aria-controls="exampleTabsLineFour" role="tab">体温检测</a></li>
-                                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#exampleTabsLineFour"
-                                                    aria-controls="exampleTabsLineFour" role="tab">心率</a></li>
-                                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#exampleTabsLineFour"
-                                                    aria-controls="exampleTabsLineFour" role="tab">TDS数字中医</a></li>
+                                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#blood_sugar"
+                                                    aria-controls="blood_sugar" role="tab">血糖监测</a></li>
+                                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#blood_pressure"
+                                                    aria-controls="blood_pressure" role="tab">血压监测</a></li>
+                                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#temperature"
+                                                    aria-controls="temperature" role="tab">体温监测</a></li>
+                                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#weight"
+                                                    aria-controls="weight" role="tab">体重监测</a></li>
+                                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#heart_rate"
+                                                    aria-controls="heart_rate" role="tab">心率监测</a></li>
+                                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#TDS"
+                                                    aria-controls="TDS" role="tab">TDS数字中医</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -113,17 +115,135 @@
                     </div>
                     <div class="col-xl-12 col-xs-12">
                         <div class="tab-content p-t-20">
-                            <div class="tab-pane active" id="exampleTabsLineOne" role="tabpanel">
-                            s
+                            <div class="tab-pane " id="weight" role="tabpanel">
+                                <div style="margin-top: 10px;">
+                                    <h3>数据图表</h3>
+                                    <div id="chart_weights" style="width: 100%;height:400px;"></div>
+                                </div>
+
+                                <div style="margin-top: 10px;">
+                                    <h3>监测日志</h3>
+                                    <table class="table table-bordered" >
+                                        <thead>
+                                            <tr>
+                                                <th>监测日期</th>
+                                                <th>体重(kg)</th>
+                                                <th>是否异常</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="weights">
+                                        </tbody>
+                                    </table>
+                                    <div style="text-align: right;" class="paginationDiv"></div>
+                                </div>
                             </div>
-                            <div class="tab-pane" id="exampleTabsLineTwo" role="tabpanel">
-                              Sole
+                            <div class="tab-pane " id="heart_rate" role="tabpanel">
+                                <div style="margin-top: 10px;">
+                                    <h3>数据图表</h3>
+                                    <div id="chart_heart_rates" style="width: 100%;height:400px;"></div>
+                                </div>
+
+                                <div style="margin-top: 10px;">
+                                    <h3>监测日志</h3>
+                                    <table class="table table-bordered" >
+                                        <thead>
+                                            <tr>
+                                                <th>监测日期</th>
+                                                <th>心率 (次/分)</th>
+                                                <th>是否异常</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="heart_rates">
+                                        </tbody>
+                                    </table>
+                                    <div style="text-align: right;" class="paginationDiv"></div>
+                                </div>
                             </div>
-                            <div class="tab-pane" id="exampleTabsLineThree" role="tabpanel">
-                              Maestitiam
+                            <div class="tab-pane " id="TDS" role="tabpanel">
+                                <div id="data_table" class="col-xs-12 col-md-12" style="margin-top: 10px;">
+                                <table class="table table-bordered" >
+                                    <thead>
+                                        <tr>
+                                            <th>编号</th>
+                                            <th>检测时间</th>
+                                            <th>查看记录</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="TDSdata">
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="tab-pane" id="exampleTabsLineFour" role="tabpanel">
-                              Adiit
+                            </div>
+                            <div class="tab-pane" id="blood_pressure" role="tabpanel">
+                                <div style="margin-top: 10px;">
+                                      <h3>数据图表</h3>
+                                      <div id="chart_blood_pressure_tab" style="width: 100%;height:400px;"></div>
+                                  </div>
+
+                                <div style="margin-top: 10px;">
+                                  <h3>监测日志</h3>
+                                  <table class="table table-bordered" >
+                                      <thead>
+                                          <tr>
+                                              <th>监测日期</th>
+                                              <th>收缩压</th>
+                                              <th>舒张压</th>
+                                              <th>是否异常</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody id="blood_pressure_tab">
+                                      </tbody>
+                                  </table>
+                                  <div style="text-align: right;" class="paginationDiv"></div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="blood_sugar" role="tabpanel">
+                                <div style="margin-top: 10px;">
+                                    <h3>数据图表</h3>
+                                    <div id="chart_blood_glucoses" style="width: 100%;height:400px;"></div>
+                                </div>
+
+                                <div style="margin-top: 10px;">
+                                <h3>监测日志</h3>
+                                <table class="table table-bordered" >
+                                    <thead>
+                                        <tr>
+                                            <th>监测日期</th>
+                                            <th>餐前血糖</th>
+                                            <th>餐后血糖</th>
+                                            <th>是否异常</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="blood_glucoses">
+                                    </tbody>
+                                </table>
+                                <div style="text-align: right;" class="paginationDiv"></div>
+                            </div>
+                            </div>
+                            <div class="tab-pane" id="followUpArrangement" role="tabpanel">
+                              随访时间安排
+                            </div>
+                            <div class="tab-pane" id="temperature" role="tabpanel">
+                                <div style="margin-top: 10px;">
+                                    <h3>数据图表</h3>
+                                    <div id="chart_temperatures" style="width: 100%;height:400px;"></div>
+                                </div>
+
+                                <div style="margin-top: 10px;">
+                                  <h3>监测日志</h3>
+                                  <table class="table table-bordered" >
+                                      <thead>
+                                          <tr>
+                                              <th>监测日期</th>
+                                              <th>体温 (°C)</th>
+                                              <th>是否异常</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody id="temperatures">
+                                      </tbody>
+                                  </table>
+                                  <div style="text-align: right;" class="paginationDiv"></div>
+                                </div>
                             </div>
                             <div class="tab-pane" id="baseInformation" role="tabpanel">
                                 <div class="nav-tabs-horizontal" data-plugin="tabs">
@@ -1660,11 +1780,291 @@
             }
 
         });
-        // $("#baseInformationBtn").click(function () {
-        //     doAjax("fileQuery","get",{},function (data, status) {
-        //         $("#baseInformation").html(data.toString());
-        //     }, {}, {"X-PJAX": "true", "dataType": "text"});
-        // })
+        var uid =  ~~getvl('id');
+        if (!uid) {
+            swal({title: 'id 错误', type: 'error'}, function() {
+                window.close();
+            });
+        }
+
+        var todayData =new Date().Format("yyyy-MM-dd");
+        var startDate="2016-1-1";
+
+        var createTr = function (obj) {
+            return "<tr><td>" + obj.join("</td><td>") + "</td></tr>";
+        };
+
+        var createErrTr = function (obj) {
+            return "<tr><td style='color:red'>" + obj.join("</td><td style='color:red'>") + "</td></tr>";
+        };
+
+        function createChart(obj,data){
+            var myChart = echarts.init(document.getElementById(obj));
+            var option = {
+                tooltip: {
+                    trigger: 'axis',
+                },
+                xAxis: {
+                    data: data.date
+                },
+                dataZoom: [
+                        {
+                            type: 'inside',
+                            xAxisIndex: [0],
+                        },
+                        {
+                            type: 'slider',
+                            show: true,
+                            xAxisIndex: [0],
+                        },
+                ],
+                yAxis: {},
+                series: []
+            };
+            option.series = data.series;
+
+            $(window).bind('resize', function() {
+                myChart.resize();
+            })
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                myChart.resize();
+            })
+            myChart.setOption(option);
+        }
+
+        var bSFunction = function(data,status){
+            var before_blood_glucose = [];
+            var after_blood_glucose = [];
+            var blood_glucose_date = [];
+            var data = data["data"];
+            $("#blood_sugar table tbody").html("");
+            for (var k = 0; k < data.length; k++) {
+                var tr = [data[k].datetime, data[k].before_blood_glucose, data[k].after_blood_glucose];
+                before_blood_glucose.push(data[k]['before_blood_glucose']);
+                after_blood_glucose.push(data[k]['after_blood_glucose']);
+                blood_glucose_date.push(data[k]['datetime']);
+                tr.push(data[k].status1 + '/' + data[k].status2);
+                if ((data[k].status1 === '正常') && (data[k].status2 === '正常')) {
+                    $("#blood_glucoses").append($(createTr(tr)));
+                } else {
+                    $("#blood_glucoses").append($(createErrTr(tr)));
+                }
+            }
+        };
+
+        var bSEchartFunction = function(data,status){
+            console.log(data);
+            var before_blood_glucose = [];
+            var after_blood_glucose = [];
+            var blood_glucose_date = [];
+            var data = data["data"];
+            for (var k = 0; k < data.length; k++) {
+                var tr = [data[data.length - 1 - k].datetime, data[data.length - 1 - k].before_blood_glucose, data[data.length - 1 - k].after_blood_glucose];
+                before_blood_glucose.push(data[data.length - 1 - k]['before_blood_glucose']);
+                after_blood_glucose.push(data[data.length - 1 - k]['after_blood_glucose']);
+                blood_glucose_date.push(data[data.length - 1 - k]['datetime']);
+            }
+            console.log(before_blood_glucose);
+            var chart_data = {
+                date: blood_glucose_date,
+                series: [
+                    {
+                        name:'餐前血糖',
+                        type:'line',
+                        data:before_blood_glucose,
+                    },
+                    {
+                        name:'餐后血糖',
+                        type:'line',
+                        data:after_blood_glucose,
+                    }]
+            };
+            createChart("chart_blood_glucoses",chart_data);
+        };
+
+        var bPFunction = function(data,status) {
+            var max_blood_pressure = [];
+            var min_blood_pressure = [];
+            var blood_pressure_date = [];
+            var data = data["data"];
+            $("#blood_pressure table tbody").html("");
+            for (var k = 0; k < data.length; k++) {
+                var tr = [data[k].datetime, data[k].max_blood_pressure, data[k].min_blood_pressure];
+                max_blood_pressure.push(data[k]['max_blood_pressure']);
+                min_blood_pressure.push(data[k]['min_blood_pressure']);
+                blood_pressure_date.push(data[k]['datetime']);
+                tr.push(data[k].status2 + '/' + data[k].status1);
+                if ((data[k].status1 === '正常') && (data[k].status2 === '正常')) {
+                    $("#blood_pressure_tab").append($(createTr(tr)));
+                } else {
+                    $("#blood_pressure_tab").append($(createErrTr(tr)));
+                }
+            }
+        };
+        var bPEchartFunction = function(data,status) {
+            var max_blood_pressure = [];
+            var min_blood_pressure = [];
+            var blood_pressure_date = [];
+            var data = data["data"];
+            for (var k = 0; k < data.length; k++) {
+                var tr = [data[data.length - 1 - k].datetime, data[data.length - 1 - k].max_blood_pressure, data[data.length - 1 - k].min_blood_pressure];
+                max_blood_pressure.push(data[data.length - 1 - k]['max_blood_pressure']);
+                min_blood_pressure.push(data[data.length - 1 - k]['min_blood_pressure']);
+                blood_pressure_date.push(data[data.length - 1 - k]['datetime']);
+            }
+            var chart_data = {
+                date: blood_pressure_date,
+                series: [
+                    {
+                        name:'收缩压',
+                        type:'line',
+                        data:max_blood_pressure,
+                    },
+                    {
+                        name:'舒张压',
+                        type:'line',
+                        data:min_blood_pressure,
+                    }]
+            };
+            createChart("chart_blood_pressure_tab",chart_data)
+        };
+
+        var temperatureFunction = function(data,status){
+            var temperatures_value = [];
+            var temperatures_date = [];
+            var data = data["data"];
+            $("#temperature table tbody").html("");
+            for (var k = 0; k < data.length; k++) {
+                var tr = [data[k].datetime, data[k].value];
+                temperatures_value.push(data[k]['value']);
+                temperatures_date.push(data[k]['datetime']);
+                tr.push(data[k].status);
+                if (data[k].status === '正常') {
+                    $("#temperatures").append($(createTr(tr)));
+                } else {
+                    $("#temperatures").append($(createErrTr(tr)));
+                }
+            }
+        };
+
+        var temperatureEchartFunction = function(data,status){
+            var temperatures_value = [];
+            var temperatures_date = [];
+            var data = data["data"];
+            for (var k = 0; k < data.length; k++) {
+                var tr = [data[data.length - 1 - k].datetime, data[data.length - 1 - k].value];
+                temperatures_value.push(data[data.length - 1 - k]['value']);
+                temperatures_date.push(data[data.length - 1 - k]['datetime']);
+            }
+            var chart_data = {
+                date: temperatures_date,
+                series: [
+                    {
+                        name:'体温',
+                        type:'line',
+                        data:temperatures_value,
+                    }]
+            };
+            createChart("chart_temperatures",chart_data);
+        };
+
+        var weightFunction = function(data,status){
+            var weights_value = [];
+            var weights_date = [];
+            var data = data["data"];
+            $("#weight table tbody").html("");
+            for (var k = 0; k < data.length; k++) {
+                var tr = [data[k].datetime, data[k].value];
+                weights_value.push(data[k]['value']);
+                weights_date.push(data[k]['datetime']);
+                tr.push(data[k].status);
+                if (data[k].status === '正常') {
+                    $("#weights").append($(createTr(tr)));
+                } else {
+                    $("#weights").append($(createErrTr(tr)));
+                }
+            }
+        };
+        var weightEchartFunction = function(data,status){
+            var weights_value = [];
+            var weights_date = [];
+            var data = data["data"];
+            for (var k = 0; k < data.length; k++) {
+                var tr = [data[data.length - 1 - k].datetime, data[data.length - 1 - k].value];
+                weights_value.push(data[data.length - 1 - k]['value']);
+                weights_date.push(data[data.length - 1 - k]['datetime']);
+            }
+            var chart_data = {
+                date: weights_date,
+                series: [
+                    {
+                        name:'体重',
+                        type:'line',
+                        data:weights_value,
+                    }]
+            };
+            createChart("chart_weights",chart_data);
+        };
+
+        var heartRateFunction = function(data,status){
+            var heart_rates_value = [];
+            var heart_rates_date = [];
+            var data = data["data"];
+            $("#heart_rate table tbody").html("");
+            for (var k = 0; k < data.length; k++) {
+                var tr = [data[k].datetime, data[k].value];
+                heart_rates_value.push(data[k]['value']);
+                heart_rates_date.push(data[k]['datetime']);
+                tr.push(data[k].status);
+                if (data[k].status === '正常') {
+                    $("#heart_rates").append($(createTr(tr)));
+                } else {
+                    $("#heart_rates").append($(createErrTr(tr)));
+                }
+            }
+        };
+
+        var heartRateEchartFunction = function(data,status){
+            var heart_rates_value = [];
+            var heart_rates_date = [];
+            var data = data["data"];
+            for (var k = 0; k < data.length; k++) {
+                var tr = [data[data.length - 1 - k].datetime, data[data.length - 1 - k].value];
+                heart_rates_value.push(data[data.length - 1 - k]['value']);
+                heart_rates_date.push(data[data.length - 1 - k]['datetime']);
+            }
+            var chart_data = {
+                date: heart_rates_date,
+                series: [
+                    {
+                        name:'体重',
+                        type:'line',
+                        data:heart_rates_value,
+                    }]
+            };
+            createChart("chart_heart_rates",chart_data);
+        };
+
+        var createTDSDom = function (dom,id){
+            var template2 = '\n\
+            <tr>\n\
+                <td>{__id__}</td>\n\
+                <td>{__time__}</td>\n\
+                <td>\n\
+                    <div>\n\
+                        <a class="btn btn-outline btn-success btn-sm" href="{__report_url__}"> 查看记录</a>\n\
+                    </div>\n\
+                </td>\n\
+            </tr>'
+            return template2.replace(/\{__id__\}/g, id)
+                .replace(/\{__time__\}/g, dom["created_at"].substr(0,10))
+                .replace(/\{__report_url__\}/g, dom["report_url"]);
+        };
+            // $("#baseInformationBtn").click(function () {
+            //     doAjax("fileQuery","get",{},function (data, status) {
+            //         $("#baseInformation").html(data.toString());
+            //     }, {}, {"X-PJAX": "true", "dataType": "text"});
+            // })
         var template = "\n\
                             <tr>\n\
                                 <td>\n\
@@ -1702,10 +2102,206 @@
                 $("#exceptionTable").append("<tr><td colspan='5'>暂无异常数据</td><tr>");
             }
         }
+        // $(".nav-tabs .nav-item").on('click',function(){
+        //     $("input").prop("disabled",true);
+        //     where = $(this).text();
+        //     if (where === "基础信息") {
+        //         var getUserInfoCallback = function(data, status) {
+        //             if (data && status) {
+        //                 for (var i in data) {
+        //                     if (typeof data[i] === "string") {
+        //                         $("*[name='" + i + "']").customVal(data[i]);
+        //                     } else if (typeof data[i] === "object") {
+        //                         for (var k in data[i]) {
+        //                             var domId = i + "-" + k;
+        //                             $("*[name='" + domId + "']").customVal(data[i][k]);
+        //                         }
+        //                     }
+        //                 }
+        //             };
+        //         };
+        //         if (uid) {
+        //             doAjax(window.baseUrl + "/patient_record/check", 'get', {'id': uid}, getUserInfoCallback);
+        //         }
+        //     } else if (where === "待处理异常"){
+        //         var paginationDiv = $("#exceptionPagination").find(".paginationDiv");
+        //         if (paginationDiv.pagination()) {
+        //             paginationDiv.pagination('destroy');
+        //         }
+        //         paginationDiv.pagination({
+        //             pageSize: 10,
+        //             loadFirstPage: true,
+        //             remote: {
+        //                 url: window.baseUrl + "/exception/by_id",
+        //                 beforeSend: function (XHR) {
+        //                     XHR.setRequestHeader('access-authorization', $.cookie('access_token'));
+        //                 },
+        //                 success: exceptionData,
+        //                 params: {'id':uid},
+        //                 pageParams: function(data) {
+        //                     return {
+        //                         'page': data.pageIndex + 1,
+        //                         'per_page': data.pageSize
+        //                     };
+        //                 },
+        //                 totalName: 'meta.total'
+        //             }
+        //         });
+        //     }
+        // });
         $(".nav-tabs .nav-link").on('click',function(){
-            $("input").prop("disabled",true);
-            where = $(this).text();
-            if (where === "基础信息") {
+            where = $(this).text()
+            if ($(this).data("apiget")){
+                return true;
+            }
+            if (where === "血压监测"){
+                $(this).data("apiget",true)
+                doAjax(window.baseUrl + "/examination_check/blood_pressure", 'get', {'patient_id': uid,'start_date': startDate,'end_date': todayData,'page':0,'per_page':0}, bPEchartFunction);
+                var paginationDiv = $("#blood_pressure").find(".paginationDiv");
+                if (paginationDiv.pagination()) {
+                    paginationDiv.pagination('destroy');
+                }
+                paginationDiv.pagination({
+                    pageSize: 10,
+                    loadFirstPage: true,
+                    remote: {
+                        url: window.baseUrl + "/examination_check/blood_pressure",
+                        beforeSend: function (XHR) {
+                            XHR.setRequestHeader('access-authorization', $.cookie('access_token'));
+                        },
+                        success: bPFunction,
+                        params: {'patient_id': uid, 'start_date': startDate, 'end_date': todayData},
+                        pageParams: function(data) {
+                            return {
+                                'page': data.pageIndex + 1,
+                                'per_page': data.pageSize
+                            };
+                        },
+                        totalName: 'meta.total'
+                    }
+                });
+                return true;
+            } else if (where === "血糖监测") {
+                $(this).data("apiget",true)
+                doAjax(window.baseUrl + "/examination_check/blood_glucose", 'get', {'patient_id': uid,'start_date': startDate,'end_date': todayData,'page':0,'per_page':0}, bSEchartFunction);
+                var paginationDiv = $("#blood_sugar").find(".paginationDiv");
+                if (paginationDiv.pagination()) {
+                    paginationDiv.pagination('destroy');
+                }
+                paginationDiv.pagination({
+                    pageSize: 10,
+                    loadFirstPage: true,
+                    remote: {
+                        url: window.baseUrl + "/examination_check/blood_glucose",
+                        beforeSend: function (XHR) {
+                            XHR.setRequestHeader('access-authorization', $.cookie('access_token'));
+                        },
+                        success: bSFunction,
+                        params: {'patient_id': uid, 'start_date': startDate, 'end_date': todayData},
+                        pageParams: function(data) {
+                            return {
+                                'page': data.pageIndex + 1,
+                                'per_page': data.pageSize
+                            };
+                        },
+                        totalName: 'meta.total'
+                    }
+                });
+                return true;
+            } else if (where === "体温监测") {
+                $(this).data("apiget",true)
+                doAjax(window.baseUrl + "/examination_check/temperature", 'get', {'patient_id': uid,'start_date': startDate,'end_date': todayData,'page':0,'per_page':0}, temperatureEchartFunction);
+                var paginationDiv = $("#temperature").find(".paginationDiv");
+                if (paginationDiv.pagination()) {
+                    paginationDiv.pagination('destroy');
+                }
+                paginationDiv.pagination({
+                    pageSize: 10,
+                    loadFirstPage: true,
+                    remote: {
+                        url: window.baseUrl + "/examination_check/temperature",
+                        beforeSend: function (XHR) {
+                            XHR.setRequestHeader('access-authorization', $.cookie('access_token'));
+                        },
+                        success: temperatureFunction,
+                        params: {'patient_id': uid, 'start_date': startDate, 'end_date': todayData},
+                        pageParams: function(data) {
+                            return {
+                                'page': data.pageIndex + 1,
+                                'per_page': data.pageSize
+                            };
+                        },
+                        totalName: 'meta.total'
+                    }
+                });
+                return true;
+            } else if (where === "体重监测") {
+                $(this).data("apiget",true)
+                doAjax(window.baseUrl + "/examination_check/weight", 'get', {'patient_id': uid,'start_date': startDate,'end_date': todayData,'page':0,'per_page':0}, weightEchartFunction);
+                var paginationDiv = $("#weight").find(".paginationDiv");
+                if (paginationDiv.pagination()) {
+                    paginationDiv.pagination('destroy');
+                }
+                paginationDiv.pagination({
+                    pageSize: 10,
+                    loadFirstPage: true,
+                    remote: {
+                        url: window.baseUrl + "/examination_check/weight",
+                        beforeSend: function (XHR) {
+                            XHR.setRequestHeader('access-authorization', $.cookie('access_token'));
+                        },
+                        success: weightFunction,
+                        params: {'patient_id': uid, 'start_date': startDate, 'end_date': todayData},
+                        pageParams: function(data) {
+                            return {
+                                'page': data.pageIndex + 1,
+                                'per_page': data.pageSize
+                            };
+                        },
+                        totalName: 'meta.total'
+                    }
+                });
+                return true;
+            } else if (where === "心率监测") {
+                $(this).data("apiget", true);
+                doAjax(window.baseUrl + "/examination_check/heart_rate", 'get', {'patient_id': uid,'start_date': startDate,'end_date': todayData,'page':0,'per_page':0}, heartRateEchartFunction);
+                var paginationDiv = $("#heart_rate").find(".paginationDiv");
+                if (paginationDiv.pagination()) {
+                    paginationDiv.pagination('destroy');
+                }
+                paginationDiv.pagination({
+                    pageSize: 10,
+                    loadFirstPage: true,
+                    remote: {
+                        url: window.baseUrl + "/examination_check/heart_rate",
+                        beforeSend: function (XHR) {
+                            XHR.setRequestHeader('access-authorization', $.cookie('access_token'));
+                        },
+                        success: heartRateFunction,
+                        params: {'patient_id': uid, 'start_date': startDate, 'end_date': todayData},
+                        pageParams: function(data) {
+                            return {
+                                'page': data.pageIndex + 1,
+                                'per_page': data.pageSize
+                            };
+                        },
+                        totalName: 'meta.total'
+                    }
+                });
+                return true;
+            } else if (where === "TDS数字中医") {
+                $(this).data("apiget",true)
+                doAjax(window.baseUrl + "/tds/check", 'get', {'patient_id': uid}, function(data, status){
+                    if (status && data){
+                        for(var i = 0;i < data.length;i++){
+                            var name = data[i];
+                            var id = i+1;
+                            $("#TDSdata").append($(createTDSDom(name,id)));
+                        }
+                    }
+                });
+                return true;
+            } else if (where === "基础信息") {
                 var getUserInfoCallback = function(data, status) {
                     if (data && status) {
                         for (var i in data) {
@@ -1723,7 +2319,7 @@
                 if (uid) {
                     doAjax(window.baseUrl + "/patient_record/check", 'get', {'id': uid}, getUserInfoCallback);
                 }
-            } else if (where === "待处理异常"){
+            } else if (where === "待处理异常") {
                 var paginationDiv = $("#exceptionPagination").find(".paginationDiv");
                 if (paginationDiv.pagination()) {
                     paginationDiv.pagination('destroy');
@@ -1749,7 +2345,7 @@
                 });
             }
         });
-
+        $(".nav-tabs .nav-link.active").click();
 
     </script>
 <% if (typeof pjax === "undefined") { %>
