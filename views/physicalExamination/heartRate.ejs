@@ -130,8 +130,9 @@
                                 type: "success"
                             },
                             function(){
-                                $("input:radio[id^='sex']").prop("checked",false);
+                                $("input:radio[id^='sex']").prop("checked", false);
                                 $("input").val("");
+                                $("#submitResult").prop("disabled", true);
                             });
                         }else{
                             swal(JSON.parse(data.reponseText).error || "提交失败", "", "error");
