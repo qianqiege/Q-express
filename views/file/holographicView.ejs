@@ -3,7 +3,6 @@
 <% } else { %>
     <title><%= title %></title>
 <% } %>
-
     <div class="page-header">
         <h1 class="page-title"><%= title %></h1>
         <ol class="breadcrumb">
@@ -230,17 +229,17 @@
                                             <form class="modal-content form-horizontal" action="#" method="post" role="form">
                                                 <div class="modal-header">
                                                     <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
-                                                    <h4 class="modal-title">New Event</h4>
+                                                    <h4 class="modal-title">新事件</h4>
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="form-group row">
-                                                    <label class="col-xs-12 col-md-2 form-control-label" for="ename">Name:</label>
+                                                    <label class="col-xs-12 col-md-2 form-control-label" for="ename">名称:</label>
                                                     <div class="col-md-10 col-xs-12">
                                                     <input type="text" class="form-control" id="ename" name="ename">
                                                     </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                    <label class="col-xs-12 col-md-2 form-control-label" for="starts">Starts:</label>
+                                                    <label class="col-xs-12 col-md-2 form-control-label" for="starts">开始日期:</label>
                                                     <div class="col-md-10 col-xs-12">
                                                     <div class="input-group">
                                                     <input type="text" class="form-control" id="starts" data-container="#addNewEvent"
@@ -252,7 +251,7 @@
                                                     </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                    <label class="col-xs-12 col-md-2 form-control-label" for="ends">Ends:</label>
+                                                    <label class="col-xs-12 col-md-2 form-control-label" for="ends">截止日期:</label>
                                                     <div class="col-md-10 col-xs-12">
                                                     <div class="input-group">
                                                     <input type="text" class="form-control" id="ends" data-container="#addNewEvent"
@@ -264,14 +263,14 @@
                                                     </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                    <label class="col-xs-12 col-md-2 form-control-label" for="repeats">Repeats:</label>
+                                                    <label class="col-xs-12 col-md-2 form-control-label" for="repeats">重复:</label>
                                                     <div class="col-md-10 col-xs-12">
                                                     <input type="text" class="form-control" id="repeats" name="repeats" data-plugin="TouchSpin"
                                                     data-min="0" data-max="10" value="0" />
                                                     </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                    <label class="form-control-label col-xs-12 col-md-2">Color:</label>
+                                                    <label class="form-control-label col-xs-12 col-md-2">颜色:</label>
                                                     <div class="col-md-10 col-xs-12">
                                                     <ul class="color-selector">
                                                     <li class="bg-blue-600">
@@ -306,7 +305,7 @@
                                                     </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                    <label class="col-xs-12 col-md-2 form-control-label" for="people">People:</label>
+                                                    <label class="col-xs-12 col-md-2 form-control-label" for="people">联系人:</label>
                                                     <div class="col-md-10 col-xs-12">
                                                     <select id="eventPeople" multiple="multiple" class="plugin-selective"></select>
                                                     </div>
@@ -314,8 +313,8 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                  <div class="form-actions">
-                                                   <button class="btn btn-primary" data-dismiss="modal" type="button">Add this event</button>
-                                                   <a class="btn btn-sm btn-white" data-dismiss="modal" href="javascript:void(0)">Cancel</a>
+                                                   <button class="btn btn-primary" data-dismiss="modal" type="button">添加该事件</button>
+                                                   <a class="btn btn-sm btn-white" data-dismiss="modal" href="javascript:void(0)">取消</a>
                                                  </div>
                                                 </div>
                                             </form>
@@ -329,17 +328,17 @@
                                         <form class="modal-content form-horizontal" action="#" method="post" role="form">
                                         <div class="modal-header">
                                          <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
-                                         <h4 class="modal-title">Edit Event</h4>
+                                         <h4 class="modal-title">编辑事件</h4>
                                         </div>
                                         <div class="modal-body">
                                          <div class="form-group row">
-                                           <label class="col-xs-12 col-md-2 form-control-label" for="editEname">Name:</label>
+                                           <label class="col-xs-12 col-md-2 form-control-label" for="editEname">名称:</label>
                                            <div class="col-md-10 col-xs-12">
                                              <input type="text" class="form-control" id="editEname" name="editEname">
                                            </div>
                                          </div>
                                          <div class="form-group row">
-                                           <label class="col-xs-12 col-md-2 form-control-label" for="editStarts">Starts:</label>
+                                           <label class="col-xs-12 col-md-2 form-control-label" for="editStarts">开始日期:</label>
                                            <div class="col-md-10 col-xs-12">
                                              <div class="input-group">
                                                <input type="text" class="form-control" id="editStarts" name="editStarts" data-container="#editNewEvent"
@@ -351,7 +350,7 @@
                                            </div>
                                          </div>
                                          <div class="form-group row">
-                                           <label class="col-xs-12 col-md-2 form-control-label" for="editEnds">Ends:</label>
+                                           <label class="col-xs-12 col-md-2 form-control-label" for="editEnds">截止日期:</label>
                                            <div class="col-md-10 col-xs-12">
                                              <div class="input-group">
                                                <input type="text" class="form-control" id="editEnds" data-container="#editNewEvent"
@@ -363,14 +362,14 @@
                                            </div>
                                          </div>
                                          <div class="form-group row">
-                                           <label class="col-xs-12 col-md-2 form-control-label" for="editRepeats">Repeats:</label>
+                                           <label class="col-xs-12 col-md-2 form-control-label" for="editRepeats">重复:</label>
                                            <div class="col-md-10 col-xs-12">
                                              <input type="text" class="form-control" id="editRepeats" name="repeats" data-plugin="TouchSpin"
                                              data-min="0" data-max="10" value="0" />
                                            </div>
                                          </div>
                                          <div class="form-group row" id="editColor">
-                                           <label class="form-control-label col-xs-12 col-md-2">Color:</label>
+                                           <label class="form-control-label col-xs-12 col-md-2">颜色:</label>
                                            <div class="col-md-10 col-xs-12">
                                              <ul class="color-selector">
                                                <li class="bg-blue-600">
@@ -405,7 +404,7 @@
                                            </div>
                                          </div>
                                          <div class="form-group row">
-                                           <label class="col-xs-12 col-md-2 form-control-label" for="editPeople">People:</label>
+                                           <label class="col-xs-12 col-md-2 form-control-label" for="editPeople">联系人:</label>
                                            <div class="col-md-10 col-xs-12">
                                              <select id="editPeople" multiple="multiple" class="plugin-selective"></select>
                                            </div>
@@ -413,9 +412,9 @@
                                         </div>
                                         <div class="modal-footer">
                                          <div class="form-actions">
-                                           <button class="btn btn-primary" data-dismiss="modal" type="button">Save</button>
-                                           <button class="btn btn-danger" data-dismiss="modal" type="button">Delete</button>
-                                           <a class="btn btn-sm btn-white" data-dismiss="modal" href="javascript:void(0)">Cancel</a>
+                                           <button class="btn btn-primary" data-dismiss="modal" type="button">保存</button>
+                                           <button class="btn btn-danger" data-dismiss="modal" type="button">删除</button>
+                                           <a class="btn btn-sm btn-white" data-dismiss="modal" href="javascript:void(0)">取消</a>
                                          </div>
                                         </div>
                                         </form>
