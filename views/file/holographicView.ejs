@@ -3,7 +3,6 @@
 <% } else { %>
     <title><%= title %></title>
 <% } %>
-
     <div class="page-header">
         <h1 class="page-title"><%= title %></h1>
         <ol class="breadcrumb">
@@ -30,26 +29,26 @@
                         <div class="example-wrap">
                             <div class="nav-tabs-horizontal" data-plugin="tabs">
                                 <ul class="nav nav-tabs" role="tablist">
-                                    <li class="nav-item" role="presentation"><a class="nav-link active" data-toggle="tab" href="#exampleTabsOne"
+                                    <li class="nav-item" role="presentation"><a class="nav-link active nab-title" data-toggle="tab" href="#exampleTabsOne"
                                     aria-controls="exampleTabsOne" role="tab">任务</a></li>
-                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#exampleTabsTwo"
+                                    <li class="nav-item" role="presentation"><a class="nav-link nab-title" data-toggle="tab" href="#exampleTabsTwo"
                                     aria-controls="exampleTabsTwo" role="tab">电子健康档案</a></li>
-                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#exampleTabsThree"
+                                    <li class="nav-item" role="presentation"><a class="nav-link nab-title" data-toggle="tab" href="#exampleTabsThree"
                                     aria-controls="exampleTabsThree" role="tab">电子医疗档案</a></li>
-                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#exampleTabsFour"
+                                    <li class="nav-item" role="presentation"><a class="nav-link nab-title" data-toggle="tab" href="#exampleTabsFour"
                                     aria-controls="exampleTabsFour" role="tab">健康评估</a></li>
                                 </ul>
                                 <div class="tab-content p-t-20">
                                     <div class="tab-pane active" id="exampleTabsOne" role="tabpanel">
                                         <div class="example-wrap m-lg-0">
                                             <div class="nav-tabs-horizontal" data-plugin="tabs">
-                                                <ul class="nav nav-tabs nav-tabs-solid" role="tablist">
-                                                    <li class="nav-item" role="presentation" ><a class="nav-link active" data-toggle="tab"
+                                                <ul class="nav nav-tabs nav-tabs-solid exampleTabsOne" role="tablist">
+                                                    <li class="nav-item" role="presentation" ><a class="nav-link nav-menus" data-toggle="tab"
                                                     id = "exceptionHandlingBtn" href="#exceptionHandling"
                                                     aria-controls="exception Handling" role="tab">待处理异常</a></li>
-                                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#exampleTabsLineTwo"
-                                                    aria-controls="exampleTabsLineTwo" role="tab">已处理异常</a></li>
-                                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#followUpArrangement"
+                                                    <li class="nav-item" role="presentation"><a class="nav-link nav-menus" data-toggle="tab" href="#processedException"
+                                                    aria-controls="processedException" role="tab">已处理异常</a></li>
+                                                    <li class="nav-item" role="presentation"><a class="nav-link nav-menus" data-toggle="tab" href="#followUpArrangement"
                                                     aria-controls="followUpArrangement" role="tab">随访安排</a></li>
                                                 </ul>
                                             </div>
@@ -58,20 +57,20 @@
                                     <div class="tab-pane" id="exampleTabsTwo" role="tabpanel">
                                         <div class="example-wrap m-lg-0">
                                             <div class="nav-tabs-horizontal" data-plugin="tabs">
-                                                <ul class="nav nav-tabs nav-tabs-solid" role="tablist">
-                                                    <li class="nav-item" role="presentation"><a class="nav-link active" data-toggle="tab" href="#baseInformation"
+                                                <ul class="nav nav-tabs exampleTabsTwo nav-tabs-solid" role="tablist">
+                                                    <li class="nav-item" role="presentation"><a class="nav-link  nav-menus" data-toggle="tab" href="#baseInformation"
                                                     aria-controls="exampleTabsLineOne" role="tab"  id = "baseInformationBtn">基础信息</a></li>
-                                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#blood_sugar"
+                                                    <li class="nav-item" role="presentation"><a class="nav-link nav-menus" data-toggle="tab" href="#blood_sugar"
                                                     aria-controls="blood_sugar" role="tab">血糖监测</a></li>
-                                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#blood_pressure"
+                                                    <li class="nav-item" role="presentation"><a class="nav-link nav-menus" data-toggle="tab" href="#blood_pressure"
                                                     aria-controls="blood_pressure" role="tab">血压监测</a></li>
-                                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#temperature"
+                                                    <li class="nav-item" role="presentation"><a class="nav-link nav-menus" data-toggle="tab" href="#temperature"
                                                     aria-controls="temperature" role="tab">体温监测</a></li>
-                                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#weight"
+                                                    <li class="nav-item" role="presentation"><a class="nav-link nav-menus" data-toggle="tab" href="#weight"
                                                     aria-controls="weight" role="tab">体重监测</a></li>
-                                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#heart_rate"
+                                                    <li class="nav-item" role="presentation"><a class="nav-link nav-menus" data-toggle="tab" href="#heart_rate"
                                                     aria-controls="heart_rate" role="tab">心率监测</a></li>
-                                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#TDS"
+                                                    <li class="nav-item" role="presentation"><a class="nav-link nav-menus" data-toggle="tab" href="#TDS"
                                                     aria-controls="TDS" role="tab">TDS数字中医</a></li>
                                                 </ul>
                                             </div>
@@ -80,8 +79,8 @@
                                     <div class="tab-pane" id="exampleTabsThree" role="tabpanel">
                                         <div class="example-wrap m-lg-0">
                                             <div class="nav-tabs-horizontal" data-plugin="tabs">
-                                                <ul class="nav nav-tabs nav-tabs-solid" role="tablist">
-                                                    <li class="nav-item" role="presentation"><a class="nav-link active" data-toggle="tab" href="#exampleTabsLineOne"
+                                                <ul class="nav nav-tabs nav-tabs-solid exampleTabsThree" role="tablist">
+                                                    <li class="nav-item" role="presentation"><a class="nav-link " data-toggle="tab" href="#exampleTabsLineOne"
                                                     aria-controls="exampleTabsLineOne" role="tab">Home</a></li>
                                                     <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#exampleTabsLineTwo"
                                                     aria-controls="exampleTabsLineTwo" role="tab">Components</a></li>
@@ -96,8 +95,8 @@
                                     <div class="tab-pane" id="exampleTabsFour" role="tabpanel">
                                         <div class="example-wrap m-lg-0">
                                             <div class="nav-tabs-horizontal" data-plugin="tabs">
-                                                <ul class="nav nav-tabs nav-tabs-solid" role="tablist">
-                                                    <li class="nav-item" role="presentation"><a class="nav-link active" data-toggle="tab" href="#exampleTabsLineOne"
+                                                <ul class="nav nav-tabs nav-tabs-solid exampleTabsFour" role="tablist">
+                                                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#exampleTabsLineOne"
                                                     aria-controls="exampleTabsLineOne" role="tab">Home</a></li>
                                                     <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#exampleTabsLineTwo"
                                                     aria-controls="exampleTabsLineTwo" role="tab">Components</a></li>
@@ -221,7 +220,276 @@
                             </div>
                             </div>
                             <div class="tab-pane" id="followUpArrangement" role="tabpanel">
-                              随访时间安排
+                                <div class="calendar-container">
+                                    <div id="calendar"></div>
+                                    <!--AddEvent Dialog -->
+                                    <div class="modal fade" id="addNewEvent" aria-hidden="true" aria-labelledby="addNewEvent"
+                                    role="dialog" tabindex="-1">
+                                        <div class="modal-dialog">
+                                            <form class="modal-content form-horizontal" action="#" method="post" role="form">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
+                                                    <h4 class="modal-title">新事件</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="form-group row">
+                                                    <label class="col-xs-12 col-md-2 form-control-label" for="ename">名称:</label>
+                                                    <div class="col-md-10 col-xs-12">
+                                                    <input type="text" class="form-control" id="ename" name="ename">
+                                                    </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                    <label class="col-xs-12 col-md-2 form-control-label" for="starts">开始日期:</label>
+                                                    <div class="col-md-10 col-xs-12">
+                                                    <div class="input-group">
+                                                    <input type="text" class="form-control" id="starts" data-container="#addNewEvent"
+                                                    data-plugin="datepicker">
+                                                    <span class="input-group-addon">
+                                                    <i class="icon wb-calendar" aria-hidden="true"></i>
+                                                    </span>
+                                                    </div>
+                                                    </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                    <label class="col-xs-12 col-md-2 form-control-label" for="ends">截止日期:</label>
+                                                    <div class="col-md-10 col-xs-12">
+                                                    <div class="input-group">
+                                                    <input type="text" class="form-control" id="ends" data-container="#addNewEvent"
+                                                    data-plugin="datepicker">
+                                                    <span class="input-group-addon">
+                                                    <i class="icon wb-calendar" aria-hidden="true"></i>
+                                                    </span>
+                                                    </div>
+                                                    </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                    <label class="col-xs-12 col-md-2 form-control-label" for="repeats">重复:</label>
+                                                    <div class="col-md-10 col-xs-12">
+                                                    <input type="text" class="form-control" id="repeats" name="repeats" data-plugin="TouchSpin"
+                                                    data-min="0" data-max="10" value="0" />
+                                                    </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                    <label class="form-control-label col-xs-12 col-md-2">颜色:</label>
+                                                    <div class="col-md-10 col-xs-12">
+                                                    <ul class="color-selector">
+                                                    <li class="bg-blue-600">
+                                                    <input type="radio" checked name="eventColorChosen" id="eventColorChosen2">
+                                                    <label for="eventColorChosen2"></label>
+                                                    </li>
+                                                    <li class="bg-green-600">
+                                                    <input type="radio" name="eventColorChosen" id="eventColorChosen3">
+                                                    <label for="eventColorChosen3"></label>
+                                                    </li>
+                                                    <li class="bg-cyan-600">
+                                                    <input type="radio" name="eventColorChosen" id="eventColorChosen4">
+                                                    <label for="eventColorChosen4"></label>
+                                                    </li>
+                                                    <li class="bg-orange-600">
+                                                    <input type="radio" name="eventColorChosen" id="eventColorChosen5">
+                                                    <label for="eventColorChosen5"></label>
+                                                    </li>
+                                                    <li class="bg-red-600">
+                                                    <input type="radio" name="eventColorChosen" id="eventColorChosen6">
+                                                    <label for="eventColorChosen6"></label>
+                                                    </li>
+                                                    <li class="bg-blue-grey-600">
+                                                    <input type="radio" name="eventColorChosen" id="eventColorChosen7">
+                                                    <label for="eventColorChosen7"></label>
+                                                    </li>
+                                                    <li class="bg-purple-600">
+                                                    <input type="radio" name="eventColorChosen" id="eventColorChosen8">
+                                                    <label for="eventColorChosen8"></label>
+                                                    </li>
+                                                    </ul>
+                                                    </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                    <label class="col-xs-12 col-md-2 form-control-label" for="people">联系人:</label>
+                                                    <div class="col-md-10 col-xs-12">
+                                                    <select id="eventPeople" multiple="multiple" class="plugin-selective"></select>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                 <div class="form-actions">
+                                                   <button class="btn btn-primary" data-dismiss="modal" type="button">添加该事件</button>
+                                                   <a class="btn btn-sm btn-white" data-dismiss="modal" href="javascript:void(0)">取消</a>
+                                                 </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!-- End AddEvent Dialog -->
+                                    <!-- Edit Dialog -->
+                                    <div class="modal fade" id="editNewEvent" aria-hidden="true" aria-labelledby="editNewEvent"
+                                    role="dialog" tabindex="-1" data-show="false">
+                                        <div class="modal-dialog">
+                                        <form class="modal-content form-horizontal" action="#" method="post" role="form">
+                                        <div class="modal-header">
+                                         <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
+                                         <h4 class="modal-title">编辑事件</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                         <div class="form-group row">
+                                           <label class="col-xs-12 col-md-2 form-control-label" for="editEname">名称:</label>
+                                           <div class="col-md-10 col-xs-12">
+                                             <input type="text" class="form-control" id="editEname" name="editEname">
+                                           </div>
+                                         </div>
+                                         <div class="form-group row">
+                                           <label class="col-xs-12 col-md-2 form-control-label" for="editStarts">开始日期:</label>
+                                           <div class="col-md-10 col-xs-12">
+                                             <div class="input-group">
+                                               <input type="text" class="form-control" id="editStarts" name="editStarts" data-container="#editNewEvent"
+                                               data-plugin="datepicker">
+                                               <span class="input-group-addon">
+                                                 <i class="icon wb-calendar" aria-hidden="true"></i>
+                                               </span>
+                                             </div>
+                                           </div>
+                                         </div>
+                                         <div class="form-group row">
+                                           <label class="col-xs-12 col-md-2 form-control-label" for="editEnds">截止日期:</label>
+                                           <div class="col-md-10 col-xs-12">
+                                             <div class="input-group">
+                                               <input type="text" class="form-control" id="editEnds" data-container="#editNewEvent"
+                                               data-plugin="datepicker">
+                                               <span class="input-group-addon">
+                                                 <i class="icon wb-calendar" aria-hidden="true"></i>
+                                               </span>
+                                             </div>
+                                           </div>
+                                         </div>
+                                         <div class="form-group row">
+                                           <label class="col-xs-12 col-md-2 form-control-label" for="editRepeats">重复:</label>
+                                           <div class="col-md-10 col-xs-12">
+                                             <input type="text" class="form-control" id="editRepeats" name="repeats" data-plugin="TouchSpin"
+                                             data-min="0" data-max="10" value="0" />
+                                           </div>
+                                         </div>
+                                         <div class="form-group row" id="editColor">
+                                           <label class="form-control-label col-xs-12 col-md-2">颜色:</label>
+                                           <div class="col-md-10 col-xs-12">
+                                             <ul class="color-selector">
+                                               <li class="bg-blue-600">
+                                                 <input type="radio" data-color="blue|600" name="colorChosen" id="editColorChosen2">
+                                                 <label for="editColorChosen2"></label>
+                                               </li>
+                                               <li class="bg-green-600">
+                                                 <input type="radio" data-color="green|600" name="colorChosen" id="editColorChosen3">
+                                                 <label for="editColorChosen3"></label>
+                                               </li>
+                                               <li class="bg-cyan-600">
+                                                 <input type="radio" data-color="cyan|600" name="colorChosen" id="editColorChosen4">
+                                                 <label for="editColorChosen4"></label>
+                                               </li>
+                                               <li class="bg-orange-600">
+                                                 <input type="radio" data-color="orange|600" name="colorChosen" id="editColorChosen5">
+                                                 <label for="editColorChosen4"></label>
+                                               </li>
+                                               <li class="bg-red-600">
+                                                 <input type="radio" data-color="red|600" name="colorChosen" id="editColorChosen6">
+                                                 <label for="editColorChosen6"></label>
+                                               </li>
+                                               <li class="bg-blue-grey-600">
+                                                 <input type="radio" data-color="blue-grey|600" name="colorChosen" id="editColorChosen7">
+                                                 <label for="editColorChosen7"></label>
+                                               </li>
+                                               <li class="bg-purple-600">
+                                                 <input type="radio" data-color="purple|600" name="colorChosen" id="editColorChosen8">
+                                                 <label for="editColorChosen8"></label>
+                                               </li>
+                                             </ul>
+                                           </div>
+                                         </div>
+                                         <div class="form-group row">
+                                           <label class="col-xs-12 col-md-2 form-control-label" for="editPeople">联系人:</label>
+                                           <div class="col-md-10 col-xs-12">
+                                             <select id="editPeople" multiple="multiple" class="plugin-selective"></select>
+                                           </div>
+                                         </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                         <div class="form-actions">
+                                           <button class="btn btn-primary" data-dismiss="modal" type="button">保存</button>
+                                           <button class="btn btn-danger" data-dismiss="modal" type="button">删除</button>
+                                           <a class="btn btn-sm btn-white" data-dismiss="modal" href="javascript:void(0)">取消</a>
+                                         </div>
+                                        </div>
+                                        </form>
+                                    </div>
+                                    </div>
+                                     <!-- End EditEvent Dialog -->
+                                     <!--AddCalendar Dialog -->
+                                    <div class="modal fade" id="addNewCalendar" aria-hidden="true" aria-labelledby="addNewCalendar"
+                                    role="dialog" tabindex="-1">
+                                        <div class="modal-dialog">
+                                        <form class="modal-content form-horizontal" action="#" method="post" role="form">
+                                        <div class="modal-header">
+                                        <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
+                                        <h4 class="modal-title">New Calendar</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                        <div class="form-group row">
+                                        <label class="col-xs-12 col-md-2 form-control-label" for="ename">Name:</label>
+                                        <div class="col-md-10 col-xs-12">
+                                         <input type="text" class="form-control" id="ename" name="ename">
+                                        </div>
+                                        </div>
+                                        <div class="form-group row">
+                                        <label class="form-control-label col-xs-12 col-md-2">Color:</label>
+                                        <div class="col-md-10 col-xs-12">
+                                         <ul class="color-selector">
+                                           <li class="bg-blue-600">
+                                             <input type="radio" checked name="colorChosen" id="colorChosen2">
+                                             <label for="colorChosen2"></label>
+                                           </li>
+                                           <li class="bg-green-600">
+                                             <input type="radio" name="colorChosen" id="colorChosen3">
+                                             <label for="colorChosen3"></label>
+                                           </li>
+                                           <li class="bg-cyan-600">
+                                             <input type="radio" name="colorChosen" id="colorChosen4">
+                                             <label for="colorChosen4"></label>
+                                           </li>
+                                           <li class="bg-orange-600">
+                                             <input type="radio" name="colorChosen" id="colorChosen5">
+                                             <label for="colorChosen5"></label>
+                                           </li>
+                                           <li class="bg-red-600">
+                                             <input type="radio" name="colorChosen" id="colorChosen6">
+                                             <label for="colorChosen6"></label>
+                                           </li>
+                                           <li class="bg-blue-grey-600">
+                                             <input type="radio" name="colorChosen" id="colorChosen7">
+                                             <label for="colorChosen7"></label>
+                                           </li>
+                                           <li class="bg-purple-600">
+                                             <input type="radio" name="colorChosen" id="colorChosen8">
+                                             <label for="colorChosen8"></label>
+                                           </li>
+                                         </ul>
+                                        </div>
+                                        </div>
+                                        <div class="form-group row">
+                                        <label class="col-xs-12 col-md-2 form-control-label" for="people">People:</label>
+                                        <div class="col-md-10 col-xs-12">
+                                         <select id="people" multiple="multiple" class="plugin-selective"></select>
+                                        </div>
+                                        </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                        <div class="form-actions">
+                                        <button class="btn btn-primary" data-dismiss="modal" type="button">Create</button>
+                                        <a class="btn btn-sm btn-white" data-dismiss="modal" href="javascript:void(0)">Cancel</a>
+                                        </div>
+                                        </div>
+                                        </form>
+                                    </div>
+                                    </div>
+                                    <!-- End AddCalendar Dialog -->
+                                </div>
                             </div>
                             <div class="tab-pane" id="temperature" role="tabpanel">
                                 <div style="margin-top: 10px;">
@@ -1741,6 +2009,7 @@
                                                 <td>居家健康项目</td>
                                                 <td>检测数据</td>
                                                 <td>异常情况</td>
+                                                <td>处理情况</td>
                                             </tr>
                                         </thead>
                                         <tbody id = "exceptionTable">
@@ -1754,14 +2023,47 @@
                                 </div>
                                 <div class="col-xl-4 offset-xl-1 col-xs-12">
                                     <h4><i class="icon wb-library" aria-hidden="true"></i>异常处理</h4>
-                                    <textarea class="form-control" name="standard_content" rows="8" data-fv-field="standard_content"></textarea><br/>
+                                    <div class="modal-footer">
+                                        <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                            <input type="checkbox" id="weixin" name="remind" value="微信" onchange="">
+                                            <label for="weixin">微信</label>
+                                        </div>
+                                        <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                            <input type="checkbox" id="message" name="remind" value="短信" onchange="">
+                                            <label for="message">短信</label>
+                                        </div>
+                                    </div>
+                                    <textarea class="form-control" name="standard_content" rows="8" data-fv-field="standard_content" id="health_advice"></textarea><br/>
                                     <div class="modal-footer ">
-                                        <button type="button"class="btn  btn-primary"> <i class="icon fa-check" aria-hidden="true"></i>提交</button>
+                                        <button type="button"class="btn  btn-primary" onclick="submitException()"> <i class="icon fa-check" aria-hidden="true"></i>提交</button>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="tab-pane" id="processedException" role="tabpanel">
+                                <div class="col-xl-10 offset-xl-1 col-xs-12" id="exceptionHandlePagination">
+                                    <h4> <i class="icon fa-check" aria-hidden="true"></i></i>已处理异常</h4>
+                                    <table class="table table1">
+                                        <thead>
+                                            <tr>
+                                                <td>选择</td>
+                                                <td>时间</td>
+                                                <td>居家健康项目</td>
+                                                <td>检测数据</td>
+                                                <td>异常情况</td>
+                                                <td>处理情况</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody id = "exceptionHandleTable">
+                                            <tr>
+                                                <td colspan="4"><i class="fa fa-refresh fa-spin fa-3x fa-fw"></i> 正在加载中</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div style="text-align: right;" class="paginationDiv"></div>
+
                                 </div>
                             </div>
-
+                            </div>
                         </div>
                   </div>
                 </div>
@@ -1853,7 +2155,6 @@
         };
 
         var bSEchartFunction = function(data,status){
-            console.log(data);
             var before_blood_glucose = [];
             var after_blood_glucose = [];
             var blood_glucose_date = [];
@@ -1864,7 +2165,6 @@
                 after_blood_glucose.push(data[data.length - 1 - k]['after_blood_glucose']);
                 blood_glucose_date.push(data[data.length - 1 - k]['datetime']);
             }
-            console.log(before_blood_glucose);
             var chart_data = {
                 date: blood_glucose_date,
                 series: [
@@ -2060,26 +2360,22 @@
                 .replace(/\{__time__\}/g, dom["created_at"].substr(0,10))
                 .replace(/\{__report_url__\}/g, dom["report_url"]);
         };
-            // $("#baseInformationBtn").click(function () {
-            //     doAjax("fileQuery","get",{},function (data, status) {
-            //         $("#baseInformation").html(data.toString());
-            //     }, {}, {"X-PJAX": "true", "dataType": "text"});
-            // })
         var template = "\n\
                             <tr>\n\
                                 <td>\n\
                                     <div class='checkbox-default'>\n\
-                                        <input type='checkbox'/>\n\
+                                        <input type='checkbox' value='{__id__}' name='exceptionSelect'/>\n\
                                     </div>\n\
                                 </td>\n\
-                                <td>time</td>\n\
-                                <td>test_item</td>\n\
-                                <td>value</td>\n\
-                                <td>status</td>\n\
+                                <td>{__time__}</td>\n\
+                                <td>{__test_item__}</td>\n\
+                                <td>{__value__}</td>\n\
+                                <td>{__status__}</td>\n\
+                                <td style='color:red'>{__state__}</td>\n\
         </tr>";
         var exceptionData = function (data, status) {
             if(data.data.length !== 0){
-                $("table tbody").html('');
+                $("#exceptionHandling table tbody").html('');
                 for (var i=0; i < data.data.length; i++) {
                     var time = data.data[i].updated_at;
                     var test_item = data.data[i].test_item;
@@ -2091,65 +2387,47 @@
                         var value = data.data[i].value1 || data.data[i].value2;
                         var status = data.data[i].status1 || data.data[i].status2;
                     }
-                    var t_template =  template.replace(/time/g,time)
-                        .replace(/test_item/g,test_item)
-                        .replace(/value/g,value)
-                        .replace(/status/g,status);
+                    var t_template =  template.replace(/{__time__}/g,time)
+                        .replace(/{__test_item__}/g,test_item)
+                        .replace(/{__id__}/g,data.data[i].id)
+                        .replace(/{__value__}/g,value)
+                        .replace(/{__state__}/g,data.data[i].handle)
+                        .replace(/{__status__}/g,status);
                     $("#exceptionTable").append(t_template);
                 }
             }else {
                 $("table tbody").html('');
                 $("#exceptionTable").append("<tr><td colspan='5'>暂无异常数据</td><tr>");
             }
-        }
-        // $(".nav-tabs .nav-item").on('click',function(){
-        //     $("input").prop("disabled",true);
-        //     where = $(this).text();
-        //     if (where === "基础信息") {
-        //         var getUserInfoCallback = function(data, status) {
-        //             if (data && status) {
-        //                 for (var i in data) {
-        //                     if (typeof data[i] === "string") {
-        //                         $("*[name='" + i + "']").customVal(data[i]);
-        //                     } else if (typeof data[i] === "object") {
-        //                         for (var k in data[i]) {
-        //                             var domId = i + "-" + k;
-        //                             $("*[name='" + domId + "']").customVal(data[i][k]);
-        //                         }
-        //                     }
-        //                 }
-        //             };
-        //         };
-        //         if (uid) {
-        //             doAjax(window.baseUrl + "/patient_record/check", 'get', {'id': uid}, getUserInfoCallback);
-        //         }
-        //     } else if (where === "待处理异常"){
-        //         var paginationDiv = $("#exceptionPagination").find(".paginationDiv");
-        //         if (paginationDiv.pagination()) {
-        //             paginationDiv.pagination('destroy');
-        //         }
-        //         paginationDiv.pagination({
-        //             pageSize: 10,
-        //             loadFirstPage: true,
-        //             remote: {
-        //                 url: window.baseUrl + "/exception/by_id",
-        //                 beforeSend: function (XHR) {
-        //                     XHR.setRequestHeader('access-authorization', $.cookie('access_token'));
-        //                 },
-        //                 success: exceptionData,
-        //                 params: {'id':uid},
-        //                 pageParams: function(data) {
-        //                     return {
-        //                         'page': data.pageIndex + 1,
-        //                         'per_page': data.pageSize
-        //                     };
-        //                 },
-        //                 totalName: 'meta.total'
-        //             }
-        //         });
-        //     }
-        // });
-        $(".nav-tabs .nav-link").on('click',function(){
+        };
+        var exceptionHandleData = function (data, status) {
+            if(data.data.length !== 0){
+                $("#processedException table tbody").html('');
+                for (var i=0; i < data.data.length; i++) {
+                    var time = data.data[i].updated_at;
+                    var test_item = data.data[i].test_item;
+                    if (data.data[i].value1 && data.data[i].value2){
+                        var value = data.data[i].value1 + '/' + data.data[i].value2;
+                        var status = data.data[i].status1 + '/' +  data.data[i].status2;
+
+                    } else {
+                        var value = data.data[i].value1 || data.data[i].value2;
+                        var status = data.data[i].status1 || data.data[i].status2;
+                    }
+                    var t_template =  template.replace(/{__time__}/g,time)
+                        .replace(/{__test_item__}/g,test_item)
+                        .replace(/{__id__}/g,data.data[i].id)
+                        .replace(/{__value__}/g,value)
+                        .replace(/{__state__}/g,data.data[i].handle)
+                        .replace(/{__status__}/g,status);
+                    $("#exceptionHandleTable").append(t_template);
+                }
+            }else {
+                $("table tbody").html('');
+                $("#exceptionHandleTable").append("<tr><td colspan='5'>暂无已处理异常数据</td><tr>");
+            }
+        };
+        $(".nav-tabs .nav-menus").on('click',function(){
             where = $(this).text()
             if ($(this).data("apiget")){
                 return true;
@@ -2333,7 +2611,31 @@
                             XHR.setRequestHeader('access-authorization', $.cookie('access_token'));
                         },
                         success: exceptionData,
-                        params: {'id':uid},
+                        params: {'id':uid, 'is_handle':0},
+                        pageParams: function(data) {
+                            return {
+                                'page': data.pageIndex + 1,
+                                'per_page': data.pageSize
+                            };
+                        },
+                        totalName: 'meta.total'
+                    }
+                });
+            } else if (where ==="已处理异常") {
+                var paginationDiv = $("#exceptionHandlePagination").find(".paginationDiv");
+                if (paginationDiv.pagination()) {
+                    paginationDiv.pagination('destroy');
+                }
+                paginationDiv.pagination({
+                    pageSize: 10,
+                    loadFirstPage: true,
+                    remote: {
+                        url: window.baseUrl + "/exception/by_id",
+                        beforeSend: function (XHR) {
+                            XHR.setRequestHeader('access-authorization', $.cookie('access_token'));
+                        },
+                        success: exceptionHandleData,
+                        params: {'id':uid, 'is_handle':1},
                         pageParams: function(data) {
                             return {
                                 'page': data.pageIndex + 1,
@@ -2345,7 +2647,44 @@
                 });
             }
         });
-        $(".nav-tabs .nav-link.active").click();
+        $(".nav-tabs .nab-title").on('click',function(){
+            where = $(this).prop("href").split("#")[1];
+            var Bmenus = "."+where+" " + ".nav-menus.active";
+            $(Bmenus).removeClass('active').addClass('visited').click().removeClass('visited');
+            // $("."+where+" " + ".nav-menus.visited").removeClass('visited');
+        })
+        var submitException = function () {
+            var arr = [];
+            var weixin = 0;
+            var message = 0;
+            var health_advice = $("#health_advice").prop("value");
+            $("input[name='exceptionSelect']:checked").each(function (index,element) {
+                arr.push(element.value)
+            });
+            if(arr.length == 0 || health_advice == "" ){
+                swal("请选择异常记录并填写处理意见","","error");
+            }else{
+                if ($("#weixin").prop("checked") == true ) {
+                    weixin = 1;
+                    $("#weixin").prop("checked",false)
+                }
+                if ($("#message").prop("checked") == true){
+                    message = 1;
+                    $("#message").prop("checked",false)
+                }
+                doAjax(window.baseUrl+"/exception/handle","put",{'ids':arr, 'health_advice':health_advice,'is_wechart':weixin,'is_phone':message},function (data, status) {
+                    if (data && status) {
+                        swal({
+                            title: data.info || "提交成功",
+                            type: "success"
+                        });
+                    }
+                    $("#health_advice").prop("value","");
+                    $("#exceptionHandlingBtn").click();
+                    // $("input[name='exceptionSelect']").prop("checked",false)
+                });
+            }
+        };
 
     </script>
 <% if (typeof pjax === "undefined") { %>
