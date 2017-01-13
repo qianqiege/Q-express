@@ -59,12 +59,14 @@
                         <li class='list-group-item list-group-item-dark' style='display:none'><a href='/page/jibin?id={__number__}'>查看疾病谱定位报告</a></li>\n\
                         <li class='list-group-item list-group-item-dark' style='display:none'><a href='/page/spine?id={__number__}'>查看龙氏脊筑方案报告</a></li>\n\
                         <li class='list-group-item list-group-item-dark' style='display:none'><a href='/page/jiankang?id={__number__}'>查看健康管理方案报告</a></li>\n\
+                        <li class='list-group-item list-group-item-dark' style='display:none'><a href='/healthDetection?id={__patientID__}'>查看健康体检数据</a></li>\n\
                     </ul>\n\
                 </div>\n\
             </li>";
             id = uuid();
             timeline_right = timeline_right.replace(/\{__id__\}/g, id)
                         .replace(/\{__number__\}/g, dom["number"])
+                        .replace(/\{__patientID__\}/g, dom["patient"].id)
                         .replace(/\{__datatime__\}/g, dom["created_at"].substr(0,10))
             return [id,timeline_right];
         };
@@ -78,13 +80,14 @@
                         <li class='list-group-item list-group-item-dark' style='display:none'><a href='/page/jibin?id={__number__}'>查看疾病谱定位报告</a></li>\n\
                         <li class='list-group-item list-group-item-dark' style='display:none'><a href='/page/spine?id={__number__}'>查看龙氏脊筑方案报告</a></li>\n\
                         <li class='list-group-item list-group-item-dark' style='display:none'><a href='/page/jiankang?id={__number__}'>查看健康管理方案报告</a></li>\n\
+                        <li class='list-group-item list-group-item-dark' style='display:none'><a href='/healthDetection?id={__patientID__}&action=blood_pressure'>查看健康体检数据</a></li>\n\
                     </ul>\n\
                 </div>\n\
             </li>"
             id = uuid();
             timeline_left = timeline_left.replace(/\{__id__\}/g, id)
                         .replace(/\{__number__\}/g, dom["number"])
-                        .replace(/\{__report_url__\}/g, dom["number"])
+                        .replace(/\{__patientID__\}/g, dom["patient"].id)
                         .replace(/\{__datatime__\}/g, dom["created_at"].substr(0,10))
             return [id,timeline_left];
         };
@@ -151,6 +154,9 @@
                                     if (data[i]["spine_recipes"].length){
                                         $("#"+temp_data[0]+" ul li:eq(2)").show()
                                     }
+                                    if ((data[i]["blood_pressures"].length) || (data[i]["blood_glucoses"].length) || (data[i]["temperatures"].length) || (data[i]["weights"].length) || (data[i]["heart_rates"].length)){
+                                        $("#"+temp_data[0]+" ul li:eq(4)").show();
+                                    }
                                     if (data[i]["tds_tables"].length){
                                         for(var x = 0;x < data[i]["tds_tables"].length;x++){
                                             $("#"+temp_data[0]+" ul").append("<li class='list-group-item list-group-item-dark'><a href='"+data[i]["tds_tables"][x].report_url+"'>"+data[i]["tds_tables"][x].created_at.substr(0,10)+' '+data[i]["tds_tables"][x].created_at.substr(11,5)+" TDS数字中医报告</a></li>")
@@ -168,6 +174,9 @@
                                     }
                                     if (data[i]["spine_recipes"].length){
                                         $("#"+temp_data[0]+" ul li:eq(2)").show()
+                                    }
+                                    if ((data[i]["blood_pressures"].length) || (data[i]["blood_glucoses"].length) || (data[i]["temperatures"].length) || (data[i]["weights"].length) || (data[i]["heart_rates"].length)){
+                                        $("#"+temp_data[0]+" ul li:eq(4)").show();
                                     }
                                     if (data[i]["tds_tables"].length){
                                         for(var x = 0;x < data[i]["tds_tables"].length;x++){
