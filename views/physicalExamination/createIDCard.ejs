@@ -111,7 +111,7 @@ $(function() {
             var cityCode = $('#city').data('citypicker').getCode().split("/"),
                 birthdateVal = $('#birthdate').val().replace(/\-/g, ''),
                 sexVal = $('input[name="sex"]:checked').val();
-            if (!cityCode || (cityCode[cityCode.length - 1].substr(-1) === "0" && cityCode.length !== 3)) {
+            if (!cityCode[cityCode.length - 1] || (cityCode[cityCode.length - 1].substr(-1) === "0" && cityCode.length !== 3)) {
                 throw "地区";
             }
             if (!birthdateVal) {
