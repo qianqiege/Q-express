@@ -108,17 +108,17 @@ $(function() {
     };
     var createIdCard = function() {
         try {
-            var cityCode = $('#city').data('citypicker').getCode().split("/").pop(),
+            var cityCode = $('#city').data('citypicker').getCode().split("/"),
                 birthdateVal = $('#birthdate').val().replace(/\-/g, ''),
                 sexVal = $('input[name="sex"]:checked').val();
-            if (!cityCode || cityCode.substr(-1) === "0") {
+            if (!cityCode || (cityCode[cityCode.length - 1].substr(-1) === "0" && cityCode.length !== 3)) {
                 throw "地区";
             }
             if (!birthdateVal) {
                 throw "生日";
             }
             $('.alert').hide();
-            $('#cardNumber').html("<ul><li>" + getIdCard(cityCode, birthdateVal, sexVal).join("</li><li>") + "</li></ul>");
+            $('#cardNumber').html("<ul><li>" + getIdCard(cityCode[cityCode.length - 1], birthdateVal, sexVal).join("</li><li>") + "</li></ul>");
             $('#cardNumber').show();
         } catch (e) {
             $("#msg").html(e);
