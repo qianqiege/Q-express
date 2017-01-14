@@ -331,8 +331,7 @@ var customPjax = function(aSelector, divSelector) {
         // $(".pjaxLoader").fadeOut(function() {
             var responseDom = $(data);
             $(divSelector).html(responseDom);
-            if (!$(divSelector).find("script").length) {
-                console.log($(divSelector).find("script"));
+            if (!$(divSelector).find("script").length) { // 有未知 bug，待修复
                 responseDom.find('script').each(function() {
                     if (this.src) {
                         var script = document.createElement('script'), i, attrName, attrValue, attrs = this.attributes;

@@ -110,6 +110,10 @@ router.get('/viewTDSSearch', function(req, res, next) {
     res.render('physicalExamination/viewTDSSearch', {title: "数字中医信息查询", pjax: req.get('X-PJAX')});
 });
 
+router.get('/createIDCard', function(req, res, next) {
+    res.render('physicalExamination/createIDCard', {title: "身份证生成", pjax: req.get('X-PJAX')});
+});
+
 router.get('/adminIndex', function(req, res, next) {
     res.render('home/adminIndex', {title: "管理首页", pjax: req.get('X-PJAX')});
 });
