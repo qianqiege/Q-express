@@ -251,14 +251,15 @@
                                                               <i class="icon wb-calendar" aria-hidden="true"></i>
                                                             </span>
                                                             <input type="text" class="form-control datepair-date datepair-start"
-                                                            data-plugin="datepicker"id="starts"
+                                                            data-plugin="datepicker"id="startDate"
                                                             data-container="#addNewEvent">
                                                           </div>
                                                           <div class="input-group">
                                                             <span class="input-group-addon">
                                                               <i class="icon wb-time" aria-hidden="true"></i>
                                                             </span>
-                                                            <input type="text" class="form-control datepair-time datepair-start ui-timepicker-input" data-plugin="timepicker"
+                                                            <input type="text" class="form-control datepair-time datepair-start ui-timepicker-input"
+                                                            id="startTime" data-plugin="timepicker"
                                                             autocomplete="off">
                                                           </div>
                                                         </div>
@@ -273,14 +274,14 @@
                                                               <i class="icon wb-calendar" aria-hidden="true"></i>
                                                             </span>
                                                             <input type="text" class="form-control datepair-date datepair-start"
-                                                            data-plugin="datepicker"id="ends"
+                                                            data-plugin="datepicker"id="endDate"
                                                             data-container="#addNewEvent">
                                                           </div>
                                                           <div class="input-group">
                                                             <span class="input-group-addon">
                                                               <i class="icon wb-time" aria-hidden="true"></i>
                                                             </span>
-                                                            <input type="text" class="form-control datepair-time datepair-start ui-timepicker-input" data-plugin="timepicker"
+                                                            <input type="text" class="form-control datepair-time datepair-start ui-timepicker-input"id="endTime" data-plugin="timepicker"
                                                             autocomplete="off">
                                                           </div>
                                                         </div>
@@ -364,14 +365,25 @@
                                              <div class="form-group row">
                                                <label class="col-xs-12 col-md-2 form-control-label" for="editStarts">开始日期:</label>
                                                <div class="col-md-10 col-xs-12">
-                                                 <div class="input-group">
-                                                   <input type="text" class="form-control" id="editStarts" name="editStarts" data-container="#editNewEvent"
-                                                   data-plugin="datepicker">
-                                                   <span class="input-group-addon">
-                                                     <i class="icon wb-calendar" aria-hidden="true"></i>
-                                                   </span>
-                                                 </div>
-                                               </div>
+                                                    <div class="input-daterange">
+                                                      <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                          <i class="icon wb-calendar" aria-hidden="true"></i>
+                                                        </span>
+                                                        <input type="text" class="form-control datepair-date datepair-start"
+                                                        data-plugin="datepicker"id="startDateEdit"
+                                                        data-container="#addNewEvent">
+                                                      </div>
+                                                      <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                          <i class="icon wb-time" aria-hidden="true"></i>
+                                                        </span>
+                                                        <input type="text" class="form-control datepair-time datepair-start ui-timepicker-input"
+                                                        id="startTimeEdit" data-plugin="timepicker"
+                                                        autocomplete="off">
+                                                      </div>
+                                                    </div>
+                                                </div>
                                              </div>
                                              <div class="form-group row">
                                                <label class="col-xs-12 col-md-2 form-control-label" for="editEnds">截止日期:</label>
@@ -388,8 +400,23 @@
                                              <div class="form-group row">
                                                <label class="col-xs-12 col-md-2 form-control-label" for="editRepeats">重复:</label>
                                                <div class="col-md-10 col-xs-12">
-                                                 <input type="text" class="form-control" id="editRepeats" name="repeats" data-plugin="TouchSpin"
-                                                 data-min="0" data-max="10" value="0" />
+                                                   <div class="input-daterange">
+                                                    <div class="input-group">
+                                                      <span class="input-group-addon">
+                                                        <i class="icon wb-calendar" aria-hidden="true"></i>
+                                                      </span>
+                                                      <input type="text" class="form-control datepair-date datepair-start"
+                                                      data-plugin="datepicker"id="endDateEdit"
+                                                      data-container="#addNewEvent">
+                                                    </div>
+                                                    <div class="input-group">
+                                                      <span class="input-group-addon">
+                                                        <i class="icon wb-time" aria-hidden="true"></i>
+                                                      </span>
+                                                      <input type="text" class="form-control datepair-time datepair-start ui-timepicker-input"id="endTimeEdit" data-plugin="timepicker"
+                                                      autocomplete="off">
+                                                    </div>
+                                                  </div>
                                                </div>
                                              </div>
                                              <div class="form-group row" id="editColor">
@@ -585,10 +612,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                    </div>
                                     <div style="text-align: right;" class="paginationDiv"></div>
                                 </div>
-
                             </div>
                             <div class="tab-pane" id="temperature" role="tabpanel">
                                 <div style="margin-top: 10px;">
@@ -2744,6 +2770,11 @@
                         totalName: 'meta.total'
                     }
                 });
+            } else if (where ==="随访安排") {
+                setTimeout(function() {
+                    $(".fc-month-button").click();
+                }, 100);
+
             }
         });
         $(".nav-tabs .nab-title").on('click',function(){
@@ -2789,3 +2820,6 @@
 <% if (typeof pjax === "undefined") { %>
     <%- include ../footer %>
 <% } %>
+<script src="/javascripts/calendar.js"></script>
+<script src="/javascripts/ACalendar.js"></script>
+<script src="/javascripts/calendar-zh-cn.js"></script>
