@@ -53,6 +53,33 @@
                 </div>
                 <div class="panel-body" id="chart_index_tab" style="width: 100%;height:250px;">
                 </div>
+                <script>
+                    $(function(){
+                        var now = new Date();
+                        var count = 0;
+                        var temp_log =now.getFullYear()+"-"+("0" + (now.getMonth() + 1)).substr(-2)+"-"+("0" + now.getDate()).substr(-2) ;
+                        for(var i = 1; i<=10 ;i++){
+                            var temp = new Date(new Date()-(86400000 * i));
+                            var date = temp.getFullYear()+"-"+("0" + (temp.getMonth() + 1)).substr(-2)+"-"+("0" + temp.getDate()).substr(-2);
+                            
+
+                            doAjax(window.baseUrl + "/operation_logs", "get", {'page':1,'per_page':1,'start_date':date,'end_date':temp_log}, function(data){
+                               var date = new Date(data.data[0].created_at);
+                               date =date.getFullYear()+"-"+("0" + (date.getMonth() + 1)).substr(-2)+"-"+("0" + date.getDate()).substr(-2)
+                               adddata(date,data.meta.total)
+                            });
+
+                            temp_log = date
+                        }
+                        function adddata (time , num){
+                            count++;
+                            
+                            if (count == 10){
+                                console.log("Done")
+                            }
+                        }
+                    })
+                </script>
             </div>
             <div class="col-md-3">
                 <div class="panel panel-bordered">
