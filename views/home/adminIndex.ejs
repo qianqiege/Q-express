@@ -3,39 +3,132 @@
 <% } else { %>
     <title><%= title %></title>
 <% } %>
-    <div class="page-header">
-        <h1 class="page-title"><%= title %></h1>
-        <ol class="breadcrumb">
-        </ol>
-    </div>
-    <div class="page-content">
-        <div class="panel">
-            <div class="panel-heading">
-                <h3 class="panel-title">登陆日志</h3>
+<div class="page-header">
+    <h1 class="page-title"><%= title %></h1>
+    <ol class="breadcrumb">
+    </ol>
+</div>
+<div class="page-content">
+    <div class="panel">
+        <div class="card-group">
+            <div class="card card-block p-0">
+                <div class="counter counter-lg counter-inverse bg-cyan-600 vertical-align h-150">
+                    <div class="vertical-align-middle">
+                        <div class="counter-number-group">
+                            <span class="counter-icon m-l-10"><i class="icon wb-user" aria-hidden="true"></i></span>
+                            <span class="counter-number">155</span>
+                        </div>
+                        <div class="counter-label text-uppercase font-size-16">今日开方统计</div>
+                    </div>
+                </div>
             </div>
-            <div class="panel-body container-fluid">
-                <table class="table table-bordered" >
-                    <thead>
-                        <tr>
-                            <th>上次登陆日期</th>
-                            <th>登陆IP地址</th>
-                            <th>登陆次数</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td> 2016-10-25 </td>
-                            <td> 192.168.1.180 </td>
-                            <td>  2</td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-
-                    </tfoot>
-                </table>
+            <div class="card card-block p-0">
+                <div class="counter counter-lg counter-inverse bg-red-600 vertical-align h-150">
+                    <div class="vertical-align-middle">
+                        <div class="counter-number-group">
+                            <span class="counter-icon m-l-10"><i class="icon fa-tags" aria-hidden="true"></i></span>
+                            <span class="counter-number">60</span>
+                        </div>
+                        <div class="counter-label text-uppercase font-size-16">系统异常报告</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-block p-0">
+                <div class="counter counter-lg counter-inverse vertical-align h-150" style="background-color: #00BFFF;">
+                    <div class="vertical-align-middle">
+                        <div class="counter-number-group">
+                            <span class="counter-icon m-l-10"><i class="icon fa-bar-chart" aria-hidden="true"></i></span>
+                            <span class="counter-number">1120</span>
+                        </div>
+                        <div class="counter-label text-uppercase font-size-16">随访统计</div>
+                    </div>
+                </div>
             </div>
         </div>
+        <br>
+        <div role="tabpanel" class="tab-pane active" id="">
+            <div class="panel panel-bordered">
+                <div class="panel-heading">
+                    <h3 class="panel-title bg-blue-600"><i class="icon fa-bar-chart" aria-hidden="true"></i>流量统计</h3>
+                </div>
+                <div class="panel-body" id="chart_index_tab" style="width: 100%;height:250px;">
+                </div>
+                <script>
+                    $(function(){
+                        var now = new Date();
+                        var count = 0;
+                        var temp_log =now.getFullYear()+"-"+("0" + (now.getMonth() + 1)).substr(-2)+"-"+("0" + now.getDate()).substr(-2) ;
+                        for(var i = 1; i<=10 ;i++){
+                            var temp = new Date(new Date()-(86400000 * i));
+                            var date = temp.getFullYear()+"-"+("0" + (temp.getMonth() + 1)).substr(-2)+"-"+("0" + temp.getDate()).substr(-2);
+                            
+
+                            doAjax(window.baseUrl + "/operation_logs", "get", {'page':1,'per_page':1,'start_date':date,'end_date':temp_log}, function(data){
+                               var date = new Date(data.data[0].created_at);
+                               date =date.getFullYear()+"-"+("0" + (date.getMonth() + 1)).substr(-2)+"-"+("0" + date.getDate()).substr(-2)
+                               adddata(date,data.meta.total)
+                            });
+
+                            temp_log = date
+                        }
+                        function adddata (time , num){
+                            count++;
+                            
+                            if (count == 10){
+                                console.log("Done")
+                            }
+                        }
+                    })
+                </script>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-bordered">
+                    <div class="panel-heading">
+                        <h3 class="panel-title bg-blue-600"><i class="icon fa-long-arrow-right" aria-hidden="true"></i>今日访问统计</h3>
+                    </div>
+                    <div class="panel-body" id="chart_index_tab" style="width: 100%;height:300px;">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-bordered">
+                    <div class="panel-heading">
+                        <h3 class="panel-title bg-blue-600"><i class="icon fa-long-arrow-right" aria-hidden="true"></i>访问统计图表</h3>
+                    </div>
+                    <div class="panel-body" id="chart_index_tab" style="width: 100%;height:300px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-heading">
+            <h3 class="panel-title">登陆日志</h3>
+        </div>
+        <div class="panel-body container-fluid">
+            <table class="table table-bordered" >
+                <thead>
+                    <tr>
+                        <th>上次登陆日期</th>
+                        <th>登陆IP地址</th>
+                        <th>登陆次数</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> 2016-10-25 </td>
+                        <td> 192.168.1.180 </td>
+                        <td>  2</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+
+                </tfoot>
+            </table>
+        </div>
     </div>
+</div>
 <% if (typeof pjax === "undefined") { %>
     <%- include ../footer %>
 <% } %>
