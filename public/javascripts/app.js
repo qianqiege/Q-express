@@ -326,34 +326,23 @@ var setMenu = function(pathname) {
 var customPjax = function(aSelector, divSelector) {
     var pjaxEndEvent = $.Event('customPjax:end');
 
-    var renderToDom = function(divSelector, data, newTitle) {
-        data = data.replace(/<title>.*?<\/title>/, "");
-        // $(".pjaxLoader").fadeOut(function() {
-            var responseDom = $(data);
-            $(divSelector).html(responseDom);
-            if (!$(divSelector).find("script").length) { // 有未知 bug，待修复
-                responseDom.find('script').each(function() {
-                    if (this.src) {
-                        var script = document.createElement('script'), i, attrName, attrValue, attrs = this.attributes;
-                        for (i = 0; i < attrs.length; i++) {
-                            attrName = attrs[i].name;
-                            attrValue = attrs[i].value;
-                            script[attrName] = attrValue;
-                        }
-                        $(divSelector)[0].appendChild(script);
-                    } else {
-                        $.globalEval(this.text || this.textContent || this.innerHTML || '');
+    var renderAction = function(divSelector, data, newTitle) {
+        var responseDom = $(data);
+        $(divSelector).html(responseDom);
+        if (!$(divSelector).find("script").length) { // 有未知 bug，待修复
+            responseDom.find('script').each(function() {
+                if (this.src) {
+                    var script = document.createElement('script'), i, attrName, attrValue, attrs = this.attributes;
+                    for (i = 0; i < attrs.length; i++) {
+                        attrName = attrs[i].name;
+                        attrValue = attrs[i].value;
+                        script[attrName] = attrValue;
                     }
-                }).promise().done(function() {
-                    $(divSelector).fadeIn(function() {
-                        document.title = newTitle;
-                        $(document).trigger(pjaxEndEvent);
-                        $(divSelector).find("a[data-plugin='customPjax']").each(function() {
-                            customPjax(this, $(this).data("custom-pjax-render-to") || "#pjax");
-                        });
-                    });
-                });
-            } else {
+                    $(divSelector)[0].appendChild(script);
+                } else {
+                    $.globalEval(this.text || this.textContent || this.innerHTML || '');
+                }
+            }).promise().done(function() {
                 $(divSelector).fadeIn(function() {
                     document.title = newTitle;
                     $(document).trigger(pjaxEndEvent);
@@ -361,8 +350,27 @@ var customPjax = function(aSelector, divSelector) {
                         customPjax(this, $(this).data("custom-pjax-render-to") || "#pjax");
                     });
                 });
-            }
-        // });
+            });
+        } else {
+            $(divSelector).fadeIn(function() {
+                document.title = newTitle;
+                $(document).trigger(pjaxEndEvent);
+                $(divSelector).find("a[data-plugin='customPjax']").each(function() {
+                    customPjax(this, $(this).data("custom-pjax-render-to") || "#pjax");
+                });
+            });
+        }
+    };
+
+    var renderToDom = function(divSelector, data, newTitle) {
+        data = data.replace(/<title>.*?<\/title>/, "");
+        if ($.cookie("showPjaxLoader")) {
+            $(".pjaxLoader").fadeOut(function() {
+                renderAction(divSelector, data, newTitle);
+            });
+        } else {
+            renderAction(divSelector, data, newTitle);
+        }
     };
 
     $(aSelector).each(function() {
@@ -380,23 +388,29 @@ var customPjax = function(aSelector, divSelector) {
             } else {
                 window.event.returnValue = false;
             }
-            $(divSelector).fadeOut(function() {
-                // $(".pjaxLoader").fadeIn(function() {
-                    doAjax(uri, "get", {}, function(data, status) {
-                        if (status && data) {
-                            var newTitle = data.match(/<title>(.*?)<\/title>/)[1];
-                            if (history.pushState) {
-                                window.history.pushState('', newTitle, uri);
-                                if (!arguments[2]) {
-                                    setMenu(location.pathname);
-                                }
+            var loadDataAction = function(uri) {
+                doAjax(uri, "get", {}, function(data, status) {
+                    if (status && data) {
+                        var newTitle = data.match(/<title>(.*?)<\/title>/)[1];
+                        if (history.pushState) {
+                            window.history.pushState('', newTitle, uri);
+                            if (!arguments[2]) {
+                                setMenu(location.pathname);
                             }
-                            renderToDom(divSelector, data, newTitle);
                         }
-                    }, {}, {"X-PJAX": "true", "dataType": "text"});
-                // });
+                        renderToDom(divSelector, data, newTitle);
+                    }
+                }, {}, {"X-PJAX": "true", "dataType": "text"});
+            };
+            $(divSelector).fadeOut(function() {
+                if ($.cookie("showPjaxLoader")) {
+                    $(".pjaxLoader").fadeIn(function() {
+                        loadDataAction(uri);
+                    });
+                } else {
+                    loadDataAction(uri);
+                }
             });
-
             return false;
         });
     });
@@ -526,5 +540,10 @@ $(function() {
 
     $("a[data-plugin='customPjax']").each(function() {
         customPjax(this, $(this).data("custom-pjax-render-to") || "#pjax");
+    });
+
+    $(".site-footer-right").dblclick(function() {
+        $.cookie("showPjaxLoader", ~~$.cookie("showPjaxLoader") ? "" : "1");
+        console.log("Pjax Loader " + ($.cookie("showPjaxLoader") ? "not " : "") + "Hidden");
     });
 });
