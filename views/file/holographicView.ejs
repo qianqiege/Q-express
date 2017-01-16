@@ -48,10 +48,13 @@
                                                     aria-controls="exception Handling" role="tab">待处理异常</a></li>
                                                     <li class="nav-item" role="presentation"><a class="nav-link nav-menus" data-toggle="tab" href="#processedException"
                                                     aria-controls="processedException" role="tab">已处理异常</a></li>
-                                                    <li class="nav-item" role="presentation"><a class="nav-link nav-menus" data-toggle="tab" href="#followUpArrangement"
-                                                    aria-controls="followUpArrangement" role="tab">随访安排</a></li>
+                                                    <li class="nav-item" role="presentation"><a class="nav-link nav-menus" data-toggle="tab"
+                                                     href="#followUpArrangement"
+                                                    aria-controls="followUpArrangement" role="tab" id="followUpArrangementBtn">随访安排</a></li>
                                                     </li>
-                                                    <li class="nav-item" role="presentation"><a class="nav-link nav-menus" data-toggle="tab" href="#followUpTask"
+                                                    <li class="nav-item" role="presentation"><a class="nav-link nav-menus" data-toggle="tab"
+                                                    href="#followUpTask"
+                                                    id="followUpTaskBtn"
                                                     aria-controls="followUpTask" role="tab">待随访任务</a></li>
                                                 </ul>
                                             </div>
@@ -233,7 +236,7 @@
                                                 <form class="modal-content form-horizontal" action="#" method="post" role="form">
                                                     <div class="modal-header">
                                                         <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
-                                                        <h4 class="modal-title">新事件</h4>
+                                                        <h4 class="modal-title">添加计划</h4>
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="form-group row">
@@ -288,49 +291,49 @@
                                                         </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                        <label class="col-xs-12 col-md-2 form-control-label" for="repeats">重复:</label>
-                                                        <div class="col-md-10 col-xs-12">
-                                                        <input type="text" class="form-control" id="repeats" name="repeats" data-plugin="TouchSpin"
-                                                        data-min="0" data-max="10" value="0" />
-                                                        </div>
-                                                        </div>
-                                                        <div class="form-group row">
                                                         <label class="form-control-label col-xs-12 col-md-2">颜色:</label>
                                                         <div class="col-md-10 col-xs-12">
                                                         <ul class="color-selector">
                                                         <li class="bg-blue-600">
-                                                        <input type="radio" checked name="eventColorChosen" id="eventColorChosen2">
+                                                        <input type="radio" checked
+                                                         name="eventColorChosen"class="bg-blue-600" id="eventColorChosen2">
                                                         <label for="eventColorChosen2"></label>
                                                         </li>
                                                         <li class="bg-green-600">
-                                                        <input type="radio" name="eventColorChosen" id="eventColorChosen3">
+                                                        <input type="radio" name="eventColorChosen"
+                                                        class="bg-green-600" id="eventColorChosen3">
                                                         <label for="eventColorChosen3"></label>
                                                         </li>
                                                         <li class="bg-cyan-600">
-                                                        <input type="radio" name="eventColorChosen" id="eventColorChosen4">
+                                                        <input type="radio" name="eventColorChosen"
+                                                        class="bg-cyan-600" id="eventColorChosen4">
                                                         <label for="eventColorChosen4"></label>
                                                         </li>
                                                         <li class="bg-orange-600">
-                                                        <input type="radio" name="eventColorChosen" id="eventColorChosen5">
+                                                        <input type="radio" name="eventColorChosen"
+                                                        class="bg-orange-600" id="eventColorChosen5">
                                                         <label for="eventColorChosen5"></label>
                                                         </li>
                                                         <li class="bg-red-600">
-                                                        <input type="radio" name="eventColorChosen" id="eventColorChosen6">
+                                                        <input type="radio"
+                                                        class="bg-red-600" name="eventColorChosen" id="eventColorChosen6">
                                                         <label for="eventColorChosen6"></label>
                                                         </li>
                                                         <li class="bg-blue-grey-600">
-                                                        <input type="radio" name="eventColorChosen" id="eventColorChosen7">
+                                                        <input type="radio"
+                                                        class="bg-blue-grey-600" name="eventColorChosen" id="eventColorChosen7">
                                                         <label for="eventColorChosen7"></label>
                                                         </li>
                                                         <li class="bg-purple-600">
-                                                        <input type="radio" name="eventColorChosen" id="eventColorChosen8">
+                                                        <input type="radio"
+                                                        class="bg-purple-600" name="eventColorChosen" id="eventColorChosen8">
                                                         <label for="eventColorChosen8"></label>
                                                         </li>
                                                         </ul>
                                                         </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                        <label class="col-xs-12 col-md-2 form-control-label" for="people">联系人:</label>
+                                                        <label class="col-xs-12 col-md-2 form-control-label" for="people">相关人员:</label>
                                                         <div class="col-md-10 col-xs-12">
                                                         <select id="eventPeople" multiple="multiple" class="plugin-selective"></select>
                                                         </div>
@@ -338,7 +341,8 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                      <div class="form-actions">
-                                                       <button class="btn btn-primary" data-dismiss="modal" type="button">添加该事件</button>
+                                                       <button class="btn btn-primary" data-dismiss="modal" type="button"
+                                                       id= "addNewEventBtn" onclick="addNewEvent()">添加该计划</button>
                                                        <a class="btn btn-sm btn-white" data-dismiss="modal" href="javascript:void(0)">取消</a>
                                                      </div>
                                                     </div>
@@ -371,7 +375,7 @@
                                                           <i class="icon wb-calendar" aria-hidden="true"></i>
                                                         </span>
                                                         <input type="text" class="form-control datepair-date datepair-start"
-                                                        data-plugin="datepicker"id="startDateEdit"
+                                                        data-plugin="datepicker"id="editStarts"
                                                         data-container="#addNewEvent">
                                                       </div>
                                                       <div class="input-group">
@@ -379,7 +383,7 @@
                                                           <i class="icon wb-time" aria-hidden="true"></i>
                                                         </span>
                                                         <input type="text" class="form-control datepair-time datepair-start ui-timepicker-input"
-                                                        id="startTimeEdit" data-plugin="timepicker"
+                                                        id="editStartsTime" data-plugin="timepicker"
                                                         autocomplete="off">
                                                       </div>
                                                     </div>
@@ -388,32 +392,20 @@
                                              <div class="form-group row">
                                                <label class="col-xs-12 col-md-2 form-control-label" for="editEnds">截止日期:</label>
                                                <div class="col-md-10 col-xs-12">
-                                                 <div class="input-group">
-                                                   <input type="text" class="form-control" id="editEnds" data-container="#editNewEvent"
-                                                   data-plugin="datepicker">
-                                                   <span class="input-group-addon">
-                                                     <i class="icon wb-calendar" aria-hidden="true"></i>
-                                                   </span>
-                                                 </div>
-                                               </div>
-                                             </div>
-                                             <div class="form-group row">
-                                               <label class="col-xs-12 col-md-2 form-control-label" for="editRepeats">重复:</label>
-                                               <div class="col-md-10 col-xs-12">
                                                    <div class="input-daterange">
                                                     <div class="input-group">
                                                       <span class="input-group-addon">
                                                         <i class="icon wb-calendar" aria-hidden="true"></i>
                                                       </span>
                                                       <input type="text" class="form-control datepair-date datepair-start"
-                                                      data-plugin="datepicker"id="endDateEdit"
+                                                      data-plugin="datepicker"id="editEnds"
                                                       data-container="#addNewEvent">
                                                     </div>
                                                     <div class="input-group">
                                                       <span class="input-group-addon">
                                                         <i class="icon wb-time" aria-hidden="true"></i>
                                                       </span>
-                                                      <input type="text" class="form-control datepair-time datepair-start ui-timepicker-input"id="endTimeEdit" data-plugin="timepicker"
+                                                      <input type="text" class="form-control datepair-time datepair-start ui-timepicker-input"id="endEditTime" data-plugin="timepicker"
                                                       autocomplete="off">
                                                     </div>
                                                   </div>
@@ -471,75 +463,6 @@
                                             </form>
                                         </div>
                                         </div>
-                                         <!-- End EditEvent Dialog -->
-                                         <!--AddCalendar Dialog -->
-                                        <div class="modal fade" id="addNewCalendar" aria-hidden="true" aria-labelledby="addNewCalendar"
-                                        role="dialog" tabindex="-1">
-                                            <div class="modal-dialog">
-                                            <form class="modal-content form-horizontal" action="#" method="post" role="form">
-                                            <div class="modal-header">
-                                            <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
-                                            <h4 class="modal-title">New Calendar</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                            <div class="form-group row">
-                                            <label class="col-xs-12 col-md-2 form-control-label" for="ename">Name:</label>
-                                            <div class="col-md-10 col-xs-12">
-                                             <input type="text" class="form-control" id="ename" name="ename">
-                                            </div>
-                                            </div>
-                                            <div class="form-group row">
-                                            <label class="form-control-label col-xs-12 col-md-2">Color:</label>
-                                            <div class="col-md-10 col-xs-12">
-                                             <ul class="color-selector">
-                                               <li class="bg-blue-600">
-                                                 <input type="radio" checked name="colorChosen" id="colorChosen2">
-                                                 <label for="colorChosen2"></label>
-                                               </li>
-                                               <li class="bg-green-600">
-                                                 <input type="radio" name="colorChosen" id="colorChosen3">
-                                                 <label for="colorChosen3"></label>
-                                               </li>
-                                               <li class="bg-cyan-600">
-                                                 <input type="radio" name="colorChosen" id="colorChosen4">
-                                                 <label for="colorChosen4"></label>
-                                               </li>
-                                               <li class="bg-orange-600">
-                                                 <input type="radio" name="colorChosen" id="colorChosen5">
-                                                 <label for="colorChosen5"></label>
-                                               </li>
-                                               <li class="bg-red-600">
-                                                 <input type="radio" name="colorChosen" id="colorChosen6">
-                                                 <label for="colorChosen6"></label>
-                                               </li>
-                                               <li class="bg-blue-grey-600">
-                                                 <input type="radio" name="colorChosen" id="colorChosen7">
-                                                 <label for="colorChosen7"></label>
-                                               </li>
-                                               <li class="bg-purple-600">
-                                                 <input type="radio" name="colorChosen" id="colorChosen8">
-                                                 <label for="colorChosen8"></label>
-                                               </li>
-                                             </ul>
-                                            </div>
-                                            </div>
-                                            <div class="form-group row">
-                                            <label class="col-xs-12 col-md-2 form-control-label" for="people">People:</label>
-                                            <div class="col-md-10 col-xs-12">
-                                             <select id="people" multiple="multiple" class="plugin-selective"></select>
-                                            </div>
-                                            </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                            <div class="form-actions">
-                                            <button class="btn btn-primary" data-dismiss="modal" type="button">Create</button>
-                                            <a class="btn btn-sm btn-white" data-dismiss="modal" href="javascript:void(0)">Cancel</a>
-                                            </div>
-                                            </div>
-                                            </form>
-                                        </div>
-                                        </div>
-                                        <!-- End AddCalendar Dialog -->
                                     </div>
                                 </div>
 
@@ -558,7 +481,7 @@
                                             </tr>
                                         </thead>
                                         <tbody id = "followUpTaskTable">
-                                            <tr>
+                                            <!-- <tr>
                                                 <td>2017/1/20</td>
                                                 <td>高血压随访</td>
                                                 <td>桂大江</td>
@@ -572,10 +495,10 @@
                                                         <i class="icon wb-trash" aria-hidden="true"></i>
                                                     </button>
                                                 </td>
-                                            </tr>
-                                            <!-- <tr>
-                                                <td colspan="5"><i class="fa fa-refresh fa-spin fa-3x fa-fw"></i> 正在加载中</td>
                                             </tr> -->
+                                            <tr>
+                                                <td colspan="5"><i class="fa fa-refresh fa-spin fa-3x fa-fw"></i> 正在加载中</td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                     <div class="modal fade modal-fade-in-scale-up" id="followUpTaskType" aria-hidden="true"
@@ -2552,6 +2475,60 @@
                 $("#exceptionHandleTable").append("<tr><td colspan='5'>暂无已处理异常数据</td><tr>");
             }
         };
+        var followUpTask = function (obj) {
+            var template = "\n\
+                                    <tr>\n\
+                                        <td>{__start__}</td>\n\
+                                        <td>{__title__}</td>\n\
+                                        <td>{__doctor__}</td>\n\
+                                        <td>\n\
+                                            <a class='btn btn-outline btn-primary btn-sm'\n\ data-toggle='modal'\n\
+                                            data-target='#followUpTaskType'\n\
+                                            data-id='{__id__}' href='#'\n\
+                                            style='text-decoration:none'>开始随访</a>\n\
+                                        </td>\n\
+                                        <td>\n\
+                                            <button type='button' class='btn btn-outline btn-default' data-id='{__id__}' onclick='deleteFollowUp(this)'>\n\
+                                                <i class='icon wb-trash' aria-hidden='true'></i>\n\
+                                            </button>\n\
+                                        </td>\n\
+                                    </tr>";
+            return template.replace(/\{__start__\}/g,obj.start)
+                            .replace(/\{__title__\}/g,obj.title)
+                            .replace(/\{__doctor__\}/g,obj.doctor.name)
+                            .replace(/\{__id__\}/g,obj.id)
+        };
+        var followUpListFunction = function (data,status) {
+             $("#followUpTask tbody").html("");
+            for(var i = 0; i < data.data.length; i++){
+                $("#followUpTask tbody").append($(followUpTask(data.data[i])));
+            }
+        };
+        var deleteFollowUp = function (dom) {
+            var deleteId =$(dom).data('id');
+            swal({
+            title: "您确定吗?",
+            text: "您选择的待随访计划将被删除!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "是的",
+            cancelButtonText: "取消",
+            closeOnConfirm: false
+            },
+            function(isConfirm){
+                if (isConfirm) {
+                    doAjax(window.baseUrl + "/follow_up/delete_task" , "delete", {"id": deleteId}, function (data, status) {
+                        if (!status){
+                            swal("提交失败", JSON.parse(data.reponseText)["error"] || JSON.parse(data.reponseText)["error_message"]  , "error");
+                        }else{
+                            swal("删除!", "已经删除", "success");
+                            $("#followUpTaskBtn").click();
+                        }
+                    });
+                }
+            });
+        };
         $(".nav-tabs .nav-menus").on('click',function(){
             where = $(this).text()
             if ($(this).data("apiget")){
@@ -2774,7 +2751,36 @@
                 setTimeout(function() {
                     $(".fc-month-button").click();
                 }, 100);
+                doAjax(window.baseUrl +"/follow_up/task_list","get",{'page':0,'per_page':0},function (data,status){
+                    $('#calendar').fullCalendar( 'removeEvents' )
+                    for(var i=0;i<data.data.length;i++){
+                        $('#calendar').fullCalendar('renderEvent',data.data[i],true);
+                    }
 
+                });
+            } else if (where ==="待随访任务") {
+                var paginationDiv = $("#followUpTask").find(".paginationDiv");
+                if (paginationDiv.pagination()) {
+                    paginationDiv.pagination('destroy');
+                }
+                paginationDiv.pagination({
+                    pageSize: 10,
+                    loadFirstPage: true,
+                    remote: {
+                        url: window.baseUrl + "/follow_up/task_list",
+                        beforeSend: function (XHR) {
+                            XHR.setRequestHeader('access-authorization', $.cookie('access_token'));
+                        },
+                        success: followUpListFunction,
+                        pageParams: function(data) {
+                            return {
+                                'page': data.pageIndex + 1,
+                                'per_page': data.pageSize
+                            };
+                        },
+                        totalName: 'meta.total'
+                    }
+                });
             }
         });
         $(".nav-tabs .nab-title").on('click',function(){
@@ -2782,7 +2788,22 @@
             var Bmenus = "."+where+" " + ".nav-menus.active";
             $(Bmenus).removeClass('active').addClass('visited').click().removeClass('visited');
             // $("."+where+" " + ".nav-menus.visited").removeClass('visited');
-        })
+        });
+
+        var addNewEvent = function () {
+            var title = $("#ename").val();
+            var start_date = $("#startDate").val()+'T'+ $("#startTime").val();
+            var end_date = $("#endDate").val()+'T'+ $("#endTime").val();
+            var eventColorChosen = $("[name=eventColorChosen]:checked").prop("class").split("-")[1]
+            var backgroundColor = "Config.colors('"+eventColorChosen+"', 600)"
+            doAjax(window.baseUrl +"/follow_up/add_task", "post",{'patient_id':1,'title':title,'backgroundColor':backgroundColor,'start':start_date,'end':end_date},function (data,status) {
+                if (data && status) {
+                    swal("添加成功");
+                    var title = $("#ename").val(" ");
+                }
+            });
+            setTimeout(function(){$("#followUpArrangementBtn").click();},100)
+        };
         var submitException = function () {
             var arr = [];
             var weixin = 0;
