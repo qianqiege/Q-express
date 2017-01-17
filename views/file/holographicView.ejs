@@ -296,18 +296,13 @@
                                                         <ul class="color-selector">
                                                         <li class="bg-blue-600">
                                                         <input type="radio" checked
-                                                         name="eventColorChosen"class="bg-blue-600" id="eventColorChosen2">
+                                                         name="eventColorChosen"class="bg-s-600" id="eventColorChosen2">
                                                         <label for="eventColorChosen2"></label>
                                                         </li>
                                                         <li class="bg-green-600">
                                                         <input type="radio" name="eventColorChosen"
                                                         class="bg-green-600" id="eventColorChosen3">
                                                         <label for="eventColorChosen3"></label>
-                                                        </li>
-                                                        <li class="bg-cyan-600">
-                                                        <input type="radio" name="eventColorChosen"
-                                                        class="bg-cyan-600" id="eventColorChosen4">
-                                                        <label for="eventColorChosen4"></label>
                                                         </li>
                                                         <li class="bg-orange-600">
                                                         <input type="radio" name="eventColorChosen"
@@ -319,15 +314,10 @@
                                                         class="bg-red-600" name="eventColorChosen" id="eventColorChosen6">
                                                         <label for="eventColorChosen6"></label>
                                                         </li>
-                                                        <li class="bg-blue-grey-600">
+                                                        <li class="bg-grey-600">
                                                         <input type="radio"
-                                                        class="bg-blue-grey-600" name="eventColorChosen" id="eventColorChosen7">
+                                                        class="bg-grey-600" name="eventColorChosen" id="eventColorChosen7">
                                                         <label for="eventColorChosen7"></label>
-                                                        </li>
-                                                        <li class="bg-purple-600">
-                                                        <input type="radio"
-                                                        class="bg-purple-600" name="eventColorChosen" id="eventColorChosen8">
-                                                        <label for="eventColorChosen8"></label>
                                                         </li>
                                                         </ul>
                                                         </div>
@@ -411,41 +401,6 @@
                                                   </div>
                                                </div>
                                              </div>
-                                             <div class="form-group row" id="editColor">
-                                               <label class="form-control-label col-xs-12 col-md-2">颜色:</label>
-                                               <div class="col-md-10 col-xs-12">
-                                                 <ul class="color-selector">
-                                                   <li class="bg-blue-600">
-                                                     <input type="radio" data-color="blue|600" name="colorChosen" id="editColorChosen2">
-                                                     <label for="editColorChosen2"></label>
-                                                   </li>
-                                                   <li class="bg-green-600">
-                                                     <input type="radio" data-color="green|600" name="colorChosen" id="editColorChosen3">
-                                                     <label for="editColorChosen3"></label>
-                                                   </li>
-                                                   <li class="bg-cyan-600">
-                                                     <input type="radio" data-color="cyan|600" name="colorChosen" id="editColorChosen4">
-                                                     <label for="editColorChosen4"></label>
-                                                   </li>
-                                                   <li class="bg-orange-600">
-                                                     <input type="radio" data-color="orange|600" name="colorChosen" id="editColorChosen5">
-                                                     <label for="editColorChosen4"></label>
-                                                   </li>
-                                                   <li class="bg-red-600">
-                                                     <input type="radio" data-color="red|600" name="colorChosen" id="editColorChosen6">
-                                                     <label for="editColorChosen6"></label>
-                                                   </li>
-                                                   <li class="bg-blue-grey-600">
-                                                     <input type="radio" data-color="blue-grey|600" name="colorChosen" id="editColorChosen7">
-                                                     <label for="editColorChosen7"></label>
-                                                   </li>
-                                                   <li class="bg-purple-600">
-                                                     <input type="radio" data-color="purple|600" name="colorChosen" id="editColorChosen8">
-                                                     <label for="editColorChosen8"></label>
-                                                   </li>
-                                                 </ul>
-                                               </div>
-                                             </div>
                                              <div class="form-group row">
                                                <label class="col-xs-12 col-md-2 form-control-label" for="editPeople">联系人:</label>
                                                <div class="col-md-10 col-xs-12">
@@ -455,8 +410,9 @@
                                             </div>
                                             <div class="modal-footer">
                                              <div class="form-actions">
-                                               <button class="btn btn-primary" data-dismiss="modal" type="button">保存</button>
-                                               <button class="btn btn-danger" data-dismiss="modal" type="button">删除</button>
+                                               <button class="btn btn-primary" data-dismiss="modal"id="editSaveBtn" type="button" data-id="" onclick="editSave(this)">保存</button>
+                                               <button class="btn btn-danger" data-dismiss="modal" id="deleteFollowUpBtn"
+                                               data-id=""onclick="deleteFollowUp(this)" type="button">删除</button>
                                                <a class="btn btn-sm btn-white" data-dismiss="modal" href="javascript:void(0)">取消</a>
                                              </div>
                                             </div>
@@ -473,6 +429,7 @@
                                     <table class="table table1">
                                         <thead>
                                             <tr>
+                                                <td>id</td>
                                                 <td>随访日期</td>
                                                 <td>随访任务</td>
                                                 <td>随访医生</td>
@@ -531,7 +488,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-default btn-pure" data-dismiss="modal">取消</button>
-                                                <button type="submit" class="btn btn-primary" onclick="roleSubmit();" >开始随访</button>
+                                                <button type="submit" class="btn btn-primary" onclick="followUpStart();" >开始随访</button>
                                             </div>
                                         </div>
                                     </div>
@@ -2478,6 +2435,7 @@
         var followUpTask = function (obj) {
             var template = "\n\
                                     <tr>\n\
+                                        <td>{__id__}</td>\n\
                                         <td>{__start__}</td>\n\
                                         <td>{__title__}</td>\n\
                                         <td>{__doctor__}</td>\n\
@@ -2523,7 +2481,11 @@
                             swal("提交失败", JSON.parse(data.reponseText)["error"] || JSON.parse(data.reponseText)["error_message"]  , "error");
                         }else{
                             swal("删除!", "已经删除", "success");
-                            $("#followUpTaskBtn").click();
+                            if(dom.id ==="deleteFollowUpBtn"){
+                                $("#followUpArrangementBtn").click();
+                            }else {
+                                $("#followUpTaskBtn").click();
+                            }
                         }
                     });
                 }
@@ -2789,20 +2751,34 @@
             $(Bmenus).removeClass('active').addClass('visited').click().removeClass('visited');
             // $("."+where+" " + ".nav-menus.visited").removeClass('visited');
         });
+        var editSave = function (dom){
+            var id = $("#editSaveBtn").data('id');
+            var title = $("#editEname").val();
+            var start = $('#editStarts').val()+"T" + $('#editStartsTime').val();
+            var end = $('#editEnds').val() + "T" + $('#endEditTime').val();
+            console.log(id);
+            doAjax(window.baseUrl+"/follow_up/update_task","put",{'id':id,'title':title,'start':start,'end':end},function (data,status) {
+                if (status && data) {
+                    swal({
+                            title: data.error || "保存成功",
+                            type: "success"
+                        });
+                }
+            });
+        }
 
         var addNewEvent = function () {
             var title = $("#ename").val();
             var start_date = $("#startDate").val()+'T'+ $("#startTime").val();
             var end_date = $("#endDate").val()+'T'+ $("#endTime").val();
-            var eventColorChosen = $("[name=eventColorChosen]:checked").prop("class").split("-")[1]
-            var backgroundColor = "Config.colors('"+eventColorChosen+"', 600)"
+            var backgroundColor = $("[name=eventColorChosen]:checked").prop("class").split("-")[1];
             doAjax(window.baseUrl +"/follow_up/add_task", "post",{'patient_id':1,'title':title,'backgroundColor':backgroundColor,'start':start_date,'end':end_date},function (data,status) {
                 if (data && status) {
                     swal("添加成功");
                     var title = $("#ename").val(" ");
                 }
             });
-            setTimeout(function(){$("#followUpArrangementBtn").click();},100)
+            $("#followUpArrangementBtn").click();
         };
         var submitException = function () {
             var arr = [];
