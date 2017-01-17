@@ -50,16 +50,18 @@
             key: 'handleFullcalendar',
             value: function handleFullcalendar() {
                 var myEvents = [];
+                var defaultDate = new Date();
                 var myOptions = {
                     header: {
                         left: null,
                         center: 'prev,title,next',
                         right: 'month,agendaWeek,agendaDay'
                     },
-                    defaultDate: '2016-10-12',
+                    defaultDate: defaultDate.Format("yyyy-MM-dd"),
                     selectable: true,
                     selectHelper: true,
                     select: function select(start, end) {
+                        //获取点击位置的当前日期
                         if (typeof start["_i"] === "string") {
                             var startDate=start["_d"].Format("yyyy-MM-dd"); var endDate =end["_d"].Format("yyyy-MM-dd");
                             var startTime = "00:00:00";
@@ -78,7 +80,6 @@
                         $('#endDate').val(endDate);
                         $('#endTime').val(endTime);
                     },
-
                     editable: true,
                     eventLimit: true,
                     windowResize: function windowResize(view) {
@@ -91,12 +92,13 @@
                         $('#calendar').fullCalendar(options);
                     },
                     eventClick: function eventClick(event) {
+                        //编辑事件数据显示
                         $('#editStartsTime').val("");
                         $('#endEditTime').val("");
-                        var color = event.backgroundColor ? event.backgroundColor : Config.colors('blue', 600);
                         $('#editEname').val(event.title);
                         $("#editSaveBtn").data("id",event.id);
                         $("#deleteFollowUpBtn").data("id",event.id);
+                        var color = event.backgroundColor ? event.backgroundColor : Config.colors('blue', 600);
                         if (event.start) {
                             $('#editStarts').datepicker('update', event.start._d);
                             var startEditTime = event.start._i.split(" ")[1] ;

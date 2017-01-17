@@ -366,7 +366,7 @@
                                                         </span>
                                                         <input type="text" class="form-control datepair-date datepair-start"
                                                         data-plugin="datepicker"id="editStarts"
-                                                        data-container="#addNewEvent">
+                                                        data-container="#editNewEvent">
                                                       </div>
                                                       <div class="input-group">
                                                         <span class="input-group-addon">
@@ -389,7 +389,7 @@
                                                       </span>
                                                       <input type="text" class="form-control datepair-date datepair-start"
                                                       data-plugin="datepicker"id="editEnds"
-                                                      data-container="#addNewEvent">
+                                                      data-container="#editNewEvent">
                                                     </div>
                                                     <div class="input-group">
                                                       <span class="input-group-addon">
@@ -2085,7 +2085,6 @@
                 $("#name").html("");
                 $("#phone").html("");
             }
-
         });
         var uid =  ~~getvl('id');
         if (!uid) {
@@ -2818,6 +2817,6 @@
 <% if (typeof pjax === "undefined") { %>
     <%- include ../footer %>
 <% } %>
-<script src="/javascripts/calendar.js"></script>
-<script src="/javascripts/ACalendar.js"></script>
-<script src="/javascripts/calendar-zh-cn.js"></script>
+    <script src="/javascripts/calendar.js"></script>
+    <script src="/javascripts/ACalendar.js"></script>
+    <script src="/javascripts/calendar-zh-cn.js"></script>
