@@ -96,7 +96,7 @@
                         var color = event.backgroundColor ? event.backgroundColor : Config.colors('blue', 600);
                         $('#editEname').val(event.title);
                         $("#editSaveBtn").data("id",event.id);
-                        console.log(event.id);
+                        $("#deleteFollowUpBtn").data("id",event.id);
                         if (event.start) {
                             $('#editStarts').datepicker('update', event.start._d);
                             var startEditTime = event.start._i.split(" ")[1] ;
