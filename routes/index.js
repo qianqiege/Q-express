@@ -139,7 +139,7 @@ router.get('/page/hypertension-evaluation', function(req, res, next) {
 });
 
 router.get('/comprehensiveFollowUp', function(req, res, next) {
-    res.render('comprehensiveFollowUp', {title: "综合随访"});
+    res.render('file/comprehensiveFollowUp', {title: "综合随访"});
 });
 
 module.exports = router;
