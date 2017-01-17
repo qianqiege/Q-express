@@ -507,14 +507,13 @@
             } else {
                 swal("提交成功", "正在进入客户列表", "success");
                 setTimeout(function() {
-                    location.href = "/patientList";
+                    location.href = "/comprehensiveFollowUp";
                 }, 1000);
                 return true;
             }
         };
         var submitForm = function(formDom) {
             var obj = $('#recordForm').getValue();
-            console.log(obj);
             postObj = {
                 "follow_up_type_id":3,
                 "follow_up_task_id":939,
