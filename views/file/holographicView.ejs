@@ -11,7 +11,7 @@
     <div class="page-content">
         <div class="panel">
             <div class="panel-heading">
-                <h3 class="panel-title">患者全息视图</h3>
+                <h3 class="panel-title">全息视图</h3>
             </div>
             <div class="panel-body container-fluid">
                 <div class="row row-lg">
@@ -433,7 +433,7 @@
                                                 <td>随访日期</td>
                                                 <td>截止日期</td>
                                                 <td>随访任务</td>
-                                                <td>随访医生</td>
+                                                <td>健康管理师</td>
                                                 <td>操作1</td>
                                                 <td>操作2</td>
                                             </tr>
@@ -2467,15 +2467,11 @@
         var followUpStart = function () {
             var followTypeId = $("[name='followType']:checked").prop('id');
             var follow_up_task_id = $("#startFollow").data('id');
-            var url = "/followUp"+followTypeId+"?"+"follow_up_type="+followTypeId+"&"+"?"+"follow_up_task_id="+follow_up_task_id;
-            if (!followTypeId) {
-                swal("请选择随访类型","","error")
-            }else{
-                $("#startFollow").prop('href',url)
-            }
+            var url = "/followUp"+followTypeId+"?"+"follow_up_type="+followTypeId+"&&"+"?"+"follow_up_task_id="+follow_up_task_id;
+            $("#startFollow").prop('href',url)
         };
         var followUpListFunction = function (data,status) {
-            $("#followUpTask tbody").html("");
+             $("#followUpTask tbody").html("");
             for(var i = 0; i < data.data.length; i++){
                 $("#followUpTask tbody").append($(followUpTask(data.data[i])));
             }
