@@ -142,8 +142,8 @@ router.get('/comprehensiveFollowUp', function(req, res, next) {
     res.render('file/comprehensiveFollowUp', {title: "综合随访"});
 });
 
-router.get('/hypertensionFollowUp', function(req, res, next) {
-    res.render('file/hypertensionFollowUp', {title: "高血压随访"});
+router.get('/followUp1', function(req, res, next) {
+    res.render('file/followUp1', {title: "高血压随访"});
 });
 
 router.get('/diabetesFollowUp', function(req, res, next) {
