@@ -2467,11 +2467,15 @@
         var followUpStart = function () {
             var followTypeId = $("[name='followType']:checked").prop('id');
             var follow_up_task_id = $("#startFollow").data('id');
-            var url = "/followUp"+followTypeId+"?"+"follow_up_type="+followTypeId+"&&"+"?"+"follow_up_task_id="+follow_up_task_id;
-            $("#startFollow").prop('href',url)
+            var url = "/followUp"+followTypeId+"?"+"follow_up_type="+followTypeId+"&"+"?"+"follow_up_task_id="+follow_up_task_id;
+            if (!followTypeId) {
+                swal("请选择随访类型","","error")
+            }else{
+                $("#startFollow").prop('href',url)
+            }
         };
         var followUpListFunction = function (data,status) {
-             $("#followUpTask tbody").html("");
+            $("#followUpTask tbody").html("");
             for(var i = 0; i < data.data.length; i++){
                 $("#followUpTask tbody").append($(followUpTask(data.data[i])));
             }
