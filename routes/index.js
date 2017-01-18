@@ -10,6 +10,10 @@ router.get('/exceptionData', function(req, res, next) {
     res.render('dynamicManagement/exceptionData', {title: "异常管理", pjax: req.get('X-PJAX')});
 });
 
+router.get('/followUpRecord', function(req, res, next) {
+    res.render('dynamicManagement/followUpRecord', {title: "随访记录", pjax: req.get('X-PJAX')});
+});
+
 router.get('/healthDetection', function(req, res, next) {
     res.render('physicalExamination/healthDetection', {title: "健康监测", pjax: req.get('X-PJAX')});
 });
