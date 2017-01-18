@@ -242,7 +242,7 @@
                                                         <div class="form-group row">
                                                         <label class="col-xs-12 col-md-2 form-control-label" for="ename">名称:</label>
                                                         <div class="col-md-10 col-xs-12">
-                                                        <input type="text" class="form-control" id="ename" name="ename">
+                                                        <input type="text" class="form-control" id="ename" name="ename" required>
                                                         </div>
                                                         </div>
                                                         <div class="form-group row">
@@ -255,7 +255,7 @@
                                                             </span>
                                                             <input type="text" class="form-control datepair-date datepair-start"
                                                             data-plugin="datepicker"id="startDate"
-                                                            data-container="#addNewEvent">
+                                                            data-container="#addNewEvent" required>
                                                           </div>
                                                           <div class="input-group">
                                                             <span class="input-group-addon">
@@ -263,7 +263,7 @@
                                                             </span>
                                                             <input type="text" class="form-control datepair-time datepair-start ui-timepicker-input"
                                                             id="startTime" data-plugin="timepicker"
-                                                            autocomplete="off">
+                                                            autocomplete="off" required>
                                                           </div>
                                                         </div>
                                                         </div>
@@ -278,13 +278,13 @@
                                                             </span>
                                                             <input type="text" class="form-control datepair-date datepair-start"
                                                             data-plugin="datepicker"id="endDate"
-                                                            data-container="#addNewEvent">
+                                                            data-container="#addNewEvent"required>
                                                           </div>
                                                           <div class="input-group">
                                                             <span class="input-group-addon">
                                                               <i class="icon wb-time" aria-hidden="true"></i>
                                                             </span>
-                                                            <input type="text" class="form-control datepair-time datepair-start ui-timepicker-input"id="endTime" data-plugin="timepicker"
+                                                            <input type="text" class="form-control datepair-time datepair-start ui-timepicker-input"id="endTime" data-plugin="timepicker"required
                                                             autocomplete="off">
                                                           </div>
                                                         </div>
@@ -431,6 +431,7 @@
                                             <tr>
                                                 <td>id</td>
                                                 <td>随访日期</td>
+                                                <td>截止日期</td>
                                                 <td>随访任务</td>
                                                 <td>随访医生</td>
                                                 <td>操作1</td>
@@ -438,21 +439,6 @@
                                             </tr>
                                         </thead>
                                         <tbody id = "followUpTaskTable">
-                                            <!-- <tr>
-                                                <td>2017/1/20</td>
-                                                <td>高血压随访</td>
-                                                <td>桂大江</td>
-                                                <td>
-                                                    <a class='btn btn-outline btn-primary btn-sm' data-toggle='modal'
-                                                    data-target='#followUpTaskType' href='#'
-                                                    style="text-decoration:none">开始随访</a>
-                                                </td>
-                                                <td>
-                                                    <button type="button" class="btn btn-outline btn-default">
-                                                        <i class="icon wb-trash" aria-hidden="true"></i>
-                                                    </button>
-                                                </td>
-                                            </tr> -->
                                             <tr>
                                                 <td colspan="5"><i class="fa fa-refresh fa-spin fa-3x fa-fw"></i> 正在加载中</td>
                                             </tr>
@@ -470,8 +456,8 @@
                                             </div>
                                             <div class="modal-body">
                                                 <div class="row">
-                                                    <div class="col-md-4 offset-md-4 col-sm-12">
-                                                        <div class="radio-custom radio-primary">
+                                                    <div class="col-md-4 offset-md-4 col-sm-12" id = "follow_up_type">
+                                                        <!-- <div class="radio-custom radio-primary">
                                                             <input type="radio" id="hypertension" name="porto_is" value="awesome" required="" data-fv-field="porto_is">
                                                             <label for="inputAwesome">高血压随访</label>
                                                         </div>
@@ -482,13 +468,16 @@
                                                         <div class="radio-custom radio-primary">
                                                             <input type="radio" id="comprehensive" name="porto_is" value="awesome" required="" data-fv-field="porto_is">
                                                             <label for="inputAwesome">综合随访</label>
-                                                        </div>
+                                                        </div> -->
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-default btn-pure" data-dismiss="modal">取消</button>
-                                                <button type="submit" class="btn btn-primary" onclick="followUpStart();" >开始随访</button>
+                                                <a class='btn btn-primary'
+                                                id="startFollow"
+                                                href='javascript:void(0);'
+                                                style='text-decoration:none'onclick='followUpStart();'>开始随访</a>
                                             </div>
                                         </div>
                                     </div>
@@ -2436,13 +2425,14 @@
                                     <tr>\n\
                                         <td>{__id__}</td>\n\
                                         <td>{__start__}</td>\n\
+                                        <td>{__end__}</td>\n\
                                         <td>{__title__}</td>\n\
                                         <td>{__doctor__}</td>\n\
                                         <td>\n\
                                             <a class='btn btn-outline btn-primary btn-sm'\n\ data-toggle='modal'\n\
                                             data-target='#followUpTaskType'\n\
                                             data-id='{__id__}' href='#'\n\
-                                            style='text-decoration:none'>开始随访</a>\n\
+                                            style='text-decoration:none'onclick='followUpTaskType(this)'>开始随访</a>\n\
                                         </td>\n\
                                         <td>\n\
                                             <button type='button' class='btn btn-outline btn-default' data-id='{__id__}' onclick='deleteFollowUp(this)'>\n\
@@ -2454,6 +2444,31 @@
                             .replace(/\{__title__\}/g,obj.title)
                             .replace(/\{__doctor__\}/g,obj.doctor.name)
                             .replace(/\{__id__\}/g,obj.id)
+                            .replace(/\{__end__\}/g,obj.end)
+        };
+        var followUpTaskTypeDom = function (obj){
+            var template  =  "<div class='radio-custom radio-primary'>\n\
+                <input type='radio' id = {__id__} name='followType'\n\ value='awesome' required data-fv-field='porto_is' data-name={__name__}>\n\
+                <label for={__id__}>{__name__}</label>\n\
+            </div>";
+            return template.replace(/\{__name__\}/g,obj.name)
+                            .replace(/\{__id__\}/g,obj.id)
+
+        };
+        var followUpTaskType = function (dom) {
+            doAjax(window.baseUrl + '/follow_up/follow_up_type' , "get",{},function (data,status) {
+                $("#follow_up_type").html("");
+                for(var i = 0; i<data.length; i++){
+                    $("#follow_up_type").append($(followUpTaskTypeDom(data[i])));
+                }
+                $("#startFollow").data('id',$(dom).data('id'));
+            })
+        };
+        var followUpStart = function () {
+            var followTypeId = $("[name='followType']:checked").prop('id');
+            var follow_up_task_id = $("#startFollow").data('id');
+            var url = "/followUp"+followTypeId+"?"+"follow_up_type="+followTypeId+"&&"+"?"+"follow_up_task_id="+follow_up_task_id;
+            $("#startFollow").prop('href',url)
         };
         var followUpListFunction = function (data,status) {
              $("#followUpTask tbody").html("");
@@ -2755,16 +2770,20 @@
             var title = $("#editEname").val();
             var start = $('#editStarts').val()+"T" + $('#editStartsTime').val();
             var end = $('#editEnds').val() + "T" + $('#endEditTime').val();
-            console.log(id);
-            doAjax(window.baseUrl+"/follow_up/update_task","put",{'id':id,'title':title,'start':start,'end':end},function (data,status) {
-                if (status && data) {
-                    swal({
-                            title: data.error || "保存成功",
-                            type: "success"
-                        });
-                }
-                $("#followUpArrangementBtn").click();
-            });
+            if (!!title && !!$('#editStarts').val() && !!$('#editStartsTime').val() && !!$('#editEnds').val()&& !!$('#endEditTime').val()) {
+                doAjax(window.baseUrl+"/follow_up/update_task","put",{'id':id,'title':title,'start':start,'end':end},function (data,status) {
+                    if (status && data) {
+                        swal({
+                                title: data.error || "保存成功",
+                                type: "success"
+                            });
+                    }
+                    $("#followUpArrangementBtn").click();
+                });
+            } else {
+                swal("编辑失败，请完善计划信息","","error");
+                return false;
+            }
         }
 
         var addNewEvent = function () {
@@ -2772,13 +2791,20 @@
             var start_date = $("#startDate").val()+'T'+ $("#startTime").val();
             var end_date = $("#endDate").val()+'T'+ $("#endTime").val();
             var backgroundColor = $("[name=eventColorChosen]:checked").prop("class").split("-")[1];
-            doAjax(window.baseUrl +"/follow_up/add_task", "post",{'patient_id':1,'title':title,'backgroundColor':backgroundColor,'start':start_date,'end':end_date},function (data,status) {
-                if (data && status) {
-                    swal("添加成功");
-                    var title = $("#ename").val(" ");
-                }
-            });
-            $("#followUpArrangementBtn").click();
+            console.log(start_date);
+            if(!!title && !!$("#startDate").val() && !!$("#startTime").val() && !!$("#endDate").val()&& !!$("#endTime").val() && !!backgroundColor ){
+                doAjax(window.baseUrl +"/follow_up/add_task", "post",{'patient_id':1,'title':title,'backgroundColor':backgroundColor,'start':start_date,'end':end_date},function (data,status) {
+                    if (data && status) {
+                        swal("添加成功");
+                        $("#followUpArrangementBtn").click();
+                        $("#ename").val("");
+                    }
+                });
+            } else {
+                swal("请完善计划信息","","error");
+                return false;
+            }
+
         };
         var submitException = function () {
             var arr = [];
