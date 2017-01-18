@@ -5,6 +5,7 @@
 <% } %>
 
     <div class="page-header">
+        <!-- 糖尿病随访 -->
         <h1 class="page-title"><%= title %></h1>
         <ol class="breadcrumb">
         </ol>
@@ -507,7 +508,7 @@
             } else {
                 swal("提交成功", "正在进入客户列表", "success");
                 setTimeout(function() {
-                    location.href = "/comprehensiveFollowUp";
+                    location.href = "/followUp2";
                 }, 1000);
                 return true;
             }
