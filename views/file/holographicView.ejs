@@ -434,6 +434,7 @@
                                                 <td>截止日期</td>
                                                 <td>随访任务</td>
                                                 <td>健康管理师</td>
+                                                <td>客户</td>
                                                 <td>操作1</td>
                                                 <td>操作2</td>
                                             </tr>
@@ -2428,6 +2429,7 @@
                                         <td>{__end__}</td>\n\
                                         <td>{__title__}</td>\n\
                                         <td>{__doctor__}</td>\n\
+                                        <td>{__patient__}</td>\n\
                                         <td>\n\
                                             <a class='btn btn-outline btn-primary btn-sm'\n\ data-toggle='modal'\n\
                                             data-target='#followUpTaskType'\n\
@@ -2444,6 +2446,7 @@
                             .replace(/\{__title__\}/g,obj.title)
                             .replace(/\{__doctor__\}/g,obj.doctor.name)
                             .replace(/\{__id__\}/g,obj.id)
+                            .replace(/\{__patient__\}/g,obj.patient.name)
                             .replace(/\{__end__\}/g,obj.end)
         };
         var followUpTaskTypeDom = function (obj){
@@ -2727,7 +2730,7 @@
                 setTimeout(function() {
                     $(".fc-month-button").click();
                 }, 100);
-                doAjax(window.baseUrl +"/follow_up/task_list","get",{'page':0,'per_page':0},function (data,status){
+                doAjax(window.baseUrl +"/follow_up/all_task","get",{'page':0,'per_page':0},function (data,status){
                     $('#calendar').fullCalendar( 'removeEvents' )
                     for(var i=0;i<data.data.length;i++){
                         $('#calendar').fullCalendar('renderEvent',data.data[i],true);

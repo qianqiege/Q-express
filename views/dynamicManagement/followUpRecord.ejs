@@ -18,6 +18,7 @@
                             <thead>
                                 <tr>
                                     <th>随访日期</th>
+                                    <th>随访任务名称</th>
                                     <th>健康管理师</th>
                                     <th>随访方式</th>
                                     <th>随访客户</th>
@@ -39,26 +40,29 @@
     </div>
     <script>
     var template = '<tr>\
-        <td>{__created_at__}</td>\
+        <td>{__updated_at__}</td>\
+        <td>{__title__}</td>\
         <td>{__doctor__}</td>\
         <td>{__method__}</td>\
         <td>{__custome__}</td>\
         <td><a class="btn btn-primary btn-block card-link m-r-5" href="javascript:void(0)" role="button" style="text-decoration: none;" data-id={__id__}>查看</a></td>\
     </tr>';
     var cbFunction = function(data,status){
+        console.log(data);
         $("table tbody").html('');
         $("table tr:eq(1)").remove();
-        console.log(data);
         for (var i in data.data) {
-            var created_at = data.data[i].created_at;
+            var updated_at = data.data[i].updated_at;
             var doctor = data.data[i].doctor.name;
             var method = data.data[i].follow_up_method;
             var custome = data.data[i].patient.name;
             var id = data.data[i].id
-            t_template = template.replace("{__created_at__}", created_at)
+            var title = data.data[i].title
+            t_template = template.replace("{__updated_at__}", updated_at)
                                 .replace("{__doctor__}", doctor)
                                 .replace("{__method__}", method)
                                 .replace("{__custome__}", custome)
+                                .replace("{__title__}", title)
                                 .replace("{__id__}", id)
             $("table tbody").append(t_template);
         }
