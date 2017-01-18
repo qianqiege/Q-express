@@ -98,9 +98,10 @@
                         $('#editEname').val(event.title);
                         $("#editSaveBtn").data("id",event.id);
                         $("#deleteFollowUpBtn").data("id",event.id);
+                        console.log(event);
                         var color = event.backgroundColor ? event.backgroundColor : Config.colors('blue', 600);
                         if (event.start) {
-                            $('#editStarts').datepicker('update', event.start._d);
+                            $('#editStarts').val( event.start._i.split(" ")[0]);
                             var startEditTime = event.start._i.split(" ")[1] ;
                             if (startEditTime) {
                                 $('#editStartsTime').val(startEditTime);
@@ -112,7 +113,8 @@
                             $('#editStarts').datepicker('update', '');
                         }
                         if (event.end) {
-                            $('#editEnds').datepicker('update', event.end._d);
+                            console.log(event.end._i);
+                            $('#editEnds').val( event.end._i.split(" ")[0]);
                             var endEditTime = event.end._i.split(" ")[1] ;
                             if (endEditTime) {
                                 $('#endEditTime').val(endEditTime);
