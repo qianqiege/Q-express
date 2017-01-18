@@ -146,7 +146,7 @@ router.get('/followUp1', function(req, res, next) {
     res.render('file/followUp1', {title: "高血压随访"});
 });
 
-router.get('/diabetesFollowUp', function(req, res, next) {
-    res.render('file/diabetesFollowUp', {title: "糖尿病随访"});
+router.get('/followUp2', function(req, res, next) {
+    res.render('file/followUp2', {title: "糖尿病随访"});
 });
 module.exports = router;
