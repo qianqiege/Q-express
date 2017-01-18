@@ -502,49 +502,51 @@
     </div>
     <script src='/javascripts/jquery.form.js'></script>
     <script>
-        var cbFun = function(data, status) {
-            if (!status) {
-                swal("提交失败", JSON.parse(data.reponseText)["error"], "error");
+    var follow_up_type =  ~~getvl('follow_up_type');
+    var follow_up_task =  ~~getvl('follow_up_task_id');
+    var cbFun = function(data, status) {
+        if (!status) {
+            swal("提交失败", JSON.parse(data.reponseText)["error"], "error");
+        } else {
+            swal("提交成功", "正在进入客户列表", "success");
+            setTimeout(function() {
+                location.href = "/followUp2";
+            }, 1000);
+            return true;
+        }
+    };
+    var submitForm = function(formDom) {
+        var obj = $('#recordForm').getValue();
+        postObj = {
+            "follow_up_type_id":follow_up_type,
+            "follow_up_task_id":follow_up_task,
+            "present_symptom": {},
+            "physical_examination": {},
+            "supplementary_examination": {},
+            "medication_situation": {},
+            "complication": {},
+            "tcm_intervention": {},
+            "lifeway_intervention": {},
+            "input_situation": {}
+        };
+        for (var i in obj) {
+            var isChild = i.split("-");
+            if (isChild.length > 1) {
+                postObj[isChild[0]][isChild[1]] = obj[i];
             } else {
-                swal("提交成功", "正在进入客户列表", "success");
-                setTimeout(function() {
-                    location.href = "/followUp2";
-                }, 1000);
-                return true;
+                postObj[isChild[0]] = obj[i];
             }
-        };
-        var submitForm = function(formDom) {
-            var obj = $('#recordForm').getValue();
-            postObj = {
-                "follow_up_type_id":3,
-                "follow_up_task_id":939,
-                "present_symptom": {},
-                "physical_examination": {},
-                "supplementary_examination": {},
-                "medication_situation": {},
-                "complication": {},
-                "tcm_intervention": {},
-                "lifeway_intervention": {},
-                "input_situation": {}
-            };
-            for (var i in obj) {
-                var isChild = i.split("-");
-                if (isChild.length > 1) {
-                    postObj[isChild[0]][isChild[1]] = obj[i];
-                } else {
-                    postObj[isChild[0]] = obj[i];
-                }
-            }
-            doAjax(
-                window.baseUrl + "/follow_up/overall_follow_input",
-                "post",
-                JSON.stringify(postObj),
-                cbFun,
-                {},
-                {contentType: 'application/json;charset=utf-8'}
-            );
-            return 0;
-        };
+        }
+        doAjax(
+            window.baseUrl + "/follow_up/diabetes_follow_input",
+            "post",
+            JSON.stringify(postObj),
+            cbFun,
+            {},
+            {contentType: 'application/json;charset=utf-8'}
+        );
+        return 0;
+    };
     </script>
 <% if (typeof pjax === "undefined") { %>
     <%- include ../footer %>
