@@ -142,8 +142,15 @@ router.get('/page/hypertension-evaluation', function(req, res, next) {
     res.render('plugin/hypertension', {title: "高血压风险评估"});
 });
 
-router.get('/comprehensiveFollowUp', function(req, res, next) {
-    res.render('file/comprehensiveFollowUp', {title: "综合随访"});
+router.get('/followUp3', function(req, res, next) {
+    res.render('file/followUp3', {title: "综合随访"});
 });
 
+router.get('/followUp1', function(req, res, next) {
+    res.render('file/followUp1', {title: "高血压随访"});
+});
+
+router.get('/followUp2', function(req, res, next) {
+    res.render('file/followUp2', {title: "糖尿病随访"});
+});
 module.exports = router;
