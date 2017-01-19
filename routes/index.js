@@ -153,4 +153,8 @@ router.get('/followUp1', function(req, res, next) {
 router.get('/followUp2', function(req, res, next) {
     res.render('file/followUp2', {title: "糖尿病随访"});
 });
+
+router.get('/followUpShow1', function(req, res, next) {
+    res.render('file/followUpShow1', {title: "综合随访展示"});
+});
 module.exports = router;
