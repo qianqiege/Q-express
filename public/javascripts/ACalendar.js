@@ -93,12 +93,12 @@
                     },
                     eventClick: function eventClick(event) {
                         //编辑事件数据显示
+                        $('#editPatient').html('姓名：'+event.patient.name+" <br/>"+'身份证：'+event.patient.id_number)
                         $('#editStartsTime').val("");
                         $('#endEditTime').val("");
                         $('#editEname').val(event.title);
                         $("#editSaveBtn").data("id",event.id);
                         $("#deleteFollowUpBtn").data("id",event.id);
-                        console.log(event);
                         var color = event.backgroundColor ? event.backgroundColor : Config.colors('blue', 600);
                         if (event.start) {
                             $('#editStarts').val( event.start._i.split(" ")[0]);
@@ -113,7 +113,6 @@
                             $('#editStarts').datepicker('update', '');
                         }
                         if (event.end) {
-                            console.log(event.end._i);
                             $('#editEnds').val( event.end._i.split(" ")[0]);
                             var endEditTime = event.end._i.split(" ")[1] ;
                             if (endEditTime) {
@@ -172,66 +171,40 @@
         }, {
             key: 'handleSelective',
             value: function handleSelective() {
-                var member = [];
-                // doAjax(window.baseUrl + "/patient/patient_list", "get",{},function(data, status){
-                //     console.log(data);
-                // })
-                var member = [{
-                    id: 'uid_1',
-                    name: 'Herman Beck',
-                    avatar: '../../../../global/portraits/1.jpg'
-                }, {
-                    id: 'uid_2',
-                    name: 'Mary Adams',
-                    avatar: '../../../../global/portraits/2.jpg'
-                }, {
-                    id: 'uid_3',
-                    name: 'Caleb Richards',
-                    avatar: '../../../../global/portraits/3.jpg'
-                }, {
-                    id: 'uid_4',
-                    name: 'June Lane',
-                    avatar: '../../../../global/portraits/4.jpg'
-                }];
-
-                var items = [{
-                    id: 'uid_1',
-                    name: 'Herman Beck',
-                    avatar: '../../../../global/portraits/1.jpg'
-                }, {
-                    id: 'uid_2',
-                    name: 'Caleb Richards',
-                    avatar: '../../../../global/portraits/2.jpg'
-                }];
-
-                $('.plugin-selective').selective({
-                    namespace: 'addMember',
-                    local: member,
-                    selected: items,
-                    buildFromHtml: false,
-                    tpl: {
-                        optionValue: function optionValue(data) {
-                            return data.id;
-                        },
-                        frame: function frame() {
-                            return '<div class="' + this.namespace + '">\n          ' + this.options.tpl.items.call(this) + '\n          <div class="' + this.namespace + '-trigger">\n          ' + this.options.tpl.triggerButton.call(this) + '\n          <div class="' + this.namespace + '-trigger-dropdown">\n          ' + this.options.tpl.list.call(this) + '\n          </div>\n          </div>\n          </div>';
-                        },
-                        triggerButton: function triggerButton() {
-                            return '<div class="' + this.namespace + '-trigger-button"><i class="wb-plus"></i></div>';
-                        },
-                        listItem: function listItem(data) {
-                            return '<li class="' + this.namespace + '-list-item"><img class="avatar" src="' + data.avatar + '">' + data.name + '</li>';
-                        },
-                        item: function item(data) {
-                            return '<li class="' + this.namespace + '-item"><img class="avatar" src="' + data.avatar + '" title="' + data.name + '">' + this.options.tpl.itemRemove.call(this) + '</li>';
-                        },
-                        itemRemove: function itemRemove() {
-                            return '<span class="' + this.namespace + '-remove"><i class="wb-minus-circle"></i></span>';
-                        },
-                        option: function option(data) {
-                            return '<option value="' + this.options.tpl.optionValue.call(this, data) + '">' + data.name + '</option>';
-                        }
+                doAjax(window.baseUrl + "/follow_up/follow_up_patient", "get",{},function(data, status){
+                    var arr = [];
+                    for(var i=0; i < data.length; i++){
+                        arr[i] ={'id':data[i].id,'name': data[i].name,'avatar':'../images/1.jpg','id_number':data[i].id_number}
                     }
+                    var  member = arr;
+                    $('.plugin-selective').selective({
+                        namespace: 'addMember',
+                        local: member,
+                        buildFromHtml: false,
+                        tpl: {
+                            optionValue: function optionValue(data) {
+                                return data.id;
+                            },
+                            frame: function frame() {
+                                return '<div class="' + this.namespace + '">\n          ' + this.options.tpl.items.call(this) + '\n          <div class="' + this.namespace + '-trigger">\n          ' + this.options.tpl.triggerButton.call(this) + '\n          <div class="' + this.namespace + '-trigger-dropdown">\n          ' + this.options.tpl.list.call(this) + '\n          </div>\n          </div>\n          </div>';
+                            },
+                            triggerButton: function triggerButton() {
+                                return '<div class="' + this.namespace + '-trigger-button"><i class="wb-plus"></i></div>';
+                            },
+                            listItem: function listItem(data) {
+                                return '<li class="' + this.namespace + '-list-item"><img class="avatar" src="' + data.avatar + '">' + data.name +'身份证号：'+data.id_number+ '</li>';
+                            },
+                            item: function item(data) {
+                                return '<li class="' + this.namespace + '-item"><img class="avatar" src="' + data.avatar + '" title="' + data.name + '">' + this.options.tpl.itemRemove.call(this) + '<span>'+data.name+data.id_number+'</span>'+'</li>';
+                            },
+                            itemRemove: function itemRemove() {
+                                return '<span class="' + this.namespace + '-remove"><i class="wb-minus-circle"></i></span>';
+                            },
+                            option: function option(data) {
+                                return '<option value="' + this.options.tpl.optionValue.call(this, data) + '">' + data.name + '</option>';
+                            }
+                        }
+                    });
                 });
             }
         }, {

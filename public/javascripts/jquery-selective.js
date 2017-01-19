@@ -188,9 +188,8 @@
         }
       }, {
         key: 'remove',
-        value: function remove(opt) {
-          $(opt).remove();
-
+        value: function remove(opt, li) {
+          $(li).remove();
           return this.instance;
         }
       }]);
@@ -280,9 +279,9 @@
         }
       }, {
         key: 'unselect',
-        value: function unselect(obj) {
+        value: function unselect(obj, li) {
           this.instance._trigger("beforeUnselected");
-          $(obj).removeClass(this.instance.namespace + '-selected');
+          $(li).removeClass(this.instance.namespace + '-selected');
           this.instance._trigger("afterUnselected");
 
           return this.instance;
@@ -477,6 +476,12 @@
           }
           $item = $(this.instance.options.tpl.item.call(this.instance, fill));
           this.instance.setIndex($item, data);
+          var tempLi = this.instance.$items.find("li");
+          if (tempLi.length) {
+              for (var i = 0; i < tempLi.length; i++) {
+                  this.instance.itemRemove(tempLi[i]);
+              }
+          }
           this.instance.$items.append($item);
         // this.instance._trigger("afterItemAdd");
         // return $item;
@@ -498,6 +503,7 @@
               this.instance._list.unselect(this.instance, $li);
             }
             $option = this.instance.getItem('option', this.instance.$select, this.instance.options.tpl.optionValue(obj.data('selective_index')));
+
             this.instance._options.unselect(this.instance, $option)._options.remove(this.instance, $option);
           }
 
