@@ -170,7 +170,7 @@ var jsGridFrom = function(products) {
                 var productId  = $(this).find("option:selected").data("id");
                 var productsIdObj = {};
                 for (var i = 0; i < products.length; i++) {
-                    productsIdObj[i] = products[i];
+                    productsIdObj[products[i]["id"]] = products[i];
                 }
                 linkNumber.val(productId ? productsIdObj[productId].code : "" );
 
