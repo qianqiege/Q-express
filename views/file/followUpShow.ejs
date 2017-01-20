@@ -22,121 +22,81 @@
                         </div>
                         <div class="panel-body">
                             <div class="form-group form-material col-xs-12 col-md-11 offset-md-1">
-                                <label>自觉症状:</label>
+                                <label id="present_symptom">自觉症状:</label>
+                                <!-- <span class="tag tag-lg tag-primary" id="present_symptom"> </span> -->
                             </div>
+                        <div>
+                            <div class="form-group form-material col-xs-12 col-md-2 offset-md-1">
+                                <label class="form-control-label" for="max_pressure" id="physical_examination-item1" >收缩压(mmHg):</label>
+                            </div>
+                            <div class="form-group form-material col-xs-12 col-md-3">
+                                <label class="form-control-label" for="min_pressure" id="physical_examination-item2">舒张压(mmHg):</label>
+                            </div>
+                            <div class="form-group form-material col-xs-12 col-md-3">
+                                <label class="form-control-label" for="heart_rate" id="physical_examination-item3">心率:</label>
+                            </div>
+                            <div class="form-group form-material col-xs-12 col-md-3">
+                                <label class="form-control-label" for="bmi" id="physical_examination-item4">BMI:</label>
+                            </div>
+                            <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
+                                <label class="form-control-label" for="foot_artery" id="physical_examination-item5" >下肢浮肿:</label>
+                            </div>
+                            <div class="form-group form-material col-xs-12 col-md-6">
+                                <label class="form-control-label" for="fundus_oculi" id="physical_examination-item6">眼底:</label>
+                            </div>
+                            <div class="line">
+                                <div class="form-group form-material col-xs-12 col-md-11 offset-md-1">
+                                    <label class="form-control-label" for="other" id="physical_examination-item7">其他:</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
+                                    <label class="form-control-label" for="blood_glucose" id="supplementary_examination-item1">血糖:</label>
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
+                                    <label class="form-control-label" for="tc" id="supplementary_examination-item2">TC:</label>
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
+                                    <label class="form-control-label" for="tg" id="supplementary_examination-item3">TG:</label>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
+                                    <label class="form-control-label" for="ldl_c" id="supplementary_examination-item4">LDL-C:</label>
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
+                                    <label class="form-control-label" for="hdl_c" id="supplementary_examination-item5">HDL-C:</label>
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
+                                    <label class="form-control-label" for="routine_urine_test" id="supplementary_examination-item6">尿常规:</label>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
+                                    <label class="form-control-label" for="bun" id="supplementary_examination-item7">BUN:</label>
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
+                                    <label class="form-control-label" for="cr" id="supplementary_examination-item8">Cr:</label>
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
+                                    <label class="form-control-label" for="electrocardiogram" id="supplementary_examination-item9">心电图:</label>
+                                </div>
+                            </div>
+                            <div class="line">
+                                <div class="form-group form-material col-xs-12 col-md-11 offset-md-1">
+                                    <label class="form-control-label" for="other" id="supplementary_examination-item10">其他:</label>
+                                </div>
+                            </div>
+
+                        </div>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- 目前症状/自觉症状 结束 -->
 
-            <!-- 体格检查 -->
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="panel panel-bordered" >
-                        <div class="panel-heading">
-                            <h3 class="panel-title">体格检查</h3>
-                        </div>
-                        <div class="panel-body">
-                                <div class="form-group form-material col-xs-12 col-md-2 offset-md-1">
-                                    <label class="form-control-label" for="max_pressure">收缩压(mmHg)*:</label>
-                                    <input type="text" class="form-control" id="max_pressure" name="physical_examination-item1">
-                                </div>
-                                <div class="form-group form-material col-xs-12 col-md-3">
-                                    <label class="form-control-label" for="min_pressure">舒张压(mmHg)*:</label>
-                                    <input type="text" class="form-control" id="min_pressure" name="physical_examination-item2">
-                                </div>
-                                <div class="form-group form-material col-xs-12 col-md-3">
-                                    <label class="form-control-label" for="heart_rate">心率*:</label>
-                                    <input type="text" class="form-control" id="heart_rate" name="physical_examination-item3">
-                                </div>
-                                <div class="form-group form-material col-xs-12 col-md-3">
-                                    <label class="form-control-label" for="bmi">BMI:</label>
-                                    <input type="text" class="form-control" id="bmi" name="physical_examination-item4">
-                                </div>
-                                <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
-                                    <label class="form-control-label" for="foot_artery">下肢浮肿*:</label>
-                                    <input type="text" class="form-control" id="foot_artery" name="physical_examination-item5">
-                                </div>
-                                <div class="form-group form-material col-xs-12 col-md-6">
-                                    <label class="form-control-label" for="fundus_oculi">眼底:</label>
-                                    <input type="text" class="form-control" id=" fundus_oculi" name="physical_examination-item6">
-                                </div>
-                            <div class="line">
-                                <div class="form-group form-material col-xs-12 col-md-11 offset-md-1">
-                                    <label class="form-control-label" for="other">其他:</label>
-                                    <input type="text" class="form-control" id=" other" name="physical_examination-item7">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 体格检查 结束  -->
-
-
-            <!-- 辅助检查 -->
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="panel panel-bordered" >
-                        <div class="panel-heading">
-                            <h3 class="panel-title">辅助检查</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div>
-                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
-                                    <label class="form-control-label" for="blood_glucose">血糖:</label>
-                                    <input type="text" class="form-control" id="blood_glucose" name="supplementary_examination-item1">
-                                </div>
-                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
-                                    <label class="form-control-label" for="tc">TC:</label>
-                                    <input type="text" class="form-control" id="tc" name="supplementary_examination-item2">
-                                </div>
-                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
-                                    <label class="form-control-label" for="tg">TG:</label>
-                                    <input type="text" class="form-control" id="tg" name="supplementary_examination-item3">
-                                </div>
-                            </div>
-                            <div>
-                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
-                                    <label class="form-control-label" for="ldl_c">LDL-C:</label>
-                                    <input type="text" class="form-control" id="ldl_c" name="supplementary_examination-item4">
-                                </div>
-                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
-                                    <label class="form-control-label" for="hdl_c">HDL-C:</label>
-                                    <input type="text" class="form-control" id="hdl_c" name="supplementary_examination-item5">
-                                </div>
-                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
-                                    <label class="form-control-label" for="routine_urine_test">尿常规:</label>
-                                    <input type="text" class="form-control" id="routine_urine_test" name="supplementary_examination-item6">
-                                </div>
-                            </div>
-                            <div>
-                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
-                                    <label class="form-control-label" for="bun">BUN:</label>
-                                    <input type="text" class="form-control" id="bun" name="supplementary_examination-item7">
-                                </div>
-                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
-                                    <label class="form-control-label" for="cr">Cr:</label>
-                                    <input type="text" class="form-control" id="cr" name="supplementary_examination-item8">
-                                </div>
-                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
-                                    <label class="form-control-label" for="electrocardiogram">心电图:</label>
-                                    <input type="text" class="form-control" id="electrocardiogram" name="supplementary_examination-item9">
-                                </div>
-                            </div>
-                            <div class="line">
-                                <div class="form-group form-material col-xs-12 col-md-11 offset-md-1">
-                                    <label class="form-control-label" for="other">其他:</label>
-                                    <input type="text" class="form-control" id="other" name="supplementary_examination-item10">
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 辅助检查 结束  -->
 
             <!-- 用药情况 -->
             <div class="row">
@@ -391,7 +351,20 @@
         doAjax(window.baseUrl + "/follow_up/follow_up_record", "get", {"follow_up_task_id": task_id}, function(data, status) {
             console.log(data);
             console.log(data.follow_up_type.name);
-                $("#hostitle").text(data.follow_up_type.name);
+            $("#hostitle").text(data.follow_up_type.name);
+            if(data.follow_up_type.id === 1) {
+                for (var i in data.hypertension_follow.present_symptom) {
+                    $("#present_symptom").append(data.hypertension_follow.present_symptom[i]+"  ");
+                }
+                for (var i in data.hypertension_follow.physical_examination) {
+                    console.log($("#physical_examination-"+i))
+                    $("#physical_examination-"+i).append(data.hypertension_follow.physical_examination[i]);
+                }
+                for (var i in data.hypertension_follow.supplementary_examination) {
+                    $("#supplementary_examination-"+i).append(data.hypertension_follow.supplementary_examination[i]+"  ");
+                }
+            }
+
         });
     });
     </script>
