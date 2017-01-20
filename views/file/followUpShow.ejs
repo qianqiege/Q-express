@@ -380,8 +380,14 @@
         </form>
     </div>
     <script>
-    var task_id =  ~~getvl('id');
     $(function() {
+        var task_id =  ~~getvl('id');
+        if (!task_id) {
+            swal({title: "id 错误", type: "error"}, function() {
+                window.close();
+            });
+            return;
+        }
         doAjax(window.baseUrl + "/follow_up/follow_up_record", "get", {"follow_up_task_id": task_id}, function(data, status) {
             console.log(data);
             console.log(data.follow_up_type.name);
