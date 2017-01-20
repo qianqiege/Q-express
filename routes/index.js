@@ -135,26 +135,26 @@ router.get('/page/spine', function(req, res, next) {
 });
 
 router.get('/page/diabetes-evaluation', function(req, res, next) {
-    res.render('plugin/diabetes', {title: "糖尿病风险评估"});
+    res.render('plugin/diabetes', {title: "糖尿病风险评估", pjax: req.get('X-PJAX')});
 });
 
 router.get('/page/hypertension-evaluation', function(req, res, next) {
-    res.render('plugin/hypertension', {title: "高血压风险评估"});
+    res.render('plugin/hypertension', {title: "高血压风险评估", pjax: req.get('X-PJAX')});
 });
 
 router.get('/followUp3', function(req, res, next) {
-    res.render('file/followUp3', {title: "综合随访"});
+    res.render('file/followUp3', {title: "综合随访", pjax: req.get('X-PJAX')});
 });
 
 router.get('/followUp1', function(req, res, next) {
-    res.render('file/followUp1', {title: "高血压随访"});
+    res.render('file/followUp1', {title: "高血压随访", pjax: req.get('X-PJAX')});
 });
 
 router.get('/followUp2', function(req, res, next) {
-    res.render('file/followUp2', {title: "糖尿病随访"});
+    res.render('file/followUp2', {title: "糖尿病随访", pjax: req.get('X-PJAX')});
 });
 
 router.get('/followUpShow', function(req, res, next) {
-    res.render('file/followUpShow', {title: "综合随访展示"});
+    res.render('file/followUpShow', {title: "随访展示", pjax: req.get('X-PJAX')});
 });
 module.exports = router;
