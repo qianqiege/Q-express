@@ -19,8 +19,8 @@
                         <div class="card  bg-blue-grey-200">
                             <div class="card-block">
                                 <h4 class="card-title" id="name">皓月泽</h4>
+                                <p class="card-text">性别:&nbsp;<span id="sex"></span></p>
                                 <p class="card-text">联系方式:&nbsp;<span id="phone">18304723843</span></p>
-                                <p class="card-text">健康管理师:&nbsp;<span>大将</span></p>
                             </div>
                         </div>
                     </div>
@@ -121,47 +121,53 @@
                     <div class="col-xl-12 col-xs-12">
                         <div class="tab-content p-t-20">
                             <div class="tab-pane " id="weight" role="tabpanel">
-                                <div style="margin-top: 10px;">
-                                    <h3>数据图表</h3>
-                                    <div id="chart_weights" style="width: 100%;height:400px;"></div>
+                                <div class="col-xl-4 col-xs-12">
+                                    <div style="margin-top: 10px;">
+                                        <h3>监测日志</h3>
+                                        <table class="table table-bordered" >
+                                            <thead>
+                                                <tr>
+                                                    <th>监测日期</th>
+                                                    <th>体重(kg)</th>
+                                                    <th>是否异常</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="weights">
+                                            </tbody>
+                                        </table>
+                                        <div style="text-align: right;" class="paginationDiv"></div>
+                                    </div>
                                 </div>
-
-                                <div style="margin-top: 10px;">
-                                    <h3>监测日志</h3>
-                                    <table class="table table-bordered" >
-                                        <thead>
-                                            <tr>
-                                                <th>监测日期</th>
-                                                <th>体重(kg)</th>
-                                                <th>是否异常</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="weights">
-                                        </tbody>
-                                    </table>
-                                    <div style="text-align: right;" class="paginationDiv"></div>
+                                <div class="col-xl-8 col-xs-12">
+                                    <div style="margin-top: 10px;">
+                                        <h3>数据图表</h3>
+                                        <div id="chart_weights" style="width: 100%;height:400px;"></div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="tab-pane " id="heart_rate" role="tabpanel">
-                                <div style="margin-top: 10px;">
-                                    <h3>数据图表</h3>
-                                    <div id="chart_heart_rates" style="width: 100%;height:400px;"></div>
+                                <div class="col-xl-4 col-xs-12">
+                                    <div style="margin-top: 10px;">
+                                        <h3>监测日志</h3>
+                                        <table class="table table-bordered" >
+                                            <thead>
+                                                <tr>
+                                                    <th>监测日期</th>
+                                                    <th>心率 (次/分)</th>
+                                                    <th>是否异常</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="heart_rates">
+                                            </tbody>
+                                        </table>
+                                        <div style="text-align: right;" class="paginationDiv"></div>
+                                    </div>
                                 </div>
-
-                                <div style="margin-top: 10px;">
-                                    <h3>监测日志</h3>
-                                    <table class="table table-bordered" >
-                                        <thead>
-                                            <tr>
-                                                <th>监测日期</th>
-                                                <th>心率 (次/分)</th>
-                                                <th>是否异常</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="heart_rates">
-                                        </tbody>
-                                    </table>
-                                    <div style="text-align: right;" class="paginationDiv"></div>
+                                <div class="col-xl-8 col-xs-12">
+                                    <div style="margin-top: 10px;">
+                                        <h3>数据图表</h3>
+                                        <div id="chart_heart_rates" style="width: 100%;height:400px;"></div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="tab-pane " id="TDS" role="tabpanel">
@@ -180,50 +186,56 @@
                             </div>
                             </div>
                             <div class="tab-pane" id="blood_pressure" role="tabpanel">
-                                <div style="margin-top: 10px;">
-                                      <h3>数据图表</h3>
-                                      <div id="chart_blood_pressure_tab" style="width: 100%;height:400px;"></div>
-                                  </div>
-
-                                <div style="margin-top: 10px;">
-                                  <h3>监测日志</h3>
-                                  <table class="table table-bordered" >
-                                      <thead>
-                                          <tr>
-                                              <th>监测日期</th>
-                                              <th>收缩压</th>
-                                              <th>舒张压</th>
-                                              <th>是否异常</th>
-                                          </tr>
-                                      </thead>
-                                      <tbody id="blood_pressure_tab">
-                                      </tbody>
-                                  </table>
-                                  <div style="text-align: right;" class="paginationDiv"></div>
+                                <div class="col-xl-4 col-xs-12">
+                                    <div style="margin-top: 10px;">
+                                      <h3>监测日志</h3>
+                                      <table class="table table-bordered" >
+                                          <thead>
+                                              <tr>
+                                                  <th>监测日期</th>
+                                                  <th>收缩压</th>
+                                                  <th>舒张压</th>
+                                                  <th>是否异常</th>
+                                              </tr>
+                                          </thead>
+                                          <tbody id="blood_pressure_tab">
+                                          </tbody>
+                                      </table>
+                                      <div style="text-align: right;" class="paginationDiv"></div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-8 col-xs-12">
+                                    <div style="margin-top: 10px;">
+                                          <h3>数据图表</h3>
+                                          <div id="chart_blood_pressure_tab" style="width: 100%;height:400px;"></div>
+                                      </div>
                                 </div>
                             </div>
                             <div class="tab-pane" id="blood_sugar" role="tabpanel">
-                                <div style="margin-top: 10px;">
-                                    <h3>数据图表</h3>
-                                    <div id="chart_blood_glucoses" style="width: 100%;height:400px;"></div>
+                                <div class="col-xl-4 col-xs-12">
+                                    <div style="margin-top: 10px;">
+                                    <h3>监测日志</h3>
+                                    <table class="table table-bordered" >
+                                        <thead>
+                                            <tr>
+                                                <th>监测日期</th>
+                                                <th>餐前血糖</th>
+                                                <th>餐后血糖</th>
+                                                <th>是否异常</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="blood_glucoses">
+                                        </tbody>
+                                    </table>
+                                    <div style="text-align: right;" class="paginationDiv"></div>
+                                    </div>
                                 </div>
-
-                                <div style="margin-top: 10px;">
-                                <h3>监测日志</h3>
-                                <table class="table table-bordered" >
-                                    <thead>
-                                        <tr>
-                                            <th>监测日期</th>
-                                            <th>餐前血糖</th>
-                                            <th>餐后血糖</th>
-                                            <th>是否异常</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="blood_glucoses">
-                                    </tbody>
-                                </table>
-                                <div style="text-align: right;" class="paginationDiv"></div>
-                            </div>
+                                <div class="col-xl-8 col-xs-12">
+                                    <div style="margin-top: 10px;">
+                                        <h3>数据图表</h3>
+                                        <div id="chart_blood_glucoses" style="width: 100%;height:400px;"></div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="tab-pane" id="followUpArrangement" role="tabpanel">
                                 <div class="col-xs-12 col-lg-10 offset-lg-1">
@@ -487,25 +499,28 @@
                                 </div>
                             </div>
                             <div class="tab-pane" id="temperature" role="tabpanel">
-                                <div style="margin-top: 10px;">
-                                    <h3>数据图表</h3>
-                                    <div id="chart_temperatures" style="width: 100%;height:400px;"></div>
+                                <div class="col-xl-4 col-xs-12">
+                                    <div style="margin-top: 10px;">
+                                      <h3>监测日志</h3>
+                                      <table class="table table-bordered" >
+                                          <thead>
+                                              <tr>
+                                                  <th>监测日期</th>
+                                                  <th>体温 (°C)</th>
+                                                  <th>是否异常</th>
+                                              </tr>
+                                          </thead>
+                                          <tbody id="temperatures">
+                                          </tbody>
+                                      </table>
+                                      <div style="text-align: right;" class="paginationDiv"></div>
+                                    </div>
                                 </div>
-
-                                <div style="margin-top: 10px;">
-                                  <h3>监测日志</h3>
-                                  <table class="table table-bordered" >
-                                      <thead>
-                                          <tr>
-                                              <th>监测日期</th>
-                                              <th>体温 (°C)</th>
-                                              <th>是否异常</th>
-                                          </tr>
-                                      </thead>
-                                      <tbody id="temperatures">
-                                      </tbody>
-                                  </table>
-                                  <div style="text-align: right;" class="paginationDiv"></div>
+                                <div class="col-xl-8 col-xs-12">
+                                    <div style="margin-top: 10px;">
+                                        <h3>数据图表</h3>
+                                        <div id="chart_temperatures" style="width: 100%;height:400px;"></div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="tab-pane" id="baseInformation" role="tabpanel">
@@ -2071,9 +2086,11 @@
             if (data && status) {
                 $("#name").html(data.name);
                 $("#phone").html(data.phone);
+                $("#sex").html(data.sex);
             } else {
                 $("#name").html("");
                 $("#phone").html("");
+                $("#sex").html("");
             }
         });
         var uid =  ~~getvl('id');
