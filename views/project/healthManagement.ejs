@@ -168,7 +168,11 @@ var jsGridFrom = function(products) {
             return this._insertSelect = selectDom.change(function() {
                 var linkNumber = $(this).parent().parent().find("input[linkage='" + self["linkageFieldNumber"] + "']");
                 var productId  = $(this).find("option:selected").data("id");
-                linkNumber.val(productId ?  products[productId].code : "" )
+                var productsIdObj = {};
+                for (var i = 0; i < products.length; i++) {
+                    productsIdObj[i] = products[i];
+                }
+                linkNumber.val(productId ? productsIdObj[productId].code : "" );
 
                 var linkageDom = $(this).parent().parent().find("input[linkage='" + self["linkageField"] + "']");
                 doAjax(window.baseUrl + "/product/product_usage_list", "get", {"product_id": $(this).find("option:selected").data("id")}, function(data, status) {
