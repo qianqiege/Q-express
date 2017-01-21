@@ -45,64 +45,54 @@
                 </div>
             </div>
         </div>
-        <br>
-        <div role="tabpanel" class="tab-pane active" id="">
-            <div class="panel panel-bordered">
-                <div class="panel-heading">
-                    <h3 class="panel-title bg-blue-600"><i class="icon fa-bar-chart" aria-hidden="true"></i>流量统计</h3>
-                </div>
-                <div class="panel-body" id="chart_index_tab" style="width: 100%;height:250px;">
-                </div>
-                <script>
-                    $(function(){
-                        var now = new Date();
-                        var count = 0;
-                        var temp_log =now.getFullYear()+"-"+("0" + (now.getMonth() + 1)).substr(-2)+"-"+("0" + now.getDate()).substr(-2) ;
-                        for(var i = 1; i<=10 ;i++){
-                            var temp = new Date(new Date()-(86400000 * i));
-                            var date = temp.getFullYear()+"-"+("0" + (temp.getMonth() + 1)).substr(-2)+"-"+("0" + temp.getDate()).substr(-2);
-                            
-
-                            doAjax(window.baseUrl + "/operation_logs", "get", {'page':1,'per_page':1,'start_date':date,'end_date':temp_log}, function(data){
-                               var date = new Date(data.data[0].created_at);
-                               date =date.getFullYear()+"-"+("0" + (date.getMonth() + 1)).substr(-2)+"-"+("0" + date.getDate()).substr(-2)
-                               adddata(date,data.meta.total)
-                            });
-
-                            temp_log = date
-                        }
-                        function adddata (time , num){
-                            count++;
-                            
-                            if (count == 10){
-                                console.log("Done")
-                            }
-                        }
-                    })
-                </script>
+        
+        <div class="row">
+            <div class="col-xs-12">
+                    <div class="panel panel-bordered">
+                        <div class="panel-heading">
+                            <h3 class="panel-title bg-blue-600" style="color:white"><i class="icon fa-bar-chart" aria-hidden="true"></i> 流量统计</h3>
+                        </div>
+                        <% if (~~(process.env.PORT || 3000) === 3001) { %>
+                        <div id="widgetIframe"><iframe width="100%" height="260" src="https://statistics.ybyt.cc/index.php?module=Widgetize&action=iframe&forceView=1&viewDataTable=graphEvolution&widget=1&moduleToWidgetize=VisitsSummary&actionToWidgetize=getEvolutionGraph&idSite=1&period=range&date=previous7&disableLink=1&widget=1" scrolling="no" frameborder="0" marginheight="0" marginwidth="0"></iframe></div>
+                        <% } else if (~~(process.env.PORT || 3000) === 3000) { %>
+                        <div id="widgetIframe"><iframe width="100%" height="260" src="https://statistics.ybyt.cc/index.php?module=Widgetize&action=iframe&forceView=1&viewDataTable=graphEvolution&widget=1&moduleToWidgetize=VisitsSummary&actionToWidgetize=getEvolutionGraph&idSite=1&period=range&date=previous7&disableLink=1&widget=1" scrolling="no" frameborder="0" marginheight="0" marginwidth="0"></iframe></div>
+                        <% } %>
+                     </div>
             </div>
-            <div class="col-md-3">
-                <div class="panel panel-bordered">
-                    <div class="panel-heading">
-                        <h3 class="panel-title bg-blue-600"><i class="icon fa-long-arrow-right" aria-hidden="true"></i>今日访问统计</h3>
-                    </div>
-                    <div class="panel-body" id="chart_index_tab" style="width: 100%;height:300px;">
-                    </div>
-                </div>
+
+            <div class="col-xs-12 col-md-4">
+                    <div class="panel panel-bordered">
+                        <div class="panel-heading">
+                            <h3 class="panel-title bg-blue-600" style="color:white"><i class="icon fa-long-arrow-right" aria-hidden="true"></i> 今日访问统计</h3>
+                        </div>
+                        <% if (~~(process.env.PORT || 3000) === 3001) { %>
+                        <div id="widgetIframe"><iframe width="100%" height="350" src="https://statistics.ybyt.cc/index.php?module=Widgetize&action=iframe&widget=1&moduleToWidgetize=Live&actionToWidgetize=widget&idSite=2&period=range&date=previous7&disableLink=1&widget=1" scrolling="no" frameborder="0" marginheight="0" marginwidth="0"></iframe></div>
+                        <% } else if (~~(process.env.PORT || 3000) === 3000) { %>
+                        <div id="widgetIframe"><iframe width="100%" height="350" src="https://statistics.ybyt.cc/index.php?module=Widgetize&action=iframe&widget=1&moduleToWidgetize=Live&actionToWidgetize=widget&idSite=1&period=range&date=previous7&disableLink=1&widget=1" scrolling="no" frameborder="0" marginheight="0" marginwidth="0"></iframe></div>
+                        <% } %>
+                     </div>
             </div>
-            <div class="col-md-3">
+
+            <div class="col-xs-12 col-md-4">
+
 
             </div>
-            <div class="col-md-6">
-                <div class="panel panel-bordered">
-                    <div class="panel-heading">
-                        <h3 class="panel-title bg-blue-600"><i class="icon fa-long-arrow-right" aria-hidden="true"></i>访问统计图表</h3>
-                    </div>
-                    <div class="panel-body" id="chart_index_tab" style="width: 100%;height:300px;">
-                    </div>
-                </div>
+
+            <div class="col-xs-12 col-md-4">
+                    <div class="panel panel-bordered">
+                        <div class="panel-heading">
+                            <h3 class="panel-title bg-blue-600" style="color:white"><i class="icon fa-long-arrow-right" aria-hidden="true"></i> 访问统计图表</h3>
+                        </div>
+                        <% if (~~(process.env.PORT || 3000) === 3001) { %>
+                        <div id="widgetIframe"><iframe width="100%" height="350" src="https://statistics.ybyt.cc/index.php?module=Widgetize&action=iframe&widget=1&moduleToWidgetize=UserCountryMap&actionToWidgetize=visitorMap&idSite=2&period=range&date=previous7&disableLink=1&widget=1" scrolling="no" frameborder="0" marginheight="0" marginwidth="0"></iframe></div>
+                        <% } else if (~~(process.env.PORT || 3000) === 3000) { %>
+                        <div id="widgetIframe"><iframe width="100%" height="350" src="https://statistics.ybyt.cc/index.php?module=Widgetize&action=iframe&widget=1&moduleToWidgetize=UserCountryMap&actionToWidgetize=visitorMap&idSite=1&period=range&date=previous7&disableLink=1&widget=1" scrolling="no" frameborder="0" marginheight="0" marginwidth="0"></iframe></div>
+                        <% } %>
+                     </div>
             </div>
         </div>
+
+        <div class="panel">
         <div class="panel-heading">
             <h3 class="panel-title">登陆日志</h3>
         </div>
@@ -126,6 +116,7 @@
 
                 </tfoot>
             </table>
+        </div>
         </div>
     </div>
 </div>
