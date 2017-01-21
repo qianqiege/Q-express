@@ -2835,28 +2835,32 @@
             $("input[name='exceptionSelect']:checked").each(function (index,element) {
                 arr.push(element.value)
             });
-            if(arr.length == 0 || health_advice == "" ){
-                swal("请选择异常记录并填写处理意见","","error");
+            if ($("#weixin").prop("checked") == false && $("#message").prop("checked") == false){
+                swal("请至少选择一种异常提醒通知方式","","error");
             }else{
-                if ($("#weixin").prop("checked") == true ) {
-                    weixin = 1;
-                    $("#weixin").prop("checked",false)
-                }
-                if ($("#message").prop("checked") == true){
-                    message = 1;
-                    $("#message").prop("checked",false)
-                }
-                doAjax(window.baseUrl+"/exception/handle","put",{'ids':arr, 'health_advice':health_advice,'is_wechart':weixin,'is_phone':message},function (data, status) {
-                    if (data && status) {
-                        swal({
-                            title: data.info || "提交成功",
-                            type: "success"
-                        });
+                if(arr.length == 0 || health_advice == ""  ){
+                    swal("请选择异常记录并填写处理意见","","error");
+                }else{
+                    if ($("#weixin").prop("checked") == true ) {
+                        weixin = 1;
+                        $("#weixin").prop("checked",false)
                     }
-                    $("#health_advice").prop("value","");
-                    $("#exceptionHandlingBtn").click();
-                    // $("input[name='exceptionSelect']").prop("checked",false)
-                });
+                    if ($("#message").prop("checked") == true){
+                        message = 1;
+                        $("#message").prop("checked",false)
+                    }
+                    doAjax(window.baseUrl+"/exception/handle","put",{'ids':arr, 'health_advice':health_advice,'is_wechart':weixin,'is_phone':message},function (data, status) {
+                        if (data && status) {
+                            swal({
+                                title: data.info || "提交成功",
+                                type: "success"
+                            });
+                        }
+                        $("#health_advice").prop("value","");
+                        $("#exceptionHandlingBtn").click();
+                        // $("input[name='exceptionSelect']").prop("checked",false)
+                    });
+                }
             }
         };
 

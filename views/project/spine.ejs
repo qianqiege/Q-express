@@ -159,7 +159,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 col-lg-2 offset-lg-9">
-                    <button type="button" class="btn btn-block btn-primary" onclick="submitForm();">开方 </button>
+                    <button type="button" class="btn btn-block btn-primary" id= "projectSubmit" onclick="this.disabled=true;submitForm();">开方 </button>
                 </div>
             </div>
             </div>
@@ -308,6 +308,7 @@ var submitForm = function () {
         "post",
         postObj,
         function (data, status) {
+            $("#projectSubmit").prop('disabled',false);
             if (status && data) {
                 swal({
                     title: data.info || "提交成功",
