@@ -152,29 +152,35 @@
             return;
         }
         doAjax(window.baseUrl + "/follow_up/follow_up_record", "get", {"follow_up_task_id": task_id}, function(data, status) {
-            console.log(data);
-            console.log(data.follow_up_type.name);
             $("#hostitle").text(data.follow_up_type.name);
-            for (var i in data.hypertension_follow.present_symptom) {
-                $("#present_symptom").append('<span class="tag tag-danger">'+data.hypertension_follow.present_symptom[i]+"</span>  ");
+            var followname;
+            if(data.follow_up_type.id === 1) {
+                followname = 'hypertension_follow';
+            } else if(data.follow_up_type.id === 2) {
+                followname = 'diabetes_follow';
+            } else if(data.follow_up_type.id === 3) {
+                followname = 'overall_follow';
             }
-            for (var i in data.hypertension_follow.physical_examination) {
-                $("#physical_examination-"+i).append(data.hypertension_follow.physical_examination[i]);
+            for (var i in data[followname].present_symptom) {
+                $("#present_symptom").append('<span class="tag tag-danger">'+data[followname].present_symptom[i]+"</span>  ");
             }
-            for (var i in data.hypertension_follow.supplementary_examination) {
-                $("#supplementary_examination-"+i).append(data.hypertension_follow.supplementary_examination[i]);
+            for (var i in data[followname].physical_examination) {
+                $("#physical_examination-"+i).append(data[followname].physical_examination[i]);
             }
-            for (var i in data.hypertension_follow.medication_situation) {
-                $("#medication_situation-"+i).append(data.hypertension_follow.medication_situation[i]);
+            for (var i in data[followname].supplementary_examination) {
+                $("#supplementary_examination-"+i).append(data[followname].supplementary_examination[i]);
             }
-            for (var i in data.hypertension_follow.tcm_intervention) {
-                $("#tcm_intervention-"+i).append(data.hypertension_follow.tcm_intervention[i]);
+            for (var i in data[followname].medication_situation) {
+                $("#medication_situation-"+i).append(data[followname].medication_situation[i]);
             }
-            for (var i in data.hypertension_follow.lifeway_intervention) {
-                $("#lifeway_intervention-"+i).append(data.hypertension_follow.lifeway_intervention[i]);
+            for (var i in data[followname].tcm_intervention) {
+                $("#tcm_intervention-"+i).append(data[followname].tcm_intervention[i]);
             }
-            for (var i in data.hypertension_follow.input_situation) {
-                $("#input_situation-"+i).append(data.hypertension_follow.input_situation[i]);
+            for (var i in data[followname].lifeway_intervention) {
+                $("#lifeway_intervention-"+i).append(data[followname].lifeway_intervention[i]);
+            }
+            for (var i in data[followname].input_situation) {
+                $("#input_situation-"+i).append(data[followname].input_situation[i]);
             }
         });
     });
