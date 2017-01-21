@@ -1,0 +1,478 @@
+<% if (typeof pjax === "undefined") { %>
+    <%- include ../header %>
+<% } else { %>
+    <title><%= title %></title>
+<% } %>
+
+    <div class="page-header">
+        <!-- 高血压随访 -->
+        <h1 class="page-title"><%= title %></h1>
+        <ol class="breadcrumb">
+        </ol>
+    </div>
+
+    <div class="page-content">
+        <form class="form-horizontal" role="form" method="post" action="" onsubmit="return false;" id="recordForm">
+            <!-- 目前症状/自觉症状 -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-bordered" >
+                        <div class="panel-heading">
+                            <h3 class="panel-title">目前症状</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group form-material col-xs-12 col-md-11 offset-md-1">
+                                <label>自觉症状*:</label>
+                                <div>
+                                    <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                        <input type="checkbox" id="symptom_select1" name="present_symptom-item1" value="无">
+                                        <label for="symptom_select1">无</label>
+                                    </div>
+                                    <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                        <input type="checkbox" id="symptom_select2" name="present_symptom-item2" value="头痛头晕">
+                                        <label for="symptom_select2">头痛头晕</label>
+                                    </div>
+                                    <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                        <input type="checkbox" id="symptom_select3" name="present_symptom-item3" value="恶心呕吐">
+                                        <label for="symptom_select3">恶心呕吐</label>
+                                    </div>
+                                    <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                        <input type="checkbox" id="symptom_select4" name="present_symptom-item4" value="眼花耳鸣">
+                                        <label for="symptom_select4">眼花耳鸣</label>
+                                    </div>
+                                    <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                        <input type="checkbox" id="symptom_select5" name="present_symptom-item5" value="呼吸困难">
+                                        <label for="symptom_select5">呼吸困难</label>
+                                    </div>
+                                    <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                        <input type="checkbox" id="symptom_select6" name="present_symptom-item6" value="心悸胸闷">
+                                        <label for="symptom_select6">心悸胸闷</label>
+                                    </div>
+                                    <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                        <input type="checkbox" id="symptom_select7" name="present_symptom-item7" value="四肢发麻">
+                                        <label for="symptom_select7">四肢发麻</label>
+                                    </div>
+                                    <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                        <input type="checkbox" id="symptom_select8" name="present_symptom-item8" value="下肢水肿">
+                                        <label for="symptom_select8">下肢水肿</label>
+                                    </div>
+                                    <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                        <input type="checkbox" id="symptom_select9" name="present_symptom-item9" value="鼻衄出血">
+                                        <label for="symptom_select9">鼻衄出血</label>
+                                    </div>
+                                    <div class="checkbox-custom checkbox-primary checkbox-inline">
+                                        <input type="checkbox" id="symptom_select10" name="present_symptom-item10" value="其他">
+                                        <label for="symptom_select10">其他</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 目前症状/自觉症状 结束 -->
+
+            <!-- 体格检查 -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-bordered" >
+                        <div class="panel-heading">
+                            <h3 class="panel-title">体格检查</h3>
+                        </div>
+                        <div class="panel-body">
+                                <div class="form-group form-material col-xs-12 col-md-2 offset-md-1">
+                                    <label class="form-control-label" for="max_pressure">收缩压(mmHg)*:</label>
+                                    <input type="text" class="form-control" id="max_pressure" name="physical_examination-item1">
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-3">
+                                    <label class="form-control-label" for="min_pressure">舒张压(mmHg)*:</label>
+                                    <input type="text" class="form-control" id="min_pressure" name="physical_examination-item2">
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-3">
+                                    <label class="form-control-label" for="heart_rate">心率*:</label>
+                                    <input type="text" class="form-control" id="heart_rate" name="physical_examination-item3">
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-3">
+                                    <label class="form-control-label" for="bmi">BMI:</label>
+                                    <input type="text" class="form-control" id="bmi" name="physical_examination-item4">
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
+                                    <label class="form-control-label" for="foot_artery">下肢浮肿*:</label>
+                                    <input type="text" class="form-control" id="foot_artery" name="physical_examination-item5">
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-6">
+                                    <label class="form-control-label" for="fundus_oculi">眼底:</label>
+                                    <input type="text" class="form-control" id=" fundus_oculi" name="physical_examination-item6">
+                                </div>
+                            <div class="line">
+                                <div class="form-group form-material col-xs-12 col-md-11 offset-md-1">
+                                    <label class="form-control-label" for="other">其他:</label>
+                                    <input type="text" class="form-control" id=" other" name="physical_examination-item7">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 体格检查 结束  -->
+
+            <!-- 辅助检查 -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-bordered" >
+                        <div class="panel-heading">
+                            <h3 class="panel-title">辅助检查</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div>
+                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
+                                    <label class="form-control-label" for="blood_glucose">血糖:</label>
+                                    <input type="text" class="form-control" id="blood_glucose" name="supplementary_examination-item1">
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
+                                    <label class="form-control-label" for="tc">TC:</label>
+                                    <input type="text" class="form-control" id="tc" name="supplementary_examination-item2">
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
+                                    <label class="form-control-label" for="tg">TG:</label>
+                                    <input type="text" class="form-control" id="tg" name="supplementary_examination-item3">
+                                </div>
+                            </div>
+                            <div>
+                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
+                                    <label class="form-control-label" for="ldl_c">LDL-C:</label>
+                                    <input type="text" class="form-control" id="ldl_c" name="supplementary_examination-item4">
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
+                                    <label class="form-control-label" for="hdl_c">HDL-C:</label>
+                                    <input type="text" class="form-control" id="hdl_c" name="supplementary_examination-item5">
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
+                                    <label class="form-control-label" for="routine_urine_test">尿常规:</label>
+                                    <input type="text" class="form-control" id="routine_urine_test" name="supplementary_examination-item6">
+                                </div>
+                            </div>
+                            <div>
+                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
+                                    <label class="form-control-label" for="bun">BUN:</label>
+                                    <input type="text" class="form-control" id="bun" name="supplementary_examination-item7">
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
+                                    <label class="form-control-label" for="cr">Cr:</label>
+                                    <input type="text" class="form-control" id="cr" name="supplementary_examination-item8">
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
+                                    <label class="form-control-label" for="electrocardiogram">心电图:</label>
+                                    <input type="text" class="form-control" id="electrocardiogram" name="supplementary_examination-item9">
+                                </div>
+                            </div>
+                            <div class="line">
+                                <div class="form-group form-material col-xs-12 col-md-11 offset-md-1">
+                                    <label class="form-control-label" for="other">其他:</label>
+                                    <input type="text" class="form-control" id="other" name="supplementary_examination-item10">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 辅助检查 结束  -->
+
+            <!-- 用药情况 -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-bordered" >
+                        <div class="panel-heading">
+                            <h3 class="panel-title">用药情况</h3>
+                        </div>
+                        <div class="panel-body">
+
+                            <div class="row">
+                                <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
+                                    <label class="form-control-label" for="drug_adverse_reaction">药物不良反应:</label>
+                                    <input type="text" class="form-control" id="drug_adverse_reaction" name="medication_situation-item1">
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
+                                    <label class="form-control-label">服药依从性:</label>
+                                        <div style="margin-top: 13px;">
+                                            <div class="radio-custom radio-primary" style="display: inline;margin-right: 10px;">
+                                                <input type="radio" id="drugd_compliance_radio1" name="medication_situation-item2" value="规律">
+                                                <label for="drugd_compliance_radio1">规律</label>
+                                            </div>
+                                            <div class="radio-custom radio-primary" style="display:inline">
+                                                <input type="radio" id="drugd_compliance_radio2" name="medication_situation-item2" value="间断">
+                                                <label for="drugd_compliance_radio2">间断</label>
+                                            </div>
+                                            <div class="radio-custom radio-primary" style="display:inline">
+                                                <input type="radio" id="drugd_compliance_radio3" name="medication_situation-item2" value="从不">
+                                                <label for="drugd_compliance_radio3">从不</label>
+                                            </div>
+                                        </div>
+                                </div>
+
+                                <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
+                                    <label class="form-control-label" for="drug_name1">药物名称:</label>
+                                    <input type="text" class="form-control" id="drug_name1" name="medication_situation-item3">
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
+                                    <label class="form-control-label" for="drug_usage1">药物用法:</label>
+                                    <input type="text" class="form-control" id="drug_usage1" name="medication_situation-item4">
+                                </div>
+
+                                <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
+                                    <label class="form-control-label" for="drug_name2">药物名称:</label>
+                                    <input type="text" class="form-control" id="drug_name2" name="medication_situation-item5">
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
+                                    <label class="form-control-label" for="drug_usage2">药物用法:</label>
+                                    <input type="text" class="form-control" id="drug_usage2" name="medication_situation-item6">
+                                </div>
+
+                                <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
+                                    <label class="form-control-label" for="drug_name3">药物名称:</label>
+                                    <input type="text" class="form-control" id="drug_name3" name="medication_situation-item7">
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
+                                    <label class="form-control-label" for="drug_usage3">药物用法:</label>
+                                    <input type="text" class="form-control" id="drug_usage3" name="medication_situation-item8">
+                                </div>
+                            <div class="line">
+                                <div class="form-group form-material col-xs-12 col-md-11 offset-md-1">
+                                    <label class="form-control-label" for="medicationm_guide">用药指导:</label>
+                                    <input type="text" class="form-control" id="medicationm_guide" name="medication_situation-item9">
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 用药情况 结束 -->
+
+            <!-- 中医辩证及干预指导 -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-bordered" >
+                        <div class="panel-heading">
+                            <h3 class="panel-title">中医辩证及干预指导</h3>
+                        </div>
+                        <div class="panel-body">
+
+                            <div class="line">
+                                <div class="form-group form-material col-xs-12 col-md-11 offset-md-1">
+                                    <label class="form-control-label" for="physiology">生理方面:</label>
+                                    <input type="text" class="form-control" id="physiology" name="tcm_intervention-item1">
+                                </div>
+                            </div>
+                            <div class="line">
+                                <div class="form-group form-material col-xs-12 col-md-11 offset-md-1">
+                                    <label class="form-control-label" for="emotion">情志方面:</label>
+                                    <input type="text" class="form-control" id="emotion" name="tcm_intervention-item2">
+                                </div>
+                            </div>
+                            <div class="line">
+                                <div class="form-group form-material col-xs-12 col-md-11 offset-md-1">
+                                    <label class="form-control-label" for="nutrition">营养方面:</label>
+                                    <input type="text" class="form-control" id="nutrition" name="tcm_intervention-item3">
+                                </div>
+                            </div>
+                            <div class="line">
+                                <div class="form-group form-material col-xs-12 col-md-11 offset-md-1">
+                                    <label class="form-control-label" for="life_style">生活方式方面:</label>
+                                    <input type="text" class="form-control" id="life_style" name="tcm_intervention-item4">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 中医辩证及干预指导 结束-->
+
+            <!-- 生活方式指导 -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-bordered" >
+                        <div class="panel-heading">
+                            <h3 class="panel-title">生活方式指导</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-xs-12 col-md-12">
+                                <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
+                                    <label class="form-control-label">遵医行为:</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="compliance_radio1" name="lifeway_intervention-item1" value="良好">
+                                            <label for="compliance_radio1">良好</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="compliance_radio2" name="lifeway_intervention-item1" value="一般">
+                                            <label for="compliance_radio2">一般</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="compliance_radio3" name="lifeway_intervention-item1" value="差">
+                                            <label for="compliance_radio3">差</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
+                                    <label class="form-control-label">心理调整:</label>
+                                    <div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="emotion_radio1" name="lifeway_intervention-item2" value="良好">
+                                            <label for="emotion_radio1">良好</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="emotion_radio2" name="lifeway_intervention-item2" value="一般">
+                                            <label for="emotion_radio2">一般</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary radio-inline">
+                                            <input type="radio" id="emotion_radio3" name="lifeway_intervention-item2" value="差">
+                                            <label for="emotion_radio3">差</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
+                                    <label class="form-control-label" for="smoking">日吸烟量(支)*:</label>
+                                    <input type="text" class="form-control" id="smoking" name="lifeway_intervention-item3">
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
+                                    <label class="form-control-label" for="drinking">日饮酒量(两):</label>
+                                    <input type="text" class="form-control" id="drinking" name="lifeway_intervention-item4">
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
+                                    <label class="form-control-label" for="salt_intake">盐摄入量(两):</label>
+                                    <input type="text" class="form-control" id="salt_intake" name="lifeway_intervention-item5">
+                                </div>
+                            </div>
+                            <div>
+                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
+                                    <label class="form-control-label" for="staple_food">主食(两/天):</label>
+                                    <input type="text" class="form-control" id="staple_food" name="lifeway_intervention-item6">
+                                </div>
+
+                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
+                                    <label class="form-control-label" for="sports_minute_time">运动情况 (分钟/次):</label>
+                                    <input type="text" class="form-control" id="sports_minute_time" name="lifeway_intervention-item7">
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
+                                    <label class="form-control-label" for="sports_week_time">运动情况 (周/次):</label>
+                                    <input type="text" class="form-control" id="sports_week_time" name="lifeway_intervention-item8">
+                                </div>
+                            </div>
+                            <div class="line">
+                                <div class="form-group form-material col-xs-12 col-md-11 offset-md-1">
+                                    <label class="form-control-label" for="intervene_guide">干预指导:</label>
+                                    <input type="text" class="form-control" id="intervene_guide" name="lifeway_intervention-item9">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 生活方式指导 结束 -->
+
+            <!-- 录入情况 -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-bordered" >
+                        <div class="panel-heading">
+                            <h3 class="panel-title">录入情况</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div>
+                                <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
+                                    <label class="form-control-label" for="time">下次随访时间:</label>
+                                    <input type="text" class="form-control" id="time" name="input_situation-item1">
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
+                                    <label class="form-control-label" for="follow_method">随访方式</label>
+                                    <div class="wrapped">
+                                        <select class="js-example-tokenizer form-control select2-hidden-accessible" id="follow_method" name="input_situation-item2" data-plugin="select2" data-tags="true" data-maximum-selection-length="2">
+                                            <option>电话随访</option>
+                                            <option>门诊随访</option>
+                                            <option>家庭随访</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="line">
+                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
+                                    随访医生:<span id="doctor" name="input_situation-item3"> </span>
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
+                                    录入人:<span id="user" name="input_situation-item4"> </span>
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
+                                    录入机构:<span id="hospital" name="input_situation-item5"> </span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 录入情况 结束 -->
+
+            <div class="input-group">
+                <div class="row">
+                    <button type="button" onclick="submitForm();" class="btn btn-block btn-success">提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src='/javascripts/jquery.form.js'></script>
+    <script>
+    var follow_up_type =  ~~getvl('follow_up_type');
+    var follow_up_task =  ~~getvl('follow_up_task_id');
+    var cbFun = function(data, status) {
+        if (!status) {
+            swal("提交失败", JSON.parse(data.reponseText)["error"], "error");
+        } else {
+            swal("提交成功", "正在进入客户列表", "success");
+            setTimeout(function() {
+                location.href = "/followUp1";
+            }, 1000);
+            return true;
+        }
+    };
+    var submitForm = function(formDom) {
+        var obj = $('#recordForm').getValue();
+        postObj = {
+            "follow_up_type_id":follow_up_type,
+            "follow_up_task_id":follow_up_task,
+            "present_symptom": {},
+            "physical_examination": {},
+            "supplementary_examination": {},
+            "medication_situation": {},
+            "tcm_intervention": {},
+            "lifeway_intervention": {},
+            "input_situation": {}
+        };
+        for (var i in obj) {
+            var isChild = i.split("-");
+            if (isChild.length > 1) {
+                postObj[isChild[0]][isChild[1]] = obj[i];
+            } else {
+                postObj[isChild[0]] = obj[i];
+            }
+        }
+        doAjax(
+            window.baseUrl + "/follow_up/hypertension_follow_input",
+            "post",
+            JSON.stringify(postObj),
+            cbFun,
+            {},
+            {contentType: 'application/json;charset=utf-8'}
+        );
+        return 0;
+    };
+    </script>
+<% if (typeof pjax === "undefined") { %>
+    <%- include ../footer %>
+<% } %>

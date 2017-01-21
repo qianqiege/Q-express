@@ -122,7 +122,7 @@
     </div>
     <div class="row">
         <div class="col-xs-12 col-lg-2 offset-lg-9 ">
-            <button type="button" class="btn btn-block btn-primary" onclick="submitForm();">开方 </button>
+            <button type="button" class="btn btn-block btn-primary"id="projectSubmit" onclick="this.disabled=true;submitForm();">开方 </button>
         </div>
     </div>
     <hr/>
@@ -168,7 +168,11 @@ var jsGridFrom = function(products) {
             return this._insertSelect = selectDom.change(function() {
                 var linkNumber = $(this).parent().parent().find("input[linkage='" + self["linkageFieldNumber"] + "']");
                 var productId  = $(this).find("option:selected").data("id");
-                linkNumber.val(productId ?  products[productId].code : "" )
+                var productsIdObj = {};
+                for (var i = 0; i < products.length; i++) {
+                    productsIdObj[products[i]["id"]] = products[i];
+                }
+                linkNumber.val(productId ? productsIdObj[productId].code : "" );
 
                 var linkageDom = $(this).parent().parent().find("input[linkage='" + self["linkageField"] + "']");
                 doAjax(window.baseUrl + "/product/product_usage_list", "get", {"product_id": $(this).find("option:selected").data("id")}, function(data, status) {
@@ -421,6 +425,7 @@ var submitForm = function() {
         "post",
         postObj,
         function(data, status) {
+            $('#projectSubmit').prop('disabled',false);
             if (status && data) {
                 swal({
                     title: data.info || "提交成功",

@@ -1,0 +1,190 @@
+<% if (typeof pjax === "undefined") { %>
+    <%- include ../header %>
+<% } else { %>
+    <title><%= title %></title>
+<% } %>
+
+    <div class="page-header">
+        <!-- 高血压随访 -->
+        <h1 class="page-title"><%= title %></h1>
+        <ol class="breadcrumb">
+        </ol>
+    </div>
+
+    <div class="page-content">
+        <form class="form-horizontal" role="form" method="post" action="" onsubmit="return false;" id="recordForm">
+            <!-- 目前症状/自觉症状 -->
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-bordered">
+                        <div class="panel-body">
+                            <div class="row">
+
+                                <div class="col-xs-12 followupshow_list"><h4 id="hostitle"></h4></div>
+                                <div id="gxy_sf">
+                                    <div class="col-xs-12 followupshow_list">
+                                        <label id="present_symptom">自觉症状:</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-md-12 followupshow_list"><hr/></div>
+
+                                <div id="tg_check">
+                                    <div class="col-xs-12 followupshow_list"><h4>体格检查</h4></div>
+                                    <div class="col-xs-6 col-md-3 followupshow_list" id="physical_examination-item1">收缩压(mmHg) : </div>
+                                    <div class="col-xs-6 col-md-3 followupshow_list" id="physical_examination-item2">舒张压(mmHg) : </div>
+                                    <div class="col-xs-6 col-md-3 followupshow_list" id="physical_examination-item3">心率 : </div>
+                                    <div class="col-xs-6 col-md-3 followupshow_list" id="physical_examination-item4">BMI : </div>
+
+                                    <div class="col-xs-12 col-md-6 followupshow_list" id="physical_examination-item5">下肢浮肿 : </div>
+                                    <div class="col-xs-12 col-md-6 followupshow_list" id="physical_examination-item6">眼底 : </div>
+
+                                    <div class="col-xs-12 col-md-12 followupshow_list" id="physical_examination-item7">其他 : </div>
+
+                                    <div class="col-xs-6 col-md-4 followupshow_list" id="supplementary_examination-item1">血糖 : </div>
+                                    <div class="col-xs-6 col-md-4 followupshow_list" id="supplementary_examination-item2">TC : </div>
+                                    <div class="col-xs-6 col-md-4 followupshow_list" id="supplementary_examination-item3">TG : </div>
+
+                                    <div class="col-xs-6 col-md-4 followupshow_list" id="supplementary_examination-item4">LDL-C : </div>
+                                    <div class="col-xs-6 col-md-4 followupshow_list" id="supplementary_examination-item5">HDL-C : </div>
+                                    <div class="col-xs-6 col-md-4 followupshow_list" id="supplementary_examination-item6">尿常规 : </div>
+
+                                    <div class="col-xs-6 col-md-4 followupshow_list" id="supplementary_examination-item7">BUN : </div>
+                                    <div class="col-xs-6 col-md-4 followupshow_list" id="supplementary_examination-item8">Cr : </div>
+                                    <div class="col-xs-6 col-md-4 followupshow_list" id="supplementary_examination-item9">心电图 : </div>
+
+                                    <div class="col-xs-12 col-md-12 followupshow_list" id="supplementary_examination-item10">其他 : </div>
+                                </div>
+
+                                <div class="col-xs-12 col-md-12 followupshow_list"><hr/></div>
+
+                                <div id="yy_qk">
+                                    <div class="col-xs-12 followupshow_list"><h4>用药情况</h4></div>
+
+                                    <div class="col-xs-12 col-md-6 followupshow_list" id="medication_situation-item1">药物不良反应 : </div>
+                                    <div class="col-xs-12 col-md-6 followupshow_list" id="medication_situation-item2">服药依从性 : </div>
+
+                                    <div class="col-xs-12 col-md-6 followupshow_list" id="medication_situation-item3">药物名称 : </div>
+                                    <div class="col-xs-12 col-md-6 followupshow_list" id="medication_situation-item4">药物用法 : </div>
+
+                                    <div class="col-xs-12 col-md-6 followupshow_list" id="medication_situation-item5">药物名称 : </div>
+                                    <div class="col-xs-12 col-md-6 followupshow_list" id="medication_situation-item6">药物用法 : </div>
+
+                                    <div class="col-xs-12 col-md-6 followupshow_list" id="medication_situation-item7">药物名称 : </div>
+                                    <div class="col-xs-12 col-md-6 followupshow_list" id="medication_situation-item8">药物用法 : </div>
+
+                                    <div class="col-xs-12 col-md-12 followupshow_list" id="medication_situation-item9">用药指导 : </div>
+                                </div>
+
+                                <div class="col-xs-12 col-md-12 followupshow_list"><hr/></div>
+
+                                <div id="zz_zd">
+                                    <div class="col-xs-12 followupshow_list"><h4>中医辩证及干预指导</h4></div>
+
+                                    <div class="col-xs-12 col-md-6 followupshow_list" id="tcm_intervention-item1">生理方面 : </div>
+                                    <div class="col-xs-12 col-md-6 followupshow_list" id="tcm_intervention-item2">情志方面 : </div>
+
+                                    <div class="col-xs-12 col-md-6 followupshow_list" id="tcm_intervention-item3">营养方面 : </div>
+                                    <div class="col-xs-12 col-md-6 followupshow_list" id="tcm_intervention-item4">生活方式方面 : </div>
+                                </div>
+
+                                <div class="col-xs-12 col-md-12 followupshow_list"><hr/></div>
+
+                                <div id="zdx">
+                                    <div class="col-xs-12 followupshow_list"><h4>生活方式指导</h4></div>
+
+                                    <div class="col-xs-12 col-md-6 followupshow_list" id="lifeway_intervention-item1">遵医行为 : </div>
+                                    <div class="col-xs-12 col-md-6 followupshow_list" id="lifeway_intervention-item2">心理调整 : </div>
+
+                                    <div class="col-xs-6 col-md-4 followupshow_list" id="lifeway_intervention-item3">日吸烟量(支) : </div>
+                                    <div class="col-xs-6 col-md-4 followupshow_list" id="lifeway_intervention-item4">日饮酒量(两) : </div>
+                                    <div class="col-xs-6 col-md-4 followupshow_list" id="lifeway_intervention-item5">盐摄入量(两) : </div>
+
+                                    <div class="col-xs-6 col-md-4 followupshow_list" id="lifeway_intervention-item6">主食(两/天) : </div>
+                                    <div class="col-xs-6 col-md-4 followupshow_list" id="lifeway_intervention-item7">运动情况 (分钟/次) : </div>
+                                    <div class="col-xs-6 col-md-4 followupshow_list" id="lifeway_intervention-item8">运动情况 (周/次) : </div>
+                                </div>
+
+                                <div class="col-xs-12 col-md-12 followupshow_list"><hr/></div>
+
+                                <style>
+                                .followupshow_list {
+                                    margin-bottom: 10px;
+                                }
+
+                                </style>
+
+                            </div>
+                            <div>
+                                <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
+                                    <label class="form-control-label" for="time" id="input_situation-item1">下次随访时间 : </label>
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
+                                    <label class="form-control-label" for="follow_method" id="input_situation-item2">随访方式 : </label>
+                                </div>
+                                <div class="line">
+                                    <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
+                                        随访医生 : <span id="input_situation-item3" name="input_situation-item3"> </span>
+                                    </div>
+                                    <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
+                                        录入人 : <span id="input_situation-item4" name="input_situation-item4"> </span>
+                                    </div>
+                                    <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
+                                        录入机构 : <span id="input_situation-item5" name="input_situation-item5"> </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+    $(function() {
+        var task_id =  ~~getvl('id');
+        if (!task_id) {
+            swal({title: "id 错误", type: "error"}, function() {
+                window.close();
+            });
+            return;
+        }
+        doAjax(window.baseUrl + "/follow_up/follow_up_record", "get", {"follow_up_task_id": task_id}, function(data, status) {
+            $("#hostitle").text(data.follow_up_type.name);
+            var followname;
+            if(data.follow_up_type.id === 1) {
+                followname = 'hypertension_follow';
+            } else if(data.follow_up_type.id === 2) {
+                followname = 'diabetes_follow';
+            } else if(data.follow_up_type.id === 3) {
+                followname = 'overall_follow';
+            }
+            for (var i in data[followname].present_symptom) {
+                $("#present_symptom").append('<span class="tag tag-danger">'+data[followname].present_symptom[i]+"</span>  ");
+            }
+            for (var i in data[followname].physical_examination) {
+                $("#physical_examination-"+i).append(data[followname].physical_examination[i]);
+            }
+            for (var i in data[followname].supplementary_examination) {
+                $("#supplementary_examination-"+i).append(data[followname].supplementary_examination[i]);
+            }
+            for (var i in data[followname].medication_situation) {
+                $("#medication_situation-"+i).append(data[followname].medication_situation[i]);
+            }
+            for (var i in data[followname].tcm_intervention) {
+                $("#tcm_intervention-"+i).append(data[followname].tcm_intervention[i]);
+            }
+            for (var i in data[followname].lifeway_intervention) {
+                $("#lifeway_intervention-"+i).append(data[followname].lifeway_intervention[i]);
+            }
+            for (var i in data[followname].input_situation) {
+                $("#input_situation-"+i).append(data[followname].input_situation[i]);
+            }
+        });
+    });
+    </script>
+<% if (typeof pjax === "undefined") { %>
+    <%- include ../footer %>
+<% } %>
