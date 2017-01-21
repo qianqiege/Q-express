@@ -14,330 +14,133 @@
     <div class="page-content">
         <form class="form-horizontal" role="form" method="post" action="" onsubmit="return false;" id="recordForm">
             <!-- 目前症状/自觉症状 -->
+
+
             <div class="row">
                 <div class="col-md-12">
-                    <div class="panel panel-bordered" >
-                        <div class="panel-heading">
-                            <h3 class="panel-title" id="hostitle"> </h3>
-                        </div>
+                    <div class="panel panel-bordered">
                         <div class="panel-body">
-                            <div class="form-group form-material col-xs-12 col-md-11 offset-md-1">
-                                <label id="present_symptom">自觉症状:</label>
-                                <!-- <span class="tag tag-lg tag-primary" id="present_symptom"> </span> -->
-                            </div>
-                        <div>
-                            <div class="form-group form-material col-xs-12 col-md-2 offset-md-1">
-                                <label class="form-control-label" for="max_pressure" id="physical_examination-item1" >收缩压(mmHg):</label>
-                            </div>
-                            <div class="form-group form-material col-xs-12 col-md-3">
-                                <label class="form-control-label" for="min_pressure" id="physical_examination-item2">舒张压(mmHg):</label>
-                            </div>
-                            <div class="form-group form-material col-xs-12 col-md-3">
-                                <label class="form-control-label" for="heart_rate" id="physical_examination-item3">心率:</label>
-                            </div>
-                            <div class="form-group form-material col-xs-12 col-md-3">
-                                <label class="form-control-label" for="bmi" id="physical_examination-item4">BMI:</label>
-                            </div>
-                            <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
-                                <label class="form-control-label" for="foot_artery" id="physical_examination-item5" >下肢浮肿:</label>
-                            </div>
-                            <div class="form-group form-material col-xs-12 col-md-6">
-                                <label class="form-control-label" for="fundus_oculi" id="physical_examination-item6">眼底:</label>
-                            </div>
-                            <div class="line">
-                                <div class="form-group form-material col-xs-12 col-md-11 offset-md-1">
-                                    <label class="form-control-label" for="other" id="physical_examination-item7">其他:</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
-                                    <label class="form-control-label" for="blood_glucose" id="supplementary_examination-item1">血糖:</label>
-                                </div>
-                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
-                                    <label class="form-control-label" for="tc" id="supplementary_examination-item2">TC:</label>
-                                </div>
-                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
-                                    <label class="form-control-label" for="tg" id="supplementary_examination-item3">TG:</label>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
-                                    <label class="form-control-label" for="ldl_c" id="supplementary_examination-item4">LDL-C:</label>
-                                </div>
-                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
-                                    <label class="form-control-label" for="hdl_c" id="supplementary_examination-item5">HDL-C:</label>
-                                </div>
-                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
-                                    <label class="form-control-label" for="routine_urine_test" id="supplementary_examination-item6">尿常规:</label>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
-                                    <label class="form-control-label" for="bun" id="supplementary_examination-item7">BUN:</label>
-                                </div>
-                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
-                                    <label class="form-control-label" for="cr" id="supplementary_examination-item8">Cr:</label>
-                                </div>
-                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
-                                    <label class="form-control-label" for="electrocardiogram" id="supplementary_examination-item9">心电图:</label>
-                                </div>
-                            </div>
-                            <div class="line">
-                                <div class="form-group form-material col-xs-12 col-md-11 offset-md-1">
-                                    <label class="form-control-label" for="other" id="supplementary_examination-item10">其他:</label>
-                                </div>
-                            </div>
-
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 目前症状/自觉症状 结束 -->
-
-
-            <!-- 用药情况 -->
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="panel panel-bordered" >
-                        <div class="panel-heading">
-                            <h3 class="panel-title">用药情况</h3>
-                        </div>
-                        <div class="panel-body">
-
                             <div class="row">
-                                <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
-                                    <label class="form-control-label" for="drug_adverse_reaction">药物不良反应:</label>
-                                    <input type="text" class="form-control" id="drug_adverse_reaction" name="medication_situation-item1">
-                                </div>
-                                <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
-                                    <label class="form-control-label">服药依从性:</label>
-                                        <div style="margin-top: 13px;">
-                                            <div class="radio-custom radio-primary" style="display: inline;margin-right: 10px;">
-                                                <input type="radio" id="drugd_compliance_radio1" name="medication_situation-item2" value="规律">
-                                                <label for="drugd_compliance_radio1">规律</label>
-                                            </div>
-                                            <div class="radio-custom radio-primary" style="display:inline">
-                                                <input type="radio" id="drugd_compliance_radio2" name="medication_situation-item2" value="间断">
-                                                <label for="drugd_compliance_radio2">间断</label>
-                                            </div>
-                                            <div class="radio-custom radio-primary" style="display:inline">
-                                                <input type="radio" id="drugd_compliance_radio3" name="medication_situation-item2" value="从不">
-                                                <label for="drugd_compliance_radio3">从不</label>
-                                            </div>
-                                        </div>
-                                </div>
 
-                                <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
-                                    <label class="form-control-label" for="drug_name1">药物名称:</label>
-                                    <input type="text" class="form-control" id="drug_name1" name="medication_situation-item3">
-                                </div>
-                                <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
-                                    <label class="form-control-label" for="drug_usage1">药物用法:</label>
-                                    <input type="text" class="form-control" id="drug_usage1" name="medication_situation-item4">
-                                </div>
-
-                                <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
-                                    <label class="form-control-label" for="drug_name2">药物名称:</label>
-                                    <input type="text" class="form-control" id="drug_name2" name="medication_situation-item5">
-                                </div>
-                                <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
-                                    <label class="form-control-label" for="drug_usage2">药物用法:</label>
-                                    <input type="text" class="form-control" id="drug_usage2" name="medication_situation-item6">
-                                </div>
-
-                                <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
-                                    <label class="form-control-label" for="drug_name3">药物名称:</label>
-                                    <input type="text" class="form-control" id="drug_name3" name="medication_situation-item7">
-                                </div>
-                                <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
-                                    <label class="form-control-label" for="drug_usage3">药物用法:</label>
-                                    <input type="text" class="form-control" id="drug_usage3" name="medication_situation-item8">
-                                </div>
-                            <div class="line">
-                                <div class="form-group form-material col-xs-12 col-md-11 offset-md-1">
-                                    <label class="form-control-label" for="medicationm_guide">用药指导:</label>
-                                    <input type="text" class="form-control" id="medicationm_guide" name="medication_situation-item9">
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 用药情况 结束 -->
-
-            <!-- 中医辩证及干预指导 -->
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="panel panel-bordered" >
-                        <div class="panel-heading">
-                            <h3 class="panel-title">中医辩证及干预指导</h3>
-                        </div>
-                        <div class="panel-body">
-
-                            <div class="line">
-                                <div class="form-group form-material col-xs-12 col-md-11 offset-md-1">
-                                    <label class="form-control-label" for="physiology">生理方面:</label>
-                                    <input type="text" class="form-control" id="physiology" name="tcm_intervention-item1">
-                                </div>
-                            </div>
-                            <div class="line">
-                                <div class="form-group form-material col-xs-12 col-md-11 offset-md-1">
-                                    <label class="form-control-label" for="emotion">情志方面:</label>
-                                    <input type="text" class="form-control" id="emotion" name="tcm_intervention-item2">
-                                </div>
-                            </div>
-                            <div class="line">
-                                <div class="form-group form-material col-xs-12 col-md-11 offset-md-1">
-                                    <label class="form-control-label" for="nutrition">营养方面:</label>
-                                    <input type="text" class="form-control" id="nutrition" name="tcm_intervention-item3">
-                                </div>
-                            </div>
-                            <div class="line">
-                                <div class="form-group form-material col-xs-12 col-md-11 offset-md-1">
-                                    <label class="form-control-label" for="life_style">生活方式方面:</label>
-                                    <input type="text" class="form-control" id="life_style" name="tcm_intervention-item4">
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 中医辩证及干预指导 结束-->
-
-            <!-- 生活方式指导 -->
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="panel panel-bordered" >
-                        <div class="panel-heading">
-                            <h3 class="panel-title">生活方式指导</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div class="col-xs-12 col-md-12">
-                                <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
-                                    <label class="form-control-label">遵医行为:</label>
-                                    <div>
-                                        <div class="radio-custom radio-primary radio-inline">
-                                            <input type="radio" id="compliance_radio1" name="lifeway_intervention-item1" value="良好">
-                                            <label for="compliance_radio1">良好</label>
-                                        </div>
-                                        <div class="radio-custom radio-primary radio-inline">
-                                            <input type="radio" id="compliance_radio2" name="lifeway_intervention-item1" value="一般">
-                                            <label for="compliance_radio2">一般</label>
-                                        </div>
-                                        <div class="radio-custom radio-primary radio-inline">
-                                            <input type="radio" id="compliance_radio3" name="lifeway_intervention-item1" value="差">
-                                            <label for="compliance_radio3">差</label>
-                                        </div>
+                                <div class="col-xs-12 followupshow_list"><h4 id="hostitle"></h4></div>
+                                <div id="gxy_sf">
+                                    <div class="col-xs-12 followupshow_list">
+                                        <label id="present_symptom">自觉症状:</label>
                                     </div>
                                 </div>
+
+                                <div class="col-xs-12 col-md-12 followupshow_list"><hr/></div>
+
+                                <div id="tg_check">
+                                    <div class="col-xs-12 followupshow_list"><h4>体格检查</h4></div>
+                                    <div class="col-xs-6 col-md-3 followupshow_list" id="physical_examination-item1">收缩压(mmHg) : </div>
+                                    <div class="col-xs-6 col-md-3 followupshow_list" id="physical_examination-item2">舒张压(mmHg) : </div>
+                                    <div class="col-xs-6 col-md-3 followupshow_list" id="physical_examination-item3">心率 : </div>
+                                    <div class="col-xs-6 col-md-3 followupshow_list" id="physical_examination-item4">BMI : </div>
+
+                                    <div class="col-xs-12 col-md-6 followupshow_list" id="physical_examination-item5">下肢浮肿 : </div>
+                                    <div class="col-xs-12 col-md-6 followupshow_list" id="physical_examination-item6">眼底 : </div>
+
+                                    <div class="col-xs-12 col-md-12 followupshow_list" id="physical_examination-item7">其他 : </div>
+
+                                    <div class="col-xs-6 col-md-4 followupshow_list" id="supplementary_examination-item1">血糖 : </div>
+                                    <div class="col-xs-6 col-md-4 followupshow_list" id="supplementary_examination-item2">TC : </div>
+                                    <div class="col-xs-6 col-md-4 followupshow_list" id="supplementary_examination-item3">TG : </div>
+
+                                    <div class="col-xs-6 col-md-4 followupshow_list" id="supplementary_examination-item4">LDL-C : </div>
+                                    <div class="col-xs-6 col-md-4 followupshow_list" id="supplementary_examination-item5">HDL-C : </div>
+                                    <div class="col-xs-6 col-md-4 followupshow_list" id="supplementary_examination-item6">尿常规 : </div>
+
+                                    <div class="col-xs-6 col-md-4 followupshow_list" id="supplementary_examination-item7">BUN : </div>
+                                    <div class="col-xs-6 col-md-4 followupshow_list" id="supplementary_examination-item8">Cr : </div>
+                                    <div class="col-xs-6 col-md-4 followupshow_list" id="supplementary_examination-item9">心电图 : </div>
+
+                                    <div class="col-xs-12 col-md-12 followupshow_list" id="supplementary_examination-item10">其他 : </div>
+                                </div>
+
+                                <div class="col-xs-12 col-md-12 followupshow_list"><hr/></div>
+
+                                <div id="yy_qk">
+                                    <div class="col-xs-12 followupshow_list"><h4>用药情况</h4></div>
+
+                                    <div class="col-xs-12 col-md-6 followupshow_list" id="medication_situation-item1">药物不良反应 : </div>
+                                    <div class="col-xs-12 col-md-6 followupshow_list" id="medication_situation-item2">服药依从性 : </div>
+
+                                    <div class="col-xs-12 col-md-6 followupshow_list" id="medication_situation-item3">药物名称 : </div>
+                                    <div class="col-xs-12 col-md-6 followupshow_list" id="medication_situation-item4">药物用法 : </div>
+
+                                    <div class="col-xs-12 col-md-6 followupshow_list" id="medication_situation-item5">药物名称 : </div>
+                                    <div class="col-xs-12 col-md-6 followupshow_list" id="medication_situation-item6">药物用法 : </div>
+
+                                    <div class="col-xs-12 col-md-6 followupshow_list" id="medication_situation-item7">药物名称 : </div>
+                                    <div class="col-xs-12 col-md-6 followupshow_list" id="medication_situation-item8">药物用法 : </div>
+
+                                    <div class="col-xs-12 col-md-12 followupshow_list" id="medication_situation-item9">用药指导 : </div>
+                                </div>
+
+                                <div class="col-xs-12 col-md-12 followupshow_list"><hr/></div>
+
+                                <div id="zz_zd">
+                                    <div class="col-xs-12 followupshow_list"><h4>中医辩证及干预指导</h4></div>
+
+                                    <div class="col-xs-12 col-md-6 followupshow_list" id="tcm_intervention-item1">生理方面 : </div>
+                                    <div class="col-xs-12 col-md-6 followupshow_list" id="tcm_intervention-item2">情志方面 : </div>
+
+                                    <div class="col-xs-12 col-md-6 followupshow_list" id="tcm_intervention-item3">营养方面 : </div>
+                                    <div class="col-xs-12 col-md-6 followupshow_list" id="tcm_intervention-item4">生活方式方面 : </div>
+                                </div>
+
+                                <div class="col-xs-12 col-md-12 followupshow_list"><hr/></div>
+
+                                <div id="zdx">
+                                    <div class="col-xs-12 followupshow_list"><h4>生活方式指导</h4></div>
+
+                                    <div class="col-xs-12 col-md-6 followupshow_list" id="lifeway_intervention-item1">遵医行为 : </div>
+                                    <div class="col-xs-12 col-md-6 followupshow_list" id="lifeway_intervention-item2">心理调整 : </div>
+
+                                    <div class="col-xs-6 col-md-4 followupshow_list" id="lifeway_intervention-item3">日吸烟量(支) : </div>
+                                    <div class="col-xs-6 col-md-4 followupshow_list" id="lifeway_intervention-item4">日饮酒量(两) : </div>
+                                    <div class="col-xs-6 col-md-4 followupshow_list" id="lifeway_intervention-item5">盐摄入量(两) : </div>
+
+                                    <div class="col-xs-6 col-md-4 followupshow_list" id="lifeway_intervention-item6">主食(两/天) : </div>
+                                    <div class="col-xs-6 col-md-4 followupshow_list" id="lifeway_intervention-item7">运动情况 (分钟/次) : </div>
+                                    <div class="col-xs-6 col-md-4 followupshow_list" id="lifeway_intervention-item8">运动情况 (周/次) : </div>
+                                </div>
+
+                                <div class="col-xs-12 col-md-12 followupshow_list"><hr/></div>
+
+                                <style>
+                                .followupshow_list {
+                                    margin-bottom: 10px;
+                                }
+
+                                </style>
+
+                            </div>
+                            <div>
                                 <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
-                                    <label class="form-control-label">心理调整:</label>
-                                    <div>
-                                        <div class="radio-custom radio-primary radio-inline">
-                                            <input type="radio" id="emotion_radio1" name="lifeway_intervention-item2" value="良好">
-                                            <label for="emotion_radio1">良好</label>
-                                        </div>
-                                        <div class="radio-custom radio-primary radio-inline">
-                                            <input type="radio" id="emotion_radio2" name="lifeway_intervention-item2" value="一般">
-                                            <label for="emotion_radio2">一般</label>
-                                        </div>
-                                        <div class="radio-custom radio-primary radio-inline">
-                                            <input type="radio" id="emotion_radio3" name="lifeway_intervention-item2" value="差">
-                                            <label for="emotion_radio3">差</label>
-                                        </div>
+                                    <label class="form-control-label" for="time" id="input_situation-item1">下次随访时间 : </label>
+                                </div>
+                                <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
+                                    <label class="form-control-label" for="follow_method" id="input_situation-item2">随访方式 : </label>
+                                </div>
+                                <div class="line">
+                                    <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
+                                        随访医生 : <span id="input_situation-item3" name="input_situation-item3"> </span>
+                                    </div>
+                                    <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
+                                        录入人 : <span id="input_situation-item4" name="input_situation-item4"> </span>
+                                    </div>
+                                    <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
+                                        录入机构 : <span id="input_situation-item5" name="input_situation-item5"> </span>
                                     </div>
                                 </div>
                             </div>
-                            <div>
-                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
-                                    <label class="form-control-label" for="smoking">日吸烟量(支)*:</label>
-                                    <input type="text" class="form-control" id="smoking" name="lifeway_intervention-item3">
-                                </div>
-                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
-                                    <label class="form-control-label" for="drinking">日饮酒量(两):</label>
-                                    <input type="text" class="form-control" id="drinking" name="lifeway_intervention-item4">
-                                </div>
-                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
-                                    <label class="form-control-label" for="salt_intake">盐摄入量(两):</label>
-                                    <input type="text" class="form-control" id="salt_intake" name="lifeway_intervention-item5">
-                                </div>
-                            </div>
-                            <div>
-                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
-                                    <label class="form-control-label" for="staple_food">主食(两/天):</label>
-                                    <input type="text" class="form-control" id="staple_food" name="lifeway_intervention-item6">
-                                </div>
-
-                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
-                                    <label class="form-control-label" for="sports_minute_time">运动情况 (分钟/次):</label>
-                                    <input type="text" class="form-control" id="sports_minute_time" name="lifeway_intervention-item7">
-                                </div>
-                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
-                                    <label class="form-control-label" for="sports_week_time">运动情况 (周/次):</label>
-                                    <input type="text" class="form-control" id="sports_week_time" name="lifeway_intervention-item8">
-                                </div>
-                            </div>
-                            <div class="line">
-                                <div class="form-group form-material col-xs-12 col-md-11 offset-md-1">
-                                    <label class="form-control-label" for="intervene_guide">干预指导:</label>
-                                    <input type="text" class="form-control" id="intervene_guide" name="lifeway_intervention-item9">
-                                </div>
-                            </div>
-
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
-            <!-- 生活方式指导 结束 -->
-
-            <!-- 录入情况 -->
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="panel panel-bordered" >
-                        <div class="panel-heading">
-                            <h3 class="panel-title">录入情况</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div>
-                                <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
-                                    <label class="form-control-label" for="time">下次随访时间:</label>
-                                    <input type="text" class="form-control" id="time" name="input_situation-item1">
-                                </div>
-                                <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
-                                    <label class="form-control-label" for="follow_method">随访方式</label>
-                                    <div class="wrapped">
-                                        <select class="js-example-tokenizer form-control select2-hidden-accessible" id="follow_method" name="input_situation-item2" data-plugin="select2" data-tags="true" data-maximum-selection-length="2">
-                                            <option>电话随访</option>
-                                            <option>门诊随访</option>
-                                            <option>家庭随访</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="line">
-                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
-                                    随访医生:<span id="doctor" name="input_situation-item3"> </span>
-                                </div>
-                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
-                                    录入人:<span id="user" name="input_situation-item4"> </span>
-                                </div>
-                                <div class="form-group form-material col-xs-12 col-md-3 offset-md-1">
-                                    录入机构:<span id="hospital" name="input_situation-item5"> </span>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 录入情况 结束 -->
-        </form>
+        </div>
     </div>
     <script>
     $(function() {
@@ -352,19 +155,27 @@
             console.log(data);
             console.log(data.follow_up_type.name);
             $("#hostitle").text(data.follow_up_type.name);
-            if(data.follow_up_type.id === 1) {
-                for (var i in data.hypertension_follow.present_symptom) {
-                    $("#present_symptom").append(data.hypertension_follow.present_symptom[i]+"  ");
-                }
-                for (var i in data.hypertension_follow.physical_examination) {
-                    console.log($("#physical_examination-"+i))
-                    $("#physical_examination-"+i).append(data.hypertension_follow.physical_examination[i]);
-                }
-                for (var i in data.hypertension_follow.supplementary_examination) {
-                    $("#supplementary_examination-"+i).append(data.hypertension_follow.supplementary_examination[i]+"  ");
-                }
+            for (var i in data.hypertension_follow.present_symptom) {
+                $("#present_symptom").append('<span class="tag tag-danger">'+data.hypertension_follow.present_symptom[i]+"</span>  ");
             }
-
+            for (var i in data.hypertension_follow.physical_examination) {
+                $("#physical_examination-"+i).append(data.hypertension_follow.physical_examination[i]);
+            }
+            for (var i in data.hypertension_follow.supplementary_examination) {
+                $("#supplementary_examination-"+i).append(data.hypertension_follow.supplementary_examination[i]);
+            }
+            for (var i in data.hypertension_follow.medication_situation) {
+                $("#medication_situation-"+i).append(data.hypertension_follow.medication_situation[i]);
+            }
+            for (var i in data.hypertension_follow.tcm_intervention) {
+                $("#tcm_intervention-"+i).append(data.hypertension_follow.tcm_intervention[i]);
+            }
+            for (var i in data.hypertension_follow.lifeway_intervention) {
+                $("#lifeway_intervention-"+i).append(data.hypertension_follow.lifeway_intervention[i]);
+            }
+            for (var i in data.hypertension_follow.input_situation) {
+                $("#input_situation-"+i).append(data.hypertension_follow.input_situation[i]);
+            }
         });
     });
     </script>
