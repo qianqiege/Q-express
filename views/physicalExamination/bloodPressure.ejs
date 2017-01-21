@@ -128,59 +128,75 @@
         p_min = (~~$("#min_BloodPressure").val() / total * 100)
         p1_min = (~~$("#min_BloodPressure").val() / total * 94)
         p_max = (~~$("#max_BloodPressure").val() / total * 100)
-        if (p_max >=  ~~(75 / total * 100) && p_max <= 42){
-            status = "正常"
-        }
-        else if (p_max < ~~(75 / total * 100)){
-            status = "偏低"
-        }
-        else {
-            status = "偏高"
-        }
-
-        bootbox.confirm({
-            title: "确认提交",
-            message: thebar+"请核对提交数据：<br/>舒张压：" + $("#min_BloodPressure").val() + "<br/>收缩压：" + $("#max_BloodPressure").val()+"<br/> 血压 : "+status,
-            buttons: {
-                confirm: {
-                    label: '提交',
-                    className: 'btn-success'
+        doAjax(window.baseUrl+'/standard','get',{},function(data,status){
+            var pressureMinMin = data.min_blood_pressure_low;
+            var pressureMinMax = data.min_blood_pressure_high;
+            var pressureMaxMin = data.max_blood_pressure_low;
+            var pressureMaxMax = data.max_blood_pressure_high;
+            if ($("#min_BloodPressure").val()<pressureMinMin){
+                status1 = "偏低"
+            }
+            else if ($("#min_BloodPressure").val()<pressureMinMax ||$("#min_BloodPressure").val()==pressureMinMax ){
+                status1 = "正常"
+            }
+            else {
+                status1 = "偏高"
+            }
+            if ($("#max_BloodPressure").val()<pressureMaxMin){
+                status2 = "偏低"
+            }
+            else if ($("#max_BloodPressure").val()<pressureMaxMax ||$("#max_BloodPressure").val()==pressureMaxMax ){
+                status2 = "正常"
+            }
+            else {
+                status2 = "偏高"
+            }
+            bootbox.confirm({
+                title: "确认提交",
+                message: thebar+"请核对提交数据：<br/>舒张压：" + $("#min_BloodPressure").val() +"&nbsp;"+"&nbsp;"+"<span id='minP'>"+status1+"</span>"+"<br/>收缩压：" + $("#max_BloodPressure").val()+"&nbsp;"+"&nbsp;"+"<span id = 'maxP'>"+status2+"</span>"+"<br/>",
+                buttons: {
+                    confirm: {
+                        label: '提交',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: '取消',
+                        className: 'btn-normal'
+                    }
                 },
-                cancel: {
-                    label: '取消',
-                    className: 'btn-normal'
-                }
-            },
-            callback : function(isConfirm){
-                if (isConfirm) {
-                    doAjax(window.baseUrl + "/examination_input/blood_pressure", "post",
-                        {"id_number": $("#id_number").val(), "max_BloodPressure": $("#max_BloodPressure").val(), "min_BloodPressure": $("#min_BloodPressure").val()},
-                        function(data, status) {
-                            if (status && data) {
-                                swal({
-                                    title: data.info || "提交成功",
-                                    type: "success"
-                                },
-                                function() {
-                                    $("input:radio[id^='sex']").prop("checked", false);
-                                    $("input").val("");
-                                    $("#submitResult").prop("disabled", true);
-                                });
-                            } else {
-                                swal(JSON.parse(data.reponseText).error || "提交失败", "", "error");
+                callback : function(isConfirm){
+                    if (isConfirm) {
+                        doAjax(window.baseUrl + "/examination_input/blood_pressure", "post",
+                            {"id_number": $("#id_number").val(), "max_BloodPressure": $("#max_BloodPressure").val(), "min_BloodPressure": $("#min_BloodPressure").val()},
+                            function(data, status) {
+                                if (status && data) {
+                                    swal({
+                                        title: data.info || "提交成功",
+                                        type: "success"
+                                    },
+                                    function() {
+                                        $("input:radio[id^='sex']").prop("checked", false);
+                                        $("input").val("");
+                                        $("#submitResult").prop("disabled", true);
+                                    });
+                                } else {
+                                    swal(JSON.parse(data.reponseText).error || "提交失败", "", "error");
+                                }
                             }
-                        }
-                    );
-                }
-            },
+                        );
+                    }
+                },
+            });
+            setTimeout(function(){
+                if (status1 != "正常"){$("#minP").css('color','red')}
+                if (status2 != "正常"){$("#maxP").css('color','red')}
+                $("div.progress .progress-bar:first").width((75 / total * 100) + "%");
+                $("div.progress .progress-bar:eq(1)").width((50 / total * 100) + "%");
+                $("div.progress .progress-bar:last").width((((total - 125) /total) * 100) + "%");
+                $("#theshowblock").css("left",(p1_min +3.5) + "%");
+                $("#theshowblock").width((p_max - p_min - 2) + "%");
+            }, 500);
         });
-        setTimeout(function(){
-            $("div.progress .progress-bar:first").width((75 / total * 100) + "%");
-            $("div.progress .progress-bar:eq(1)").width((50 / total * 100) + "%");
-            $("div.progress .progress-bar:last").width((((total - 125) /total) * 100) + "%");
-            $("#theshowblock").css("left",(p1_min +3.5) + "%");
-            $("#theshowblock").width((p_max - p_min - 2) + "%");
-        }, 500);
 
     };
 </script>
