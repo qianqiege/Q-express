@@ -25,43 +25,43 @@
                                 <label>自觉症状*:</label>
                                 <div>
                                     <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                        <input type="checkbox" id="symptom_select1" name="present_symptom-item1" value="头痛头晕">
+                                        <input type="checkbox" id="symptom_select1" name="present_symptom" value="头痛头晕">
                                         <label for="symptom_select1">头痛头晕</label>
                                     </div>
                                     <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                        <input type="checkbox" id="symptom_select2" name="present_symptom-item2" value="心悸胸闷">
+                                        <input type="checkbox" id="symptom_select2" name="present_symptom" value="心悸胸闷">
                                         <label for="symptom_select2">心悸胸闷</label>
                                     </div>
                                     <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                        <input type="checkbox" id="symptom_select3" name="present_symptom-item3" value="呼吸困难">
+                                        <input type="checkbox" id="symptom_select3" name="present_symptom" value="呼吸困难">
                                         <label for="symptom_select3">呼吸困难</label>
                                     </div>
                                     <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                        <input type="checkbox" id="symptom_select4" name="present_symptom-item4" value="多饮">
+                                        <input type="checkbox" id="symptom_select4" name="present_symptom" value="多饮">
                                         <label for="symptom_select4">多饮</label>
                                     </div>
                                     <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                        <input type="checkbox" id="symptom_select5" name="present_symptom-item5" value="多食">
+                                        <input type="checkbox" id="symptom_select5" name="present_symptom" value="多食">
                                         <label for="symptom_select5">多食</label>
                                     </div>
                                     <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                        <input type="checkbox" id="symptom_select6" name="present_symptom-item6" value="多尿">
+                                        <input type="checkbox" id="symptom_select6" name="present_symptom" value="多尿">
                                         <label for="symptom_select6">多尿</label>
                                     </div>
                                     <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                        <input type="checkbox" id="symptom_select7" name="present_symptom-item7" value="消瘦">
+                                        <input type="checkbox" id="symptom_select7" name="present_symptom" value="消瘦">
                                         <label for="symptom_select7">消瘦</label>
                                     </div>
                                     <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                        <input type="checkbox" id="symptom_select8" name="present_symptom-item8" value="视力模糊">
+                                        <input type="checkbox" id="symptom_select8" name="present_symptom" value="视力模糊">
                                         <label for="symptom_select8">视力模糊</label>
                                     </div>
                                     <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                        <input type="checkbox" id="symptom_select9" name="present_symptom-item9" value="手脚麻木">
+                                        <input type="checkbox" id="symptom_select9" name="present_symptom" value="手脚麻木">
                                         <label for="symptom_select9">手脚麻木</label>
                                     </div>
                                     <div class="checkbox-custom checkbox-primary checkbox-inline">
-                                        <input type="checkbox" id="symptom_select10" name="present_symptom-item10" value="其他">
+                                        <input type="checkbox" id="symptom_select10" name="present_symptom" value="其他">
                                         <label for="symptom_select10">其他</label>
                                     </div>
                                 </div>
@@ -544,6 +544,19 @@
         );
         return 0;
     };
+
+    $(function() {
+        doAjax(window.baseUrl + "/users/current_user", "get", {}, function(data, status) {
+            $("#doctor").text(data.name);
+            $("input[name='input_situation-item3']").val(data.name);
+            $("#user").text(data.name);
+            $("input[name='input_situation-item4']").val(data.name);
+        });
+        doAjax(window.baseUrl + "/hospital/current_hospital", "get", {}, function(data, status) {
+            $("#hospital").text(data.name);
+            $("input[name='input_situation-item5']").val(data.name);
+        });
+    });
     </script>
 <% if (typeof pjax === "undefined") { %>
     <%- include ../footer %>

@@ -20,7 +20,7 @@
         var ret = {};
 
         // 文本类型
-        this.find('input[type=text], input[type=password], textarea, select:not([multiple])').each(function () {
+        this.find('input[type=text], input[type=password], input[type=hidden], textarea, select:not([multiple])').each(function () {
             var name = $(this).prop('name');
             ret[name] = $(this).val();
         });
@@ -73,7 +73,7 @@
      */
     $.fn.setValue = function (val) {
         // 文本类型
-        this.find('input[type=text], input[type=password], textarea, select:not([multiple])').each(function () {
+        this.find('input[type=text], input[type=password], input[type=hidden], textarea, select:not([multiple])').each(function () {
             var name = $(this).prop('name');
             if (val[name] && typeof(val[name]) == 'string') {
                 $(this).val(val[name]);
