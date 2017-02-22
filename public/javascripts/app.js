@@ -1,4 +1,4 @@
-window.baseUrl = "http://192.168.1.229:3000/api/v1"
+window.baseUrl = "http://192.168.1.230:2000/api/v1"
 /**
 * Ajax 封装
 *
