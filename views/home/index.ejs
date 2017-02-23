@@ -1,199 +1,208 @@
 <% if (typeof pjax === "undefined") { %>
     <%- include ../header %>
-<% } else { %>
-    <title><%= title %></title>
-<% } %>
-    <div class="page-header">
-        <h1 class="page-title"><%= title %></h1>
-        <ol class="breadcrumb">
-        </ol>
-    </div>
-    <div class="page-content">
-        <div class="panel">
-            <div class="panel-body container-fluid">
-                <div class="row row-lg">
-                    <div style="margin-top: 10px;">
-                        <div class="row col-md-8">
-                            <div class="col-md-6">
-                                <div class="card card-inverse card-success">
-                                    <div class="card-block">
-                                        <i class="fa fa-bell-o fa-4x" aria-hidden="true" style="font-size: 60px;display: inline-block;margin-right: 10px;color: white;"></i>
-                                        <div style="display: inline-block;">
-                                            <h4 class="card-title">随访预约通知</h4>
-                                            <p class="card-text"><h3 style="color:white">25</h3></p>
-                                        </div>
+        <% } else { %>
+        <title><%= title %></title>
+            <% } %>
+                <link rel="stylesheet" href="/stylesheets/titles.css">
+                <div class="page-header">
+                    <h1 class="page-title">
+                        <%= title %>
+                    </h1>
+                    <ol class="breadcrumb">
+                    </ol>
+                </div>
+                <div class="page-content">
+                    <div class="panel">
+                        <div class="panel-body">
+                            <div class="tile-container">
+                                <div class="tile bg-red tile-wide fg-white" data-role="tile">
+                                    <a href="/exceptionData" class="tile-content iconic fg-white" data-plugin="customPjax" data-custom-pjax-render-to="#page">
+                                        <i class="icon fa-exclamation-triangle" aria-hidden="true"></i>
+                                        <span class="tile-badge bg-darkRed">5</span>
+                                        <span class="tile-label">待处理异常</span>
+                                    </a>
+                                </div>
+                                <div class="tile tile-wide bg-green fg-white" data-role="tile">
+                                    <div class="tile-content iconic">
+                                        <i class="icon fa-bell-o" aria-hidden="true"></i>
+                                        <span class="tile-badge bg-darkRed">5</span>
+                                        <span class="tile-label">随访预约通知</span>
+                                    </div>
+                                </div>
+                                <div class="tile tile-wide bg-violet fg-white" data-role="tile">
+                                    <div class="tile-content iconic">
+                                        <i class="icon fa-calendar" aria-hidden="true"></i>
+                                        <span class="tile-badge bg-darkRed">5</span>
+                                        <span class="tile-label">今日门诊预约</span>
+                                    </div>
+                                </div>
+                                <div class="tile-wide bg-green fg-white" data-role="tile">
+                                    <div class="tile-content iconic">
+                                        <i class="icon fa-child" aria-hidden="true"></i>
+                                        <span class="tile-badge bg-darkRed">5</span>
+                                        <span class="tile-label">转诊通知</span>
+                                    </div>
+                                </div>
+                                <div class="tile bg-orange fg-white" data-role="tile">
+                                    <div class="tile-content iconic">
+                                        <i class="icon fa-users" aria-hidden="true"></i>
+                                        <span class="tile-label">会员管理</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="card card-inverse card-danger">
-                                    <div class="card-block">
-                                        <i class="fa fa-comments-o fa-4x" aria-hidden="true" style="font-size: 60px;display: inline-block;margin-right: 10px;color: white;"></i>
-                                        <div style="display: inline-block;">
-                                            <h4 class="card-title">待处理异常</h4>
-                                            <p class="card-text"><h3 style="color:white">16</h3></p>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="panel panel-primary panel-line">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title"><i class="icon fa-archive" aria-hidden="true"></i> 档案室</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="tile-container">
+                                                <div class="tile bg-darkBlue fg-white" data-role="tile">
+                                                    <a href="/newRecord" class="tile-content iconic fg-white" data-plugin="customPjax" data-custom-pjax-render-to="#page">
+                                                            <i class="icon fa-user-plus" aria-hidden="true"></i>
+                                                            <span class="tile-label">档案新建</span>
+                                                        </div>
+                                                    </a>
+                                                <div class="tile bg-darkCyan  fg-white" data-role="tile">
+                                                    <a href="/patientList" class="tile-content iconic fg-white" data-plugin="customPjax" data-custom-pjax-render-to="#page">
+                                                        <i class="icon fa-users" aria-hidden="true"></i>
+                                                        <span class="tile-label">客户列表</span>
+                                                    </a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card card-inverse bg-orange-600">
-                                    <div class="card-block">
-                                        <i class="fa fa-calendar fa-4x" aria-hidden="true" style="font-size: 60px;display: inline-block;margin-right: 10px;color: white;"></i>
-                                        <div style="display: inline-block;">
-                                            <h4 class="card-title">今日门诊预约</h4>
-                                            <p class="card-text"><h3 style="color:white">15</h3></p>
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="panel panel-primary panel-line">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title"><i class="icon fa-archive" aria-hidden="true"></i> 方案室</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="tile-container">
+                                                <div class="tile bg-teal fg-white" data-role="tile">
+                                                    <a href="/spine" class="tile-content iconic fg-white" data-plugin="customPjax" data-custom-pjax-render-to="#page">
+                                                            <i class="icon fa-send-o" aria-hidden="true"></i>
+                                                            <span class="tile-label">筑脊开方</span>
+                                                        </div>
+                                                    </a>
+                                                <div class="tile bg-cyan  fg-white" data-role="tile">
+                                                    <a href="/diseaseLocation" class="tile-content iconic fg-white" data-plugin="customPjax" data-custom-pjax-render-to="#page">
+                                                        <i class="icon fa-map-marker" aria-hidden="true"></i>
+                                                        <span class="tile-label">疾病谱定位</span>
+                                                    </a>
+                                                </div>
+                                                <div class="tile bg-darkBlue  fg-white" data-role="tile">
+                                                    <a href="/healthManagement" class="tile-content iconic fg-white" data-plugin="customPjax" data-custom-pjax-render-to="#page">
+                                                        <i class="icon fa-heartbeat" aria-hidden="true"></i>
+                                                        <span class="tile-label">健康管理</span>
+                                                    </a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card card-inverse bg-blue-grey-600">
-                                    <div class="card-block">
-                                        <i class="fa fa-envelope fa-4x" aria-hidden="true" style="font-size: 60px;display: inline-block;margin-right: 10px;color: white;"></i>
-                                        <div style="display: inline-block;">
-                                            <h4 class="card-title">未读信息</h4>
-                                            <p class="card-text"><h3 style="color:white">32</h3></p>
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="panel panel-primary panel-line">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title"><i class="icon fa-street-view" aria-hidden="true"></i> 体检室</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="tile-container">
+                                                <div class="tile bg-darkBlue fg-white" data-role="tile">
+                                                    <a href="/bloodPressure" class="tile-content iconic fg-white" data-plugin="customPjax" data-custom-pjax-render-to="#page">
+                                                        <i class="icon fa-edit" aria-hidden="true"></i>
+                                                        <span class="tile-label">血压数据录入</span>
+                                                    </a>
+                                                </div>
+                                                <div class="tile bg-darkCyan  fg-white" data-role="tile">
+                                                    <a href="/bloodSugar" class="tile-content iconic fg-white" data-plugin="customPjax" data-custom-pjax-render-to="#page">
+                                                        <i class="icon fa-edit" aria-hidden="true"></i>
+                                                        <span class="tile-label">血糖数据录入</span>
+                                                    </a>
+                                                </div>
+                                                <div class="tile bg-darkTeal fg-white" data-role="tile">
+                                                    <a href="/temperature" class="tile-content iconic fg-white" data-plugin="customPjax" data-custom-pjax-render-to="#page">
+                                                        <i class="icon fa-edit" aria-hidden="true"></i>
+                                                        <span class="tile-label">体温数据录入</span>
+                                                    </a>
+                                                </div>
+                                                <div class="tile bg-cobalt fg-white" data-role="tile">
+                                                    <a href="/weight" class="tile-content iconic fg-white" data-plugin="customPjax" data-custom-pjax-render-to="#page">
+                                                        <i class="icon fa-edit" aria-hidden="true"></i>
+                                                        <span class="tile-label">体重数据录入</span>
+                                                    </a>
+                                                </div>
+                                                <div class="tile bg-cyan fg-white" data-role="tile">
+                                                    <a href="/heartRate" class="tile-content iconic fg-white" data-plugin="customPjax" data-custom-pjax-render-to="#page">
+                                                        <i class="icon fa-edit" aria-hidden="true"></i>
+                                                        <span class="tile-label">心率数据录入</span>
+                                                    </a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4" style="overflow-y: scroll;max-height: 290px;">
-                            <div class="card card-inverse card-success" style="">
-                                <div class="card-block">
-                                    <h4 class="card-title">血压数据报警</h4>
-                                    <p class="card-text">低血压
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="card card-inverse card-success" style="">
-                                <div class="card-block">
-                                    <h4 class="card-title">血压数据报警</h4>
-                                    <p class="card-text">低血压
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="card card-inverse card-success" style="">
-                                <div class="card-block">
-                                    <h4 class="card-title">血糖数据报警</h4>
-                                    <p class="card-text">低血糖
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="card card-inverse card-success" style="">
-                                <div class="card-block">
-                                    <h4 class="card-title">血压数据报警</h4>
-                                    <p class="card-text">低血压
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="card card-inverse card-success" style="">
-                                <div class="card-block">
-                                    <h4 class="card-title">血压数据报警</h4>
-                                    <p class="card-text">低血压
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 col-xs-12">
-                        <h3>最新客户异常信息</h3>
-                        <div class="col-md-12 col-xs-12">
-                            <div class="col-md-6 col-xs-12">
-                                <table class="table table1">
-                                    <thead>
-                                        <tr>
-                                            <th>姓名</th>
-                                            <th>异常状态</th>
-                                            <th>操作</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td colspan="3"><i class="fa fa-refresh fa-spin fa-3x fa-fw"></i> 正在加载中</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="col-md-6 col-xs-12">
-                                <table class="table table2">
-                                    <thead>
-                                        <tr>
-                                            <th>姓名</th>
-                                            <th>异常状态</th>
-                                            <th>操作</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td colspan="3"><i class="fa fa-refresh fa-spin fa-3x fa-fw"></i> 正在加载中</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="paginationDiv" id="paginationDiv" style="float: right;"></div>
                     </div>
                 </div>
-            </div>
-
-        </div>
-    </div>
-<script>
-    var template = '<tr>\
+                <script>
+                    var template =
+                        '<tr>\
         <td>NNAME</td>\
         <td>RREASON</td>\
         <td><a class="btn btn-primary btn-block card-link m-r-5" href="healthDetection?id=IID" role="button" style="text-decoration: none;">处理异常</a></td>\
     </tr>';
-    var cbFunction = function(data, status){
-        $(".table1 tr:eq(1)").remove();
-        $(".table2 tr:eq(1)").remove();
-        $(".table1 tbody").html('');
-        $(".table2 tbody").html('');
-        var count = 0;
-        for (var i in data.data) {
-            count++;
-            adata = data.data[i];
-            name = adata["patient"]["name"];
-            reason = adata.test_item;
-            id = adata.patient.id;
-            t_template = template.replace("NNAME", name)
+                    var cbFunction = function (data, status) {
+                        $(".table1 tr:eq(1)").remove();
+                        $(".table2 tr:eq(1)").remove();
+                        $(".table1 tbody").html('');
+                        $(".table2 tbody").html('');
+                        var count = 0;
+                        for (var i in data.data) {
+                            count++;
+                            adata = data.data[i];
+                            name = adata["patient"]["name"];
+                            reason = adata.test_item;
+                            id = adata.patient.id;
+                            t_template = template.replace("NNAME", name)
                                 .replace("RREASON", reason)
                                 .replace("IID", id);
-            if (count > 5){
-                $(".table2 tbody").append(t_template);
-            } else {
-                $(".table1 tbody").append(t_template);
-            }
-        };
-        customPjax(".table1 .card-link", "#page");
-        customPjax(".table2 .card-link", "#page");
-    };
-    var paginationDiv = $("#paginationDiv");
-    if (paginationDiv.pagination()) {
-        paginationDiv.pagination('destroy');
-    }
-    paginationDiv.pagination({
-        pageSize: 10,
-        loadFirstPage: true,
-        remote: {
-            url: window.baseUrl + "/exception/data",
-            beforeSend: function (XHR) {
-                XHR.setRequestHeader('access-authorization', $.cookie('access_token'));
-            },
-            success: cbFunction,
-            params: {},
-            pageParams: function(data) {
-                return {
-                    'page': data.pageIndex + 1,
-                    'per_page': data.pageSize
-                };
-            },
-            totalName: 'meta.total'
-        }
-    });
-</script>
-<% if (typeof pjax === "undefined") { %>
-    <%- include ../footer %>
-<% } %>
+                            if (count > 5) {
+                                $(".table2 tbody").append(t_template);
+                            } else {
+                                $(".table1 tbody").append(t_template);
+                            }
+                        };
+                        customPjax(".table1 .card-link", "#page");
+                        customPjax(".table2 .card-link", "#page");
+                    };
+                    var paginationDiv = $("#paginationDiv");
+                    if (paginationDiv.pagination()) {
+                        paginationDiv.pagination('destroy');
+                    }
+                    paginationDiv.pagination({
+                        pageSize: 10,
+                        loadFirstPage: true,
+                        remote: {
+                            url: window.baseUrl + "/exception/data",
+                            beforeSend: function (XHR) {
+                                XHR.setRequestHeader('access-authorization', $.cookie('access_token'));
+                            },
+                            success: cbFunction,
+                            params: {},
+                            pageParams: function (data) {
+                                return {
+                                    'page': data.pageIndex + 1,
+                                    'per_page': data.pageSize
+                                };
+                            },
+                            totalName: 'meta.total'
+                        }
+                    });
+                </script>
+                <% if (typeof pjax === "undefined") { %>
+                    <%- include ../footer %>
+                        <% } %>
