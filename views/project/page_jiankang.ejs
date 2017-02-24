@@ -15,7 +15,7 @@
         <div class="page-content mainarea">
             <div class="panel needidAABBCCDD">
                 <div class="panel-body">
-                    <div id="print-this">
+                    <div class="print-this">
                         <div id="head">
                             <img id="table-logo" src="/images/logo-blue.png"/>
                             <h4 class="vertical-align-bottom pull-xs-right">编号: <span class="table_id"></span> </h4>
@@ -84,7 +84,7 @@
                     </div>
                 </div>
                 <div class="panel-footer">
-                    <a class="btn btn-primary btn-round waves-effect pull-xs-right" href="javascript:void(0)" onclick='$(".needidAABBCCDD #print-this").printArea()'>
+                    <a class="btn btn-primary btn-round waves-effect pull-xs-right" href="javascript:void(0)" onclick='$(".needidAABBCCDD .print-this").printArea()'>
                         <i class="icon wb-print" aria-hidden="true"></i>
                         <span class="hidden-sm-down">打印该方案</span>
                     </a>
@@ -127,7 +127,7 @@ $(function() {
                 $("."+id+" .rate_yy").text(data.health_manage_recipes[i].nutrition) // 营养
                 $("."+id+" .rate_shfs").text(data.health_manage_recipes[i].life_style)  // 生活方式
                 $("."+id+" .docter_name").text(data.health_manage_recipes[i].doctor_name)
-                $("."+id+" .issue_fa").text(data.health_manage_recipes[i].detail)
+                
                 $("."+id+" .date").text(new Date(data.created_at).Format("yyyy-MM-dd"))
                 $("."+id+" .table_id").text(uid)
                 $("."+id+" .name").text(data.patient.name)
@@ -136,6 +136,15 @@ $(function() {
                 $("."+id+" .marriage").text(data.patient.marriage)
                 $("."+id+" .country").text(data.patient.nation)
                 $("."+id+" .contact").text(data.patient.phone)
+                var detail = JSON.parse(data.health_manage_recipes[i].detail);
+                var detail_table = "<table class='table table-bordered table-condensed'><thead><tr><th>产品名</th><th>用法</th><th>数量</th></tr></thead><tbody>"
+                i = detail.length
+                while (i--){
+                    detail_table += "<tr><th>"+detail[i]["产品名"]+"</th><th>"+detail[i]["用法"]+"</th><th>"+detail[i]["数量"]+"</th></tr>"
+                }
+                detail_table += "</tbody></table>"
+                console.log(detail_table)
+                $("."+id+" .issue_fa").html(detail_table)
             }
         } else {
             swal({title: "id 错误", type: "error"}, function() {

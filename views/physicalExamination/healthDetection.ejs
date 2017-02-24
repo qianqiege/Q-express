@@ -63,8 +63,8 @@
                                             <thead>
                                                 <tr>
                                                     <th>监测日期</th>
-                                                    <th>餐前血糖</th>
-                                                    <th>餐后血糖</th>
+                                                    <th>血糖值</th>
+                                                    <th>测量类型</th>
                                                     <th>是否异常</th>
                                                 </tr>
                                             </thead>
@@ -224,18 +224,28 @@ $(function(){
     }
 
     var bSFunction = function(data,status){
-        var before_blood_glucose = [];
-        var after_blood_glucose = [];
-        var blood_glucose_date = [];
         var data = data["data"];
         $("#blood_sugar table tbody").html("");
         for (var k = 0; k < data.length; k++) {
-            var tr = [data[k].datetime, data[k].before_blood_glucose, data[k].after_blood_glucose];
-            before_blood_glucose.push(data[k]['before_blood_glucose']);
-            after_blood_glucose.push(data[k]['after_blood_glucose']);
+            var value = [];
+            var item_type = [];
+            var blood_glucose_date = [];
+            value.push(data[k]['value']);
+            if (data[k].item_type === 1) {
+                data[k].item_type = '餐前血糖'
+            } else if (data[k].item_type === 2){
+                data[k].item_type = '餐后血糖'
+            } else if (data[k].item_type === 3){
+                data[k].item_type ='睡前血糖';
+            } else if (data[k].item_type === 4){
+                data[k].item_type ='睡后血糖';
+            }else {
+                data[k].item_type = '';
+            }
+            var tr = [data[k].datetime, data[k].value, data[k].item_type];
             blood_glucose_date.push(data[k]['datetime']);
-            tr.push(data[k].status1 + '/' + data[k].status2);
-            if ((data[k].status1 === '正常') && (data[k].status2 === '正常')) {
+            tr.push(data[k].status1);
+            if (data[k].status1 === '正常') {
                 $("#blood_glucoses").append($(createTr(tr)));
             } else {
                 $("#blood_glucoses").append($(createErrTr(tr)));
@@ -244,7 +254,6 @@ $(function(){
     };
 
     var bSEchartFunction = function(data,status){
-        console.log(data);
         var before_blood_glucose = [];
         var after_blood_glucose = [];
         var blood_glucose_date = [];
@@ -255,7 +264,6 @@ $(function(){
             after_blood_glucose.push(data[data.length - 1 - k]['after_blood_glucose']);
             blood_glucose_date.push(data[data.length - 1 - k]['datetime']);
         }
-        console.log(before_blood_glucose);
         var chart_data = {
             date: blood_glucose_date,
             series: [
@@ -428,7 +436,7 @@ $(function(){
             date: heart_rates_date,
             series: [
                 {
-                    name:'体重',
+                    name:'心率',
                     type:'line',
                     data:heart_rates_value,
                 }]
