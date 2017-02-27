@@ -26,6 +26,14 @@ router.get('/bloodPressure', function(req, res, next) {
     res.render('physicalExamination/bloodPressure', {title: "血压监测", pjax: req.get('X-PJAX')});
 });
 
+router.get('/unine', function(req, res, next) {
+    res.render('physicalExamination/unine', {title: "尿酸监测", pjax: req.get('X-PJAX')});
+});
+
+router.get('/blood_fat', function(req, res, next) {
+    res.render('physicalExamination/blood_fat', {title: "血脂监测", pjax: req.get('X-PJAX')});
+});
+
 router.get('/bloodSugar', function(req, res, next) {
     res.render('physicalExamination/bloodSugar', {title: "血糖监测", pjax: req.get('X-PJAX')});
 });
@@ -120,6 +128,10 @@ router.get('/createIDCard', function(req, res, next) {
 
 router.get('/adminIndex', function(req, res, next) {
     res.render('home/adminIndex', {title: "管理首页", pjax: req.get('X-PJAX')});
+});
+
+router.get('/proFile', function(req, res, next) {
+    res.render('home/proFile', {title: "个人档案", pjax: req.get('X-PJAX')});
 });
 
 router.get('/page/jibin', function(req, res, next) {

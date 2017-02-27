@@ -76,6 +76,10 @@
                                                     aria-controls="weight" role="tab">体重监测</a></li>
                                                     <li class="nav-item" role="presentation"><a class="nav-link nav-menus" data-toggle="tab" href="#heart_rate"
                                                     aria-controls="heart_rate" role="tab">心率监测</a></li>
+                                                    <li class="nav-item" role="presentation"><a class="nav-link nav-menus" data-toggle="tab" href="#unine"
+                                                    aria-controls="unine" role="tab">尿酸监测</a></li>
+                                                    <li class="nav-item" role="presentation"><a class="nav-link nav-menus" data-toggle="tab" href="#blood_fat"
+                                                    aria-controls="blood_fat" role="tab">血脂监测</a></li>
                                                     <li class="nav-item" role="presentation"><a class="nav-link nav-menus" data-toggle="tab" href="#TDS"
                                                     aria-controls="TDS" role="tab">TDS数字中医</a></li>
                                                 </ul>
@@ -167,6 +171,56 @@
                                     <div style="margin-top: 10px;">
                                         <h3>数据图表</h3>
                                         <div id="chart_heart_rates" style="width: 100%;height:400px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane " id="unine" role="tabpanel">
+                                <div class="col-xl-4 col-xs-12">
+                                    <div style="margin-top: 10px;">
+                                        <h3>监测日志</h3>
+                                        <table class="table table-bordered" >
+                                            <thead>
+                                                <tr>
+                                                    <th>监测日期</th>
+                                                    <th>尿酸值 (mmol/L)</th>
+                                                    <th>是否异常</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="unines">
+                                            </tbody>
+                                        </table>
+                                        <div style="text-align: right;" class="paginationDiv"></div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-8 col-xs-12">
+                                    <div style="margin-top: 10px;">
+                                        <h3>数据图表</h3>
+                                        <div id="chart_unines" style="width: 100%;height:400px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane " id="blood_fat" role="tabpanel">
+                                <div class="col-xl-4 col-xs-12">
+                                    <div style="margin-top: 10px;">
+                                        <h3>监测日志</h3>
+                                        <table class="table table-bordered" >
+                                            <thead>
+                                                <tr>
+                                                    <th>监测日期</th>
+                                                    <th>尿酸值 (mmol/L)</th>
+                                                    <th>是否异常</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="blood_fats">
+                                            </tbody>
+                                        </table>
+                                        <div style="text-align: right;" class="paginationDiv"></div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-8 col-xs-12">
+                                    <div style="margin-top: 10px;">
+                                        <h3>数据图表</h3>
+                                        <div id="chart_blood_fats" style="width: 100%;height:400px;"></div>
                                     </div>
                                 </div>
                             </div>
@@ -2366,6 +2420,85 @@
             createChart("chart_heart_rates",chart_data);
         };
 
+        var unineFunction = function(data,status){
+            var unine_value = [];
+            var unine_date = [];
+            var data = data["data"];
+            $("#heart_rate table tbody").html("");
+            for (var k = 0; k < data.length; k++) {
+                var tr = [data[k].datetime, data[k].value];
+                unine_value.push(data[k]['value']);
+                unine_date.push(data[k]['datetime']);
+                tr.push(data[k].status);
+                if (data[k].status === '正常') {
+                    $("#unines").append($(createTr(tr)));
+                } else {
+                    $("#unines").append($(createErrTr(tr)));
+                }
+            }
+        };
+
+        var unineEchartFunction = function(data,status){
+            var unine_value = [];
+            var unine_date = [];
+            var data = data["data"];
+            for (var k = 0; k < data.length; k++) {
+                var tr = [data[data.length - 1 - k].datetime, data[data.length - 1 - k].value];
+                unine_value.push(data[data.length - 1 - k]['value']);
+                console.log(data[data.length - 1 - k]['value']);
+                unine_date.push(data[data.length - 1 - k]['datetime']);
+            }
+            var chart_data = {
+                date: unine_date,
+                series: [
+                    {
+                        name:'尿酸',
+                        type:'line',
+                        data:unine_value,
+                    }]
+            };
+            createChart("chart_unines",chart_data);
+        };
+
+        var bloodFatFunction = function(data,status){
+            var blood_fat_value = [];
+            var blood_fat_date = [];
+            var data = data["data"];
+            $("#heart_rate table tbody").html("");
+            for (var k = 0; k < data.length; k++) {
+                var tr = [data[k].datetime, data[k].value];
+                blood_fat_value.push(data[k]['value']);
+                blood_fat_date.push(data[k]['datetime']);
+                tr.push(data[k].status);
+                if (data[k].status === '正常') {
+                    $("#blood_fats").append($(createTr(tr)));
+                } else {
+                    $("#blood_fats").append($(createErrTr(tr)));
+                }
+            }
+        };
+
+        var bloodFatEchartFunction = function(data,status){
+            var blood_fat_value = [];
+            var blood_fat_date = [];
+            var data = data["data"];
+            for (var k = 0; k < data.length; k++) {
+                var tr = [data[data.length - 1 - k].datetime, data[data.length - 1 - k].value];
+                blood_fat_value.push(data[data.length - 1 - k]['value']);
+                blood_fat_date.push(data[data.length - 1 - k]['datetime']);
+            }
+            var chart_data = {
+                date: blood_fat_date,
+                series: [
+                    {
+                        name:'尿酸',
+                        type:'line',
+                        data:blood_fat_value,
+                    }]
+            };
+            createChart("chart_blood_fats",chart_data);
+        };
+
         var createTDSDom = function (dom,id){
             var template2 = '\n\
             <tr>\n\
@@ -2664,6 +2797,60 @@
                             XHR.setRequestHeader('access-authorization', $.cookie('access_token'));
                         },
                         success: heartRateFunction,
+                        params: {'patient_id': uid, 'start_date': startDate, 'end_date': todayData},
+                        pageParams: function(data) {
+                            return {
+                                'page': data.pageIndex + 1,
+                                'per_page': data.pageSize
+                            };
+                        },
+                        totalName: 'meta.total'
+                    }
+                });
+                return true;
+            } else if (where === "尿酸监测") {
+                $(this).data("apiget", true);
+                doAjax(window.baseUrl + "/examination_check/unine", 'get', {'patient_id': uid,'start_date': startDate,'end_date': todayData,'page':0,'per_page':0}, unineEchartFunction);
+                var paginationDiv = $("#unine").find(".paginationDiv");
+                if (paginationDiv.pagination()) {
+                    paginationDiv.pagination('destroy');
+                }
+                paginationDiv.pagination({
+                    pageSize: 10,
+                    loadFirstPage: true,
+                    remote: {
+                        url: window.baseUrl + "/examination_check/unine",
+                        beforeSend: function (XHR) {
+                            XHR.setRequestHeader('access-authorization', $.cookie('access_token'));
+                        },
+                        success: unineFunction,
+                        params: {'patient_id': uid, 'start_date': startDate, 'end_date': todayData},
+                        pageParams: function(data) {
+                            return {
+                                'page': data.pageIndex + 1,
+                                'per_page': data.pageSize
+                            };
+                        },
+                        totalName: 'meta.total'
+                    }
+                });
+                return true;
+            } else if (where === "血脂监测") {
+                $(this).data("apiget", true);
+                doAjax(window.baseUrl + "/examination_check/blood_fat", 'get', {'patient_id': uid,'start_date': startDate,'end_date': todayData,'page':0,'per_page':0}, bloodFatEchartFunction);
+                var paginationDiv = $("#blood_fat").find(".paginationDiv");
+                if (paginationDiv.pagination()) {
+                    paginationDiv.pagination('destroy');
+                }
+                paginationDiv.pagination({
+                    pageSize: 10,
+                    loadFirstPage: true,
+                    remote: {
+                        url: window.baseUrl + "/examination_check/blood_fat",
+                        beforeSend: function (XHR) {
+                            XHR.setRequestHeader('access-authorization', $.cookie('access_token'));
+                        },
+                        success: bloodFatFunction,
                         params: {'patient_id': uid, 'start_date': startDate, 'end_date': todayData},
                         pageParams: function(data) {
                             return {
