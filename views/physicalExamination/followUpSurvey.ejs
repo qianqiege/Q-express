@@ -1,0 +1,115 @@
+<% if (typeof pjax === "undefined") { %>
+    <%- include ../header %>
+<% } else { %>
+    <title><%= title %></title>
+<% } %>
+    <div class="page-header">
+        <h1 class="page-title"><%= title %></h1>
+        <ol class="breadcrumb">
+        </ol>
+    </div>
+    <div class="page-content">
+        <!-- Panel -->
+        <div class="panel">
+            <div class="panel-body container-fluid">
+                <form class="form-horizontal" onsubmit="submitForm(); return false;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-bordered">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">随访包测量</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="form-group form-material col-xs-12 col-md-5 offset-md-1">
+                                            <label class="form-control-label" for="id_number">请输入身份证号码</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control empty" name="id_number" oninput="doSearch(this)" maxlength="18" id="id_number">
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-material col-xs-12 col-md-5">
+                                            <label class="form-control-label" for="phone">请选择设备号码</label>
+                                            <div class="input-group">
+                                                <select class="form-control" id="phone" name="phone" data-tags="true" data-maximum-selection-length="2">
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-12">
+                                    <button type="submit" class="btn btn-block btn-success" id="submitResult" onclick="submitForm ()" >提交</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        var searching = false;
+        $(function() {
+            doAjax(window.baseUrl + "/examination_input/number", "get", {}, function(data, status) {
+                searching = false;
+                if (status && data) {
+                    for (var i=0; i<data["data"].length;i++) {
+                        $("#phone").append('<option>'+data["data"][i]["number"]+'</option>')
+                    };
+                };
+            });
+        });
+        var logSearch = function(dom) {
+            var val1 = dom.value.toLocaleUpperCase();
+            if (val1.length===18  && checkIdCard(val1) && !searching) {
+                doAjax(window.baseUrl + "/registration/get_number", "get", {"id_number": val1}, function(data, status) {
+                    if (!data) {
+                        swal("没有挂号记录,请先挂号", "", "error");
+                        return false;
+                    }
+                });
+            };
+        };
+        var submitForm = function() {
+            var number = $("#id_number").val();
+            var phone = $("#phone").customVal();
+            if(!number || !phone) {
+                swal("请填入数据","","error");
+                return false;
+            }
+            swal({
+                title: "确认提交",
+                text: "请核对提交数据：\n身份证号码：" + $("#id_number").val() + "\n手机号码：" + $("#phone").val(),
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "提交",
+                cancelButtonText: "取消",
+                closeOnConfirm: false,
+                closeOnCancel: true,
+                showLoaderOnConfirm: true
+            },
+            function(isConfirm) {
+                if (isConfirm) {
+                    doAjax(window.baseUrl + "/examination_input/check", "post",
+                        {"id_number": $("#id_number").val(),'phone': $("#phone").customVal()},
+                        function(data, status) {
+                            if (status && data) {
+                                swal({
+                                    title: data.info || "提交成功",
+                                    type: "success"
+                                },
+                                function() {
+                                    $("#submitResult").prop("disabled", true);
+                                });
+                            } else {
+                                swal(JSON.parse(data.reponseText).error || "提交失败", "", "error");
+                            }
+                        }
+                    );
+                }
+            });
+        };
+</script>
+<% if (typeof pjax === "undefined") { %>
+    <%- include ../footer %>
+<% } %>
