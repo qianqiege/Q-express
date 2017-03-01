@@ -34,6 +34,10 @@ router.get('/blood_fat', function(req, res, next) {
     res.render('physicalExamination/blood_fat', {title: "血脂监测", pjax: req.get('X-PJAX')});
 });
 
+router.get('/followUpSurvey', function(req, res, next) {
+    res.render('physicalExamination/followUpSurvey', {title: "随访包测量", pjax: req.get('X-PJAX')});
+});
+
 router.get('/bloodSugar', function(req, res, next) {
     res.render('physicalExamination/bloodSugar', {title: "血糖监测", pjax: req.get('X-PJAX')});
 });
