@@ -1,0 +1,54 @@
+<% if (typeof pjax === "undefined") { %>
+    <%- include ../header %>
+<% } else { %>
+    <title><%= title %></title>
+<% } %>
+        <link rel="stylesheet" href="/stylesheets/titles.css">
+        <div class="page-header">
+            <h1 class="page-title">
+                <%= title %>
+            </h1>
+            <ol class="breadcrumb">
+            </ol>
+        </div>
+
+
+        <div class="page-content">
+            <div class="panel">
+                <div id="jstreeExample_8"></div>
+            </div>
+        </div>
+
+        <link rel="stylesheet" href="/stylesheets/jstree.min.css">
+        <script src="/javascripts/jstree.min.js"></script>
+        <script>
+            $(function() {
+                $('#jstreeExample_8').jstree({
+                    'core': {
+                        "check_callback": true,
+                        'data': [{
+                            'text': 'Simple root node',
+                            "icon": "wb-folder"
+                        }, {
+                            'text': 'Root node 2',
+                            "icon": "wb-folder",
+                            'state': {
+                                'opened': true,
+                                'selected': true
+                            },
+                            'children': [{
+                                'text': 'Child 1',
+                                "icon": "wb-folder"
+                            }, {
+                                'text': 'Child 2',
+                                "icon": "wb-folder"
+                            }]
+                        }]
+                    },
+                    'plugins': ['contextmenu']
+                });
+            });
+        </script>
+<% if (typeof pjax === "undefined") { %>
+    <%- include ../footer %>
+<% } %>
