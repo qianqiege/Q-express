@@ -24,6 +24,7 @@
                                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#heart_rate">心率监测</a></li>
                                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#unine">尿酸监测</a></li>
                                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#blood_fat">血脂监测</a></li>
+                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#ECG_display">心电图展示</a></li>
                                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#TDS">TDS数字中医</a></li>
                                 </ul>
                             </div>
@@ -188,6 +189,27 @@
                                             <tbody id="blood_fats">
                                             </tbody>
                                         </table>
+                                        <div style="text-align: right;" class="paginationDiv"></div>
+                                    </div>
+                                </div>
+                                <!-- 心电图展示页面 -->
+                                <div role="tabpanel" class="tab-pane" id="ECG_display">
+                                    <div id="data_table" class="col-xs-12 col-md-12" style="margin-top: 10px;">
+                                        <div style="margin-top: 10px;">
+                                            <h3>心电图表展示</h3>
+                                            <div id="ECGdata" style="width: 100%;height:500px;"></div>
+                                        </div>
+                                        <!-- <table class="table table-bordered" >
+                                            <thead>
+                                                <tr>
+                                                    <th>编号</th>
+                                                    <th>检测时间</th>
+                                                    <th>查看记录</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="ECGdata">
+                                            </tbody>
+                                        </table> -->
                                         <div style="text-align: right;" class="paginationDiv"></div>
                                     </div>
                                 </div>
@@ -496,7 +518,7 @@ $(function(){
         var unine_value = [];
         var unine_date = [];
         var data = data["data"];
-        $("#heart_rate table tbody").html("");
+        $("#unine table tbody").html("");
         for (var k = 0; k < data.length; k++) {
             var tr = [data[k].datetime, data[k].value];
             unine_value.push(data[k]['value']);
@@ -536,7 +558,7 @@ $(function(){
         var blood_fat_value = [];
         var blood_fat_date = [];
         var data = data["data"];
-        $("#heart_rate table tbody").html("");
+        $("#blood_fat table tbody").html("");
         for (var k = 0; k < data.length; k++) {
             var tr = [data[k].datetime, data[k].value];
             blood_fat_value.push(data[k]['value']);
@@ -571,6 +593,42 @@ $(function(){
         createChart("chart_blood_fats",chart_data);
     };
 
+    var createECGView = function(data){
+        $("#ECG_display #data_table #ECGdata").html('');
+        if (data){
+            var hexHash = data.data[0].value;
+
+            var hex2str = function(str) {
+                var pos = 0;
+                var len = str.length;
+                if (len %2 != 0) {
+                    return null;
+                }
+                len /= 2;
+                var hexA = [];
+                for (var i=0; i < len; i++) {
+                    var s = str.substr(pos, 2);
+                    var v = parseInt(s, 16);
+                    hexA.push(String.fromCharCode(v));
+                    pos += 2;
+                }
+                return hexA;
+            }
+
+            var getPngSrc = function(hex) {
+                var str = hex2str(hex);
+                if (!str) {
+                    return false;
+                }
+                return 'data:image/png;base64,' + btoa(str.join(''));
+            }
+
+            var src = getPngSrc(hexHash);
+            if (src) {
+                $("#ECGdata").append($("<img width=500px height=500px>").attr("src", src));
+            }
+        }
+    };
     var createTDSDom = function (dom,id){
         var template2 = '\n\
         <tr>\n\
@@ -770,6 +828,32 @@ $(function(){
                         XHR.setRequestHeader('access-authorization', $.cookie('access_token'));
                     },
                     success: bloodFatFunction,
+                    params: {'patient_id': uid, 'start_date': startDate, 'end_date': todayData},
+                    pageParams: function(data) {
+                        return {
+                            'page': data.pageIndex + 1,
+                            'per_page': data.pageSize
+                        };
+                    },
+                    totalName: 'meta.total'
+                }
+            });
+            return true;
+        } else if (where === "心电图展示") {
+            $(this).data("apiget",true)
+            var paginationDiv = $("#ECG_display").find(".paginationDiv");
+            if (paginationDiv.pagination()) {
+                paginationDiv.pagination('destroy');
+            }
+            paginationDiv.pagination({
+                pageSize: 1,
+                loadFirstPage: true,
+                remote: {
+                    url: window.baseUrl + "/examination_check/ecg",
+                    beforeSend: function (XHR) {
+                        XHR.setRequestHeader('access-authorization', $.cookie('access_token'));
+                    },
+                    success: createECGView,
                     params: {'patient_id': uid, 'start_date': startDate, 'end_date': todayData},
                     pageParams: function(data) {
                         return {
