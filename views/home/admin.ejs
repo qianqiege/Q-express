@@ -20,6 +20,25 @@
         </div>
 
         <link rel="stylesheet" href="/stylesheets/jstree.min.css">
+        <style>
+            .jstree-level1 {
+                background: url(/images/level.png) no-repeat;
+                background-position: 0 0;
+                background-size: 128px 128px;
+            }
+
+            .jstree-level2 {
+                background: url(/images/level.png) no-repeat;
+                background-position: -128px -64px;
+                background-size: 128px 128px;
+            }
+
+            .jstree-level3 {
+                background: url(/images/level.png) no-repeat;
+                background-position: 0 0;
+                background-size: 128px 128px;
+            }
+        </style>
         <script src="/javascripts/jstree.min.js"></script>
         <script>
             $(function() {
@@ -28,20 +47,20 @@
                         "check_callback": true,
                         'data': [{
                             'text': 'Simple root node',
-                            "icon": "wb-folder"
+                            "icon": "/images/level1.png"
                         }, {
                             'text': 'Root node 2',
-                            "icon": "wb-folder",
+                            "icon": "/images/level1.png",
                             'state': {
                                 'opened': true,
                                 'selected': true
                             },
                             'children': [{
                                 'text': 'Child 1',
-                                "icon": "wb-folder"
+                                "icon": "/images/level2.png"
                             }, {
                                 'text': 'Child 2',
-                                "icon": "wb-folder"
+                                "icon": "/images/level2.png"
                             }]
                         }]
                     },
