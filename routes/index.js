@@ -174,7 +174,7 @@ router.get('/followUpShow', function(req, res, next) {
     res.render('file/followUpShow', {title: "随访展示", pjax: req.get('X-PJAX')});
 });
 
-router.get('/admin', function(req, res, next) {
+router.get('/admini', function(req, res, next) {
     res.render('home/admin', {title: "后台管理", pjax: req.get('X-PJAX')});
 });
 
