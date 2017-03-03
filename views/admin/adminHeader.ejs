@@ -1,5 +1,6 @@
+<% needjquery="" %>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0, minimal-ui">
@@ -29,7 +30,7 @@
     <link rel="stylesheet" href="/stylesheets/jquery-selective.css">
     <link rel="stylesheet" href="/stylesheets/calendar.css">
     <!-- Fonts -->
-	<link rel="stylesheet" href="/stylesheets/material-design.min.css">
+    <link rel="stylesheet" href="/stylesheets/material-design.min.css">
     <link rel="stylesheet" href="/stylesheets/sweetalert.min.css">
     <link rel="stylesheet" href="/stylesheets/web-icons.min.css">
     <link rel="stylesheet" href="/stylesheets/font-awesome/font-awesome.css">
@@ -44,114 +45,199 @@
     </script>
     <script src="/javascripts/tether.js"></script>
     <script src="/javascripts/bootstrap.js"></script>
-  </head>
-  <body>
-    <nav class="site-navbar navbar navbar-default navbar-fixed-top navbar-mega" role="navigation">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggler hamburger hamburger-close navbar-toggler-left hided"
-        data-toggle="menubar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="hamburger-bar"></span>
+    <% if (~~(process.env.PORT || 3000) === 3001) { %>
+        <!-- Piwik -->
+        <script type="text/javascript">
+        var _paq = _paq || [];
+        // tracker methods like "setCustomDimension" should be called before "trackPageView"
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+            var u="//statistics.ybyt.cc/";
+            _paq.push(['setTrackerUrl', u+'piwik.php']);
+            _paq.push(['setSiteId', '2']);
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+        })();
+        </script>
+        <!-- End Piwik Code -->
+        <% } else if (~~(process.env.PORT || 3000) === 3000) { %>
+            <!-- Piwik -->
+            <script type="text/javascript">
+            var _paq = _paq || [];
+            // tracker methods like "setCustomDimension" should be called before "trackPageView"
+            _paq.push(['trackPageView']);
+            _paq.push(['enableLinkTracking']);
+            (function() {
+                var u="//statistics.ybyt.cc/";
+                _paq.push(['setTrackerUrl', u+'piwik.php']);
+                _paq.push(['setSiteId', '1']);
+                var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+                g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+            })();
+            </script>
+            <!-- End Piwik Code -->
+            <% } %>
+        </head>
+        <body>
+            <nav class="site-navbar navbar navbar-default navbar-fixed-top navbar-mega" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggler hamburger hamburger-close navbar-toggler-left hided"
+                    data-toggle="menubar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="hamburger-bar"></span>
+                </button>
+                <button type="button" class="navbar-toggler collapsed" data-target="#site-navbar-collapse"
+                data-toggle="collapse">
+                <i class="icon wb-more-horizontal" aria-hidden="true"></i>
+            </button>
+            <div class="navbar-brand navbar-brand-center" data-toggle="gridmenu">
+                <img class="navbar-brand-logo" src="/images/yblogo.png" title="Remark">
+                <span class="navbar-brand-text hidden-xs-down"> 慢病健康管理平台</span>
+            </div>
+            <button type="button" class="navbar-toggler collapsed" data-target="#site-navbar-search"
+            data-toggle="collapse">
+            <span class="sr-only">Toggle Search</span>
+            <i class="icon wb-search" aria-hidden="true"></i>
         </button>
-        <button type="button" class="navbar-toggler collapsed" data-target="#site-navbar-collapse"
-        data-toggle="collapse">
-          <i class="icon wb-more-horizontal" aria-hidden="true"></i>
-        </button>
-        <div class="navbar-brand navbar-brand-center" data-toggle="gridmenu">
-          <img class="navbar-brand-logo" src="/images/yblogo.png" title="Remark">
-          <span class="navbar-brand-text hidden-xs-down"> 慢病健康管理平台</span>
-        </div>
-        <button type="button" class="navbar-toggler collapsed" data-target="#site-navbar-search"
-        data-toggle="collapse">
-          <span class="sr-only">Toggle Search</span>
-          <i class="icon wb-search" aria-hidden="true"></i>
-        </button>
-      </div>
-      <div class="navbar-container container-fluid">
+    </div>
+    <div class="navbar-container container-fluid">
         <!-- Navbar Collapse -->
         <div class="collapse navbar-collapse navbar-collapse-toolbar" id="site-navbar-collapse">
-          <!-- Navbar Toolbar -->
-          <ul class="nav navbar-toolbar">
-            <li class="nav-item hidden-float" id="toggleMenubar">
-              <a class="nav-link" data-toggle="menubar" href="#" role="button">
-                <i class="icon hamburger hamburger-arrow-left">
-                    <span class="sr-only">Toggle menubar</span>
-                    <span class="hamburger-bar"></span>
-                  </i>
-              </a>
+            <!-- Navbar Toolbar -->
+            <ul class="nav navbar-toolbar">
+                <li class="nav-item hidden-float" id="toggleMenubar">
+                    <a class="nav-link" data-toggle="menubar" href="#" role="button">
+                        <i class="icon hamburger hamburger-arrow-left">
+                            <span class="sr-only">Toggle menubar</span>
+                            <span class="hamburger-bar"></span>
+                        </i>
+                    </a>
+                </li>
+                <li class="nav-item hidden-sm-down" id="toggleFullscreen">
+                    <a class="nav-link icon icon-fullscreen" data-toggle="fullscreen" href="#" role="button">
+                        <span class="sr-only">Toggle fullscreen</span>
+                    </a>
+                </li>
+                <li class="nav-item hidden-float">
+                    <a class="nav-link icon wb-search" data-toggle="collapse" href="#" data-target="#site-navbar-search"
+                    role="button">
+                    <span class="sr-only">Toggle Search</span>
+                </a>
             </li>
-            <li class="nav-item hidden-sm-down" id="toggleFullscreen">
-              <a class="nav-link icon icon-fullscreen" data-toggle="fullscreen" href="#" role="button">
-                <span class="sr-only">Toggle fullscreen</span>
-              </a>
-            </li>
-            <li class="nav-item hidden-float">
-              <a class="nav-link icon wb-search" data-toggle="collapse" href="#" data-target="#site-navbar-search"
-              role="button">
-                <span class="sr-only">Toggle Search</span>
-              </a>
-            </li>
-          </ul>
-          <!-- End Navbar Toolbar -->
-          <!-- Navbar Toolbar Right -->
-          <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
+        </ul>
+        <!-- End Navbar Toolbar -->
+        <!-- Navbar Toolbar Right -->
+        <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
             <li class="nav-item dropdown">
-              <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false"
-              data-animation="scale-up" role="button">
+                <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false"
+                data-animation="scale-up" role="button">
                 <span class="avatar avatar-online">
-                  <img src="/images/yblogo.png" alt="...">
-                  <i></i>
+                    <img src="/images/yblogo.png" alt="...">
+                    <i></i>
                 </span>
-              </a>
-              <div class="dropdown-menu" role="menu">
+            </a>
+            <div class="dropdown-menu" role="menu">
                 <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-user" aria-hidden="true"></i> Profile</a>
                 <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-payment" aria-hidden="true"></i> Billing</a>
                 <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-settings" aria-hidden="true"></i> Settings</a>
                 <div class="dropdown-divider" role="presentation"></div>
                 <a class="dropdown-item" href="javascript: $.cookie('access_token',''); location.href = '/';" role="menuitem"><i class="icon wb-power" aria-hidden="true"></i> Logout</a>
-              </div>
-            </li>
-          </ul>
-          <!-- End Navbar Toolbar Right -->
-        </div>
-        <!-- End Navbar Collapse -->
-        <!-- Site Navbar Seach -->
-        <div class="collapse navbar-search-overlap" id="site-navbar-search">
-          <form role="search">
-            <div class="form-group">
-              <div class="input-search">
+            </div>
+        </li>
+    </ul>
+    <!-- End Navbar Toolbar Right -->
+</div>
+<!-- End Navbar Collapse -->
+<!-- Site Navbar Seach -->
+<div class="collapse navbar-search-overlap" id="site-navbar-search">
+    <form role="search">
+        <div class="form-group">
+            <div class="input-search">
                 <i class="input-search-icon wb-search" aria-hidden="true"></i>
-                <input type="text" class="form-control" name="site-search" placeholder="搜索...">
+                <input type="text" class="form-control" name="site-search" placeholder="Search...">
                 <button type="button" class="input-search-close icon wb-close" data-target="#site-navbar-search"
                 data-toggle="collapse" aria-label="Close"></button>
-              </div>
             </div>
-          </form>
         </div>
-        <!-- End Site Navbar Seach -->
-      </div>
-    </nav>
-
-    <div class="site-menubar">
-      <div class="site-menubar-body">
+    </form>
+</div>
+<!-- End Site Navbar Seach -->
+</div>
+</nav>
+<div class="site-menubar">
+    <div class="site-menubar-body">
         <div>
-          <div>
-            <ul class="site-menu" data-plugin="menu">
-              <li class="site-menu-category" style="height: 0px !important;"></li>
-            </ul>
-          </div>
+            <div>
+                <ul class="site-menu" data-plugin="menu">
+                    <li class="site-menu-item has-sub">
+                        <a href="javascript:void(0)">
+                            <i class="site-menu-icon wb-home" aria-hidden="true"></i>
+                            <span class="site-menu-title">管理首页</span>
+                        </a>
+                    </li>
+                    <li class="site-menu-item has-sub">
+                        <a href="javascript:void(0)">
+                            <i class="site-menu-icon wb-layout" aria-hidden="true"></i>
+                            <span class="site-menu-title">医院管理</span>
+                        </a>
+                        <ul class="site-menu-sub">
+                            <li class="site-menu-item active">
+                                <a class="animsition-link" href="index.html">
+                                    <span class="site-menu-title">机构管理</span>
+                                </a>
+                            </li>
+                            <li class="site-menu-item">
+                                <a class="animsition-link" href="dashboard/v2.html">
+                                    <span class="site-menu-title">科室管理</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="site-menu-item has-sub">
+                        <a href="javascript:void(0)">
+                            <i class="site-menu-icon wb-user" aria-hidden="true"></i>
+                            <span class="site-menu-title">人员管理</span>
+                        </a>
+                        <ul class="site-menu-sub">
+                            <li class="site-menu-item active">
+                                <a class="animsition-link" href="/roles">
+                                    <span class="site-menu-title">角色配置</span>
+                                </a>
+                            </li>
+                            <li class="site-menu-item">
+                                <a class="animsition-link" href="/doctorsList">
+                                    <span class="site-menu-title">健康管理师列表</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="site-menu-item has-sub">
+                        <a href="javascript:void(0)">
+                            <i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
+                            <span class="site-menu-title">统计分析</span>
+                        </a>
+                    </li>
+                    <li class="site-menu-item has-sub">
+                        <a href="javascript:void(0)">
+                            <i class="site-menu-icon wb-envelope" aria-hidden="true"></i>
+                            <span class="site-menu-title">智能短信</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </div>
+    </div>
+</div>
+
+<div class="page">
+    <div class="pjaxLoader" style="display: none;">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
     </div>
 
-    <div class="page">
-        <div class="pjaxLoader" style="display: none;">
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-        </div>
-
-        <div id="page">
+    <div id="page">
