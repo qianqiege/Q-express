@@ -18,7 +18,7 @@
                 <div class="page-content">
                     <div class="panel">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12 col-lg-6">
                                 <div class="panel panel-primary panel-bordered">
                                     <div class="panel-heading">
                                         <h3 class="panel-title">体系预览</h3>
@@ -28,7 +28,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12 col-lg-6">
                                 <div class="panel nav-tabs-horizontal" data-plugin="tabs">
                                     <div class="panel-heading">
                                         <h3 class="panel-title">院内人员展示</h3>
@@ -229,6 +229,7 @@
                                 'plugins': ['types'],
                                 // 'plugins': ['contextmenu', 'types'],
                             });
+                        fake_data();
                     });
                 </script>
                 <% if (typeof pjax === "undefined") { %>
