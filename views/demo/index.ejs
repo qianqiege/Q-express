@@ -1,0 +1,142 @@
+<% if (typeof pjax === "undefined") { %>
+    <%- include ../header %>
+<% } else { %>
+    <title><%= title %></title>
+<% } %>
+    <div class="page-header">
+        <h1 class="page-title"><%= title %></h1>
+        <ol class="breadcrumb">
+        </ol>
+    </div>
+    <div class="page-content">
+        <!-- Panel -->
+        <div class="panel">
+            <div class="panel-body">
+                <ul class="nav nav-tabs nav-tabs-line">
+                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="javascript:void(0)" aria-expanded="false" data-toggle="tab" data-target="#pTab1">pTab1</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="javascript:void(0)" aria-expanded="false" data-toggle="tab" data-target="#pTab2">pTab2</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="javascript:void(0)" aria-expanded="false" data-toggle="tab" data-target="#pTab3">pTab3</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="javascript:void(0)" aria-expanded="true" data-toggle="tab" data-target="#pTab4">pTab4</a></li>
+                </ul>
+
+                <div class="tab-content" style="padding-top: 10px;">
+                    <div class="tab-pane active" id="pTab1">
+                        <div class="nav-tabs-vertical">
+                            <ul class="nav nav-tabs nav-tabs-line">
+                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="javascript:void(0)" aria-expanded="true" data-toggle="tab" data-target="#cTab11">cTab11</a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="javascript:void(0)" aria-expanded="false" data-toggle="tab" data-target="#cTab12">cTab12</a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="javascript:void(0)" aria-expanded="false" data-toggle="tab" data-target="#cTab13">cTab13</a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="javascript:void(0)" data-toggle="tab" data-target="#cTab14">cTab14</a></li>
+                            </ul>
+
+                            <div class="tab-content" style="padding-left: 10px;">
+                                <div class="tab-pane active" id="cTab11">
+                                    cTab11
+                                </div>
+                                <div class="tab-pane" id="cTab12">
+                                    cTab12
+                                </div>
+                                <div class="tab-pane" id="cTab13">
+                                    cTab13
+                                </div>
+                                <div class="tab-pane" id="cTab14">
+                                    cTab14
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="pTab2">
+                        <div class="nav-tabs-vertical">
+                            <ul class="nav nav-tabs nav-tabs-line">
+                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="javascript:void(0)" aria-expanded="true" data-toggle="tab" data-target="#cTab21">cTab21</a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="javascript:void(0)" aria-expanded="false" data-toggle="tab" data-target="#cTab22">cTab22</a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="javascript:void(0)" aria-expanded="false" data-toggle="tab" data-target="#cTab23">cTab23</a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="javascript:void(0)" data-toggle="tab" data-target="#cTab24">cTab24</a></li>
+                            </ul>
+
+                            <div class="tab-content" style="padding-left: 10px;">
+                                <div class="tab-pane active" id="cTab21">
+                                    cTab21
+                                </div>
+                                <div class="tab-pane" id="cTab22">
+                                    cTab22
+                                </div>
+                                <div class="tab-pane" id="cTab23">
+                                    cTab23
+                                </div>
+                                <div class="tab-pane" id="cTab24">
+                                    cTab24
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="pTab3">
+                        <div class="nav-tabs-vertical">
+                            <ul class="nav nav-tabs nav-tabs-line">
+                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="javascript:void(0)" aria-expanded="true" data-toggle="tab" data-target="#cTab31">cTab31</a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="javascript:void(0)" aria-expanded="false" data-toggle="tab" data-target="#cTab32">cTab32</a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="javascript:void(0)" aria-expanded="false" data-toggle="tab" data-target="#cTab33">cTab33</a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="javascript:void(0)" data-toggle="tab" data-target="#cTab34">cTab34</a></li>
+                            </ul>
+
+                            <div class="tab-content" style="padding-left: 10px;">
+                                <div class="tab-pane active" id="cTab31">
+                                    cTab31
+                                </div>
+                                <div class="tab-pane" id="cTab32">
+                                    cTab32
+                                </div>
+                                <div class="tab-pane" id="cTab33">
+                                    cTab33
+                                </div>
+                                <div class="tab-pane" id="cTab34">
+                                    cTab34
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="pTab4">
+                        <div class="nav-tabs-vertical">
+                            <ul class="nav nav-tabs nav-tabs-line">
+                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="javascript:void(0)" aria-expanded="true" data-toggle="tab" data-target="#cTab41">cTab41</a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="javascript:void(0)" aria-expanded="false" data-toggle="tab" data-target="#cTab42">cTab42</a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="javascript:void(0)" aria-expanded="false" data-toggle="tab" data-target="#cTab43">cTab43</a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="javascript:void(0)" data-toggle="tab" data-target="#cTab44">cTab44</a></li>
+                            </ul>
+
+                            <div class="tab-content" style="padding-left: 10px;">
+                                <div class="tab-pane active" id="cTab41">
+                                    cTab41
+                                </div>
+                                <div class="tab-pane" id="cTab42">
+                                    cTab42
+                                </div>
+                                <div class="tab-pane" id="cTab43">
+                                    cTab43
+                                </div>
+                                <div class="tab-pane" id="cTab44">
+                                    cTab44
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Panel -->
+    </div>
+
+    <script>
+        $(function() {
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                console.log("已切换至：" + $(e.target).data("target") + ", 之前所在标签：" + $(e.relatedTarget).data("target"));
+            });
+        });
+    </script>
+
+<% if (typeof pjax === "undefined") { %>
+    <%- include ../footer %>
+<% } %>

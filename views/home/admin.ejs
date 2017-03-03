@@ -1,0 +1,73 @@
+<% if (typeof pjax === "undefined") { %>
+    <%- include ../header %>
+<% } else { %>
+    <title><%= title %></title>
+<% } %>
+        <link rel="stylesheet" href="/stylesheets/titles.css">
+        <div class="page-header">
+            <h1 class="page-title">
+                <%= title %>
+            </h1>
+            <ol class="breadcrumb">
+            </ol>
+        </div>
+
+
+        <div class="page-content">
+            <div class="panel">
+                <div id="jstreeExample_8"></div>
+            </div>
+        </div>
+
+        <link rel="stylesheet" href="/stylesheets/jstree.min.css">
+        <style>
+            .jstree-level1 {
+                background: url(/images/level.png) no-repeat;
+                background-position: 0 0;
+                background-size: 128px 128px;
+            }
+
+            .jstree-level2 {
+                background: url(/images/level.png) no-repeat;
+                background-position: -128px -64px;
+                background-size: 128px 128px;
+            }
+
+            .jstree-level3 {
+                background: url(/images/level.png) no-repeat;
+                background-position: 0 0;
+                background-size: 128px 128px;
+            }
+        </style>
+        <script src="/javascripts/jstree.min.js"></script>
+        <script>
+            $(function() {
+                $('#jstreeExample_8').jstree({
+                    'core': {
+                        "check_callback": true,
+                        'data': [{
+                            'text': 'Simple root node',
+                            "icon": "/images/level1.png"
+                        }, {
+                            'text': 'Root node 2',
+                            "icon": "/images/level1.png",
+                            'state': {
+                                'opened': true,
+                                'selected': true
+                            },
+                            'children': [{
+                                'text': 'Child 1',
+                                "icon": "/images/level2.png"
+                            }, {
+                                'text': 'Child 2',
+                                "icon": "/images/level2.png"
+                            }]
+                        }]
+                    },
+                    'plugins': ['contextmenu']
+                });
+            });
+        </script>
+<% if (typeof pjax === "undefined") { %>
+    <%- include ../footer %>
+<% } %>

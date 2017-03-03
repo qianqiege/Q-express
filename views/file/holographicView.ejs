@@ -229,11 +229,7 @@
                             <!-- 心电图展示页面 -->
                             <div role="tabpanel" class="tab-pane" id="ECG_display">
                                 <div id="data_table" class="col-xs-12 col-md-12" style="margin-top: 10px;">
-                                    <div style="margin-top: 10px;">
-                                        <h3>心电图表展示</h3>
-                                        <div id="ECGdata" style="width: 100%;height:500px;"></div>
-                                    </div>
-                                    <!-- <table class="table table-bordered" >
+                                    <table class="table table-bordered" >
                                         <thead>
                                             <tr>
                                                 <th>编号</th>
@@ -243,7 +239,7 @@
                                         </thead>
                                         <tbody id="ECGdata">
                                         </tbody>
-                                    </table> -->
+                                    </table>
                                     <div style="text-align: right;" class="paginationDiv"></div>
                                 </div>
                             </div>
@@ -2522,41 +2518,21 @@
             createChart("chart_blood_fats",chart_data);
         };
 
-        var createECGView = function(data){
-            $("#ECG_display #data_table #ECGdata").html('');
-            if (data){
-                var hexHash = data.data[0].value;
-
-                var hex2str = function(str) {
-                    var pos = 0;
-                    var len = str.length;
-                    if (len %2 != 0) {
-                        return null;
-                    }
-                    len /= 2;
-                    var hexA = [];
-                    for (var i=0; i < len; i++) {
-                        var s = str.substr(pos, 2);
-                        var v = parseInt(s, 16);
-                        hexA.push(String.fromCharCode(v));
-                        pos += 2;
-                    }
-                    return hexA;
-                }
-
-                var getPngSrc = function(hex) {
-                    var str = hex2str(hex);
-                    if (!str) {
-                        return false;
-                    }
-                    return 'data:image/png;base64,' + btoa(str.join(''));
-                }
-
-                var src = getPngSrc(hexHash);
-                if (src) {
-                    $("#ECGdata").append($("<img width=500px height=500px>").attr("src", src));
-                }
-            }
+        var createECGView = function (dom,id){
+            console.log(dom.value);
+            var template3 = '\n\
+            <tr>\n\
+                <td>{__id__}</td>\n\
+                <td>{__datetime__}</td>\n\
+                <td>\n\
+                    <div>\n\
+                        <a class="btn btn-outline btn-success btn-sm" href="{__value__}"> 查看记录</a>\n\
+                    </div>\n\
+                </td>\n\
+            </tr>'
+            return template3.replace(/\{__id__\}/g, id)
+                .replace(/\{__datetime__\}/g, dom.datetime.substr(0,10))
+                .replace(/\{__value__\}/g, dom.value);
         };
 
         var createTDSDom = function (dom,id){
@@ -2924,27 +2900,14 @@
                 return true;
             } else if (where === "心电图展示") {
                 $(this).data("apiget",true)
-                var paginationDiv = $("#ECG_display").find(".paginationDiv");
-                if (paginationDiv.pagination()) {
-                    paginationDiv.pagination('destroy');
-                }
-                paginationDiv.pagination({
-                    pageSize: 1,
-                    loadFirstPage: true,
-                    remote: {
-                        url: window.baseUrl + "/examination_check/ecg",
-                        beforeSend: function (XHR) {
-                            XHR.setRequestHeader('access-authorization', $.cookie('access_token'));
-                        },
-                        success: createECGView,
-                        params: {'patient_id': uid, 'start_date': startDate, 'end_date': todayData},
-                        pageParams: function(data) {
-                            return {
-                                'page': data.pageIndex + 1,
-                                'per_page': data.pageSize
-                            };
-                        },
-                        totalName: 'meta.total'
+                doAjax(window.baseUrl + "/examination_check/ecg", 'get', {'patient_id': uid,'start_date': startDate,'end_date': todayData,'page':0,'per_page':0}, function(data, status){
+                    if (status && data){
+                        console.log(data.meta.total);
+                        for(var i = 0;i < data.meta.total;i++){
+                            var name = data.data[i];
+                            var id = i+1;
+                            $("#ECGdata").append($(createECGView(name,id)));
+                        }
                     }
                 });
                 return true;
