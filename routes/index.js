@@ -6,6 +6,10 @@ router.get('/', function(req, res, next) {
     res.render('home/index', {title: '健康管理师首页', pjax: req.get('X-PJAX')});
 });
 
+router.get('/hospitalManage', function(req, res, next) {
+    res.render('admin/hospitalManage', {title: '医院管理', pjax: req.get('X-PJAX')});
+});
+
 router.get('/exceptionData', function(req, res, next) {
     res.render('dynamicManagement/exceptionData', {title: "异常管理", pjax: req.get('X-PJAX')});
 });
@@ -132,6 +136,10 @@ router.get('/createIDCard', function(req, res, next) {
 
 router.get('/adminIndex', function(req, res, next) {
     res.render('home/adminIndex', {title: "管理首页", pjax: req.get('X-PJAX')});
+});
+
+router.get('/admin', function(req, res, next) {
+    res.render('home/admin', {title: "管理首页", pjax: req.get('X-PJAX')});
 });
 
 router.get('/proFile', function(req, res, next) {

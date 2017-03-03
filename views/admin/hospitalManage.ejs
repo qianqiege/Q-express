@@ -1,0 +1,19 @@
+<% if (typeof pjax === "undefined") { %>
+    <%- include adminHeader %>
+<% } else { %>
+    <title><%= title %></title>
+<% } %>
+    <link rel="stylesheet" href="/stylesheets/titles.css">
+    <div class="page-header">
+        <h1 class="page-title">
+            <%= title %>
+        </h1>
+        <ol class="breadcrumb">
+        </ol>
+    </div>
+
+    <script>
+    </script>
+<% if (typeof pjax === "undefined") { %>
+    <%- include ../footer %>
+<% } %>
