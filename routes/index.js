@@ -240,13 +240,6 @@ router.get('/adminIndex', function (req, res, next) {
     });
 });
 
-router.get('/admin', function (req, res, next) {
-    res.render('home/admin', {
-        title: "管理首页",
-        pjax: req.get('X-PJAX')
-    });
-});
-
 router.get('/proFile', function (req, res, next) {
     res.render('home/proFile', {
         title: "个人档案",
@@ -317,7 +310,7 @@ router.get('/followUpShow', function (req, res, next) {
     });
 });
 
-router.get('/admini', function (req, res, next) {
+router.get('/admin', function (req, res, next) {
     res.render('admin/admin', {
         title: "后台管理",
         pjax: req.get('X-PJAX')
