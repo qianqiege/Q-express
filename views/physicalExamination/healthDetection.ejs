@@ -245,7 +245,7 @@ $(function(){
     }
 
     var todayData =new Date().Format("yyyy-MM-dd");
-    var startDate="2016-1-1";
+    var startDate="2016-12-1";
 
     var createTr = function (obj) {
         return "<tr><td>" + obj.join("</td><td>") + "</td></tr>";
@@ -320,29 +320,49 @@ $(function(){
     };
 
     var bSEchartFunction = function(data,status){
-        var before_blood_glucose = [];
-        var after_blood_glucose = [];
         var blood_glucose_date = [];
+        var blood_glucose_value = [];
         var data = data["data"];
+        var series = [];
         for (var k = 0; k < data.length; k++) {
-            var tr = [data[data.length - 1 - k].datetime, data[data.length - 1 - k].before_blood_glucose, data[data.length - 1 - k].after_blood_glucose];
-            before_blood_glucose.push(data[data.length - 1 - k]['before_blood_glucose']);
-            after_blood_glucose.push(data[data.length - 1 - k]['after_blood_glucose']);
+            var tr = [data[data.length - 1 - k].datetime, data[data.length - 1 - k].value];
+
             blood_glucose_date.push(data[data.length - 1 - k]['datetime']);
-        }
-        var chart_data = {
-            date: blood_glucose_date,
-            series: [
-                {
+            console.log(blood_glucose_value)
+            if (data[k].item_type === 1) {
+                blood_glucose_value.push(data[data.length - 1 - k]['value']);
+                series.push({
                     name:'餐前血糖',
                     type:'line',
-                    data:before_blood_glucose,
-                },
-                {
+                    data:blood_glucose_value,
+                });
+            } else if (data[k].item_type === 2){
+                blood_glucose_value.push(data[data.length - 1 - k]['value']);
+                series.push({
                     name:'餐后血糖',
                     type:'line',
-                    data:after_blood_glucose,
-                }]
+                    data:blood_glucose_value,
+                });
+            } else if (data[k].item_type === 3){
+                blood_glucose_value.push(data[data.length - 1 - k]['value']);
+                series.push({
+                    name:'睡前血糖',
+                    type:'line',
+                    data:blood_glucose_value,
+                });
+            } else if (data[k].item_type === 4){
+                blood_glucose_value.push(data[data.length - 1 - k]['value']);
+                series.push({
+                    name:'睡后血糖',
+                    type:'line',
+                    data:blood_glucose_value,
+                });
+            }
+        }
+        console.log(series)
+        var chart_data = {
+            date: blood_glucose_date,
+            series: series,
         };
         createChart("chart_blood_glucoses",chart_data);
     };
