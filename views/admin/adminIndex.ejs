@@ -1,0 +1,122 @@
+<% if (typeof pjax === "undefined") { %>
+    <%- include ../admin/adminHeader %>
+<% } else { %>
+    <title>
+        <%= title %>
+    </title>
+<% } %>
+<div class="page-header">
+    <h1 class="page-title"><%= title %></h1>
+    <ol class="breadcrumb">
+    </ol>
+</div>
+<div class="page-content">
+    <div class="panel">
+        <div class="card-group">
+            <div class="card card-block p-0">
+                <div class="counter counter-lg counter-inverse bg-cyan-600 vertical-align h-150">
+                    <div class="vertical-align-middle">
+                        <div class="counter-number-group">
+                            <span class="counter-icon m-l-10"><i class="icon wb-user" aria-hidden="true"></i></span>
+                            <span class="counter-number">155</span>
+                        </div>
+                        <div class="counter-label text-uppercase font-size-16">今日开方统计</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-block p-0">
+                <div class="counter counter-lg counter-inverse bg-red-600 vertical-align h-150">
+                    <div class="vertical-align-middle">
+                        <div class="counter-number-group">
+                            <span class="counter-icon m-l-10"><i class="icon fa-tags" aria-hidden="true"></i></span>
+                            <span class="counter-number">60</span>
+                        </div>
+                        <div class="counter-label text-uppercase font-size-16">系统异常报告</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-block p-0">
+                <div class="counter counter-lg counter-inverse vertical-align h-150" style="background-color: #00BFFF;">
+                    <div class="vertical-align-middle">
+                        <div class="counter-number-group">
+                            <span class="counter-icon m-l-10"><i class="icon fa-bar-chart" aria-hidden="true"></i></span>
+                            <span class="counter-number">1120</span>
+                        </div>
+                        <div class="counter-label text-uppercase font-size-16">随访统计</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                    <div class="panel panel-bordered">
+                        <div class="panel-heading">
+                            <h3 class="panel-title bg-blue-600" style="color:white"><i class="icon fa-bar-chart" aria-hidden="true"></i> 流量统计</h3>
+                        </div>
+                        <% if (~~(process.env.PORT || 3000) === 3001) { %>
+                        <div id="widgetIframe"><iframe width="100%" height="260" src="https://statistics.ybyt.cc/index.php?module=Widgetize&action=iframe&forceView=1&viewDataTable=graphEvolution&widget=1&moduleToWidgetize=VisitsSummary&actionToWidgetize=getEvolutionGraph&idSite=1&period=range&date=previous7&disableLink=1&widget=1&language=zh-cn" scrolling="no" frameborder="0" marginheight="0" marginwidth="0"></iframe></div>
+                        <% } else if (~~(process.env.PORT || 3000) === 3000) { %>
+                        <div id="widgetIframe"><iframe width="100%" height="260" src="https://statistics.ybyt.cc/index.php?module=Widgetize&action=iframe&forceView=1&viewDataTable=graphEvolution&widget=1&moduleToWidgetize=VisitsSummary&actionToWidgetize=getEvolutionGraph&idSite=1&period=range&date=previous7&disableLink=1&widget=1&language=zh-cn" scrolling="no" frameborder="0" marginheight="0" marginwidth="0"></iframe></div>
+                        <% } %>
+                     </div>
+            </div>
+
+            <div class="col-xs-12 col-md-4">
+                    <div class="panel panel-bordered">
+                        <div class="panel-heading">
+                            <h3 class="panel-title bg-blue-600" style="color:white"><i class="icon fa-long-arrow-right" aria-hidden="true"></i> 今日访问统计</h3>
+                        </div>
+                        <% if (~~(process.env.PORT || 3000) === 3001) { %>
+                        <div id="widgetIframe"><iframe width="100%" height="350" src="https://statistics.ybyt.cc/index.php?module=Widgetize&action=iframe&widget=1&moduleToWidgetize=Live&actionToWidgetize=widget&idSite=2&period=range&date=previous7&disableLink=1&widget=1&language=zh-cn" scrolling="no" frameborder="0" marginheight="0" marginwidth="0"></iframe></div>
+                        <% } else if (~~(process.env.PORT || 3000) === 3000) { %>
+                        <div id="widgetIframe"><iframe width="100%" height="350" src="https://statistics.ybyt.cc/index.php?module=Widgetize&action=iframe&widget=1&moduleToWidgetize=Live&actionToWidgetize=widget&idSite=1&period=range&date=previous7&disableLink=1&widget=1&language=zh-cn" scrolling="no" frameborder="0" marginheight="0" marginwidth="0"></iframe></div>
+                        <% } %>
+                     </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8">
+                    <div class="panel panel-bordered">
+                        <div class="panel-heading">
+                            <h3 class="panel-title bg-blue-600" style="color:white"><i class="icon fa-long-arrow-right" aria-hidden="true"></i> 访问统计图表</h3>
+                        </div>
+                        <% if (~~(process.env.PORT || 3000) === 3001) { %>
+                        <div id="widgetIframe"><iframe width="100%" height="350" src="https://statistics.ybyt.cc/index.php?module=Widgetize&action=iframe&widget=1&moduleToWidgetize=UserCountryMap&actionToWidgetize=visitorMap&idSite=2&period=range&date=previous7&disableLink=1&widget=1&language=zh-cn" scrolling="no" frameborder="0" marginheight="0" marginwidth="0"></iframe></div>
+                        <% } else if (~~(process.env.PORT || 3000) === 3000) { %>
+                        <div id="widgetIframe"><iframe width="100%" height="350" src="https://statistics.ybyt.cc/index.php?module=Widgetize&action=iframe&widget=1&moduleToWidgetize=UserCountryMap&actionToWidgetize=visitorMap&idSite=1&period=range&date=previous7&disableLink=1&widget=1&language=zh-cn" scrolling="no" frameborder="0" marginheight="0" marginwidth="0"></iframe></div>
+                        <% } %>
+                     </div>
+            </div>
+        </div>
+
+        <div class="panel">
+        <div class="panel-heading">
+            <h3 class="panel-title">登陆日志</h3>
+        </div>
+        <div class="panel-body container-fluid">
+            <table class="table table-bordered" >
+                <thead>
+                    <tr>
+                        <th>上次登陆日期</th>
+                        <th>登陆IP地址</th>
+                        <th>登陆次数</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> 2016-10-25 </td>
+                        <td> 192.168.1.180 </td>
+                        <td>  2</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+
+                </tfoot>
+            </table>
+        </div>
+        </div>
+    </div>
+</div>
+<% if (typeof pjax === "undefined") { %>
+    <%- include ../footer %>
+<% } %>
