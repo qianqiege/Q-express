@@ -234,7 +234,7 @@ router.get('/createIDCard', function (req, res, next) {
 });
 
 router.get('/adminIndex', function (req, res, next) {
-    res.render('home/adminIndex', {
+    res.render('admin/adminIndex', {
         title: "管理首页",
         pjax: req.get('X-PJAX')
     });

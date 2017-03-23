@@ -138,7 +138,6 @@
                 if (status && data) {
                     $("#all_contacts ul:first").html($(createUserDom(data)));
                     doAjax(window.baseUrl + "/registration/check_registration","get",{"id_number": val},function(data, status){
-                        console.log(data);
                         if (status && data && data.length){
                             $("#contacts_tree .timeline").html('<li class="timeline-period">健康管理动态</li>');
                             for(var i = 0;i < data.length;i++){
@@ -155,7 +154,7 @@
                                     if (data[i]["spine_recipes"].length){
                                         $("#"+temp_data[0]+" ul li:eq(2)").show()
                                     }
-                                    if ((data[i]["blood_pressures"].length) || (data[i]["blood_glucoses"].length) || (data[i]["temperatures"].length) || (data[i]["weights"].length) || (data[i]["heart_rates"].length) || (data[i]["blood_fats"].length) || (data[i]["unines"].length) || (data[i]["ecgs"].length)){
+                                    if ((data[i]["blood_pressures"].length) || (data[i]["blood_glucoses"].length) || (data[i]["temperatures"].length) || (data[i]["weights"].length) || (data[i]["heart_rates"].length) || (data[i]["blood_fats"].length) || (data[i]["unines"].length) ){
                                         $("#"+temp_data[0]+" ul li:eq(4)").show();
                                     }
                                     if (data[i]["tds_tables"].length){
@@ -176,7 +175,7 @@
                                     if (data[i]["spine_recipes"].length){
                                         $("#"+temp_data[0]+" ul li:eq(2)").show()
                                     }
-                                    if ((data[i]["blood_pressures"].length) || (data[i]["blood_glucoses"].length) || (data[i]["temperatures"].length) || (data[i]["weights"].length) || (data[i]["heart_rates"].length)){
+                                    if ((data[i]["blood_pressures"].length) || (data[i]["blood_glucoses"].length) || (data[i]["temperatures"].length) || (data[i]["weights"].length) || (data[i]["heart_rates"].length) || (data[i]["blood_fats"].length) || (data[i]["unines"].length) ){
                                         $("#"+temp_data[0]+" ul li:eq(4)").show();
                                     }
                                     if (data[i]["tds_tables"].length){
