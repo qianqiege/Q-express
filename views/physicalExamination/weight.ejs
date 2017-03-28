@@ -119,7 +119,7 @@
         }
         swal({
             title: "确认提交",
-            text: "请核对提交数据：\n身高：" + $("#height").val() + "\n体重：" + $("#id_number_c1").val(),
+            text: "请核对提交数据：\n体重：" + $("#id_number_c1").val(),
             type: "warning",
             showCancelButton: true,
             confirmButtonClass: "btn-danger",
@@ -132,7 +132,7 @@
         function(isConfirm) {
             if (isConfirm) {
                 doAjax(window.baseUrl + "/examination_input/weight", "post",
-                    {"id_number": $("#id_number").val(), "height": $("#height").val(), "weight": $("#id_number_c1").val()},
+                    {"id_number": $("#id_number").val(), "weight": $("#id_number_c1").val()},
                     function(data, status) {
                         if (status && data) {
                             swal({
