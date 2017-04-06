@@ -328,7 +328,6 @@ $(function(){
             var tr = [data[data.length - 1 - k].datetime, data[data.length - 1 - k].value];
 
             blood_glucose_date.push(data[data.length - 1 - k]['datetime']);
-            console.log(blood_glucose_value)
             if (data[k].item_type === 1) {
                 blood_glucose_value.push(data[data.length - 1 - k]['value']);
                 series.push({
@@ -359,7 +358,6 @@ $(function(){
                 });
             }
         }
-        console.log(series)
         var chart_data = {
             date: blood_glucose_date,
             series: series,
@@ -555,7 +553,6 @@ $(function(){
         for (var k = 0; k < data.length; k++) {
             var tr = [data[data.length - 1 - k].datetime, data[data.length - 1 - k].value];
             unine_value.push(data[data.length - 1 - k]['value']);
-            console.log(data[data.length - 1 - k]['value']);
             unine_date.push(data[data.length - 1 - k]['datetime']);
         }
         var chart_data = {
@@ -610,7 +607,6 @@ $(function(){
     };
 
     var createECGView = function (dom,id){
-        console.log(dom.value);
         var template3 = '\n\
         <tr>\n\
             <td>{__id__}</td>\n\
@@ -840,7 +836,6 @@ $(function(){
             $(this).data("apiget",true)
             doAjax(window.baseUrl + "/examination_check/ecg", 'get', {'patient_id': uid,'start_date': startDate,'end_date': todayData,'page':0,'per_page':0}, function(data, status){
                 if (status && data){
-                    console.log(data.meta.total);
                     for(var i = 0;i < data.meta.total;i++){
                         var name = data.data[i];
                         var id = i+1;

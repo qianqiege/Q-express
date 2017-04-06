@@ -139,7 +139,7 @@ $(function() {
 
                     function updatedata(id,data,i){
                         setTimeout(function(){
-                            console.log(id)
+                            // console.log(id)
                             console.log("."+id+" #rate_sl")
                             $("."+id+" .rate_sl").text(data.disease_location_recipes[i].physiology) // 生理
                             $("."+id+" .rate_qz").text(data.disease_location_recipes[i].emotion) // 情志
@@ -163,7 +163,7 @@ $(function() {
                             $("."+id+" .contact").text(data.patient.phone)
                         },400)
                     }
-    
+
     var cbFunction = function(data,status){
         if (status) {
             if (data.patient.name)

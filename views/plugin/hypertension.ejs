@@ -27,7 +27,7 @@ function finish(){
         strokeColor: '#EEEEEE',
     };
     var target = document.querySelector('#total_socre'); // your canvas element
-    
+
     if (total >= 25 ){
         opts.colorStart = "#FF0000"
         opts.colorStop = "#FF0000"
@@ -41,7 +41,7 @@ function finish(){
         $(".report h4:first").html("您此次评分结果为"+total+"分")
         $(".report h4:last").html("<span>您目前得高血压的风险不高，还请继续保持健康的生活方式，祝您健康。</span>")
     }
-    var gauge = new Donut(target).setOptions(opts); 
+    var gauge = new Donut(target).setOptions(opts);
     gauge.maxValue = 44;
     gauge.set(total);
     $(".report").slideDown()
@@ -102,7 +102,7 @@ var pid =  ~~getvl('id');
             var familySocre = 0;
             addnotice("个人资料已分析完成")
             addnotice("得分规则参考 : 中国医师协会心血管外科医师分会")
-            console.log(data)
+            // console.log(data)
 
             pressur = ~~(data.physical_examination.max_pressure)
             if(pressur < 110) {
@@ -118,11 +118,11 @@ var pid =  ~~getvl('id');
             } else if(pressur <= 134) {
                 pressureScore = 8;
             } else {
-                pressureScore = 10;	
+                pressureScore = 10;
             }
             setTimeout(function(){
                 $("#"+addnotice("由血压数值诱发高血压的风险增加风险评分 : "+pressureScore+" 分")).removeClass("alert-success").addClass("alert-warning").find("i").removeClass("md-check").addClass("fa-exclamation-triangle")
-            },calc_timeout())	
+            },calc_timeout())
 
             if (data.sex.indexOf("男")!=-1){
                 sexScore = 1;
@@ -190,7 +190,7 @@ var pid =  ~~getvl('id');
                 $("#"+addnotice("由吸烟史诱发高血压的风险增加风险评分 : "+smokeScore+" 分")).removeClass("alert-success").addClass("alert-warning").find("i").removeClass("md-check").addClass("fa-exclamation-triangle")
             },calc_timeout())
 
-            
+
             if (data.family_history.father != "高血压"){
                 familySocre = 5
             }
@@ -206,7 +206,7 @@ var pid =  ~~getvl('id');
             total = ~~(smokeScore) + ~~(familySocre) + ~~(agepressureScore) + ~~(sexScore) + ~~(weightScore) + ~~(pressureScore)
             setTimeout(closestep,calc_timeout())
             setTimeout(closestep,calc_timeout())
-            
+
         })},500)
 
 })

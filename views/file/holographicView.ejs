@@ -2464,7 +2464,6 @@
             for (var k = 0; k < data.length; k++) {
                 var tr = [data[data.length - 1 - k].datetime, data[data.length - 1 - k].value];
                 unine_value.push(data[data.length - 1 - k]['value']);
-                console.log(data[data.length - 1 - k]['value']);
                 unine_date.push(data[data.length - 1 - k]['datetime']);
             }
             var chart_data = {
@@ -2519,7 +2518,6 @@
         };
 
         var createECGView = function (dom,id){
-            console.log(dom.value);
             var template3 = '\n\
             <tr>\n\
                 <td>{__id__}</td>\n\
@@ -2902,7 +2900,6 @@
                 $(this).data("apiget",true)
                 doAjax(window.baseUrl + "/examination_check/ecg", 'get', {'patient_id': uid,'start_date': startDate,'end_date': todayData,'page':0,'per_page':0}, function(data, status){
                     if (status && data){
-                        console.log(data.meta.total);
                         for(var i = 0;i < data.meta.total;i++){
                             var name = data.data[i];
                             var id = i+1;
@@ -3054,7 +3051,6 @@
 
         var addNewEvent = function () {
             var patient_id=$("#eventPeople").val();
-            console.log(patient_id);
             var title = $("#ename").val();
             var start_date = $("#startDate").val()+'T'+ $("#startTime").val();
             var end_date = $("#endDate").val()+'T'+ $("#endTime").val();
