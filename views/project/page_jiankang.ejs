@@ -18,7 +18,7 @@
                     <div class="print-this">
                         <div id="head">
                             <img id="table-logo" src="/images/logo-blue.png"/>
-                            <h4 class="vertical-align-bottom pull-xs-right">编号: <span class="table_id"></span> </h4>
+                            <h4 class="vertical-align-bottom pull-xs-right">开方编号: <span class="table_id"></span> </h4>
                             <script>
                             setTimeout(function(){ $("#table-logo").next().css("margin-top",$("#table-logo").height() - $("#table-logo").next().height()+"px")},100)
                             </script>
@@ -88,11 +88,101 @@
                         <i class="icon wb-print" aria-hidden="true"></i>
                         <span class="hidden-sm-down">打印该方案</span>
                     </a>
+                    <!-- <a class="btn btn-primary btn-round waves-effect pull-xs-right" href="javascript:void(0)" data-target="#programEvaluationView" data-toggle="modal" style="margin-right: 10px;"> -->
+                    <a class="btn btn-primary btn-round waves-effect pull-xs-right" href="javascript:void(0)" style="margin-right: 10px;" onclick="programEvaluation(this);">
+                        <i class="icon wb-star" aria-hidden="true"></i>
+                        <span class="hidden-sm-down">评价该方案</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="programEvaluationView" aria-labelledby="programEvaluationView" role="dialog" tabindex="-1" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-center">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title">评价结果</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="col-xs-3 offset-xs-1 ">
+                        <h4 class="programs">方案编号</h4>
+                    </div>
+                    <div class="col-xs-8">
+                        <h4 class="programs_number"></h4>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="col-xs-4 col-lg-6 offset-lg-1">
+                        <div class="rating"></div>
+                    </div>
+                    <div class="col-xs-8 col-lg-5">
+                        <div class="text">a</div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <textarea class="form-control" rows="5"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="programEvaluation" aria-labelledby="programEvaluation" role="dialog" tabindex="-1" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-center">
+            <div class="modal-content">
+                <input class="table_id_modal" style="display:none" />
+                <input class="table_docter_name" style="display:none" />
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title">方案评价</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="col-xs-4 col-lg-6 offset-lg-1">
+                        <div class="rating"></div>
+                    </div>
+                    <div class="col-xs-8 col-lg-5">
+                        <div class="text">a</div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <textarea class="form-control" placeholder="请详细记录该方案细节。。。" rows="5"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> -->
+                    <button type="button" class="btn btn-primary" id="submit" onclick="doSubmit(this);">提交</button>
                 </div>
             </div>
         </div>
     </div>
 <script>
+$('.rating').raty({ number: 3 ,score: 1 , hints : ['无效','一般','好评'] , target : '.text' , targetKeep : true});
+
+$('#programEvaluationView').on('shown.bs.modal', function (event) {
+});
+
+$('#programEvaluation').on('shown.bs.modal', function (event) {
+});
+
+function doSubmit(obj){
+    var idnumber = getvl("id_number");
+    var number = $(obj).parent().parent().find(".table_id_modal").val();
+    var docterName = $(obj).parent().parent().find(".table_docter_name").val();
+    var result = $(obj).parent().parent().find("textarea").val();
+    var category = $('.rating').raty('score')[1];
+    doAjax(window.baseUrl + "/comments/comment", "post", {"id_number": idnumber,'programs_number': number,'result': result,'doctor_name': docterName,'category': category},
+      function(data, status) {
+        $('#programEvaluation').modal('hide');
+    });
+
+}
 $(function() {
     var uid = getvl("id");
     if (!uid) {
@@ -117,7 +207,6 @@ $(function() {
         return id;
     }
 
-
     var cbFunction = function(data,status){
         if (status) {
             for (var i in data.health_manage_recipes){
@@ -127,9 +216,9 @@ $(function() {
                 $("."+id+" .rate_yy").text(data.health_manage_recipes[i].nutrition) // 营养
                 $("."+id+" .rate_shfs").text(data.health_manage_recipes[i].life_style)  // 生活方式
                 $("."+id+" .docter_name").text(data.health_manage_recipes[i].doctor_name)
-                
+                $("."+id+" .table_id").text(data.health_manage_recipes[i].number)
+
                 $("."+id+" .date").text(new Date(data.created_at).Format("yyyy-MM-dd"))
-                $("."+id+" .table_id").text(uid)
                 $("."+id+" .name").text(data.patient.name)
                 $("."+id+" .sex").text(data.patient.sex)
                 $("."+id+" .born_date").text(data.patient.birthday)
@@ -143,7 +232,6 @@ $(function() {
                     detail_table += "<tr><th>"+detail[i]["产品名"]+"</th><th>"+detail[i]["用法"]+"</th><th>"+detail[i]["数量"]+"</th></tr>"
                 }
                 detail_table += "</tbody></table>"
-                console.log(detail_table)
                 $("."+id+" .issue_fa").html(detail_table)
             }
         } else {
@@ -152,12 +240,38 @@ $(function() {
             });
             return false;
         }
-
-
-
     }
     doAjax(window.baseUrl + "/registration/check_info", "get", {"number": uid}, cbFunction);
 })
+
+var programEvaluation = function(dom) {
+    var pnumber = $(dom).parent().prev().find(".table_id").text();
+    var pDocterName = $(dom).parent().prev().find(".docter_name").text();
+    if (!pnumber) {
+        swal({title: "旧档案没有开方编号，不能评价，功能待更新！", type: "error"}, function() {
+            window.close();
+        });
+        return;
+    };
+    doAjax(window.baseUrl + "/comments/get_comment_by_programs_number", "get", {"programs_number": pnumber},function(data) {
+    if (!data) {
+        $('.rating').raty({ number: 3 ,score: 1 , hints : ['无效','一般','好评'] , target : '.text' , targetKeep : true});
+        $('#programEvaluation').modal({
+        });
+        $("#programEvaluation .table_id_modal").val(pnumber);
+        $("#programEvaluation .table_docter_name").val(pDocterName);
+    } else {
+        $('#programEvaluationView').modal({});
+        $('.rating').raty({ number: 3 ,score: data.category , hints : ['无效','一般','好评'] , target : '.text' , targetKeep : true});
+        $("#programEvaluationView .programs_number").text(data.programs_number);
+        $("#programEvaluationView .form-control").text(data.result);
+    };
+    }
+
+);
+
+
+}
 </script>
 <script src="/javascripts/jquery.PrintArea.js"></script>
 <% if (typeof pjax === "undefined") { %>
