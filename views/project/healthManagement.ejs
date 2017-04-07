@@ -37,7 +37,7 @@
                             健康管理师：<span id="doctor"> </span>
                         </p>
                         <p class="col-md-3 col-xs-12 offset-lg-1 ">
-                            病例编号：<span id="recipe_number"> </span>
+                            方案编号：<span id="recipe_number"> </span>
                         </p>
                         <p class="col-md-3 col-xs-12 offset-lg-1 ">
                             开具日期：<span id="today"> </span>
@@ -369,6 +369,13 @@ var gethospital = function() {
         }
     });
 };
+var getRecipeNumber = function() {
+    doAjax(window.baseUrl + "/recipe/get_recipe_number", "get", {}, function(data, status) {
+        if (status && data) {
+            $("#recipe_number").text(data);
+        }
+    });
+};
 var doSearch = function(dom) {
     var val = dom.value.toLocaleUpperCase();
     if (!searching) {
@@ -398,7 +405,8 @@ var doSearch = function(dom) {
                     for (var i in data.patient) {
                         $("#" + i).text(data.patient[i] || "无");
                     };
-                    $("#recipe_number").text(data.number);
+                    getRecipeNumber();
+                    // $("#recipe_number").text(data.number);
                     $("#today").text(todaydata);
                     temp_data = data;
                     gethospital();
@@ -418,6 +426,7 @@ var submitForm = function() {
         "emotion": $("#emotion").val(),
         "nutrition": $("#nutrition").val(),
         "life_style": $("#life_style").val(),
+        "number": $("#recipe_number").text(),
         "detail": JSON.stringify($("#exampleBasic").data("JSGrid").data)
     };
     doAjax(
