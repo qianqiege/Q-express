@@ -2153,6 +2153,36 @@
             </div>
         </div>
     </div>
+
+    <div class="print_area">
+
+    </div>
+
+    <style>
+        .print_area {
+            display: none;
+        }
+
+    @media print {
+        @page {
+            size: 297mm 210mm; /* landscape */
+            /* you can also specify margins here: */
+            margin: 25mm;
+            margin-right: 45mm; /* for compatibility with both A4 and Letter */
+        }
+
+        .print_area {
+            height:297mm;
+            width:210mm;
+            display: block;
+        }
+
+    }
+    </style>
+
+    <link rel="stylesheet" href="/stylesheets/jquery.fancybox.min.css">
+    <script src="/javascripts/jquery.fancybox.min.js"></script>
+    <script src="/javascripts/jquery.PrintArea.js"></script>
     <script type="text/javascript">
         var uid = ~~getvl('id');
         doAjax(window.baseUrl + "/patient_record/check", 'get', {'id': uid}, function (data, status) {
@@ -2524,7 +2554,7 @@
                 <td>{__datetime__}</td>\n\
                 <td>\n\
                     <div>\n\
-                        <a class="btn btn-outline btn-success btn-sm" href="{__value__}"> 查看记录</a>\n\
+                        <a class="btn btn-outline btn-success btn-sm" data-src="{__value__}" href="javascript:void(0)" onclick="openthemagicbox(this)"> 查看记录</a>\n\
                     </div>\n\
                 </td>\n\
             </tr>'
@@ -3106,6 +3136,24 @@
             }
         };
 
+
+        var openthemagicbox = function (obj){
+            $.fancybox.open({
+                src  : $(obj).attr("data-src"),
+                type : 'image',
+            });
+        }
+
+        var printImage = function (){
+            $(".print_area").html("<h3 style='position: absolute;font-size: 0.5px;left: 60px;top: 61px;'>"+$("#name").text()+"</h3><img style='height: 400px;width: 700px;' src='"+$(".fancybox-image").attr("src")+"' />")
+            
+            $(".print_area").printArea()
+        }
+
+        $(document).on('onInit.fb', function( e, instance, slide ) {
+            instance.$refs.printButton = $('<a class="fancybox-button printbutton" style="color: white;width: 70px;" onclick="printImage()"><i class="fa fa-print" aria-hidden="true"></i> 打印</a>')
+                .appendTo( instance.$refs.buttons );
+        });
     </script>
 <% if (typeof pjax === "undefined") { %>
     <%- include ../footer %>
