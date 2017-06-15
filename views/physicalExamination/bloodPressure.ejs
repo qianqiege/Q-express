@@ -114,7 +114,30 @@
             $("#nation").val("");
         }
     };
-
+     var getCurrent = function() {
+       doAjax(window.baseUrl + "/users/current_user",
+        "get",{}, function(data, status){ 
+            return data.id;      
+          
+        }) 
+    };
+    var showData = function(){
+        doAjax(window.baseUrl + "/users/current_user",
+        "get",{}, function(data, status){ 
+            doAjax(window.baseUrl + "/examination_input/get_auto_identity_card",
+        "get", {"id": data.id},function(data, status){
+            console.log(data, status);
+            if(data ==="no_id"){
+                $('#id_number').val(' ')
+            }else{
+            $('#id_number').val(data);
+        }
+        })     
+          
+        }) 
+        
+    };
+    showData();
     var submitForm = function() {
         var max_BloodPressure = $("#max_BloodPressure").val();
         var min_BloodPressure = $("#min_BloodPressure").val();
@@ -199,6 +222,7 @@
         });
 
     };
+    showData();
 </script>
 <% if (typeof pjax === "undefined") { %>
     <%- include ../footer %>
