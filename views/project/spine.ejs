@@ -101,8 +101,12 @@
         </div>
         <div class="row">
             <div class="form-group col-md-10 offset-lg-1 col-xs-12">
-                <label> <input type="checkbox" onchange="caculate()" id="blood" name="blood" onclick="bloodSelect(this)" onchange="caculate()" value="10" /> 放血排毒: <span id="bloodLetting"></span></label>
-                <input type="number" class="form-control" id="bloodTimes" value="1" min='1' onblur="if(value === ''){value = '1'}" onchange="caculate()" disabled />
+                <label> 
+                <input type="checkbox" onchange="caculate()" id="blood" name="blood" onclick="bloodSelect(this)" onchange="caculate()" value="10" /> 
+                放血排毒: <span id="bloodLetting"></span>
+                </label>
+                <input type="number" class="form-control" id="
+                " value="1" min='1' onblur="if(value === ''){value = '1'}" onchange="caculate()" disabled />
             </div>
         </div>
         <div class="row">
@@ -176,7 +180,7 @@ var searching = false;
 var doSearch = function (dom) {
     var val = dom.value.toLocaleUpperCase();
     if (!searching) {
-        if (val.length === 18 && checkIdCard(val)) {
+        if (val.length === 18 ) {//&& checkIdCard(val)
             var createUserDom = function (userObj) {
                 t_template = template
                 return t_template;
@@ -352,7 +356,7 @@ var submitForm = function () {
 };
 var logSearch = function(dom) {
     var val1 = dom.value.toLocaleUpperCase();
-    if (val1.length === 18  && checkIdCard(val1) && !searching) {
+    if (val1.length === 18  && !searching) {// && checkIdCard(val1)
         doAjax(window.baseUrl + "/registration/get_number", "get", {"id_number": val1}, function(data, status) {
             if (!data) {
                 swal("没有挂号记录,请先挂号", "", "error");

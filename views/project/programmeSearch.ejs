@@ -85,7 +85,7 @@ var createRoleDom = function (dom){
 
 var doSearch = function(dom) {
     var val = dom.value.toLocaleUpperCase();
-    if (val.length === 18 && checkIdCard(val) && !searching) {
+    if (val.length === 18  && !searching) {//&& checkIdCard(val)
 
         var createUserDom = function(userObj) {
             var template = $("#template").html();
@@ -121,7 +121,7 @@ var doSearch = function(dom) {
 
 $(function() {
     var idNum = getvl("id_number");
-    if (checkIdCard(idNum)) {
+    if (idNum) {//checkIdCard()
         $("#inputSearch").val(idNum).trigger("oninput");
     }
 });

@@ -150,7 +150,7 @@ var getHospital = function() {
 var doSearch = function(dom) {
     var val = dom.value.toLocaleUpperCase();
     if (!searching) {
-        if (val.length===18  && checkIdCard(val)) {
+        if (val.length===18 ) {// && checkIdCard(val)
             var createUserDom = function(userObj) {
                 var template = $("#template").html();
                 return template;
@@ -243,7 +243,7 @@ var submitForm = function() {
 };
 var logSearch = function(dom) {
     var val1 = dom.value.toLocaleUpperCase();
-    if (val1.length===18  && checkIdCard(val1) && !searching) {
+    if (val1.length===18  && !searching) { //&& checkIdCard(val1)
         doAjax(window.baseUrl + "/registration/get_number", "get", {"id_number": val1}, function(data, status) {
             if (!data) {
                 swal("没有挂号记录,请先挂号", "", "error");

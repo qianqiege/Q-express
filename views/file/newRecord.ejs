@@ -42,7 +42,7 @@
                                 </div>
                                 <div class="form-group form-material col-xs-11 col-md-5 ">
                                     <label class="form-control-label" for="idCard">身份证号</label>
-                                    <input type="text" class="form-control" id="idCard" name="id_number" oninput="showBirthSex(this);" maxlength="18" onchange="testId(this)">
+                                    <input type="text" class="form-control" id="idCard" name="id_number"  maxlength="18" >
                                 </div>
 
                                 <div class="form-group form-material col-xs-12 col-md-5">
@@ -1921,18 +1921,18 @@
                 {contentType: 'application/json;charset=utf-8'}
             );
             return 0;
-        };
-        var showBirthSex = function(idCardDom) {
-            var val = idCardDom.value = idCardDom.value.toLocaleUpperCase();
-            if (checkIdCard(val)) {
-                var bas = val.match(/^\d{6}(\d{4})(\d{2})(\d{2})\d{2}(\d)(\d|X)$/);
-                $("#born").val(bas[1] + "-" + bas[2] + "-" + bas[3]);
-                $("#sex" + (~~bas[4]%2)).prop("checked", true);
-            } else {
-                $("#born").val("");
-                $("input:radio[id^='sex']").prop("checked", false);
-            }
-        };
+        };//oninput="showBirthSex(this);"//这里是身份证号验证那里//onchange="testId(this)"
+        // var showBirthSex = function(idCardDom) {
+        //     var val = idCardDom.value = idCardDom.value.toLocaleUpperCase();
+        //     if (checkIdCard(val)) {
+        //         var bas = val.match(/^\d{6}(\d{4})(\d{2})(\d{2})\d{2}(\d)(\d|X)$/);
+        //         $("#born").val(bas[1] + "-" + bas[2] + "-" + bas[3]);
+        //         $("#sex" + (~~bas[4]%2)).prop("checked", true);
+        //     } else {
+        //         $("#born").val("");
+        //         $("input:radio[id^='sex']").prop("checked", false);
+        //     }
+        // };
         var getUserInfoCallback = function(data, status) {
             if (data && status) {
                 for (var i in data) {
