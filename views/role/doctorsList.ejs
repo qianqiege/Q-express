@@ -104,7 +104,7 @@
     var doSearch = function(dom){
         if (!searching) {
             if (dom.value) {
-                if(dom.value.length === 18 && checkIdCard(dom.value)){
+                if(dom.value.length === 18 ){//&& checkIdCard(dom.value)
                     searching = true;
                     doAjax(window.baseUrl + "/users/get_user_by_id_number", "get", {"id_number": dom.value}, function(data, status) {
                         searching = false;

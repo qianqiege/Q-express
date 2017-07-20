@@ -16,13 +16,13 @@
                             <div class="form-group " style=" margin-bottom: 0px ;">
                                 <div class="input-search">
                                     <button type="submit" class="input-search-btn"><i class="icon wb-search" aria-hidden="true"></i></button>
-                                    <input type="text" class="form-control" name="search" placeholder="请在此输入身份证号码" style="padding-top: 2px;padding-bottom: 2px;" id="id_number" oninput="logSearch(this);" maxlength="18">
+                                    <input type="text" class="form-control" name="search" placeholder="请在此输入身份证号码" style="padding-top: 2px;padding-bottom: 2px;margin-top:10px" id="id_number" oninput="logSearch(this);" maxlength="18">
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <a class="btn btn-outline btn-success btn-sm" href="javascript: void(0);" onclick="doSearch(document.querySelector('#id_number'))">生成</a>
-                            <a class="btn btn-outline btn-success btn-sm" rel="nofollow" data-method="delete" id="healthManagementSearch">查看记录</a>
+                            <a class="btn btn-outline btn-success btn-sm" style="margin-top:10px" href="javascript: void(0);" onclick="doSearch(document.querySelector('#id_number'))">生成</a>
+                            <a class="btn btn-outline btn-success btn-sm" style="margin-top:10px" rel="nofollow" data-method="delete" id="healthManagementSearch">查看记录</a>
                         </div>
                         <div class="col-md-12 col-xs-12">
                             <div class="tab-content">
@@ -33,19 +33,20 @@
                         </div>
                     </div>
                     <div class="row">
-                        <p class="col-md-3 col-xs-12 offset-lg-1">
+                        <a class="col-md-3 col-xs-12 offset-lg-1">
                             健康管理师：<span id="doctor"> </span>
-                        </p>
-                        <p class="col-md-3 col-xs-12 offset-lg-1 ">
+                        </a>
+                        <a class="col-md-3 col-xs-12 offset-lg-1 ">
                             方案编号：<span id="recipe_number"> </span>
-                        </p>
-                        <p class="col-md-3 col-xs-12 offset-lg-1 ">
+                        </a>
+                        <a class="col-md-3 col-xs-12 offset-lg-1 ">
                             开具日期：<span id="today"> </span>
-                        </p>
+                        </a>
                     </div>
 
                 </form>
             </div>
+   
         </div>
         <!-- End Panel -->
     </div>
@@ -379,7 +380,7 @@ var getRecipeNumber = function() {
 var doSearch = function(dom) {
     var val = dom.value.toLocaleUpperCase();
     if (!searching) {
-        if (val.length === 18  && checkIdCard(val)) {
+        if (val.length === 18  ) {//&& checkIdCard(val)
             var createUserDom = function(userObj) {
                 t_template = template;
                 return t_template;
@@ -452,7 +453,7 @@ var submitForm = function() {
 };
 var logSearch = function(dom) {
     var val1 = dom.value.toLocaleUpperCase();
-    if (val1.length===18  && checkIdCard(val1) && !searching) {
+    if (val1.length===18   && !searching) {//&& checkIdCard(val1)
         doAjax(window.baseUrl + "/registration/get_number", "get", {"id_number": val1}, function(data, status) {
             if (!data) {
                 swal("没有挂号记录,请先挂号", "", "error");

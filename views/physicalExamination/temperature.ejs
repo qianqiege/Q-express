@@ -80,7 +80,7 @@
     };
     var doSearch = function(dom) {
         var val = dom.value.toLocaleUpperCase();
-        if (val.length === 18 && checkIdCard(val) && !searching) {
+        if (val.length === 18 && !searching) {//&& checkIdCard(val) 
             searching = true;
             doAjax(window.baseUrl + "/patient/get_by_id_number", "get", {"id_number": val}, function(data, status) {
                 searching = false;

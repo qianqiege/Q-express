@@ -108,7 +108,7 @@
                     $("#all_contacts ul:first").html("<li class='list-group-item'>没有查看权限</li>");
                     $("#contacts_tree ul:first").html("<li class='list-group-item'></li>");
                 } else {
-                    if (val.length === 18 && checkIdCard(val) && !searching) {
+                    if (val.length === 18 && !searching) {// checkIdCard(val) &&
                         var createUserDom = function(userObj) {
                             var template = "\n\
                                 <li class='list-group-item'>\n\
